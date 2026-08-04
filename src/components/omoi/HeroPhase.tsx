@@ -17,11 +17,11 @@ type HeroPhaseProps = {
 const BASE_IMAGES = [
   {
     src: "/images/loading/scene1.webp",
-    className: "top-[5%] left-[5%] w-32 md:w-48",
+    className: "top-[5%] left-[5%] w-32 md:w-120",
   },
   {
     src: "/images/loading/scene2.webp",
-    className: "top-[25%] left-[10%] w-60 md:w-80",
+    className: "top-[35%] left-[20%] w-60 md:w-80",
   },
   {
     src: "/images/loading/scene3.webp",
@@ -29,23 +29,23 @@ const BASE_IMAGES = [
   },
   {
     src: "/images/loading/scene4.webp",
-    className: "top-[40%] right-[15%] w-48 md:w-72",
+    className: "top-[40%] right-[15%] w-48 md:w-100",
   },
   {
     src: "/images/loading/scene5.webp",
-    className: "top-[60%] left-[8%] w-32 md:w-48",
+    className: "top-[60%] left-[4%] w-32 md:w-48",
   },
   {
     src: "/images/loading/scene6.webp",
-    className: "top-[75%] left-[25%] w-40 md:w-56",
+    className: "top-[75%] left-[10%] w-40 md:w-80",
   },
   {
     src: "/images/loading/scene7.webp",
-    className: "top-[55%] right-[8%] w-36 md:w-48",
+    className: "top-[55%] right-[8%] w-36 md:w-64",
   },
   {
     src: "/images/loading/scene8.webp",
-    className: "top-[85%] right-[20%] w-48 md:w-64",
+    className: "top-[85%] right-[20%] w-48 md:w-120",
   },
 ];
 
@@ -211,7 +211,7 @@ export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
             <br />
             10年後どうなっているか。
           </h2>
-          <p className="mt-6 text-sm md:text-xl font-sans leading-normal">
+          <p className="mt-6 text-sm md:text-xl font-serif leading-normal">
             具体的に考えたことがあるだろうか。
             <br />
             ずっと変わらないと思っていた故郷も、

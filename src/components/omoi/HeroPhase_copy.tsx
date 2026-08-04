@@ -11,11 +11,11 @@ type HeroPhaseProps = {
 const BASE_IMAGES = [
   {
     src: "/images/loading/scene1.webp",
-    className: "top-[5%] left-[5%] w-32 md:w-48",
+    className: "top-[5%] left-[5%] w-32 md:w-64",
   },
   {
     src: "/images/loading/scene2.webp",
-    className: "top-[25%] left-[10%] w-60 md:w-80",
+    className: "top-[25%] left-[10%] w-60 md:w-100",
   },
   {
     src: "/images/loading/scene3.webp",
