@@ -2,12 +2,18 @@
 "use client";
 
 import { useRef, useEffect } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useMotionTemplate,
+} from "framer-motion";
 
 type HeroPhaseProps = {
   onShowHeader: () => void;
 };
 
+// ... BASE_IMAGES の定義はそのまま ...
 const BASE_IMAGES = [
   {
     src: "/images/loading/scene1.webp",
@@ -46,19 +52,31 @@ const BASE_IMAGES = [
 export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // 1つのコンテナ全体でスクロール量を監視（例: 300vh分のスクロール量を持たせる）
+  // 💡 修正ポイント1: "end end" に変更し、sticky区間とタイムラインを完全一致させる
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start start", "end start"],
+    offset: ["start start", "end end"],
   });
 
-  // --- 日本地図のズームアップ連動 ---
-  // スクロールの 0.3 〜 0.7 の区間で、地図を巨大化させる
-  const svgScale = useTransform(scrollYProgress, [0.3, 0.7], [0, 120]);
-  // --- Y軸移動（画面下方の「40vh」の位置から、中央の「0vh」へせり上がらせる） ---
-  const svgY = useTransform(scrollYProgress, [0.25, 0.6], ["40vh", "0vh"]);
-  // 最後に青色(#003064)で完全に画面を覆い尽くすフェード
-  const blueFillOpacity = useTransform(scrollYProgress, [0.65, 0.75], [0, 1]);
+  // --- タイムラインの再調整 ---
+  // 0.3〜0.75: 地図の移動＆拡大
+  // 0.65〜0.8: 青背景で画面を覆い尽くす
+  // 0.8〜0.95: テキストのフェードイン＆ブラーイン
+  const svgScale = useTransform(scrollYProgress, [0.1, 0.3, 0.75], [0, 5, 120]);
+  const svgY = useTransform(scrollYProgress, [0.25, 0.65], ["40vh", "0vh"]);
+  const blueFillOpacity = useTransform(scrollYProgress, [0.65, 0.8], [0, 1]);
+
+  const firstTextOpacity = useTransform(
+    scrollYProgress,
+    [0.4, 0.5, 1.0],
+    [0, 1, 1],
+  );
+  const textBlurValue = useTransform(
+    scrollYProgress,
+    [0.4, 0.5, 1.0],
+    [10, 0, 0],
+  );
+  const firstTextFilter = useMotionTemplate`blur(${textBlurValue}px)`;
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -68,17 +86,16 @@ export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
   }, [onShowHeader]);
 
   return (
-    // 全体を長めのスクロールコンテナにする（例: 200vh）
-    <div ref={containerRef} className="relative w-full h-[160vh] bg-base2">
-      {/* 画面に固定（Sticky）されるステージ */}
+    <div ref={containerRef} className="relative w-full h-[200vh] bg-base2">
       <div className="sticky top-0 left-0 w-full h-screen overflow-hidden flex items-center justify-center">
-        {/* --- 1. 背景画像の無限浮遊レイヤー（FV要素） --- */}
+        {/* --- 1. 背景画像の無限浮遊レイヤー --- */}
         <motion.div
           className="absolute top-0 left-0 w-full h-[200vh] flex flex-col z-0 pointer-events-none"
           animate={{ y: ["0%", "-50%"] }}
           transition={{ duration: 40, ease: "linear", repeat: Infinity }}
           style={{ willChange: "transform" }}
         >
+          {/* ブロック1 */}
           <div className="relative w-full h-[100vh]">
             {BASE_IMAGES.map((img, index) => (
               <motion.img
@@ -95,6 +112,7 @@ export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
               />
             ))}
           </div>
+          {/* ブロック2 */}
           <div className="relative w-full h-[100vh]">
             {BASE_IMAGES.map((img, index) => (
               <motion.img
@@ -115,12 +133,12 @@ export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
 
         {/* --- 2. 中央メッセージテキスト（FVの主役） --- */}
         <motion.div
-          className="relative z-10 flex flex-col items-center text-center pointer-events-none py-48 px-16 rounded-full bg-[radial-gradient(circle,#fefbf1_60%,transparent_100%)]"
+          className="relative z-10 flex flex-col items-center text-center pointer-events-none py-48 px-16 rounded-full bg-[radial-gradient(circle,#fefbf1_40%,transparent_80%)]"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.5 }}
         >
-          <h1 className="font-serif font-semibold text-5xl md:text-8xl leading-tight">
+          <h1 className="font-serif font-bold md:font-semibold text-5xl md:text-8xl leading-tight text-nowrap">
             地域から本気で
             <br />
             日本を変えたい
@@ -129,14 +147,30 @@ export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
             className="mt-16 flex flex-col items-center gap-2 opacity-70"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 4.5, duration: 1 }}
           >
-            <span className="font-serif text-sm tracking-widest">Scroll</span>
-            <div className="w-px h-12 bg-[#0d382b]/50 animate-pulse" />
+            <span className="font-serif text-lg tracking-widest">Scroll</span>
+
+            {/* 親要素（はみ出た部分を隠す） */}
+            <div className="relative w-px h-12 overflow-hidden">
+              {/* 下配置のバー（半透明のレール） */}
+              <div className="absolute inset-0 w-full h-full bg-base/50" />
+
+              {/* 上配置のバー（形を変えずに、上から下へ通り抜ける） */}
+              <motion.div
+                className="absolute w-full h-1/2 bg-base"
+                initial={{ y: "-100%" }}
+                animate={{ y: "200%" }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              />
+            </div>
           </motion.div>
         </motion.div>
 
-        {/* --- 3. 中央から拡大する日本地図レイヤー（セクション2へのブリッジ） --- */}
+        {/* --- 3. 日本地図レイヤー --- */}
         <motion.div
           style={{
             scale: svgScale,
@@ -160,6 +194,31 @@ export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
           style={{ opacity: blueFillOpacity }}
           className="absolute inset-0 z-30 bg-[#003064] pointer-events-none"
         />
+
+        {/* =========================================================
+            5. 青背景の上のテキストレイヤー
+        ========================================================= */}
+        <motion.div
+          style={{
+            opacity: firstTextOpacity,
+            filter: firstTextFilter,
+            willChange: "opacity, filter",
+          }}
+          className="absolute inset-0 z-40 flex flex-col items-center justify-center w-full gap-10 px-4 text-center text-white pointer-events-none"
+        >
+          <h2 className="font-serif text-3xl md:text-7xl font-bold leading-tight">
+            自分が生まれ育った地域が、
+            <br />
+            10年後どうなっているか。
+          </h2>
+          <p className="mt-6 text-sm md:text-xl font-sans leading-normal">
+            具体的に考えたことがあるだろうか。
+            <br />
+            ずっと変わらないと思っていた故郷も、
+            <br className="block md:hidden" />
+            少しずつ姿を変えている。
+          </p>
+        </motion.div>
       </div>
     </div>
   );

@@ -5,7 +5,6 @@ import { useState, useCallback, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import LoadingPhase from "@/components/omoi/LoadingPhase";
 import HeroPhase from "@/components/omoi/HeroPhase";
-import MapTransitionPhase from "@/components/omoi/MapTransitionPhase";
 import GlobalHeader from "@/components/layouts/GlobalHeader";
 import { cn } from "@/lib/utils";
 
