@@ -148,7 +148,9 @@ export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
           >
-            <span className="font-serif text-lg tracking-widest">Scroll</span>
+            <span className="font-serif text-xs md:text-lg tracking-widest">
+              Scroll
+            </span>
 
             {/* 親要素（はみ出た部分を隠す） */}
             <div className="relative w-px h-12 overflow-hidden">
