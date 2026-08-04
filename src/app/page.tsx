@@ -5,7 +5,7 @@ import { useState, useCallback, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import LoadingPhase from "@/components/omoi/LoadingPhase";
 import HeroPhase from "@/components/omoi/HeroPhase";
-import MapTransitionPhase from "@/components/omoi/MapTransitionPhase"; // 👈 セクション2をインポート
+import MapTransitionPhase from "@/components/omoi/MapTransitionPhase";
 import GlobalHeader from "@/components/layouts/GlobalHeader";
 import { cn } from "@/lib/utils";
 
@@ -38,11 +38,11 @@ export default function Home() {
       {/* --- 想いから感じる（右脳）ページ --- */}
       <div
         className={cn(
-          "w-full relative min-h-screen bg-base-dark",
+          "w-full relative min-h-screen bg-base",
           activePage === "omoi" ? "block" : "hidden",
         )}
         aria-hidden={activePage !== "omoi"}
-        inert={activePage !== "omoi" ? "" : undefined}
+        inert={activePage !== "omoi"}
       >
         <AnimatePresence mode="wait">
           {omoiPhase === "loading" && (
@@ -69,7 +69,7 @@ export default function Home() {
               <HeroPhase onShowHeader={handleShowHeader} />
 
               {/* FVからスクロールで繋がるセクション2 (500vh) */}
-              <MapTransitionPhase />
+              {/* <MapTransitionPhase /> */}
             </motion.div>
           )}
         </AnimatePresence>
@@ -79,7 +79,7 @@ export default function Home() {
       <div
         className={cn("w-full", activePage === "shikumi" ? "block" : "hidden")}
         aria-hidden={activePage !== "shikumi"}
-        inert={activePage !== "shikumi" ? "" : undefined}
+        inert={activePage !== "shikumi"}
       >
         <section className="min-h-screen flex items-center justify-center">
           <h1 className="font-sans text-4xl font-bold">
