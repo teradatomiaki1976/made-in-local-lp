@@ -3,6 +3,7 @@
 
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { useHeaderStore } from "@/store/useHeaderStore";
 
 type GlobalHeaderProps = {
   isVisible: boolean;
@@ -15,13 +16,19 @@ export default function GlobalHeader({
   activePage,
   onPageChange,
 }: GlobalHeaderProps) {
+  const isDarkBg = useHeaderStore((state) => state.isDarkBg);
+
   return (
     <>
       {/* -------------------------------------------
           1. ヘッダー部分（PC/スマホ共通上部ナビ）
       ------------------------------------------- */}
       <motion.header
-        className="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-4 md:px-8 py-3 md:py-4 bg-base-bright/90 backdrop-blur-md print:hidden"
+        // 背景のクリーム色（bg-base-creem/90）は、ダークモード時は透明にするなどの調整も可能
+        className={cn(
+          "fixed top-0 left-0 w-full z-50 flex items-center justify-between px-4 md:px-8 py-3 md:py-4 backdrop-blur-md print:hidden transition-colors duration-300",
+          isDarkBg ? "bg-transparent" : "bg-base-creem/90",
+        )}
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : -20 }}
         transition={{ duration: 1.5, ease: "easeOut" }}
@@ -34,7 +41,13 @@ export default function GlobalHeader({
             alt="100選エンブレム"
             className="h-10 md:h-16 w-auto"
           />
-          <div className="font-serif font-bold text-text leading-none">
+          {/* 👇 テキスト色を動的に変更 */}
+          <div
+            className={cn(
+              "font-serif font-bold leading-none transition-colors duration-300",
+              isDarkBg ? "text-base-white" : "text-base-midblue",
+            )}
+          >
             <span className="text-[10px] md:text-sm block">地域を代表する</span>
             <span className="text-sm md:text-xl block">企業100選</span>
           </div>

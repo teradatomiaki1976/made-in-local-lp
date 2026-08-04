@@ -2,6 +2,7 @@
 import type { Metadata } from "next";
 import { Noto_Sans_JP, Noto_Serif_JP } from "next/font/google";
 import "./globals.css";
+import ScrollObserver from "@/components/layouts/ScrollObserver";
 
 const notoSans = Noto_Sans_JP({
   variable: "--font-noto-sans",
@@ -31,8 +32,8 @@ export default function RootLayout({
       lang="ja"
       className={`${notoSans.variable} ${notoSerif.variable} h-full antialiased`}
     >
-      {/* 👈 text-zinc-900 を text-base-dark に変更し、トンマナを統一 */}
-      <body className="min-h-full flex flex-col font-sans bg-white text-base-dark">
+      <body className="min-h-full flex flex-col font-sans bg-base-creem text-base-midblue">
+        <ScrollObserver />
         {children}
       </body>
     </html>

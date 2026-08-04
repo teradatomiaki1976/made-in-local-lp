@@ -7,13 +7,13 @@ import {
   useScroll,
   useTransform,
   useMotionTemplate,
+  Variants,
 } from "framer-motion";
 
 type HeroPhaseProps = {
   onShowHeader: () => void;
 };
 
-// ... BASE_IMAGES の定義はそのまま ...
 const BASE_IMAGES = [
   {
     src: "/images/loading/scene1.webp",
@@ -49,19 +49,54 @@ const BASE_IMAGES = [
   },
 ];
 
+// メインテキストのアニメーション制御（子要素の順番に従って表示）
+const wordContainerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: (delayStart: number) => ({
+    opacity: 1,
+    transition: {
+      delayChildren: delayStart,
+      staggerChildren: 0.1,
+    },
+  }),
+};
+const charVariants: Variants = {
+  hidden: { opacity: 0, filter: "blur(12px)", y: 5 },
+  visible: {
+    opacity: 1,
+    filter: "blur(0px)",
+    y: 0,
+    transition: { duration: 0.8, ease: "easeOut" },
+  },
+};
+const AnimatedWord = ({ text, delay }: { text: string; delay: number }) => (
+  <motion.span
+    className="inline-block"
+    custom={delay}
+    variants={wordContainerVariants}
+    initial="hidden"
+    animate="visible"
+  >
+    {text.split("").map((char, index) => (
+      <motion.span key={index} variants={charVariants} className="inline-block">
+        {char}
+      </motion.span>
+    ))}
+  </motion.span>
+);
+
 export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // 💡 修正ポイント1: "end end" に変更し、sticky区間とタイムラインを完全一致させる
+  // 日本地図の出現タイミングをスクロールに応じて制御するためのフック
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
   });
 
-  // --- タイムラインの再調整 ---
   // 0.3〜0.75: 地図の移動＆拡大
   // 0.65〜0.8: 青背景で画面を覆い尽くす
-  // 0.8〜0.95: テキストのフェードイン＆ブラーイン
+  // 0.8〜0.95: テキストのブラーイン
   const svgScale = useTransform(scrollYProgress, [0.1, 0.3, 0.75], [0, 5, 120]);
   const svgY = useTransform(scrollYProgress, [0.25, 0.65], ["40vh", "0vh"]);
   const blueFillOpacity = useTransform(scrollYProgress, [0.65, 0.8], [0, 1]);
@@ -81,7 +116,7 @@ export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
   useEffect(() => {
     const timer = setTimeout(() => {
       onShowHeader();
-    }, 2500);
+    }, 4500);
     return () => clearTimeout(timer);
   }, [onShowHeader]);
 
@@ -105,7 +140,7 @@ export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
                 initial={{ opacity: 0, filter: "grayscale(100%) blur(10px)" }}
                 animate={{ opacity: 0.8, filter: "grayscale(0%) blur(0px)" }}
                 transition={{
-                  delay: 1.0 + Math.random() * 1.5,
+                  delay: 4.0 + index * 0.2,
                   duration: 3,
                   ease: "easeOut",
                 }}
@@ -122,7 +157,7 @@ export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
                 initial={{ opacity: 0, filter: "grayscale(100%) blur(10px)" }}
                 animate={{ opacity: 0.6, filter: "grayscale(0%) blur(0px)" }}
                 transition={{
-                  delay: 1.0 + Math.random() * 1.5,
+                  delay: 5 + index * 0.25,
                   duration: 3,
                   ease: "easeOut",
                 }}
@@ -132,32 +167,34 @@ export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
         </motion.div>
 
         {/* --- 2. 中央メッセージテキスト（FVの主役） --- */}
-        <motion.div
-          className="relative z-10 flex flex-col items-center text-center pointer-events-none py-48 px-16 rounded-full bg-[radial-gradient(circle,#fefbf1_40%,transparent_80%)]"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.5 }}
-        >
-          <h1 className="font-serif font-bold md:font-semibold text-5xl md:text-8xl leading-tight text-nowrap">
-            地域から本気で
-            <br />
-            日本を変えたい
+        <motion.div className="relative z-10 flex flex-col items-center text-center pointer-events-none py-48 px-16 rounded-full bg-[radial-gradient(circle,#fefbf1_40%,transparent_80%)]">
+          <h1
+            className="font-serif font-bold md:font-semibold text-5xl md:text-8xl leading-tight text-nowrap"
+            aria-label="地域から本気で日本を変えたい"
+          >
+            <span aria-hidden="true">
+              <AnimatedWord text="地域から" delay={0.5} />
+              <span className="inline-block" />
+              <AnimatedWord text="本気で" delay={1.8} />
+              <br />
+              <AnimatedWord text="日本を変えたい" delay={3.2} />
+            </span>
           </h1>
           <motion.div
-            className="mt-16 flex flex-col items-center gap-2 opacity-70"
+            className="mt-16 flex flex-col items-center gap-2"
             initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+            animate={{ opacity: 0.7 }}
+            transition={{
+              delay: 5.5,
+              duration: 1.5,
+              ease: "easeOut",
+            }}
           >
             <span className="font-serif text-xs md:text-lg tracking-widest">
               Scroll
             </span>
-
-            {/* 親要素（はみ出た部分を隠す） */}
             <div className="relative w-px h-12 overflow-hidden">
-              {/* 下配置のバー（半透明のレール） */}
               <div className="absolute inset-0 w-full h-full bg-base/50" />
-
-              {/* 上配置のバー（形を変えずに、上から下へ通り抜ける） */}
               <motion.div
                 className="absolute w-full h-1/2 bg-base"
                 initial={{ y: "-100%" }}
