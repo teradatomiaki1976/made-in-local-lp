@@ -1,6 +1,5 @@
 // src/components/omoi/HeroPhase.tsx
 "use client";
-import { cn } from "@/lib/utils";
 
 import { useRef, useEffect } from "react";
 import {
@@ -122,10 +121,7 @@ export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
   }, [onShowHeader]);
 
   return (
-    <div
-      ref={containerRef}
-      className={cn("relative w-full h-[150vh] bg-base-creem")}
-    >
+    <div ref={containerRef} className="relative w-full h-[150vh] bg-creem">
       <div className="sticky top-0 left-0 w-full h-screen overflow-hidden flex items-center justify-center">
         {/* --- 1. 背景画像の無限浮遊レイヤー --- */}
         <motion.div
@@ -198,9 +194,9 @@ export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
               Scroll
             </span>
             <div className="relative w-px h-12 overflow-hidden">
-              <div className="absolute inset-0 w-full h-full bg-base/50" />
+              <div className="absolute inset-0 w-full h-full bg-midblue/50" />
               <motion.div
-                className="absolute w-full h-1/2 bg-base"
+                className="absolute w-full h-1/2 bg-midblue"
                 initial={{ y: "-100%" }}
                 animate={{ y: "200%" }}
                 transition={{
@@ -254,7 +250,7 @@ export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
             <br />
             10年後どうなっているか
           </h2>
-          <p className="text-sm md:text-xl font-serif leading-normal">
+          <p className="text-sm md:text-xl leading-normal">
             具体的に考えたことがあるだろうか。
             <br />
             ずっと変わらないと思っていた故郷も、

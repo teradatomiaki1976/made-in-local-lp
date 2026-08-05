@@ -32,7 +32,7 @@ export default function RootLayout({
       lang="ja"
       className={`${notoSans.variable} ${notoSerif.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col font-sans bg-base-creem text-base-midblue">
+      <body className="min-h-full flex flex-col font-sans bg-midblue text-text">
         <ScrollObserver />
         {children}
       </body>

@@ -68,7 +68,7 @@ export default function LoadingPhase({
   return (
     <motion.div
       className={cn(
-        "relative w-full h-screen bg-base-midblue overflow-hidden flex flex-col items-center justify-center",
+        "relative w-full h-screen bg-midblue overflow-hidden flex flex-col items-center justify-center",
         className,
       )}
       style={{ backgroundColor: "#003064" }}
@@ -121,9 +121,7 @@ export default function LoadingPhase({
         />
       </div>
       <motion.div
-        className={cn(
-          "absolute inset-0 bg-base-midblue z-50 pointer-events-none",
-        )}
+        className={cn("absolute inset-0 bg-midblue z-50 pointer-events-none")}
         initial={{ opacity: 0 }}
         exit={{ opacity: 1 }} // コンポーネントが破棄される瞬間にフェードイン（不透明になる）
         transition={{ duration: 0.6, ease: "easeInOut" }}

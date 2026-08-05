@@ -19,8 +19,8 @@ export default function Section({
         // 全セクション共通の余白ルール（スマホとPCの揺れをここで吸収）
         "w-full px-5 md:px-10 py-16 md:py-section-md",
         // バリエーションごとのスタイル
-        variant === "dark" && "bg-brand-dark text-white",
-        variant === "light" && "bg-brand-gray text-brand-dark",
+        variant === "dark" && "bg-midblue text-white",
+        variant === "light" && "bg-creem text-text",
         className, // 呼び出し元からの個別の上書きを許可
       )}
       {...props}

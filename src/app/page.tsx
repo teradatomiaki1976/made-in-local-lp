@@ -48,7 +48,7 @@ export default function Home() {
           {omoiPhase === "loading" && (
             <LoadingPhase
               key="loading"
-              className="bg-base-midblue"
+              className="bg-midblue"
               onComplete={() => {
                 window.scrollTo(0, 0);
                 setOmoiPhase("hero");

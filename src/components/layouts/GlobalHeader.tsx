@@ -24,10 +24,9 @@ export default function GlobalHeader({
           1. ヘッダー部分（PC/スマホ共通上部ナビ）
       ------------------------------------------- */}
       <motion.header
-        // 背景のクリーム色（bg-base-creem/90）は、ダークモード時は透明にするなどの調整も可能
         className={cn(
           "fixed top-0 left-0 w-full z-50 flex items-center justify-between px-4 md:px-8 py-3 md:py-4 backdrop-blur-md print:hidden transition-colors duration-300",
-          isDarkBg ? "bg-transparent" : "bg-base-creem/90",
+          isDarkBg ? "bg-transparent" : "bg-creem/10",
         )}
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : -20 }}
@@ -45,7 +44,7 @@ export default function GlobalHeader({
           <div
             className={cn(
               "font-serif font-bold leading-none transition-colors duration-300",
-              isDarkBg ? "text-base-white" : "text-base-midblue",
+              isDarkBg ? "text-white" : "text-midblue",
             )}
           >
             <span className="text-[10px] md:text-sm block">地域を代表する</span>
@@ -58,10 +57,10 @@ export default function GlobalHeader({
           <button
             onClick={() => onPageChange("omoi")}
             className={cn(
-              "flex items-center justify-center rounded-full font-bold transition-colors",
+              "flex items-center justify-center rounded-full font-sans font-bold transition-colors cursor-pointer",
               "w-12 h-10 md:w-auto md:h-auto md:px-8 md:py-3 text-sm",
               activePage === "omoi"
-                ? "bg-base text-white"
+                ? "bg-midblue text-white"
                 : "text-text hover:bg-gray-50",
             )}
           >
@@ -71,10 +70,10 @@ export default function GlobalHeader({
           <button
             onClick={() => onPageChange("shikumi")}
             className={cn(
-              "flex items-center justify-center rounded-full font-bold transition-colors",
+              "flex items-center justify-center rounded-full font-sans font-bold transition-colors cursor-pointer",
               "w-12 h-10 md:w-auto md:h-auto md:px-8 md:py-3 text-sm",
               activePage === "shikumi"
-                ? "bg-base3 text-white"
+                ? "bg-olive text-white"
                 : "text-text hover:bg-gray-50",
             )}
           >
@@ -84,7 +83,7 @@ export default function GlobalHeader({
         </div>
 
         {/* 右: PC版CTAボタン（スマホでは md:block で非表示） */}
-        <button className="hidden md:block bg-[#003064] text-white px-8 py-3 rounded-md font-bold text-sm shadow-md hover:opacity-90 transition-opacity">
+        <button className="hidden md:block bg-midblue font-sans text-white leading-tight px-8 py-3 rounded-md font-bold text-base shadow-md hover:opacity-90 transition-opacity cursor-pointer">
           選出について
           <br />
           相談する
@@ -103,7 +102,7 @@ export default function GlobalHeader({
         style={{ pointerEvents: isVisible ? "auto" : "none" }}
       >
         <button
-          className="w-full bg-[#003064] text-white font-bold text-lg pt-4 shadow-[0_-4px_10px_rgba(0,0,0,0.1)] active:bg-[#002244] transition-colors"
+          className="w-full bg-midblue text-white font-sans font-bold text-lg pt-4 shadow-[0_-4px_10px_rgba(0,0,0,0.1)] active:bg-[#002244] transition-colors cursor-pointer"
           style={{
             // 👇 iPhoneのホームバー（セーフエリア）対策
             paddingBottom: "calc(env(safe-area-inset-bottom) + 16px)",

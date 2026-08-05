@@ -5,9 +5,9 @@
   --font-sans: var(--font-noto-sans);
   --font-serif: var(--font-noto-serif);
 
-  --color-base: #003064;
-  --color-base2: #fefbf1;
-  --color-base3: #584e13;
+  --color-midblue: #003064;
+  --color-creem: #fefbf1;
+  --color-olive: #584e13;
   --color-text: #003064;
   --color-white: #ffffff;
 }
@@ -16,6 +16,7 @@ body {
   background-color: #ffffff;
   overflow-y: scroll;
   color: var(--color-text);
+  font-family: var(--font-serif);
 }
 
 /* 印刷時のリセット設定（先回りのリスクヘッジ） */
