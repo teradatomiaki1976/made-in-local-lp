@@ -1,5 +1,6 @@
 // src/components/omoi/HeroPhase.tsx
 "use client";
+import { cn } from "@/lib/utils";
 
 import { useRef, useEffect } from "react";
 import {
@@ -121,7 +122,10 @@ export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
   }, [onShowHeader]);
 
   return (
-    <div ref={containerRef} className="relative w-full h-[200vh] bg-base2">
+    <div
+      ref={containerRef}
+      className={cn("relative w-full h-[150vh] bg-base-creem")}
+    >
       <div className="sticky top-0 left-0 w-full h-screen overflow-hidden flex items-center justify-center">
         {/* --- 1. 背景画像の無限浮遊レイヤー --- */}
         <motion.div
@@ -175,9 +179,9 @@ export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
             <span aria-hidden="true">
               <AnimatedWord text="地域から" delay={0.5} />
               <span className="inline-block" />
-              <AnimatedWord text="本気で" delay={1.8} />
+              <AnimatedWord text="本気で" delay={1.4} />
               <br />
-              <AnimatedWord text="日本を変えたい" delay={3.2} />
+              <AnimatedWord text="日本を変えたい" delay={2.6} />
             </span>
           </h1>
           <motion.div
@@ -246,11 +250,11 @@ export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
           className="absolute inset-0 z-40 flex flex-col items-center justify-center w-full gap-10 px-4 text-center text-white pointer-events-none"
         >
           <h2 className="font-serif text-3xl md:text-7xl font-bold leading-tight">
-            自分が生まれ育った地域が、
+            自分が生まれ育った地域が
             <br />
-            10年後どうなっているか。
+            10年後どうなっているか
           </h2>
-          <p className="mt-6 text-sm md:text-xl font-serif leading-normal">
+          <p className="text-sm md:text-xl font-serif leading-normal">
             具体的に考えたことがあるだろうか。
             <br />
             ずっと変わらないと思っていた故郷も、

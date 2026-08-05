@@ -3,6 +3,7 @@
 
 import { useState, useEffect, startTransition } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 const BACKGROUND_IMAGES = [
   "/images/loading/scene1.webp",
@@ -26,9 +27,13 @@ const TOTAL_DURATION = TIMINGS.reduce((a, b) => a + b, 0) / 1000;
 
 type LoadingPhaseProps = {
   onComplete: () => void;
+  className?: string;
 };
 
-export default function LoadingPhase({ onComplete }: LoadingPhaseProps) {
+export default function LoadingPhase({
+  onComplete,
+  className,
+}: LoadingPhaseProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   // 1. 画像のプリロード処理（初回のみ）
@@ -61,14 +66,22 @@ export default function LoadingPhase({ onComplete }: LoadingPhaseProps) {
   }, [currentImageIndex, onComplete]);
 
   return (
-    <motion.div className="relative w-full h-screen bg-brand-green overflow-hidden flex flex-col items-center justify-center">
+    <motion.div
+      className={cn(
+        "relative w-full h-screen bg-base-midblue overflow-hidden flex flex-col items-center justify-center",
+        className,
+      )}
+      style={{ backgroundColor: "#003064" }}
+    >
       {/* --- 背景画像の切り替え（スケール＋イージング追加） --- */}
       <AnimatePresence mode="popLayout">
         <motion.img
           key={currentImageIndex}
           src={BACKGROUND_IMAGES[currentImageIndex]}
           alt=""
-          className="absolute inset-0 w-full h-full object-cover opacity-75 mix-blend-screen blur-none"
+          className={cn(
+            "absolute inset-0 w-full h-full object-cover opacity-75 mix-blend-screen blur-none",
+          )}
           initial={{ opacity: 0, scale: 1.1 }}
           animate={{ opacity: 0.6, scale: 1 }}
           transition={{
@@ -81,7 +94,7 @@ export default function LoadingPhase({ onComplete }: LoadingPhaseProps) {
 
       {/* --- SVGロゴのフェードイン --- */}
       <motion.div
-        className="relative z-10 w-48 md:w-64 drop-shadow-2xl"
+        className={cn("relative z-10 w-48 md:w-64 drop-shadow-2xl")}
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.5, ease: "easeOut" }}
@@ -94,7 +107,11 @@ export default function LoadingPhase({ onComplete }: LoadingPhaseProps) {
       </motion.div>
 
       {/* --- ローディングバー（全体の可変時間と同期） --- */}
-      <div className="relative z-10 w-48 md:w-64 h-px bg-white/20 mt-8 overflow-hidden">
+      <div
+        className={cn(
+          "relative z-10 w-48 md:w-64 h-px bg-white/20 mt-8 overflow-hidden",
+        )}
+      >
         <motion.div
           className="h-full bg-white"
           initial={{ width: "0%" }}
@@ -104,7 +121,9 @@ export default function LoadingPhase({ onComplete }: LoadingPhaseProps) {
         />
       </div>
       <motion.div
-        className="absolute inset-0 bg-base-dark z-50 pointer-events-none"
+        className={cn(
+          "absolute inset-0 bg-base-midblue z-50 pointer-events-none",
+        )}
         initial={{ opacity: 0 }}
         exit={{ opacity: 1 }} // コンポーネントが破棄される瞬間にフェードイン（不透明になる）
         transition={{ duration: 0.6, ease: "easeInOut" }}

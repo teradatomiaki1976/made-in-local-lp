@@ -5,6 +5,7 @@ import { useState, useCallback, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import LoadingPhase from "@/components/omoi/LoadingPhase";
 import HeroPhase from "@/components/omoi/HeroPhase";
+import MessagePhase from "@/components/omoi/MessagePhase";
 import GlobalHeader from "@/components/layouts/GlobalHeader";
 import { cn } from "@/lib/utils";
 
@@ -37,7 +38,7 @@ export default function Home() {
       {/* --- 想いから感じる（右脳）ページ --- */}
       <div
         className={cn(
-          "w-full relative min-h-screen bg-base",
+          "w-full relative min-h-screen",
           activePage === "omoi" ? "block" : "hidden",
         )}
         aria-hidden={activePage !== "omoi"}
@@ -47,8 +48,8 @@ export default function Home() {
           {omoiPhase === "loading" && (
             <LoadingPhase
               key="loading"
+              className="bg-base-midblue"
               onComplete={() => {
-                // ローディングが終わって切り替わる瞬間に、念のためトップへ戻す
                 window.scrollTo(0, 0);
                 setOmoiPhase("hero");
               }}
@@ -69,6 +70,7 @@ export default function Home() {
 
               {/* FVからスクロールで繋がるセクション2 (500vh) */}
               {/* <MapTransitionPhase /> */}
+              <MessagePhase />
             </motion.div>
           )}
         </AnimatePresence>
