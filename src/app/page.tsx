@@ -4,9 +4,10 @@
 import { useState, useCallback, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import LoadingPhase from "@/components/omoi/LoadingPhase";
+import GlobalHeader from "@/components/layouts/GlobalHeader";
 import HeroPhase from "@/components/omoi/HeroPhase";
 import MessagePhase from "@/components/omoi/MessagePhase";
-import GlobalHeader from "@/components/layouts/GlobalHeader";
+import StoryPhase from "@/components/omoi/StoryPhase";
 import { cn } from "@/lib/utils";
 
 export default function Home() {
@@ -18,7 +19,7 @@ export default function Home() {
     setIsHeaderVisible(true);
   }, []);
 
-  // 💡 先回りリスクヘッジ：リロード時の強制スクロールジャンプを防止
+  // リロード時の強制スクロールジャンプを防止
   useEffect(() => {
     if (typeof window !== "undefined") {
       // ブラウザが勝手に前回のスクロール位置へ戻るのを防ぐ
@@ -57,7 +58,7 @@ export default function Home() {
           )}
 
           {omoiPhase === "hero" && (
-            // 👇 修正ポイント：FVとセクション2をひとつのラッパーで包む
+            // FVとセクション2をひとつのラッパーで包む
             <motion.div
               key="hero-content"
               initial={{ opacity: 0 }}
@@ -65,12 +66,9 @@ export default function Home() {
               transition={{ duration: 0.8, ease: "easeOut" }}
               className="w-full flex flex-col"
             >
-              {/* FVセクション (100vh) */}
               <HeroPhase onShowHeader={handleShowHeader} />
-
-              {/* FVからスクロールで繋がるセクション2 (500vh) */}
-              {/* <MapTransitionPhase /> */}
               <MessagePhase />
+              <StoryPhase />
             </motion.div>
           )}
         </AnimatePresence>
