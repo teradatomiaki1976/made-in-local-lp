@@ -117,7 +117,7 @@ export default function MessagePhase() {
               alt=""
               fill
               sizes="100vw"
-              className="object-cover opacity-50"
+              className="object-cover opacity-40"
             />
           </motion.div>
 
@@ -135,12 +135,12 @@ export default function MessagePhase() {
               alt=""
               fill
               sizes="100vw"
-              className="object-cover opacity-50"
+              className="object-cover opacity-30"
             />
           </motion.div>
 
           {/* 可読性担保のダークオーバーレイ */}
-          <div className="absolute inset-0 bg-midblue/70 mix-blend-multiply" />
+          <div className="absolute inset-0 bg-black/50 mix-blend-multiply" />
         </div>
 
         {/* ==========================================
