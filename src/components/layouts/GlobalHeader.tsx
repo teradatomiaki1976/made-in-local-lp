@@ -4,6 +4,7 @@
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { useHeaderStore } from "@/store/useHeaderStore";
+import { FiChevronRight } from "react-icons/fi";
 
 type GlobalHeaderProps = {
   isVisible: boolean;
@@ -55,19 +56,6 @@ export default function GlobalHeader({
         {/* 中央: 切り替えトグル */}
         <div className="flex bg-white rounded-full shadow-sm border border-gray-100 p-1">
           <button
-            onClick={() => onPageChange("omoi")}
-            className={cn(
-              "flex items-center justify-center rounded-full font-sans font-bold transition-colors cursor-pointer",
-              "w-12 h-10 md:w-auto md:h-auto md:px-8 md:py-3 text-sm",
-              activePage === "omoi"
-                ? "bg-midblue text-white"
-                : "text-text hover:bg-gray-50",
-            )}
-          >
-            <span className="md:hidden">想</span>
-            <span className="hidden md:inline">想いから感じる</span>
-          </button>
-          <button
             onClick={() => onPageChange("shikumi")}
             className={cn(
               "flex items-center justify-center rounded-full font-sans font-bold transition-colors cursor-pointer",
@@ -80,13 +68,28 @@ export default function GlobalHeader({
             <span className="md:hidden">理</span>
             <span className="hidden md:inline">仕組みから理解する</span>
           </button>
+          <button
+            onClick={() => onPageChange("omoi")}
+            className={cn(
+              "flex items-center justify-center rounded-full font-sans font-bold transition-colors cursor-pointer",
+              "w-12 h-10 md:w-auto md:h-auto md:px-8 md:py-3 text-sm",
+              activePage === "omoi"
+                ? "bg-midblue text-white"
+                : "text-text hover:bg-gray-50",
+            )}
+          >
+            <span className="md:hidden">想</span>
+            <span className="hidden md:inline">想いから感じる</span>
+          </button>
         </div>
 
         {/* 右: PC版CTAボタン（スマホでは md:block で非表示） */}
-        <button className="hidden md:block bg-midblue font-sans text-white leading-tight px-8 py-3 rounded-md font-bold text-base shadow-md hover:opacity-90 transition-opacity cursor-pointer">
-          選出について
-          <br />
-          相談する
+        <button className="hidden md:flex items-center justify-center gap-1.5 bg-midblue font-sans text-white leading-tight px-8 py-4 rounded-md font-bold text-base shadow-md hover:opacity-90 transition-opacity cursor-pointer">
+          <FiChevronRight
+            className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1"
+            aria-hidden="true"
+          />
+          <span>選出について相談する</span>
         </button>
       </motion.header>
 
@@ -102,13 +105,17 @@ export default function GlobalHeader({
         style={{ pointerEvents: isVisible ? "auto" : "none" }}
       >
         <button
-          className="w-full bg-midblue text-white font-sans font-bold text-lg pt-4 shadow-[0_-4px_10px_rgba(0,0,0,0.1)] active:bg-[#002244] transition-colors cursor-pointer"
+          className="w-full flex items-center justify-center gap-2 bg-midblue text-white font-sans font-bold text-lg pt-4 shadow-[0_-4px_10px_rgba(0,0,0,0.1)] active:bg-[#002244] transition-colors cursor-pointer"
           style={{
             // 👇 iPhoneのホームバー（セーフエリア）対策
             paddingBottom: "calc(env(safe-area-inset-bottom) + 16px)",
           }}
         >
-          選出について相談する
+          <FiChevronRight
+            className="w-6 h-6 transition-transform duration-300 group-active:translate-x-1"
+            aria-hidden="true"
+          />
+          <span>選出について相談する</span>
         </button>
       </motion.div>
     </>

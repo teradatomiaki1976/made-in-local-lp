@@ -49,14 +49,23 @@ export default function MessagePhase() {
     v > 0.5 ? "hidden" : "visible",
   );
 
-  // Scene 2: 40%〜60%で現れ、最後まで表示
-  const scene2Opacity = useTransform(scrollYProgress, [0.4, 0.6, 1], [0, 1, 1]);
+  // Scene 2: 40%〜60%で現れ、90%〜100%で次のセクションに向けて美しく消える
+  const scene2Opacity = useTransform(
+    scrollYProgress,
+    [0.4, 0.6, 0.9, 1],
+    [0, 1, 1, 0],
+  );
   const scene2BlurValue = useTransform(
     scrollYProgress,
-    [0.4, 0.6, 1],
-    [12, 0, 0],
-  );
+    [0.4, 0.6, 0.9, 1],
+    [12, 0, 0, 12],
+  ); // 消える時もブラーをかける
   const scene2Filter = useMotionTemplate`blur(${scene2BlurValue}px)`;
+
+  // 95%を超えたら物理的に非表示にしてゴーストタップを防ぐ
+  const scene2Visibility = useTransform(scrollYProgress, (v) =>
+    v > 0.95 ? "hidden" : "visible",
+  );
 
   // ==========================================
   // スクロリーテリングの制御（Scene 2 の放射アニメーション追加）
@@ -81,15 +90,15 @@ export default function MessagePhase() {
   const radialScale10 = useTransform(scrollYProgress, [0.54, 0.74], [0.2, 1]);
   const pos10_X = useTransform(scrollYProgress, [0.5, 0.75], ["0vw", "18vw"]);
   const pos10_Y = useTransform(scrollYProgress, [0.5, 0.75], ["0vh", "-12vh"]);
-  // 4. 「それ以上」
-  const radialOpacityMore = useTransform(
-    scrollYProgress,
-    [0.56, 0.71],
-    [0, 0.6],
-  );
-  const radialScaleMore = useTransform(scrollYProgress, [0.56, 0.76], [0.2, 1]);
-  const posMore_X = useTransform(scrollYProgress, [0.5, 0.75], ["0vw", "20vw"]);
-  const posMore_Y = useTransform(scrollYProgress, [0.5, 0.75], ["0vh", "20vh"]);
+  // 4. 「1社」
+  const radialOpacity1 = useTransform(scrollYProgress, [0.56, 0.71], [0, 0.6]);
+  const radialScale1 = useTransform(scrollYProgress, [0.56, 0.76], [0.2, 1]);
+  const pos1_X = useTransform(scrollYProgress, [0.5, 0.75], ["0vw", "12vw"]);
+  const pos1_Y = useTransform(scrollYProgress, [0.5, 0.75], ["0vh", "20vh"]);
+  // 4. 「5社」
+  const radialOpacity5 = useTransform(scrollYProgress, [0.54, 0.65], [0, 0.6]);
+  const radialScale5 = useTransform(scrollYProgress, [0.54, 0.68], [0.2, 1]);
+  const pos5_Y = useTransform(scrollYProgress, [0.5, 0.75], ["0vh", "30vh"]);
 
   return (
     <section
@@ -103,7 +112,7 @@ export default function MessagePhase() {
             背景レイヤー（最背面）
         ========================================== */}
         <div className="absolute inset-0 w-full h-full z-0" aria-hidden="true">
-          {/* Scene 1 背景（シャッター街） */}
+          {/* Scene 1 背景 */}
           <motion.div
             style={{
               opacity: scene1Opacity,
@@ -121,7 +130,7 @@ export default function MessagePhase() {
             />
           </motion.div>
 
-          {/* Scene 2 背景（ネットワーク図など） */}
+          {/* Scene 2 背景 */}
           <motion.div
             style={{
               opacity: scene2Opacity,
@@ -131,11 +140,11 @@ export default function MessagePhase() {
             className="absolute inset-0 w-full h-full"
           >
             <Image
-              src="/images/section3/bg-2.jpg"
+              src="/images/section3/japan47.svg"
               alt=""
               fill
               sizes="100vw"
-              className="object-cover opacity-30"
+              className="object-contain opacity-30"
             />
           </motion.div>
 
@@ -302,10 +311,11 @@ export default function MessagePhase() {
               opacity: scene2Opacity,
               filter: scene2Filter,
               willChange: "opacity, filter",
+              visibility: scene2Visibility,
             }}
             className="absolute inset-0 flex flex-col items-center justify-center w-full h-full"
           >
-            {/* 📸 放射状に広がる背景要素（テキストの背面に配置） */}
+            {/* 放射状に広がる背景要素 */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
               {/* 0社 */}
               <motion.div
@@ -355,19 +365,36 @@ export default function MessagePhase() {
                 </div>
               </motion.div>
 
-              {/* それ以上 */}
+              {/* 1社 */}
               <motion.div
                 style={{
-                  opacity: radialOpacityMore,
-                  scale: radialScaleMore,
-                  x: posMore_X,
-                  y: posMore_Y,
+                  opacity: radialOpacity1,
+                  scale: radialScale1,
+                  x: pos1_X,
+                  y: pos1_Y,
                   willChange: "transform, opacity",
                 }}
-                className="absolute flex items-center justify-center w-24 md:w-32 aspect-square rounded-full border border-white/40 text-2xl text-white flex-col leading-tight"
+                className="absolute flex items-center justify-center w-24 md:w-32 aspect-square rounded-full border border-white/40 text-2xl text-white"
               >
-                <span className="text-lg md:text-3xl">それ</span>
-                <span className="text-lg md:text-3xl">以上</span>
+                <div className="flex items-end  text-2xl">
+                  <span className="text-3xl md:text-7xl mr-1">1</span>社
+                </div>
+              </motion.div>
+
+              {/* 5社 */}
+              <motion.div
+                style={{
+                  opacity: radialOpacity5,
+                  scale: radialScale5,
+                  x: 0,
+                  y: pos5_Y,
+                  willChange: "transform, opacity",
+                }}
+                className="absolute flex items-center justify-center w-28 md:w-36 aspect-square rounded-full border border-white/40 text-2xl text-white"
+              >
+                <div className="flex items-end  text-2xl">
+                  <span className="text-3xl md:text-7xl mr-1">5</span>社
+                </div>
               </motion.div>
             </div>
 
