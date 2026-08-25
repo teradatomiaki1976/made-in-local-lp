@@ -9,6 +9,7 @@ import {
   useMotionTemplate,
   Variants,
 } from "framer-motion";
+import { useHeaderStore } from "@/store/useHeaderStore";
 
 type HeroPhaseProps = {
   onShowHeader: () => void;
@@ -16,48 +17,44 @@ type HeroPhaseProps = {
 
 const BASE_IMAGES = [
   {
-    src: "/images/loading/scene1.webp",
+    src: "/images/photo/scene1.webp",
     className: "top-[5%] left-[5%] w-32 md:w-120",
   },
   {
-    src: "/images/loading/scene2.webp",
+    src: "/images/photo/scene2.webp",
     className: "top-[35%] left-[20%] w-60 md:w-80",
   },
   {
-    src: "/images/loading/scene3.webp",
+    src: "/images/photo/scene3.webp",
     className: "top-[15%] right-[10%] w-36 md:w-56",
   },
   {
-    src: "/images/loading/scene4.webp",
+    src: "/images/photo/scene4.webp",
     className: "top-[40%] right-[15%] w-48 md:w-100",
   },
   {
-    src: "/images/loading/scene5.webp",
+    src: "/images/photo/scene5.webp",
     className: "top-[60%] left-[4%] w-32 md:w-48",
   },
   {
-    src: "/images/loading/scene6.webp",
+    src: "/images/photo/scene6.webp",
     className: "top-[75%] left-[10%] w-40 md:w-80",
   },
   {
-    src: "/images/loading/scene7.webp",
+    src: "/images/photo/scene7.webp",
     className: "top-[55%] right-[8%] w-36 md:w-64",
   },
   {
-    src: "/images/loading/scene8.webp",
+    src: "/images/photo/scene8.webp",
     className: "top-[85%] right-[20%] w-48 md:w-120",
   },
 ];
 
-// メインテキストのアニメーション制御（子要素の順番に従って表示）
 const wordContainerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: (delayStart: number) => ({
     opacity: 1,
-    transition: {
-      delayChildren: delayStart,
-      staggerChildren: 0.1,
-    },
+    transition: { delayChildren: delayStart, staggerChildren: 0.1 },
   }),
 };
 const charVariants: Variants = {
@@ -87,20 +84,16 @@ const AnimatedWord = ({ text, delay }: { text: string; delay: number }) => (
 
 export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const setIsDarkBg = useHeaderStore((state) => state.setIsDarkBg);
 
-  // 日本地図の出現タイミングをスクロールに応じて制御するためのフック
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
   });
 
-  // 0.3〜0.75: 地図の移動＆拡大
-  // 0.65〜0.8: 青背景で画面を覆い尽くす
-  // 0.8〜0.95: テキストのブラーイン
   const svgScale = useTransform(scrollYProgress, [0.1, 0.3, 0.75], [0, 5, 120]);
   const svgY = useTransform(scrollYProgress, [0.25, 0.65], ["40vh", "0vh"]);
   const blueFillOpacity = useTransform(scrollYProgress, [0.65, 0.8], [0, 1]);
-
   const firstTextOpacity = useTransform(
     scrollYProgress,
     [0.4, 0.5, 1.0],
@@ -112,6 +105,22 @@ export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
     [10, 0, 0],
   );
   const firstTextFilter = useMotionTemplate`blur(${textBlurValue}px)`;
+
+  // 👇 【絶対確実な判定】ページ全体のスクロール量が一定値を超えたら強制的に白抜きにする
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      // 画面を 300px 以上スクロールした（＝青背景が出現するエリアに入った）ら true
+      const isDark = scrollPosition > 300;
+      setIsDarkBg(isDark);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      setIsDarkBg(false);
+    };
+  }, [setIsDarkBg]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -130,8 +139,7 @@ export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
           transition={{ duration: 40, ease: "linear", repeat: Infinity }}
           style={{ willChange: "transform" }}
         >
-          {/* ブロック1 */}
-          <div className="relative w-full h-[100vh]">
+          <div className="relative w-full h-screen">
             {BASE_IMAGES.map((img, index) => (
               <motion.img
                 key={`b1-${index}`}
@@ -147,8 +155,7 @@ export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
               />
             ))}
           </div>
-          {/* ブロック2 */}
-          <div className="relative w-full h-[100vh]">
+          <div className="relative w-full h-screen">
             {BASE_IMAGES.map((img, index) => (
               <motion.img
                 key={`b2-${index}`}
@@ -166,8 +173,8 @@ export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
           </div>
         </motion.div>
 
-        {/* --- 2. 中央メッセージテキスト（FVの主役） --- */}
-        <motion.div className="relative z-10 flex flex-col items-center text-center pointer-events-none py-48 px-16 rounded-full bg-[radial-gradient(circle,#fefbf1_40%,transparent_80%)]">
+        {/* --- 2. 中央メッセージテキスト --- */}
+        <motion.div className="relative z-10 flex flex-col items-center text-center pointer-events-none py-60 px-24 rounded-full bg-[radial-gradient(circle,#fefbf1_30%,transparent_60%)]">
           <h1
             className="font-serif font-bold md:font-semibold text-5xl md:text-8xl leading-tight text-nowrap"
             aria-label="地域から本気で日本を変えたい"
@@ -184,16 +191,12 @@ export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
             className="mt-16 flex flex-col items-center gap-2"
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.7 }}
-            transition={{
-              delay: 5.5,
-              duration: 1.5,
-              ease: "easeOut",
-            }}
+            transition={{ delay: 5.5, duration: 1.5, ease: "easeOut" }}
           >
             <span className="font-serif text-xs md:text-lg tracking-widest">
               Scroll
             </span>
-            <div className="relative w-px h-12 overflow-hidden">
+            <div className="relative w-px h-20 overflow-hidden">
               <div className="absolute inset-0 w-full h-full bg-midblue/50" />
               <motion.div
                 className="absolute w-full h-1/2 bg-midblue"
@@ -218,7 +221,7 @@ export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
             originY: 0.5,
             willChange: "transform",
           }}
-          className="absolute z-20 w-[50vw] max-w-[600px] flex items-center justify-center pointer-events-none"
+          className="absolute z-20 w-[50vw] max-w-150 flex items-center justify-center pointer-events-none"
         >
           <img
             src="/images/section2/japan.svg"
@@ -234,9 +237,7 @@ export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
           className="absolute inset-0 z-30 bg-[#003064] pointer-events-none"
         />
 
-        {/* =========================================================
-            5. 青背景の上のテキストレイヤー
-        ========================================================= */}
+        {/* --- 5. 青背景の上のテキストレイヤー --- */}
         <motion.div
           style={{
             opacity: firstTextOpacity,

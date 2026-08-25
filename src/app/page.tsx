@@ -6,8 +6,14 @@ import { AnimatePresence, motion } from "framer-motion";
 import LoadingPhase from "@/components/omoi/LoadingPhase";
 import GlobalHeader from "@/components/layouts/GlobalHeader";
 import HeroPhase from "@/components/omoi/HeroPhase";
-import MessagePhase from "@/components/omoi/MessagePhase";
+import MapStoryWrapper from "@/components/omoi/MapStoryWrapper";
 import StoryPhase from "@/components/omoi/StoryPhase";
+import Phase5_BirthOf100 from "@/components/omoi/Phase5_BirthOf100";
+import Phase6_Why100 from "@/components/omoi/Phase6_Why100";
+import Phase7_NewStandard from "@/components/omoi/Phase7_NewStandard";
+import Phase8_Circulation from "@/components/omoi/Phase8_Circulation";
+import Phase9_Finale from "@/components/omoi/Phase9_Finale";
+import GlobalFooter from "@/components/layouts/GlobalFooter";
 import { cn } from "@/lib/utils";
 
 export default function Home() {
@@ -67,8 +73,13 @@ export default function Home() {
               className="w-full flex flex-col"
             >
               <HeroPhase onShowHeader={handleShowHeader} />
-              <MessagePhase />
+              <MapStoryWrapper />
               <StoryPhase />
+              <Phase5_BirthOf100 />
+              <Phase6_Why100 />
+              <Phase7_NewStandard />
+              <Phase8_Circulation />
+              <Phase9_Finale />
             </motion.div>
           )}
         </AnimatePresence>
@@ -81,11 +92,12 @@ export default function Home() {
         inert={activePage !== "shikumi"}
       >
         <section className="min-h-screen flex items-center justify-center">
-          <h1 className="font-sans text-4xl font-bold">
+          <h1 className="font-sans text-xl md:text-4xl font-bold">
             仕組みから理解するページ
           </h1>
         </section>
       </div>
+      <GlobalFooter />
     </main>
   );
 }

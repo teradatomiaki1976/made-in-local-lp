@@ -1,6 +1,7 @@
 // src/components/layouts/GlobalHeader.tsx
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { useHeaderStore } from "@/store/useHeaderStore";
@@ -17,17 +18,21 @@ export default function GlobalHeader({
   activePage,
   onPageChange,
 }: GlobalHeaderProps) {
+  // Zustandのストアから状態を取得
   const isDarkBg = useHeaderStore((state) => state.isDarkBg);
+
+  // ハイドレーションエラー対策
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     <>
-      {/* -------------------------------------------
-          1. ヘッダー部分（PC/スマホ共通上部ナビ）
-      ------------------------------------------- */}
       <motion.header
         className={cn(
-          "fixed top-0 left-0 w-full z-50 flex items-center justify-between px-4 md:px-8 py-3 md:py-4 backdrop-blur-md print:hidden transition-colors duration-300",
-          isDarkBg ? "bg-transparent" : "bg-creem/10",
+          "fixed top-0 left-0 w-full z-50 flex items-center justify-between px-4 md:px-8 py-3 md:py-4 backdrop-blur-md transition-colors duration-300 print:hidden",
+          mounted && isDarkBg ? "bg-transparent" : "bg-creem/10",
         )}
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : -20 }}
@@ -41,12 +46,18 @@ export default function GlobalHeader({
             alt="100選エンブレム"
             className="h-10 md:h-16 w-auto"
           />
-          {/* 👇 テキスト色を動的に変更 */}
+          {/* テキスト色を動的に変更（Zustandの状態に連動） */}
           <div
             className={cn(
-              "font-serif font-bold leading-none transition-colors duration-300",
-              isDarkBg ? "text-white" : "text-midblue",
+              "font-bold leading-none transition-colors duration-300 print:text-midblue",
+              mounted && isDarkBg ? "text-white" : "text-midblue",
             )}
+            style={{
+              color:
+                mounted && isDarkBg
+                  ? "#FFFFFF"
+                  : "var(--color-midblue, #003064)",
+            }}
           >
             <span className="text-[10px] md:text-sm block">地域を代表する</span>
             <span className="text-sm md:text-xl block">企業100選</span>
@@ -83,39 +94,35 @@ export default function GlobalHeader({
           </button>
         </div>
 
-        {/* 右: PC版CTAボタン（スマホでは md:block で非表示） */}
-        <button className="hidden md:flex items-center justify-center gap-1.5 bg-midblue font-sans text-white leading-tight px-8 py-4 rounded-md font-bold text-base shadow-md hover:opacity-90 transition-opacity cursor-pointer">
+        {/* 右: PC版CTAボタン */}
+        <button className="hidden md:flex items-center justify-center gap-1.5 bg-linear-to-b from-[#00529B] to-[#002A5C] font-sans text-white leading-tight px-8 py-3.5 rounded-lg font-bold text-lg shadow-[0_4px_12px_rgba(0,42,92,0.4)] hover:from-[#0062B8] hover:to-[#003370] hover:shadow-[0_6px_16px_rgba(0,42,92,0.5)] border border-[#001D40]/30 transition-all duration-300 cursor-pointer group relative overflow-hidden">
+          <span className="absolute top-0 left-0 w-full h-px bg-white/20"></span>
           <FiChevronRight
             className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1"
             aria-hidden="true"
           />
-          <span>選出について相談する</span>
+          <span className="tracking-wide">選出について相談する</span>
         </button>
       </motion.header>
 
-      {/* -------------------------------------------
-          2. スマホ専用: 画面下部固定CTA
-      ------------------------------------------- */}
+      {/* スマホ用CTA */}
       <motion.div
         className="md:hidden fixed bottom-0 left-0 w-full z-50 print:hidden"
-        // ヘッダーと同じタイミングで下からフェードインさせる
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
         transition={{ duration: 1.5, ease: "easeOut" }}
         style={{ pointerEvents: isVisible ? "auto" : "none" }}
       >
         <button
-          className="w-full flex items-center justify-center gap-2 bg-midblue text-white font-sans font-bold text-lg pt-4 shadow-[0_-4px_10px_rgba(0,0,0,0.1)] active:bg-[#002244] transition-colors cursor-pointer"
-          style={{
-            // 👇 iPhoneのホームバー（セーフエリア）対策
-            paddingBottom: "calc(env(safe-area-inset-bottom) + 16px)",
-          }}
+          className="w-full flex items-center justify-center gap-2 bg-linear-to-b from-[#00529B] to-[#002A5C] text-white font-sans font-bold text-lg pt-4 shadow-[0_-4px_12px_rgba(0,42,92,0.3)] active:from-[#004080] active:to-[#001D40] transition-colors duration-300 cursor-pointer group relative overflow-hidden"
+          style={{ paddingBottom: "calc(env(safe-area-inset-bottom) + 16px)" }}
         >
+          <span className="absolute top-0 left-0 w-full h-px bg-white/20"></span>
           <FiChevronRight
             className="w-6 h-6 transition-transform duration-300 group-active:translate-x-1"
             aria-hidden="true"
           />
-          <span>選出について相談する</span>
+          <span className="tracking-wide">選出について相談する</span>
         </button>
       </motion.div>
     </>

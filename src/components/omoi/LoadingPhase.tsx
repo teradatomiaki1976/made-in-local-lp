@@ -6,16 +6,16 @@ import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 const BACKGROUND_IMAGES = [
-  "/images/loading/scene1.webp",
-  "/images/loading/scene2.webp",
-  "/images/loading/scene3.webp",
-  "/images/loading/scene4.webp",
-  "/images/loading/scene5.webp",
-  "/images/loading/scene6.webp",
-  "/images/loading/scene7.webp",
-  "/images/loading/scene8.webp",
-  "/images/loading/scene9.webp",
-  "/images/loading/scene10.webp",
+  "/images/photo/scene1.webp",
+  "/images/photo/scene2.webp",
+  "/images/photo/scene3.webp",
+  "/images/photo/scene4.webp",
+  "/images/photo/scene5.webp",
+  "/images/photo/scene6.webp",
+  "/images/photo/scene7.webp",
+  "/images/photo/scene8.webp",
+  "/images/photo/scene9.webp",
+  "/images/photo/scene10.webp",
 ];
 
 // 【演出のキモ】各画像の表示時間を配列で定義（ミリ秒）
