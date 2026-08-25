@@ -8,8 +8,10 @@ import {
   useTransform,
   useMotionTemplate,
   Variants,
+  useMotionValueEvent,
 } from "framer-motion";
 import { useHeaderStore } from "@/store/useHeaderStore";
+import JapanMapSVG from "./JapanMapSVG";
 
 type HeroPhaseProps = {
   onShowHeader: () => void;
@@ -84,16 +86,20 @@ const AnimatedWord = ({ text, delay }: { text: string; delay: number }) => (
 
 export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  // Zustandの更新関数のみ取得（state全体を取得しないことで不要な再レンダリングを防ぐ）
   const setIsDarkBg = useHeaderStore((state) => state.setIsDarkBg);
 
-  const { scrollYProgress } = useScroll({
+  const { scrollYProgress, scrollY } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
   });
 
-  const svgScale = useTransform(scrollYProgress, [0.1, 0.3, 0.75], [0, 5, 120]);
+  const svgScale = useTransform(scrollYProgress, [0.1, 0.3, 0.75], [0, 5, 12]);
+  const willChange = useTransform(scrollYProgress, (val) =>
+    val < 0.7 ? "transform" : "auto",
+  );
   const svgY = useTransform(scrollYProgress, [0.25, 0.65], ["40vh", "0vh"]);
-  const blueFillOpacity = useTransform(scrollYProgress, [0.65, 0.8], [0, 1]);
+  const blueFillOpacity = useTransform(scrollYProgress, [0.6, 0.7], [0, 1]);
   const firstTextOpacity = useTransform(
     scrollYProgress,
     [0.4, 0.5, 1.0],
@@ -106,20 +112,28 @@ export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
   );
   const firstTextFilter = useMotionTemplate`blur(${textBlurValue}px)`;
 
-  // 👇 【絶対確実な判定】ページ全体のスクロール量が一定値を超えたら強制的に白抜きにする
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      // 画面を 300px 以上スクロールした（＝青背景が出現するエリアに入った）ら true
-      const isDark = scrollPosition > 300;
-      setIsDarkBg(isDark);
-    };
+  // 👇 【最適化版】Framer Motionのイベントを利用した状態更新
+  // `useMotionValueEvent` はスクロール値が変化した時だけ発火し、Reactのライフサイクルと相性が良い
+  useMotionValueEvent(scrollY, "change", (latestScrollY) => {
+    const isDark = latestScrollY > 300;
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      setIsDarkBg(false);
-    };
+    // 現在のZustandの状態と違う場合のみ更新（無駄なRe-renderを防止）
+    if (useHeaderStore.getState().isDarkBg !== isDark) {
+      setIsDarkBg(isDark);
+    }
+  });
+
+  // 👇 （あるいは、アニメーションの進行度に合わせて背景が青くなる[0.65~]タイミングで切り替えるならこちら）
+  // useMotionValueEvent(scrollYProgress, "change", (latestProgress) => {
+  //   const isDark = latestProgress > 0.65; // 背景が青くなり始めるタイミング
+  //   if (useHeaderStore.getState().isDarkBg !== isDark) {
+  //     setIsDarkBg(isDark);
+  //   }
+  // });
+
+  // コンポーネントがアンマウントされる時に状態をリセット
+  useEffect(() => {
+    return () => setIsDarkBg(false);
   }, [setIsDarkBg]);
 
   useEffect(() => {
@@ -219,13 +233,14 @@ export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
             y: svgY,
             originX: 0.5,
             originY: 0.5,
-            willChange: "transform",
+            // GPUレンダリングのバグを防ぐ
+            // transformPerspective: 1000,
+            // translateZ: 0,
+            // willChange,
           }}
-          className="absolute z-20 w-[50vw] max-w-150 flex items-center justify-center pointer-events-none"
+          className="absolute z-20 w-[500vw] max-w-[1500px] text-[#003064] flex items-center justify-center pointer-events-none"
         >
-          <img
-            src="/images/section2/japan.svg"
-            alt="Japan Map"
+          <JapanMapSVG
             className="w-full h-auto object-contain"
             aria-hidden="true"
           />

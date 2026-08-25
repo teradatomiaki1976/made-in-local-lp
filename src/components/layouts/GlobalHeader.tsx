@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { useHeaderStore } from "@/store/useHeaderStore";
 import { FiChevronRight } from "react-icons/fi";
+import Image from "next/image";
 
 type GlobalHeaderProps = {
   isVisible: boolean;
@@ -40,28 +41,27 @@ export default function GlobalHeader({
         style={{ pointerEvents: isVisible ? "auto" : "none" }}
       >
         {/* 左: ロゴエリア */}
-        <div className="flex items-center gap-1.5 md:gap-2">
-          <img
-            src="/images/logo/emblem-mark.png"
-            alt="100選エンブレム"
-            className="h-10 md:h-16 w-auto"
-          />
-          {/* テキスト色を動的に変更（Zustandの状態に連動） */}
-          <div
+        <div className="relative flex items-center h-10 md:h-16 w-[160px] md:w-[200px]">
+          {/* 暗い背景用（白ロゴ） */}
+          <Image
+            src="/images/logo/logo_white.svg"
+            alt="100選エンブレム 白"
+            fill
             className={cn(
-              "font-bold leading-none transition-colors duration-300 print:text-midblue",
-              mounted && isDarkBg ? "text-white" : "text-midblue",
+              "object-contain transition-opacity duration-300",
+              mounted && isDarkBg ? "opacity-100" : "opacity-0",
             )}
-            style={{
-              color:
-                mounted && isDarkBg
-                  ? "#FFFFFF"
-                  : "var(--color-midblue, #003064)",
-            }}
-          >
-            <span className="text-[10px] md:text-sm block">地域を代表する</span>
-            <span className="text-sm md:text-xl block">企業100選</span>
-          </div>
+          />
+          {/* 明るい背景用（黒ロゴ） */}
+          <Image
+            src="/images/logo/logo_dark.svg"
+            alt="100選エンブレム 黒"
+            fill
+            className={cn(
+              "object-contain transition-opacity duration-300",
+              mounted && isDarkBg ? "opacity-0" : "opacity-100",
+            )}
+          />
         </div>
 
         {/* 中央: 切り替えトグル */}
