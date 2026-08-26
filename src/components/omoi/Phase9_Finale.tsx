@@ -8,7 +8,6 @@ import {
   useTransform,
   useMotionTemplate,
 } from "framer-motion";
-import { FiChevronRight } from "react-icons/fi";
 
 export default function Phase9_Finale() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -184,49 +183,6 @@ export default function Phase9_Finale() {
                 </span>
               </p>
             </motion.div>
-          </div>
-        </div>
-      </div>
-
-      {/* --- CTA領域（通常スクロール） --- */}
-      <div className="relative z-10 w-full bg-creem text-midblue py-16 md:py-24 px-6 shadow-[0_-20px_50px_rgba(0,0,0,0.1)]">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-8 md:gap-16 justify-center items-center">
-          <div className="flex-1 w-full text-center flex flex-col items-center border-b md:border-b-0 md:border-r border-midblue/20 pb-8 md:pb-0 md:pr-8">
-            <p className="font-bold mb-6 font-sans text-lg">
-              審査基準や、具体的な仕組みを見る
-            </p>
-            <button
-              className="w-full max-w-sm bg-linear-to-b from-[#695F1F] to-[#49410e] font-sans text-white py-5 rounded-lg font-bold text-lg shadow-[0_4px_12px_rgba(0,42,92,0.4)] hover:from-[#726722] hover:to-[#564d11] hover:shadow-[0_6px_16px_rgba(0,42,92,0.5)] border border-[#4f460f]/30 transition-all duration-300 cursor-pointer group relative overflow-hidden flex items-center justify-center gap-2"
-              style={{
-                paddingBottom: "calc(env(safe-area-inset-bottom) + 16px)",
-              }}
-            >
-              <span className="absolute top-0 left-0 w-full h-px bg-white/20"></span>
-              <FiChevronRight
-                className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1"
-                aria-hidden="true"
-              />
-              <span className="tracking-wide">仕組みから理解する</span>
-            </button>
-          </div>
-
-          <div className="flex-1 w-full text-center flex flex-col items-center md:pl-8">
-            <p className="font-bold mb-6 font-sans text-lg">
-              エントリーのご相談・面談予約はこちら
-            </p>
-            <button
-              className="w-full max-w-sm bg-linear-to-b from-[#00529B] to-[#002A5C] font-sans text-white py-5 rounded-lg font-bold text-lg shadow-[0_4px_12px_rgba(0,42,92,0.4)] hover:from-[#0062B8] hover:to-[#003370] hover:shadow-[0_6px_16px_rgba(0,42,92,0.5)] border border-[#001D40]/30 transition-all duration-300 cursor-pointer group relative overflow-hidden flex items-center justify-center gap-2"
-              style={{
-                paddingBottom: "calc(env(safe-area-inset-bottom) + 16px)",
-              }}
-            >
-              <span className="absolute top-0 left-0 w-full h-px bg-white/20"></span>
-              <FiChevronRight
-                className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1"
-                aria-hidden="true"
-              />
-              <span className="tracking-wide">選出について相談する</span>
-            </button>
           </div>
         </div>
       </div>

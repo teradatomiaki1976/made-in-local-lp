@@ -137,10 +137,32 @@ export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
   }, [setIsDarkBg]);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
+    // 現在のスタイルを保存（他ページからの遷移時などを考慮）
+    const originalOverflow = document.body.style.overflow;
+    const originalTouchAction = document.body.style.touchAction;
+
+    // スクロールをロック（iOS Safariのバウンス対策としてtouchActionも無効化）
+    document.body.style.overflow = "hidden";
+    document.body.style.touchAction = "none";
+
+    // 1. ヘッダーを表示させるタイミング (4.5秒後)
+    const headerTimer = setTimeout(() => {
       onShowHeader();
+    }, 4000);
+
+    // 2. ヘッダーのインアニメーション(例:0.5秒)完了後にスクロールロックを解除 (合計5.0秒後)
+    const unlockTimer = setTimeout(() => {
+      document.body.style.overflow = originalOverflow;
+      document.body.style.touchAction = originalTouchAction;
     }, 4500);
-    return () => clearTimeout(timer);
+
+    // アンマウント時（途中で別ページへ遷移した際など）に確実にロックを解除するクリーンアップ
+    return () => {
+      clearTimeout(headerTimer);
+      clearTimeout(unlockTimer);
+      document.body.style.overflow = originalOverflow;
+      document.body.style.touchAction = originalTouchAction;
+    };
   }, [onShowHeader]);
 
   return (

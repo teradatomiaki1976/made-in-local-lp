@@ -17,8 +17,8 @@ export default function Phase4_LightOfHope({ scrollYProgress }: Props) {
   const textY = useTransform(scrollYProgress, [0.5, 0.55], [30, 0]);
 
   // 🚨 光は絶対にフェードアウトさせず、画面を白く覆い尽くすまで拡大！
-  const glowScale = useTransform(scrollYProgress, [0.8, 1, 1], [0, 15, 15]);
-  const glowOpacity = useTransform(scrollYProgress, [0.75, 0.85, 1], [0, 1, 1]);
+  const glowScale = useTransform(scrollYProgress, [0.75, 0.9, 1], [0, 15, 15]);
+  const glowOpacity = useTransform(scrollYProgress, [0.7, 0.8, 1], [0, 1, 1]);
 
   return (
     // 🚨 ここの style={{ opacity: phaseOpacity }} を削除し通常の div に変更！
@@ -42,7 +42,7 @@ export default function Phase4_LightOfHope({ scrollYProgress }: Props) {
           <br />
           価値を届ける
         </h2>
-        <div className="flex-1 flex flex-col gap-6 text-sm md:text-lg leading-relaxed opacity-90 drop-shadow-md">
+        <div className="flex-1 flex flex-col gap-6 text-base md:text-xl leading-relaxed opacity-90 drop-shadow-md">
           <p>
             すでに知られているものを、
             <br />

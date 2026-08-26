@@ -57,32 +57,32 @@ export default function Phase7_NewStandard() {
   const op0 = useTransform(
     scrollYProgress,
     [0.4, 0.5, 0.8, 1],
-    [0, 0.5, 0.2, 0.1],
+    [0, 0.2, 0.15, 0.06],
   );
   const op1 = useTransform(
     scrollYProgress,
-    [0.45, 0.55, 0.8, 1],
-    [0, 0.5, 0.2, 0.1],
+    [0.4, 0.5, 0.8, 1],
+    [0, 0.2, 0.15, 0.06],
   );
   const op2 = useTransform(
     scrollYProgress,
-    [0.5, 0.6, 0.8, 1],
-    [0, 0.5, 0.2, 0.1],
+    [0.4, 0.5, 0.8, 1],
+    [0, 0.2, 0.15, 0.06],
   );
   const op3 = useTransform(
     scrollYProgress,
-    [0.55, 0.65, 0.8, 1],
-    [0, 0.5, 0.2, 0.1],
+    [0.4, 0.5, 0.8, 1],
+    [0, 0.2, 0.15, 0.06],
   );
   const op4 = useTransform(
     scrollYProgress,
-    [0.6, 0.7, 0.8, 1],
-    [0, 0.5, 0.2, 0.1],
+    [0.4, 0.5, 0.8, 1],
+    [0, 0.2, 0.15, 0.06],
   );
   const op5 = useTransform(
     scrollYProgress,
-    [0.65, 0.75, 0.8, 1],
-    [0, 0.5, 0.2, 0.1],
+    [0.4, 0.5, 0.8, 1],
+    [0, 0.2, 0.15, 0.06],
   );
 
   // 配列にまとめる

@@ -41,7 +41,7 @@ export default function Phase3_LossAndReality({ scrollYProgress }: Props) {
         className="absolute flex flex-col items-center text-center gap-6"
       >
         <p className="text-xl md:text-2xl font-serif">日本では</p>
-        <h2 className="text-6xl md:text-9xl font-serif font-bold tracking-widest">
+        <h2 className="text-6xl md:text-9xl font-serif font-bold tracking-normal">
           3,000,000<span className="text-3xl md:text-5xl ml-2">社</span>
         </h2>
         <p className="text-lg md:text-2xl font-serif mt-4">
@@ -61,7 +61,7 @@ export default function Phase3_LossAndReality({ scrollYProgress }: Props) {
           <br />
           企業
         </h2>
-        <div className="flex-1 flex flex-col gap-6 text-sm md:text-lg leading-relaxed opacity-90">
+        <div className="flex-1 flex flex-col gap-6 text-base md:text-xl leading-relaxed opacity-90">
           <p>
             素晴らしい会社なのに、
             <br />

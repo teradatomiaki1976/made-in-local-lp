@@ -17,7 +17,7 @@ export default function StoryPhase() {
   // 💡 調整: 背景色の切り替えをPhase4の「光」が広がるタイミング(0.8〜1.0)に合わせる
   const backgroundColor = useTransform(
     scrollYProgress,
-    [0.8, 1.0],
+    [0.75, 0.9],
     ["#003064", "#fefbf1"],
   );
 
@@ -28,8 +28,7 @@ export default function StoryPhase() {
         backgroundColor,
         willChange: "background-color",
       }}
-      // 💡 調整: 高さを 250vh にし、各フェーズのテキストを読む時間を確保
-      className="relative w-full h-[250vh]"
+      className="relative w-full h-[300vh]"
     >
       <div className="sticky top-0 left-0 w-full h-svh overflow-hidden">
         <Phase3_LossAndReality scrollYProgress={scrollYProgress} />

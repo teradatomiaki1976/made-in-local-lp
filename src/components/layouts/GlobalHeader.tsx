@@ -95,7 +95,7 @@ export default function GlobalHeader({
         </div>
 
         {/* 右: PC版CTAボタン */}
-        <button className="hidden md:flex items-center justify-center gap-1.5 bg-linear-to-b from-[#00529B] to-[#002A5C] font-sans text-white leading-tight px-8 py-3.5 rounded-lg font-bold text-lg shadow-[0_4px_12px_rgba(0,42,92,0.4)] hover:from-[#0062B8] hover:to-[#003370] hover:shadow-[0_6px_16px_rgba(0,42,92,0.5)] border border-[#001D40]/30 transition-all duration-300 cursor-pointer group relative overflow-hidden">
+        <button className="hidden md:flex items-center justify-center gap-1.5 bg-linear-to-b from-[#007a8c] to-[#00535f] font-sans text-white leading-tight px-8 py-3.5 rounded-lg font-bold text-lg shadow-[0_4px_12px_rgba(0,42,92,0.4)] hover:from-[#008396] hover:to-[#005b68] hover:shadow-[0_6px_16px_rgba(0,42,92,0.5)] border border-[#00454f]/30 transition-all duration-300 cursor-pointer group relative overflow-hidden">
           <span className="absolute top-0 left-0 w-full h-px bg-white/20"></span>
           <FiChevronRight
             className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1"
@@ -114,7 +114,7 @@ export default function GlobalHeader({
         style={{ pointerEvents: isVisible ? "auto" : "none" }}
       >
         <button
-          className="w-full flex items-center justify-center gap-2 bg-linear-to-b from-[#00529B] to-[#002A5C] text-white font-sans font-bold text-lg pt-4 shadow-[0_-4px_12px_rgba(0,42,92,0.3)] active:from-[#004080] active:to-[#001D40] transition-colors duration-300 cursor-pointer group relative overflow-hidden"
+          className="w-full flex items-center justify-center gap-2 bg-linear-to-b from-[#007a8c] to-[#00535f] text-white font-sans font-bold text-lg pt-4 shadow-[0_-4px_12px_rgba(0,42,92,0.3)] active:from-[#008396] active:to-[#005b68] transition-colors duration-300 cursor-pointer group relative overflow-hidden"
           style={{ paddingBottom: "calc(env(safe-area-inset-bottom) + 16px)" }}
         >
           <span className="absolute top-0 left-0 w-full h-px bg-white/20"></span>
