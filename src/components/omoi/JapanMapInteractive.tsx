@@ -12,39 +12,43 @@ interface Props {
   activeRegionId: string;
 }
 
-// 📌 サイズ感を安定させたカメラワーク設定（PC/SP）
+// サイズ感を安定させたカメラワーク設定（PC/SP）
 const CAMERA_CONFIG: Record<string, { pc: any; sp: any }> = {
   hokkaido: {
-    pc: { scale: 2.2, x: "-10%", y: "25%" },
-    sp: { scale: 1.8, x: "0%", y: "25%" },
+    pc: { scale: 2.2, x: "5%", y: "55%" },
+    sp: { scale: 2.0, x: "-45%", y: "10%" },
   },
   tohoku: {
-    pc: { scale: 2.5, x: "0%", y: "10%" },
-    sp: { scale: 2.0, x: "0%", y: "10%" },
+    pc: { scale: 2.5, x: "10%", y: "-8%" },
+    sp: { scale: 2.2, x: "-30%", y: "-45%" },
   },
   kanto: {
-    pc: { scale: 3.2, x: "15%", y: "-10%" },
-    sp: { scale: 2.5, x: "0%", y: "-5%" },
+    pc: { scale: 3.4, x: "15%", y: "-65%" },
+    sp: { scale: 3.0, x: "-35%", y: "-95%" },
   },
   chubu: {
-    pc: { scale: 2.8, x: "10%", y: "-15%" },
-    sp: { scale: 2.0, x: "0%", y: "-10%" },
+    pc: { scale: 2.8, x: "50%", y: "-60%" },
+    sp: { scale: 2.4, x: "5%", y: "-85%" },
   },
   kinki: {
-    pc: { scale: 3.0, x: "20%", y: "-25%" },
-    sp: { scale: 2.2, x: "5%", y: "-15%" },
+    pc: { scale: 3.2, x: "-15%", y: "-95%" },
+    sp: { scale: 3.4, x: "45%", y: "-135%" },
   },
   chugoku: {
-    pc: { scale: 3.2, x: "30%", y: "-30%" },
-    sp: { scale: 2.5, x: "10%", y: "-20%" },
+    pc: { scale: 3.2, x: "35%", y: "-90%" },
+    sp: { scale: 3.4, x: "105%", y: "-130%" },
   },
   shikoku: {
-    pc: { scale: 3.5, x: "30%", y: "-45%" },
-    sp: { scale: 2.8, x: "10%", y: "-30%" },
+    pc: { scale: 3.5, x: "30%", y: "-125%" },
+    sp: { scale: 3.8, x: "100%", y: "-170%" },
   },
   kyushu: {
-    pc: { scale: 2.8, x: "35%", y: "-50%" },
-    sp: { scale: 2.2, x: "15%", y: "-35%" },
+    pc: { scale: 3.2, x: "80%", y: "-140%" },
+    sp: { scale: 3.2, x: "135%", y: "-180%" },
+  },
+  okinawa: {
+    pc: { scale: 2.8, x: "15%", y: "-20%" },
+    sp: { scale: 2.4, x: "65%", y: "-60%" },
   },
 };
 
@@ -90,7 +94,7 @@ const JapanMapInteractive = memo(({ activePrefId, activeRegionId }: Props) => {
                 key={pref.id}
                 d={pref.d}
                 className={cn(
-                  "transition-colors duration-500 ease-in-out stroke-[#003064] stroke-[1px]",
+                  "transition-colors duration-500 ease-in-out stroke-midblue stroke-[1px]",
                   isActivePref
                     ? "fill-[#B89B5E]" // ① スポット県：ゴールド
                     : isActiveRegion

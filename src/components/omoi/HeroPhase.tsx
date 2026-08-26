@@ -238,7 +238,7 @@ export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
             // translateZ: 0,
             // willChange,
           }}
-          className="absolute z-20 w-[500vw] max-w-[1500px] text-[#003064] flex items-center justify-center pointer-events-none"
+          className="absolute z-20 w-[500vw] max-w-[1500px] text-midblue flex items-center justify-center pointer-events-none"
         >
           <JapanMapSVG
             className="w-full h-auto object-contain"
@@ -249,7 +249,7 @@ export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
         {/* --- 4. 完全な青色塗りつぶしレイヤー --- */}
         <motion.div
           style={{ opacity: blueFillOpacity }}
-          className="absolute inset-0 z-30 bg-[#003064] pointer-events-none"
+          className="absolute inset-0 z-30 bg-midblue pointer-events-none"
         />
 
         {/* --- 5. 青背景の上のテキストレイヤー --- */}

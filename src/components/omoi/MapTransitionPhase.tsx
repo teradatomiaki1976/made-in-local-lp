@@ -63,7 +63,7 @@ export default function MapTransitionPhase() {
         ========================================================= */}
         <motion.div
           style={{ opacity: blueFillOpacity }}
-          className="absolute inset-0 bg-[#003064] pointer-events-none"
+          className="absolute inset-0 bg-midblue pointer-events-none"
         />
       </div>
     </section>

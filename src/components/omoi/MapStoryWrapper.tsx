@@ -18,7 +18,7 @@ export default function MapStoryWrapper() {
   return (
     <section
       ref={containerRef}
-      className="relative w-full h-[600vh] bg-midblue"
+      className="relative w-full h-[800vh] bg-midblue"
     >
       {/* 画面に固定（FIX）されるコンテナ。この中で2つのコンポーネントがオーバーラップする */}
       <div className="sticky top-0 left-0 w-full h-svh overflow-hidden">

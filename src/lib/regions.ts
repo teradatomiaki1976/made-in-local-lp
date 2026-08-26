@@ -1,39 +1,38 @@
 // src/lib/regions.ts
-
 export const REGIONS = [
   {
     id: "hokkaido",
-    name: "北海道",
-    prefectures: [{ prefId: "hokkaido", name: "北海道", count: 89 }],
+    name: "北海道", //1
+    prefectures: [{ prefId: "hokkaido", name: "北海道", count: 206_349 }],
   },
   {
     id: "tohoku",
-    name: "東北",
+    name: "東北", //6
     prefectures: [
-      { prefId: "aomori", name: "青森県", count: 99 },
-      { prefId: "iwate", name: "岩手県", count: 72 },
-      { prefId: "miyagi", name: "宮城県", count: 68 },
-      { prefId: "akita", name: "秋田県", count: 48 },
-      { prefId: "yamagata", name: "山形県", count: 69 },
-      { prefId: "fukushima", name: "福島県", count: 33 },
+      { prefId: "aomori", name: "青森県", count: 33_459 },
+      { prefId: "iwate", name: "岩手県", count: 29_570 },
+      { prefId: "miyagi", name: "宮城県", count: 71_674 },
+      { prefId: "akita", name: "秋田県", count: 26_777 },
+      { prefId: "yamagata", name: "山形県", count: 29_593 },
+      { prefId: "fukushima", name: "福島県", count: 63_789 },
     ],
   },
   {
     id: "kanto",
-    name: "関東",
+    name: "関東", //7
     prefectures: [
       { prefId: "ibaraki", name: "茨城県", count: 12 },
       { prefId: "tochigi", name: "栃木県", count: 55 },
-      { prefId: "gunma", name: "群馬県", count: 45 },
+      { prefId: "gumma", name: "群馬県", count: 45 },
       { prefId: "saitama", name: "埼玉県", count: 23 },
       { prefId: "chiba", name: "千葉県", count: 44 },
-      { prefId: "tokyo", name: "東京都", count: 66 },
+      { prefId: "tokyo", name: "東京都", count: 1_175_095 },
       { prefId: "kanagawa", name: "神奈川県", count: 76 },
     ],
   },
   {
     id: "chubu",
-    name: "中部",
+    name: "中部", //9
     prefectures: [
       { prefId: "niigata", name: "新潟県", count: 34 },
       { prefId: "toyama", name: "富山県", count: 32 },
@@ -48,9 +47,9 @@ export const REGIONS = [
   },
   {
     id: "kinki",
-    name: "近畿",
+    name: "近畿", //7
     prefectures: [
-      { prefId: "mie", name: "三重県", count: 32 }, // 修正：niigata -> mie
+      { prefId: "mie", name: "三重県", count: 32 },
       { prefId: "shiga", name: "滋賀県", count: 43 },
       { prefId: "kyoto", name: "京都府", count: 56 },
       { prefId: "osaka", name: "大阪府", count: 99 },
@@ -61,7 +60,7 @@ export const REGIONS = [
   },
   {
     id: "chugoku",
-    name: "中国",
+    name: "中国", //5
     prefectures: [
       { prefId: "tottori", name: "鳥取県", count: 34 },
       { prefId: "shimane", name: "島根県", count: 82 },
@@ -72,7 +71,7 @@ export const REGIONS = [
   },
   {
     id: "shikoku",
-    name: "四国",
+    name: "四国", //4
     prefectures: [
       { prefId: "tokushima", name: "徳島県", count: 27 },
       { prefId: "kagawa", name: "香川県", count: 49 },
@@ -82,7 +81,7 @@ export const REGIONS = [
   },
   {
     id: "kyushu",
-    name: "九州・沖縄",
+    name: "九州", //7
     prefectures: [
       { prefId: "fukuoka", name: "福岡県", count: 50 },
       { prefId: "saga", name: "佐賀県", count: 62 },
@@ -91,7 +90,11 @@ export const REGIONS = [
       { prefId: "oita", name: "大分県", count: 22 },
       { prefId: "miyazaki", name: "宮崎県", count: 18 },
       { prefId: "kagoshima", name: "鹿児島県", count: 42 },
-      { prefId: "okinawa", name: "沖縄県", count: 31 },
     ],
+  },
+  {
+    id: "okinawa",
+    name: "沖縄", //1
+    prefectures: [{ prefId: "okinawa", name: "沖縄", count: 89 }],
   },
 ];
