@@ -135,7 +135,7 @@ export default function Phase7_NewStandard() {
                 className="w-full h-auto drop-shadow-md"
               />
             </div>
-            <h2 className="text-4xl md:text-7xl font-serif font-bold text-white tracking-widest text-shadow-md text-shadow-midblue">
+            <h2 className="text-4xl md:text-7xl font-serif font-bold text-white tracking-widest text-shadow-lg text-shadow-midblue">
               「地域の新しい旗印」
             </h2>
             <p className="text-xl md:text-3xl leading-normal tracking-widest text-white text-center text-shadow-md text-shadow-midblue">
@@ -155,7 +155,7 @@ export default function Phase7_NewStandard() {
                 className="w-full h-auto drop-shadow-xl"
               />
             </div>
-            <h2 className="text-4xl md:text-7xl font-serif font-bold tracking-widest text-midblue text-shadow-md text-shadow-white">
+            <h2 className="text-4xl md:text-7xl font-serif font-bold tracking-widest text-midblue text-shadow-lg text-shadow-white">
               「未来の旗印」
             </h2>
             <p className="text-xl md:text-3xl font-bold leading-normal tracking-widest text-midble text-center text-shadow-md text-shadow-white">

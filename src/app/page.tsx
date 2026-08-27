@@ -125,7 +125,9 @@ export default function Home() {
       >
         <TeaserPhase />
       </div>
-      <GlobalFooter activePage={activePage} onPageChange={handlePageChange} />
+      {(activePage === "shikumi" || omoiPhase === "hero") && (
+        <GlobalFooter activePage={activePage} onPageChange={handlePageChange} />
+      )}
     </main>
   );
 }

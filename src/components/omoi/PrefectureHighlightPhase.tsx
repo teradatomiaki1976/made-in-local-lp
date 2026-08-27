@@ -99,7 +99,7 @@ export default function PrefectureHighlightPhase({ scrollYProgress }: Props) {
         style={{ opacity: titleOpacity, y: titleY }}
         className="absolute z-30"
       >
-        <h2 className="text-3xl md:text-6xl text-yellow font-bold text-white tracking-widest drop-shadow-lg">
+        <h2 className="text-3xl md:text-6xl font-bold text-white tracking-widest drop-shadow-lg">
           都道府県別企業数
         </h2>
         <p className="text-center mt-8 text-white font-sans tracking-wider">
@@ -122,7 +122,7 @@ export default function PrefectureHighlightPhase({ scrollYProgress }: Props) {
             <span className="text-lg md:text-xl font-serif">
               &lt;{currentRegion.name}&gt;
             </span>
-            <span className="w-3/4 text-center text-4xl md:text-6xl text-yellow font-bold my-3 md:my-4 border-b border-white/60 pb-3 md:pb-4">
+            <span className="w-3/4 text-center text-4xl md:text-6xl text-white font-bold my-3 md:my-4 border-b border-white/60 pb-3 md:pb-4">
               {currentPrefecture.name}
             </span>
             <span className="text-4xl md:text-6xl text-yellow">

@@ -6,6 +6,7 @@ import {
   motion,
   useScroll,
   useTransform,
+  useSpring,
   useMotionTemplate,
   Variants,
   useMotionValueEvent,
@@ -20,19 +21,19 @@ type HeroPhaseProps = {
 const BASE_IMAGES = [
   {
     src: "/images/photo/scene1.webp",
-    className: "top-[5%] left-[5%] w-32 md:w-120",
+    className: "top-[5%] left-[-5%] w-32 md:w-120",
   },
   {
     src: "/images/photo/scene2.webp",
-    className: "top-[35%] left-[20%] w-60 md:w-80",
+    className: "top-[40%] left-[10%] w-60 md:w-80",
   },
   {
     src: "/images/photo/scene3.webp",
-    className: "top-[15%] right-[10%] w-36 md:w-56",
+    className: "top-[20%] right-[5%] w-36 md:w-56",
   },
   {
     src: "/images/photo/scene4.webp",
-    className: "top-[40%] right-[15%] w-48 md:w-100",
+    className: "top-[40%] right-[10%] w-48 md:w-100",
   },
   {
     src: "/images/photo/scene5.webp",
@@ -40,15 +41,15 @@ const BASE_IMAGES = [
   },
   {
     src: "/images/photo/scene6.webp",
-    className: "top-[75%] left-[10%] w-40 md:w-80",
+    className: "top-[80%] left-[15%] w-40 md:w-80",
   },
   {
     src: "/images/photo/scene7.webp",
-    className: "top-[55%] right-[8%] w-36 md:w-64",
+    className: "top-[65%] right-[5%] w-36 md:w-64",
   },
   {
     src: "/images/photo/scene8.webp",
-    className: "top-[85%] right-[20%] w-48 md:w-120",
+    className: "top-[85%] right-[10%] w-48 md:w-120",
   },
 ];
 
@@ -94,11 +95,16 @@ export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
     offset: ["start start", "end end"],
   });
 
-  const svgScale = useTransform(scrollYProgress, [0.1, 0.3, 0.75], [0, 5, 12]);
-  const willChange = useTransform(scrollYProgress, (val) =>
-    val < 0.7 ? "transform" : "auto",
+  const rawSvgScale = useTransform(
+    scrollYProgress,
+    [0.1, 0.4, 0.8],
+    [0.25, 5, 12],
   );
-  const svgY = useTransform(scrollYProgress, [0.25, 0.65], ["40vh", "0vh"]);
+  const svgScale = useSpring(rawSvgScale, { stiffness: 100, damping: 30 });
+
+  const rawSvgY = useTransform(scrollYProgress, [0.25, 0.65], ["32vh", "0vh"]);
+  const svgY = useSpring(rawSvgY, { stiffness: 100, damping: 30 });
+
   const blueFillOpacity = useTransform(scrollYProgress, [0.6, 0.7], [0, 1]);
   const firstTextOpacity = useTransform(
     scrollYProgress,
@@ -148,13 +154,13 @@ export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
     // 1. ヘッダーを表示させるタイミング (4.5秒後)
     const headerTimer = setTimeout(() => {
       onShowHeader();
-    }, 4000);
+    }, 3000);
 
     // 2. ヘッダーのインアニメーション(例:0.5秒)完了後にスクロールロックを解除 (合計5.0秒後)
     const unlockTimer = setTimeout(() => {
       document.body.style.overflow = originalOverflow;
       document.body.style.touchAction = originalTouchAction;
-    }, 4500);
+    }, 3500);
 
     // アンマウント時（途中で別ページへ遷移した際など）に確実にロックを解除するクリーンアップ
     return () => {
@@ -166,41 +172,43 @@ export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
   }, [onShowHeader]);
 
   return (
-    <div ref={containerRef} className="relative w-full h-[150vh] bg-creem">
+    <div ref={containerRef} className="relative w-full h-[300vh] bg-creem">
       <div className="sticky top-0 left-0 w-full h-screen overflow-hidden flex items-center justify-center">
         {/* --- 1. 背景画像の無限浮遊レイヤー --- */}
         <motion.div
           className="absolute top-0 left-0 w-full h-[200vh] flex flex-col z-0 pointer-events-none"
           animate={{ y: ["0%", "-50%"] }}
-          transition={{ duration: 40, ease: "linear", repeat: Infinity }}
-          style={{ willChange: "transform" }}
+          transition={{ duration: 30, ease: "linear", repeat: Infinity }}
+          // willChangeはCSSクラス側で設定した方がブラウザの最適化が効きやすい
         >
+          {/* 1セット目 */}
           <div className="relative w-full h-screen">
             {BASE_IMAGES.map((img, index) => (
               <motion.img
                 key={`b1-${index}`}
                 src={img.src}
-                className={`absolute object-cover rounded-md shadow-md ${img.className}`}
+                className={`absolute object-cover rounded-md shadow-md ${img.className} will-change-transform`}
                 initial={{ opacity: 0, filter: "grayscale(100%) blur(10px)" }}
-                animate={{ opacity: 0.8, filter: "grayscale(0%) blur(0px)" }}
+                animate={{ opacity: 0.8, filter: "grayscale(0%) blur(0px)" }} // ここを統一
                 transition={{
-                  delay: 4.0 + index * 0.2,
+                  delay: 4.0 + index * 0.2, // ここを統一
                   duration: 3,
                   ease: "easeOut",
                 }}
               />
             ))}
           </div>
+          {/* 2セット目（ループのつなぎ目） */}
           <div className="relative w-full h-screen">
             {BASE_IMAGES.map((img, index) => (
               <motion.img
                 key={`b2-${index}`}
                 src={img.src}
-                className={`absolute object-cover rounded-md shadow-md ${img.className}`}
+                className={`absolute object-cover rounded-md shadow-md ${img.className} will-change-transform`}
                 initial={{ opacity: 0, filter: "grayscale(100%) blur(10px)" }}
-                animate={{ opacity: 0.6, filter: "grayscale(0%) blur(0px)" }}
+                animate={{ opacity: 0.8, filter: "grayscale(0%) blur(0px)" }} // b1と完全に一致させる
                 transition={{
-                  delay: 5 + index * 0.25,
+                  delay: 4.0 + index * 0.2, // b1と完全に一致させる
                   duration: 3,
                   ease: "easeOut",
                 }}
@@ -210,24 +218,24 @@ export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
         </motion.div>
 
         {/* --- 2. 中央メッセージテキスト --- */}
-        <motion.div className="relative z-10 flex flex-col items-center text-center pointer-events-none py-60 px-24 rounded-full bg-[radial-gradient(circle,#fefbf1_30%,transparent_60%)]">
+        <motion.div className="relative z-10 flex flex-col items-center text-center pointer-events-none py-80 px-48 rounded-full bg-[radial-gradient(circle,#fefbf1_30%,transparent_60%)]">
           <h1
-            className="font-serif font-bold md:font-semibold text-5xl md:text-8xl leading-tight text-nowrap"
+            className="font-serif font-bold md:font-semibold text-5xl md:text-8xl leading-tight text-nowrap text-shadow-lg text-shadow-white"
             aria-label="地域から本気で日本を変えたい"
           >
             <span aria-hidden="true">
-              <AnimatedWord text="地域から" delay={0.5} />
+              <AnimatedWord text="地域から" delay={0.4} />
               <span className="inline-block" />
-              <AnimatedWord text="本気で" delay={1.4} />
+              <AnimatedWord text="本気で" delay={1.0} />
               <br />
-              <AnimatedWord text="日本を変えたい" delay={2.6} />
+              <AnimatedWord text="日本を変えたい" delay={1.6} />
             </span>
           </h1>
           <motion.div
             className="mt-16 flex flex-col items-center gap-2"
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.7 }}
-            transition={{ delay: 5.5, duration: 1.5, ease: "easeOut" }}
+            transition={{ delay: 4.5, duration: 1.5, ease: "easeOut" }}
           >
             <span className="font-serif text-xs md:text-lg tracking-widest">
               Scroll
@@ -250,15 +258,22 @@ export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
 
         {/* --- 3. 日本地図レイヤー --- */}
         <motion.div
+          // 初期状態を透明、時間経過でフェードイン
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{
+            delay: 2.6,
+            duration: 2.8,
+            ease: "easeOut",
+          }}
           style={{
             scale: svgScale,
             y: svgY,
-            originX: 0.5,
+            originX: 0.5, // 今後、フォーカス先（東京など）に合わせて微調整する
             originY: 0.5,
-            // GPUレンダリングのバグを防ぐ
-            // transformPerspective: 1000,
-            // translateZ: 0,
-            // willChange,
+            // 4. GPUアクセラレーションを強制して描画落ちを防ぐ
+            z: 0, // Framer Motionにおける translateZ(0) の指定
+            willChange: "transform, opacity",
           }}
           className="absolute z-20 w-[500vw] max-w-[1500px] text-midblue flex items-center justify-center pointer-events-none"
         >
