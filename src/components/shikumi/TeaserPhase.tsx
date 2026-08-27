@@ -21,9 +21,8 @@ export default function TeaserPhase() {
         </div>
 
         <p className="text-left text-sm md:text-base text-gray-600 leading-relaxed max-w-xl mx-auto">
-          「地域を代表する企業100選」の仕組みや、選出による具体的な変化の事例、
-          詳しい審査プロセスについてのエディトリアルページを制作しております。
-          公開まで今しばらくお待ちください。
+          「地域を代表する企業100選」の仕組みや、選出による具体的な事例、
+          審査プロセスについての内容を制作しております。公開まで今しばらくお待ちください。
         </p>
       </motion.div>
     </section>

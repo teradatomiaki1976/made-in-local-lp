@@ -1,17 +1,16 @@
 // src/app/page.tsx
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import LoadingPhase from "@/components/omoi/LoadingPhase";
 import GlobalHeader from "@/components/layouts/GlobalHeader";
+import ScrollProgress from "@/components/layouts/ScrollProgress";
 import { usePageStore } from "@/store/usePageStore";
 import HeroPhase from "@/components/omoi/HeroPhase";
 import MapStoryWrapper from "@/components/omoi/MapStoryWrapper";
 import StoryPhase from "@/components/omoi/StoryPhase";
 import Phase5_6_BirthAndWhy from "@/components/omoi/Phase5_6_BirthAndWhy";
-import Phase5_BirthOf100 from "@/components/omoi/Phase5_BirthOf100";
-import Phase6_Why100 from "@/components/omoi/Phase6_Why100";
 import Phase7_NewStandard from "@/components/omoi/Phase7_NewStandard";
 import Phase8_Circulation from "@/components/omoi/Phase8_Circulation";
 import Phase9_Finale from "@/components/omoi/Phase9_Finale";
@@ -96,21 +95,24 @@ export default function Home() {
           )}
 
           {omoiPhase === "hero" && (
-            <motion.div
-              key="hero-content"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className="w-full flex flex-col"
-            >
-              <HeroPhase onShowHeader={handleShowHeader} />
-              <MapStoryWrapper />
-              <StoryPhase />
-              <Phase5_6_BirthAndWhy />
-              <Phase7_NewStandard />
-              <Phase8_Circulation />
-              <Phase9_Finale />
-            </motion.div>
+            <>
+              <ScrollProgress />
+              <motion.div
+                key="hero-content"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="w-full flex flex-col"
+              >
+                <HeroPhase onShowHeader={handleShowHeader} />
+                <MapStoryWrapper />
+                <StoryPhase />
+                <Phase5_6_BirthAndWhy />
+                <Phase7_NewStandard />
+                <Phase8_Circulation />
+                <Phase9_Finale />
+              </motion.div>
+            </>
           )}
         </AnimatePresence>
       </div>

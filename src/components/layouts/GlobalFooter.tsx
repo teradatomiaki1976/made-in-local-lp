@@ -29,13 +29,18 @@ export default function GlobalFooter({
     : "from-[#00529B] to-[#002A5C] hover:from-[#0062B8] hover:to-[#003370] border-[#001D40]/30";
   // ※右の相談ボタン(濃いネイビー)と同化しないよう、少し明るめのブルーに設定
 
+  // スクロール状態の管理
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
-    <footer className="w-full flex flex-col z-50">
+    <footer className="w-full flex flex-col z-50 relative">
       {/* --- CTA領域（全ページ共通配置） --- */}
       <div className="relative z-10 w-full bg-creem text-midblue py-16 md:py-24 px-6 shadow-[0_-20px_50px_rgba(0,0,0,0.1)]">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-8 md:gap-16 justify-center items-center">
           {/* 左：ページ遷移ボタン（動的） */}
-          <div className="flex-1 w-full text-center flex flex-col items-center border-b md:border-b-0 md:border-r border-midblue/20 pb-8 md:pb-0 md:pr-8">
+          <div className="flex-1 w-full text-center flex flex-col items-center border-b md:border-b-0 md:border-r border-midblue/20 pb-8 md:pb-0 md:pr-16">
             <p className="font-bold mb-6 font-sans text-lg">{switchLabel}</p>
             <button
               onClick={() => onPageChange(switchTarget)}
@@ -54,7 +59,7 @@ export default function GlobalFooter({
           </div>
 
           {/* 右：CVボタン（固定） */}
-          <div className="flex-1 w-full text-center flex flex-col items-center md:pl-8">
+          <div className="flex-1 w-full text-center flex flex-col items-center">
             <p className="font-bold mb-6 font-sans text-lg">
               エントリーのご相談・面談予約はこちら
             </p>
@@ -77,6 +82,17 @@ export default function GlobalFooter({
 
       {/* --- フッター領域 --- */}
       <div className="w-full bg-midblue py-16 md:py-24 flex flex-col items-center justify-center relative">
+        <button
+          onClick={scrollToTop}
+          // z-20を追加して直前のCTA領域（z-10）より前面に表示させる
+          className="absolute right-4 md:right-12 top-2 -translate-y-[calc(100%+16px)] z-20 flex flex-col items-center justify-center group cursor-pointer"
+          aria-label="ページトップへ戻る"
+        >
+          <div className="w-0 h-0 border-l-[18px] border-l-transparent border-r-[18px] border-r-transparent border-b-[22px] border-b-midblue transition-transform duration-300 group-hover:-translate-y-1"></div>
+          <span className="text-midblue font-bold text-base mt-1 font-sans tracking-widest">
+            PAGE TOP
+          </span>
+        </button>
         <div className="w-[80vw] max-w-md md:max-w-lg mb-12">
           <Image
             src="/images/logo/logo_white.svg"

@@ -96,10 +96,10 @@ const JapanMapInteractive = memo(({ activePrefId, activeRegionId }: Props) => {
                 className={cn(
                   "transition-colors duration-500 ease-in-out stroke-midblue stroke-[1px]",
                   isActivePref
-                    ? "fill-[#B89B5E]" // ① スポット県：ゴールド
+                    ? "fill-yellow"
                     : isActiveRegion
-                      ? "fill-white/60" // ② 同一地方：白
-                      : "fill-white/10", // ③ その他：背景に沈ませる薄い白（濃い青に見える）
+                      ? "fill-white/80"
+                      : "fill-white/10",
                 )}
               />
             );

@@ -28,7 +28,7 @@ export default function StoryPhase() {
         backgroundColor,
         willChange: "background-color",
       }}
-      className="relative w-full h-[300vh]"
+      className="relative w-full h-[400vh]"
     >
       <div className="sticky top-0 left-0 w-full h-svh overflow-hidden">
         <Phase3_LossAndReality scrollYProgress={scrollYProgress} />

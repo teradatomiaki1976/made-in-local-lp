@@ -1,115 +1,189 @@
 // src/components/omoi/Phase8_Circulation.tsx
 "use client";
 
-import { useRef, useEffect } from "react";
-import { motion, useScroll, useTransform, useInView } from "framer-motion";
+import { useRef } from "react";
+import Image from "next/image";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 export default function Phase8_Circulation() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
 
-  // 1. スクロール領域の監視
+  // 1. スクロール領域全体の監視（4画面分の高さ）
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
   });
 
-  // 2. セクションが画面に入ったかどうかの監視
-  // amount: 0.1 は「セクションの10%が画面に入ったらtrue」という意味
-  const isInView = useInView(containerRef, { amount: 0.1 });
-
-  // 🚨 3. 画面に入った瞬間に動画を最初から再生する副作用
-  useEffect(() => {
-    if (isInView && videoRef.current) {
-      // 念のため再生位置を0秒に戻す
-      videoRef.current.currentTime = 0;
-      // 動画の再生を開始（エラーハンドリング付き）
-      videoRef.current.play().catch((error) => {
-        console.warn("動画の自動再生がブラウザにブロックされました:", error);
-      });
-    } else if (!isInView && videoRef.current) {
-      // 画面外に出たら動画を一時停止（パフォーマンス最適化）
-      videoRef.current.pause();
-    }
-  }, [isInView]);
-
   // ==========================================
-  // テキストのクロスフェード制御
+  // テキストのクロスフェード＆Y軸移動制御
   // ==========================================
+  // 区間1: 0.00 - 0.25
   const text1Opacity = useTransform(
     scrollYProgress,
-    [0.1, 0.2, 0.35, 0.45],
+    [0.0, 0.1, 0.2, 0.25],
     [0, 1, 1, 0],
   );
   const text1Y = useTransform(
     scrollYProgress,
-    [0.1, 0.2, 0.35, 0.45],
-    [30, 0, 0, -30],
+    [0.0, 0.1, 0.2, 0.25],
+    [20, 0, 0, -20],
   );
 
+  // 区間2: 0.25 - 0.50
   const text2Opacity = useTransform(
     scrollYProgress,
-    [0.45, 0.55, 0.7, 0.8],
+    [0.25, 0.35, 0.45, 0.5],
     [0, 1, 1, 0],
   );
   const text2Y = useTransform(
     scrollYProgress,
-    [0.45, 0.55, 0.7, 0.8],
-    [30, 0, 0, -30],
+    [0.25, 0.35, 0.45, 0.5],
+    [20, 0, 0, -20],
   );
 
-  const text3Opacity = useTransform(scrollYProgress, [0.8, 0.9, 1], [0, 1, 1]);
-  const text3Y = useTransform(scrollYProgress, [0.8, 0.9, 1], [30, 0, 0]);
+  // 区間3: 0.50 - 0.75
+  const text3Opacity = useTransform(
+    scrollYProgress,
+    [0.5, 0.6, 0.7, 0.75],
+    [0, 1, 1, 0],
+  );
+  const text3Y = useTransform(
+    scrollYProgress,
+    [0.5, 0.6, 0.7, 0.75],
+    [20, 0, 0, -20],
+  );
+
+  // 区間4: 0.75 - 1.00 (最後は残す)
+  const text4Opacity = useTransform(
+    scrollYProgress,
+    [0.75, 0.85, 1.0],
+    [0, 1, 1],
+  );
+  const text4Y = useTransform(scrollYProgress, [0.75, 0.85, 1.0], [20, 0, 0]);
+
+  // ==========================================
+  // 画像のクロスフェード制御（オパシティ・リレー方式）
+  // ==========================================
+  // 画像1は常に最下層で不透明度1（ベースとして固定）
+
+  // 💡 修正点: 配列の最後に `1.0`（スクロール終端）を追加し、Opacity `1` を明示的に維持させる
+  const img2Opacity = useTransform(
+    scrollYProgress,
+    [0.15, 0.35, 1.0],
+    [0, 1, 1],
+  );
+  const img3Opacity = useTransform(scrollYProgress, [0.4, 0.6, 1.0], [0, 1, 1]);
+  const img4Opacity = useTransform(
+    scrollYProgress,
+    [0.65, 0.85, 1.0],
+    [0, 1, 1],
+  );
 
   return (
-    <section
-      ref={containerRef}
-      className="relative w-full bg-midblue h-[400vh]"
-    >
-      <div className="sticky top-0 left-0 w-full h-svh overflow-hidden flex flex-col items-center justify-center">
-        {/* --- 1. 背景の動画レイヤー --- */}
-        <div className="absolute inset-0 w-full h-full z-0 opacity-100 bg-midblue">
-          <video
-            ref={videoRef}
-            src="/videos/japan-map-circulation.mp4"
-            muted
-            loop
-            playsInline
-            className="w-full h-full object-cover"
-          />
-        </div>
-
-        {/* --- 2. 前面のテキストレイヤー --- */}
-        <div className="relative z-10 w-full px-6 flex flex-col items-center text-center text-white font-serif pointer-events-none mt-[40vh] md:mt-[30vh]">
+    <section ref={containerRef} className="relative w-full h-[400vh] bg-creem">
+      {/* 画面に固定（sticky）されるコンテナ */}
+      <div className="sticky top-0 left-0 w-full h-svh flex flex-col overflow-hidden">
+        {/* --- 上部：テキストエリア (高さ約40%) --- */}
+        <div className="relative w-full flex-[0.35] flex items-end justify-center bg-creem pb-12 px-6 z-20">
           <motion.div
             style={{ opacity: text1Opacity, y: text1Y }}
-            className="absolute flex flex-col items-center justify-center"
+            className="absolute text-center w-full"
           >
-            <h2 className="text-3xl md:text-5xl font-bold tracking-widest drop-shadow-xl">
-              地域から都市へ。
-              <br className="md:hidden" />
-              都市から地域へ。
+            <h2 className="font-serif text-2xl md:text-4xl lg:text-6xl font-bold tracking-normal text-midblue leading-relaxed">
+              一社の光が、地域を照らす。
             </h2>
           </motion.div>
 
           <motion.div
             style={{ opacity: text2Opacity, y: text2Y }}
-            className="absolute flex flex-col items-center justify-center gap-4"
+            className="absolute text-center w-full"
           >
-            <h2 className="text-3xl md:text-5xl font-bold tracking-widest drop-shadow-xl leading-relaxed">
-              人も。情報も。
-              <br />
-              仕事も。可能性も。
+            <h2 className="font-serif text-2xl md:text-4xl lg:text-6xl font-bold tracking-normal text-midblue leading-relaxed">
+              地域の光が、日本を照らす。
             </h2>
           </motion.div>
 
           <motion.div
             style={{ opacity: text3Opacity, y: text3Y }}
-            className="absolute flex flex-col items-center justify-center"
+            className="absolute text-center w-full"
           >
-            <h2 className="text-3xl md:text-5xl font-bold tracking-widest drop-shadow-xl">
-              日本中を巡り続ける社会へ。
+            <h2 className="font-serif text-2xl md:text-4xl lg:text-5xl font-bold tracking-normal text-midblue leading-normal">
+              一社一社の力は微力でも、
+              <br className="hidden md:block" />
+              私たち全員で立ち向かえば挑戦できる。
             </h2>
+          </motion.div>
+
+          <motion.div
+            style={{ opacity: text4Opacity, y: text4Y }}
+            className="absolute text-center w-full"
+          >
+            <h2 className="font-serif text-xl md:text-3xl lg:text-6xl font-bold tracking-normal text-midblue leading-tight">
+              <span className="block text-base md:text-xl lg:text-2xl mb-4 text-midblue">
+                私たちが次世代に紡いでいく日本は衰退していく日本ではなく
+              </span>
+              <span className="text-olive">
+                「地域から輝く世界に誇れる日本」
+              </span>
+              である
+            </h2>
+          </motion.div>
+        </div>
+
+        {/* --- 下部：画像エリア (高さ約60%) --- */}
+        <div className="relative w-full flex-[0.65] bg-midblue overflow-hidden z-10">
+          {/* 画像1 (ベース) */}
+          <div className="absolute inset-0 w-full h-full">
+            <Image
+              src="/images/section8/map-1.jpg"
+              alt="一社の光"
+              fill
+              priority
+              className="object-cover"
+              sizes="100vw"
+            />
+          </div>
+
+          {/* 画像2 */}
+          <motion.div
+            style={{ opacity: img2Opacity, willChange: "opacity" }}
+            className="absolute inset-0 w-full h-full"
+          >
+            <Image
+              src="/images/section8/map-2.jpg"
+              alt="地域の光"
+              fill
+              className="object-cover"
+              sizes="100vw"
+            />
+          </motion.div>
+
+          {/* 画像3 */}
+          <motion.div
+            style={{ opacity: img3Opacity, willChange: "opacity" }}
+            className="absolute inset-0 w-full h-full"
+          >
+            <Image
+              src="/images/section8/map-3.jpg"
+              alt="つながる光"
+              fill
+              className="object-cover"
+              sizes="100vw"
+            />
+          </motion.div>
+
+          {/* 画像4 */}
+          <motion.div
+            style={{ opacity: img4Opacity, willChange: "opacity" }}
+            className="absolute inset-0 w-full h-full"
+          >
+            <Image
+              src="/images/section8/map-4.jpg"
+              alt="輝く日本"
+              fill
+              className="object-cover"
+              sizes="100vw"
+            />
           </motion.div>
         </div>
       </div>
