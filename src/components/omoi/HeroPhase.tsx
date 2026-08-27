@@ -178,8 +178,7 @@ export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
         <motion.div
           className="absolute top-0 left-0 w-full h-[200vh] flex flex-col z-0 pointer-events-none"
           animate={{ y: ["0%", "-50%"] }}
-          transition={{ duration: 30, ease: "linear", repeat: Infinity }}
-          // willChangeはCSSクラス側で設定した方がブラウザの最適化が効きやすい
+          transition={{ duration: 40, ease: "linear", repeat: Infinity }}
         >
           {/* 1セット目 */}
           <div className="relative w-full h-screen">
@@ -262,7 +261,7 @@ export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{
-            delay: 2.6,
+            delay: 2.8,
             duration: 2.8,
             ease: "easeOut",
           }}
