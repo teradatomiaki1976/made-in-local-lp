@@ -41,7 +41,7 @@ export default function GlobalHeader({
         style={{ pointerEvents: isVisible ? "auto" : "none" }}
       >
         {/* 左: ロゴエリア */}
-        <div className="relative flex items-center h-10 md:h-16 w-[160px] md:w-[200px]">
+        <div className="relative flex items-center h-10 md:h-16 w-[180px] md:w-[240px]">
           {/* 暗い背景用（白ロゴ） */}
           <Image
             src="/images/logo/logo_white.svg"

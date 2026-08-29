@@ -72,7 +72,7 @@ export default function PrefectureHighlightPhase({ scrollYProgress }: Props) {
           );
           setActivePrefIndex(0);
         }
-      }, 2500);
+      }, 2000);
     }
 
     return () => clearInterval(timer);
