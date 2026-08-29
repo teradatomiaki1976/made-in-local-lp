@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Noto_Sans_JP, Noto_Serif_JP } from "next/font/google";
 import "./globals.css";
 import ScrollObserver from "@/components/layouts/ScrollObserver";
+import SmoothScroll from "@/components/layouts/SmoothScroll";
 
 const notoSans = Noto_Sans_JP({
   variable: "--font-noto-sans",
@@ -30,11 +31,13 @@ export default function RootLayout({
   return (
     <html
       lang="ja"
-      className={`${notoSans.variable} ${notoSerif.variable} h-full antialiased`}
+      className={`${notoSans.variable} ${notoSerif.variable} antialiased`}
     >
-      <body className="min-h-full flex flex-col font-sans bg-midblue text-text">
-        <ScrollObserver />
-        {children}
+      <body className="min-h-screen flex flex-col font-sans bg-midblue text-text">
+        <SmoothScroll>
+          <ScrollObserver />
+          {children}
+        </SmoothScroll>
       </body>
     </html>
   );

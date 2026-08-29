@@ -1,7 +1,7 @@
 // src/components/omoi/PrefectureHighlightPhase.tsx
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import { motion, MotionValue, useTransform } from "framer-motion";
 import JapanMapInteractive from "./JapanMapInteractive";
 import { REGIONS } from "@/lib/regions";
@@ -26,6 +26,7 @@ export default function PrefectureHighlightPhase({ scrollYProgress }: Props) {
   const [activePrefIndex, setActivePrefIndex] = useState(0);
   const [isAutoPlayTriggered, setIsAutoPlayTriggered] = useState(false);
   const [isPlaying, setIsPlaying] = useState(true);
+  const savedCallback = useRef<(() => void) | null>(null);
 
   const pointerEvents = useTransform(scrollYProgress, (v) =>
     v > 0.5 ? "auto" : "none",
@@ -53,37 +54,27 @@ export default function PrefectureHighlightPhase({ scrollYProgress }: Props) {
     return () => unsubscribe();
   }, [scrollYProgress, isAutoPlayTriggered]);
 
-  // 2. タイマー処理（isPlaying が true の時だけ動く）
+  // 2. タイマー処理
   useEffect(() => {
-    let timer: NodeJS.Timeout;
+    if (!isAutoPlayTriggered || !isPlaying) return;
 
-    if (isAutoPlayTriggered && isPlaying) {
-      timer = setInterval(() => {
-        const currentRegion = REGIONS[activeRegionIndex];
+    // 最新のコールバックを実行する関数
+    const tick = () => {
+      if (savedCallback.current) {
+        savedCallback.current();
+      }
+    };
 
-        // 💡 状態更新の中で別の状態更新を呼ばず、現在の値を直接評価する
-        if (activePrefIndex + 1 < currentRegion.prefectures.length) {
-          // 同じ地方の中で、次の県へ
-          setActivePrefIndex(activePrefIndex + 1);
-        } else {
-          // その地方の最後の県までいったら、次の地方へ進む
-          setActiveRegionIndex(
-            (prevRegion) => (prevRegion + 1) % REGIONS.length,
-          );
-          setActivePrefIndex(0);
-        }
-      }, 2500);
-    }
+    const id = setInterval(tick, 2500);
+    return () => clearInterval(id); // クリーンアップ
+  }, [isAutoPlayTriggered, isPlaying]);
 
-    return () => clearInterval(timer);
-  }, [isAutoPlayTriggered, isPlaying, activeRegionIndex, activePrefIndex]);
-
-  // 📌 手動でタブを切り替えた時のハンドラー
-  const handleManualRegionChange = (idx: number) => {
+  // 3. 手動でタブを切り替えた時のハンドラー
+  const handleManualRegionChange = useCallback((idx: number) => {
     setActiveRegionIndex(idx);
     setActivePrefIndex(0);
-    setIsPlaying(false); // 💡 ユーザーが操作したら自動再生を止める（マニュアルモードへ移行）
-  };
+    setIsPlaying(false);
+  }, []);
 
   const currentRegion = REGIONS[activeRegionIndex];
   const currentPrefecture = currentRegion.prefectures[activePrefIndex];

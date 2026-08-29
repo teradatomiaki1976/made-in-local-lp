@@ -1,8 +1,9 @@
 // src/app/page.tsx
 "use client";
 
-import { useState, useCallback, useEffect, useRef } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { useLenis } from "lenis/react";
 import LoadingPhase from "@/components/omoi/LoadingPhase";
 import GlobalHeader from "@/components/layouts/GlobalHeader";
 import ScrollProgress from "@/components/layouts/ScrollProgress";
@@ -26,6 +27,7 @@ export default function Home() {
 
   // Zustandからスクロール管理用の状態と関数を取得
   const { visited, scrollPos, markVisited, saveScroll } = usePageStore();
+  const lenis = useLenis();
 
   const handleShowHeader = useCallback(() => {
     setIsHeaderVisible(true);
@@ -39,30 +41,39 @@ export default function Home() {
     }
   }, []);
 
-  // ページ切り替えとスクロール位置復元のロジック
+  // ページ切り替えとスクロール位置復元のロジック（Lenis対応版）
   const handlePageChange = useCallback(
     (nextPage: "omoi" | "shikumi") => {
       if (activePage === nextPage) return;
 
-      // 1. 現在のページのスクロール位置を保存
-      saveScroll(activePage, window.scrollY);
+      // 1. 現在のページのスクロール位置を保存（Lenis非稼働時のフォールバックとしてwindow.scrollYも取得）
+      const currentScrollY = lenis ? lenis.scroll : window.scrollY;
+      saveScroll(activePage, currentScrollY);
 
       // 2. ページ表示を切り替え
       setActivePage(nextPage);
 
-      // 3. DOM描画後にスクロール位置を制御（requestAnimationFrameでチラつき防止）
+      // 3. スクロール位置の復元
       requestAnimationFrame(() => {
         if (!visited[nextPage]) {
-          // 初回訪問：一番上へ（FVから見せる仕様）
-          window.scrollTo(0, 0);
+          // 初回訪問：一番上へ
+          if (lenis) {
+            lenis.scrollTo(0, { immediate: true }); // immediate: true でアニメーションなしで瞬間移動
+          } else {
+            window.scrollTo(0, 0);
+          }
           markVisited(nextPage);
         } else {
           // 2回目以降：保存した位置へ復元
-          window.scrollTo(0, scrollPos[nextPage]);
+          if (lenis) {
+            lenis.scrollTo(scrollPos[nextPage], { immediate: true });
+          } else {
+            window.scrollTo(0, scrollPos[nextPage]);
+          }
         }
       });
     },
-    [activePage, saveScroll, visited, markVisited, scrollPos],
+    [activePage, saveScroll, visited, markVisited, scrollPos, lenis], // 💡 lenisを依存配列に追加
   );
 
   return (

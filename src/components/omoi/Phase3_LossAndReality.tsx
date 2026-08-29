@@ -2,39 +2,71 @@
 "use client";
 
 import { motion, MotionValue, useTransform } from "framer-motion";
-import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 interface Props {
   scrollYProgress: MotionValue<number>;
 }
 
 export default function Phase3_LossAndReality({ scrollYProgress }: Props) {
-  // 💡 0.5 で完全に消えるように再配分
+  // 💡 0.5 で完全に消えるように全体を制御
   const phaseOpacity = useTransform(
     scrollYProgress,
-    [0.0, 0.05, 0.45, 0.5],
+    [0.0, 0.05, 0.55, 0.6],
     [0, 1, 1, 0],
   );
 
+  // 前半：3,000,000社 フェーズの制御
   const numberOpacity = useTransform(
     scrollYProgress,
-    [0.0, 0.05, 0.15, 0.2],
+    [0.0, 0.05, 0.25, 0.3],
     [0, 1, 1, 0],
   );
-  const numberY = useTransform(scrollYProgress, [0.0, 0.05], [30, 0]);
+  const numberY = useTransform(scrollYProgress, [0.0, 0.05], [50, 0]);
 
+  // 背景
+  const bgOpacity = useTransform(
+    scrollYProgress,
+    [0.2, 0.3, 0.55, 0.6],
+    [0, 1, 1, 0],
+  );
+
+  // 後半：人知れず消えていく企業 フェーズの制御
   const textOpacity = useTransform(
     scrollYProgress,
-    [0.2, 0.25, 0.45, 0.5],
+    [0.3, 0.35, 0.55, 0.6],
     [0, 1, 1, 0],
   );
-  const textY = useTransform(scrollYProgress, [0.2, 0.25], [30, 0]);
+  const textY = useTransform(scrollYProgress, [0.3, 0.35], [30, 0]);
+
+  // ブラーイン効果
+  const textBlur = useTransform(
+    scrollYProgress,
+    [0.3, 0.35],
+    ["blur(12px)", "blur(0px)"],
+  );
 
   return (
     <motion.div
       style={{ opacity: phaseOpacity, pointerEvents: "none" }}
       className="absolute inset-0 w-full h-full z-20 flex flex-col items-center justify-center text-white"
     >
+      {/* 暗闇背景レイヤー（スクロールに応じてフェードイン） */}
+      <motion.div
+        style={{ opacity: bgOpacity }}
+        className="absolute inset-0 w-full h-full -z-10"
+      >
+        {/* 背景テクスチャが強すぎる場合の可読性担保用オーバーレイ */}
+        <div className="absolute inset-0 bg-deepblue/40 z-10" />
+        <Image
+          src="/images/section3/bg-kurayami.jpg"
+          alt="暗闇背景"
+          fill
+          className="object-cover opacity-80"
+          priority
+        />
+      </motion.div>
+
       {/* 3,000,000社 フェーズ */}
       <motion.div
         style={{ opacity: numberOpacity, y: numberY }}
@@ -52,13 +84,13 @@ export default function Phase3_LossAndReality({ scrollYProgress }: Props) {
 
       {/* 人知れず消えていく企業 フェーズ */}
       <motion.div
-        style={{ opacity: textOpacity, y: textY }}
-        className="absolute w-full max-w-5xl px-6 flex flex-col items-center justify-between gap-12"
+        style={{ opacity: textOpacity, y: textY, filter: textBlur }}
+        className="absolute w-full max-w-4xl px-6 flex flex-col items-center justify-between gap-12"
       >
-        <h2 className="text-4xl md:text-6xl font-serif font-bold leading-tight flex-1">
+        <h2 className="text-4xl md:text-6xl font-serif font-bold leading-tight flex-1 text-center">
           人知れず消えていく企業
         </h2>
-        <div className="flex-1 flex flex-col gap-6 text-base md:text-xl leading-relaxed opacity-90">
+        <div className="flex-1 flex flex-col gap-6 text-base md:text-2xl leading-relaxed opacity-90">
           <p>
             素晴らしい会社なのに、知られていない。必要とされている会社なのに、未来へ残れない。人手不足や後継者不足によって、地域を支えてきた企業が、人知れず姿を消していく。そのたびに、雇用が失われる。技術が途絶える。地域の魅力が、またひとつ消えていく。
           </p>

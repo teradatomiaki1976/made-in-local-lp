@@ -13,34 +13,48 @@ export default function Phase5_6_BirthAndWhy() {
     offset: ["start start", "end end"],
   });
 
-  // --- タイムライン設計 ---
-  // Phase5（誕生）のテキストとエンブレム
+  // --- Phase5（誕生）のタイムライン設計 ---
+  // 💡 出現タイミングを微調整し、キープ（タメ）区間を 0.35 -> 0.4 へ延長
   const phase5Opacity = useTransform(
     scrollYProgress,
-    [0, 0.05, 0.2, 0.3],
+    [0, 0.05, 0.4, 0.5],
     [0, 1, 1, 0],
   );
-  const phase5Scale = useTransform(scrollYProgress, [0.25, 0.35], [1, 0.9]);
+  // 💡 大→小(1→0.9)から、小→大へのスケールアップに変更
+  // 出現時(0.85 -> 1)にフワッと大きくなり、タメ区間(1 -> 1.05)でじわじわ迫ってくる演出
+  const phase5Scale = useTransform(
+    scrollYProgress,
+    [0, 0.05, 0.4, 0.5],
+    [0.85, 1, 1.05, 1.1],
+  );
 
   // 背景「100」のパララックス
-  const bgScale = useTransform(scrollYProgress, [0.2, 1], [0.4, 1.2]);
-  const bgOpacity = useTransform(scrollYProgress, [0.2, 1], [0, 0.08]);
+  const bgScale = useTransform(scrollYProgress, [0.1, 1], [0.4, 1.2]);
+  const bgOpacity = useTransform(scrollYProgress, [0.1, 1], [0, 0.08]);
 
-  // Phase6（テキスト1: 埋もれないために）
-  const text1Opacity = useTransform(
+  // --- Phase6（テキスト統合版）タイムライン設計 ---
+  // Phase5のタメ延長に合わせて、出現タイミングを後ろにシフト
+  const h2Opacity = useTransform(
     scrollYProgress,
-    [0.35, 0.45, 0.6, 0.7],
+    [0.45, 0.55, 0.85, 0.95],
     [0, 1, 1, 0],
   );
-  const text1Y = useTransform(
+  const h2Y = useTransform(
     scrollYProgress,
-    [0.35, 0.45, 0.6, 0.7],
+    [0.45, 0.55, 0.85, 0.95],
     [30, 0, 0, -30],
   );
 
-  // Phase6（テキスト2: 上限があるからこそ）
-  const text2Opacity = useTransform(scrollYProgress, [0.7, 0.8, 1], [0, 1, 1]);
-  const text2Y = useTransform(scrollYProgress, [0.7, 0.8, 1], [30, 0, 0]);
+  const pOpacity = useTransform(
+    scrollYProgress,
+    [0.6, 0.7, 0.85, 0.95],
+    [0, 1, 1, 0],
+  );
+  const pY = useTransform(
+    scrollYProgress,
+    [0.6, 0.7, 0.85, 0.95],
+    [30, 0, 0, -30],
+  );
 
   return (
     <section ref={containerRef} className="relative w-full bg-creem h-[400vh]">
@@ -61,7 +75,11 @@ export default function Phase5_6_BirthAndWhy() {
 
         {/* Phase5コンテンツ */}
         <motion.div
-          style={{ opacity: phase5Opacity, scale: phase5Scale }}
+          style={{
+            opacity: phase5Opacity,
+            scale: phase5Scale,
+            willChange: "transform, opacity",
+          }}
           className="absolute inset-0 flex flex-col md:flex-row items-center justify-center gap-8 px-6 z-20"
         >
           <img
@@ -85,33 +103,46 @@ export default function Phase5_6_BirthAndWhy() {
           </div>
         </motion.div>
 
-        {/* Phase6コンテンツ（テキスト1） */}
-        <motion.div
-          style={{ opacity: text1Opacity, y: text1Y }}
-          className="absolute inset-0 flex flex-col items-center justify-center gap-8 px-6 text-midblue z-20"
-        >
-          <h2 className="text-4xl md:text-6xl font-bold tracking-normal">
-            埋もれないために100社
-          </h2>
-          <div className="text-sm md:text-lg font-bold leading-loose opacity-90 text-center">
-            <p>全国の地域から、100社ずつ素晴らしい企業を選ぶ。</p>
-            <p>数千社の企業がつながり、地域から新しい流れを生み出す。</p>
-          </div>
-        </motion.div>
+        {/* Phase6コンテンツ */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-8 px-6 text-midblue z-20 pointer-events-none">
+          {/* h2: 先に出現 */}
+          <motion.h2
+            style={{
+              opacity: h2Opacity,
+              y: h2Y,
+              willChange: "transform, opacity",
+            }}
+            className="text-4xl md:text-6xl font-bold tracking-normal text-center leading-tight"
+          >
+            埋もれないために、100社だけ。
+            <br />
+            100社だから一社一社が新しい
+            <br />
+            「地域の顔」になれる。
+          </motion.h2>
 
-        {/* Phase6コンテンツ（テキスト2） */}
-        <motion.div
-          style={{ opacity: text2Opacity, y: text2Y }}
-          className="absolute inset-0 flex flex-col items-center justify-center gap-8 px-6 text-midblue z-20"
-        >
-          <h2 className="text-4xl md:text-6xl font-bold tracking-tight">
-            100社という上限があるからこそ
-          </h2>
-          <div className="text-sm md:text-lg font-bold leading-loose opacity-90 text-center">
-            <p>全国の地域から、100社ずつ素晴らしい企業を選ぶ。</p>
-            <p>数千社の企業がつながり、地域から新しい流れを生み出す。</p>
-          </div>
-        </motion.div>
+          {/* p: 遅れて出現 */}
+          <motion.div
+            style={{
+              opacity: pOpacity,
+              y: pY,
+              willChange: "transform, opacity",
+            }}
+            className="text-sm md:text-lg font-bold leading-loose opacity-90 text-center"
+          >
+            <p>
+              それは、名実ともに地域を代表するような企業でなくても良い。
+              <br />
+              大事なのは、自分たちの可能性を信じる想いがあるかだ。
+              <br />
+              一人から数百人の従業員を抱える企業になるという意志。数百年先も紡いでいこうという意志。b\
+              <br />
+              自社技術が世界の舞台で輝けるという自信。過去なんてどうでもいい。未来に向けてどれだけ努力できるか。
+              <br />
+              努力する意思があるか。 それが、地域企業の新しいシンボルになる。
+            </p>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

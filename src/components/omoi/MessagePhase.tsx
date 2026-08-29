@@ -288,7 +288,7 @@ export default function MessagePhase({ scrollYProgress }: Props) {
             visibility: scene1Visibility,
             willChange: "opacity, filter",
           }}
-          className="absolute flex flex-col gap-8 md:gap-16 w-full pointer-events-none"
+          className="absolute flex flex-col items-center px-6 gap-8 md:gap-16 w-full pointer-events-none"
         >
           <motion.h2
             className="text-3xl md:text-7xl font-bold leading-tight text-white drop-shadow-xl"
@@ -307,16 +307,15 @@ export default function MessagePhase({ scrollYProgress }: Props) {
           </motion.h2>
 
           <motion.p
-            className="text-sm md:text-xl leading-normal text-white/80 drop-shadow-md"
+            className="text-left text-base md:text-2xl leading-normal text-white/80 drop-shadow-md max-w-3xl"
             initial={{ opacity: 0, filter: "blur(12px)", y: 20 }}
             whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
             viewport={{ once: true, margin: "-20%" }}
             transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
             style={{ willChange: "opacity, filter, transform" }}
           >
-            活気のあった商店街にはシャッターが下りている。
-            <br />
-            変化は、ある日突然ではなく、気づかないほど静かに進んでいる。
+            活気のあった商店街にはシャッターが下りている。変化は、ある日突然ではなく、
+            気づかないほど静かに進んでいる。
           </motion.p>
         </motion.div>
 

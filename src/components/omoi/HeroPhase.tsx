@@ -98,7 +98,7 @@ export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
   const rawSvgScale = useTransform(
     scrollYProgress,
     [0.1, 0.4, 0.8],
-    [0.25, 5, 12],
+    [0.6, 10, 18],
   );
   const svgScale = useSpring(rawSvgScale, { stiffness: 100, damping: 30 });
 
@@ -128,14 +128,6 @@ export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
       setIsDarkBg(isDark);
     }
   });
-
-  // 👇 （あるいは、アニメーションの進行度に合わせて背景が青くなる[0.65~]タイミングで切り替えるならこちら）
-  // useMotionValueEvent(scrollYProgress, "change", (latestProgress) => {
-  //   const isDark = latestProgress > 0.65; // 背景が青くなり始めるタイミング
-  //   if (useHeaderStore.getState().isDarkBg !== isDark) {
-  //     setIsDarkBg(isDark);
-  //   }
-  // });
 
   // コンポーネントがアンマウントされる時に状態をリセット
   useEffect(() => {
@@ -270,11 +262,9 @@ export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
             y: svgY,
             originX: 0.5, // 今後、フォーカス先（東京など）に合わせて微調整する
             originY: 0.5,
-            // 4. GPUアクセラレーションを強制して描画落ちを防ぐ
             z: 0, // Framer Motionにおける translateZ(0) の指定
-            willChange: "transform, opacity",
           }}
-          className="absolute z-20 w-[500vw] max-w-[1500px] text-midblue flex items-center justify-center pointer-events-none"
+          className="absolute z-20 w-full max-w-[800px] text-midblue flex items-center justify-center pointer-events-none"
         >
           <JapanMapSVG
             className="w-full h-auto object-contain"
@@ -298,11 +288,13 @@ export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
           className="absolute inset-0 z-40 flex flex-col items-center justify-center w-full gap-10 px-4 text-center text-white pointer-events-none"
         >
           <h2 className="font-serif text-3xl md:text-7xl font-bold leading-tight">
-            自分が生まれ育った地域が
+            自分が生まれ育った
             <br />
-            10年後どうなっているか
+            地域が10年後
+            <br />
+            どうなっているか
           </h2>
-          <p className="text-sm md:text-xl leading-normal">
+          <p className="text-base md:text-2xl leading-normal">
             具体的に考えたことがあるだろうか。
             <br />
             ずっと変わらないと思っていた故郷も、
