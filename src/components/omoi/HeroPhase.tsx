@@ -21,35 +21,36 @@ type HeroPhaseProps = {
 const BASE_IMAGES = [
   {
     src: "/images/photo/scene1.webp",
-    className: "top-[5%] left-[-5%] w-32 md:w-120",
+    className: "top-[0%] left-[0%] md:top-[10%] md:left-[0%] w-40 md:w-80",
   },
   {
     src: "/images/photo/scene2.webp",
-    className: "top-[40%] left-[10%] w-60 md:w-80",
+    className: "top-[20%] left-[-10%] md:top-[40%] md:left-[10%] w-50 md:w-80",
   },
   {
     src: "/images/photo/scene3.webp",
-    className: "top-[20%] right-[5%] w-36 md:w-56",
+    className: "top-[10%] right-[-5%] md:top-[10%] md:right-[5%] w-36 md:w-64",
   },
   {
     src: "/images/photo/scene4.webp",
-    className: "top-[40%] right-[10%] w-48 md:w-100",
+    className: "top-[35%] right-[-5%] md:top-[35%] md:right-[15%] w-48 md:w-90",
   },
   {
     src: "/images/photo/scene5.webp",
-    className: "top-[60%] left-[4%] w-32 md:w-48",
+    className: "top-[50%] left-[0%] md:top-[60%] md:left-[4%] w-42 md:w-56",
   },
   {
     src: "/images/photo/scene6.webp",
-    className: "top-[80%] left-[15%] w-40 md:w-80",
+    className: "top-[80%] left-[5%] md:top-[80%] md:left-[15%] w-40 md:w-90",
   },
   {
     src: "/images/photo/scene7.webp",
-    className: "top-[65%] right-[5%] w-36 md:w-64",
+    className: "top-[65%] right-[-5%] md:top-[65%] md:right-[5%] w-40 md:w-64",
   },
   {
     src: "/images/photo/scene8.webp",
-    className: "top-[85%] right-[10%] w-48 md:w-120",
+    className:
+      "top-[85%] right-[-5%] md:top-[85%] md:right-[10%] w-42 md:w-100",
   },
 ];
 
@@ -211,7 +212,7 @@ export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
         {/* --- 2. 中央メッセージテキスト --- */}
         <motion.div className="relative z-10 flex flex-col items-center text-center pointer-events-none py-80 px-48 rounded-full bg-[radial-gradient(circle,#fefbf1_30%,transparent_60%)]">
           <h1
-            className="font-serif font-bold md:font-semibold text-5xl md:text-8xl leading-tight text-nowrap text-shadow-lg text-shadow-white"
+            className="font-serif font-bold md:font-semibold text-4xl md:text-8xl leading-tight text-nowrap text-shadow-lg text-shadow-white"
             aria-label="地域から本気で日本を変えたい"
           >
             <span aria-hidden="true">
@@ -223,7 +224,7 @@ export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
             </span>
           </h1>
           <motion.div
-            className="mt-16 flex flex-col items-center gap-2"
+            className="mt-12 md:mt-16 flex flex-col items-center gap-2"
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.7 }}
             transition={{ delay: 4.5, duration: 1.5, ease: "easeOut" }}
