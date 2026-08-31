@@ -105,7 +105,7 @@ export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
   const rawSvgY = useTransform(scrollYProgress, [0.25, 0.65], ["32vh", "0vh"]);
   const svgY = useSpring(rawSvgY, { stiffness: 100, damping: 30 });
 
-  const blueFillOpacity = useTransform(scrollYProgress, [0.6, 0.7], [0, 1]);
+  const blueFillOpacity = useTransform(scrollYProgress, [0.4, 1], [0, 1]);
   const firstTextOpacity = useTransform(
     scrollYProgress,
     [0.4, 0.5, 1.0],

@@ -85,19 +85,21 @@ export default function Phase5_6_BirthAndWhy() {
           <img
             src="/images/logo/emblem_dark.svg"
             alt="地域を代表する企業100選"
-            className="w-70 md:w-90 drop-shadow-2xl max-md:mb-2 md:mr-16"
+            className="w-50 md:w-90 drop-shadow-2xl max-md:mb-2 md:mr-16"
           />
-          <div className="flex flex-col items-center max-md:border-t md:border-l border-midblue/30  max-md:pt-8 md:pl-16 md:py-8">
-            <h2 className="text-3xl md:text-5xl font-bold text-olive mb-6">
+          <div className="max-w-3xl flex flex-col items-center md:items-start max-md:border-t md:border-l border-midblue/30  max-md:pt-8 md:pl-16 md:py-8">
+            <h2 className="text-center md:text-left text-3xl md:text-5xl font-bold text-olive mb-6">
               <span className="text-midblue block text-lg md:text-2xl mb-2">
                 そこで、
               </span>
-              地域を代表する企業100選
+              地域を代表する
+              <br className="block md:hidden" />
+              企業100選
               <span className="text-midblue block mt-2">を創設した</span>
             </h2>
             <p className="text-base md:text-xl font-bold leading-relaxed text-midblue/80">
               100社上限だからこそ埋もれない新しい地域の旗印になる。
-              <br />
+              <br className="hidden md:block" />
               その共通の旗印のもと、地域の企業から意識を変えていく。
             </p>
           </div>
@@ -112,12 +114,12 @@ export default function Phase5_6_BirthAndWhy() {
               y: h2Y,
               willChange: "transform, opacity",
             }}
-            className="text-4xl md:text-6xl font-bold tracking-normal text-center leading-tight"
+            className="text-3xl md:text-5xl font-bold tracking-normal text-left md:text-center leading-normal"
           >
             埋もれないために、100社だけ。
-            <br />
+            <br className="hidden md:block" />
             100社だから一社一社が新しい
-            <br />
+            <br className="hidden md:block" />
             「地域の顔」になれる。
           </motion.h2>
 
@@ -128,17 +130,17 @@ export default function Phase5_6_BirthAndWhy() {
               y: pY,
               willChange: "transform, opacity",
             }}
-            className="text-sm md:text-lg font-bold leading-loose opacity-90 text-center"
+            className="text-sm md:text-lg font-bold leading-loose opacity-90 text-left md:text-center"
           >
             <p>
               それは、名実ともに地域を代表するような企業でなくても良い。
-              <br />
+              <br className="hidden md:block" />
               大事なのは、自分たちの可能性を信じる想いがあるかだ。
-              <br />
-              一人から数百人の従業員を抱える企業になるという意志。数百年先も紡いでいこうという意志。b\
-              <br />
+              <br className="hidden md:block" />
+              一人から数百人の従業員を抱える企業になるという意志。数百年先も紡いでいこうという意志。
+              <br className="hidden md:block" />
               自社技術が世界の舞台で輝けるという自信。過去なんてどうでもいい。未来に向けてどれだけ努力できるか。
-              <br />
+              <br className="hidden md:block" />
               努力する意思があるか。 それが、地域企業の新しいシンボルになる。
             </p>
           </motion.div>

@@ -73,7 +73,7 @@ export default function Phase3_LossAndReality({ scrollYProgress }: Props) {
         className="absolute flex flex-col items-center text-center gap-6"
       >
         <p className="text-xl md:text-2xl font-serif">日本では</p>
-        <h2 className="text-6xl md:text-9xl text-yellow font-bold tracking-normal">
+        <h2 className="text-5xl md:text-9xl text-yellow font-bold tracking-normal">
           3,000,000
           <span className="text-white text-3xl md:text-5xl ml-2">社</span>
         </h2>
@@ -87,8 +87,10 @@ export default function Phase3_LossAndReality({ scrollYProgress }: Props) {
         style={{ opacity: textOpacity, y: textY, filter: textBlur }}
         className="absolute w-full max-w-4xl px-6 flex flex-col items-center justify-between gap-12"
       >
-        <h2 className="text-4xl md:text-6xl font-serif font-bold leading-tight flex-1 text-center">
-          人知れず消えていく企業
+        <h2 className="text-3xl md:text-6xl font-serif font-bold leading-tight flex-1 text-center">
+          人知れず
+          <br className="block md:hidden" />
+          消えていく企業
         </h2>
         <div className="flex-1 flex flex-col gap-6 text-base md:text-2xl leading-relaxed opacity-90">
           <p>

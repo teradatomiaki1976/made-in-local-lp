@@ -58,6 +58,9 @@ export default function MessagePhase({ scrollYProgress }: Props) {
   const pcRightX = useTransform(scrollYProgress, [0.45, 0.5], ["0%", "100%"]);
   const spTopY = useTransform(scrollYProgress, [0.45, 0.5], ["0%", "-100%"]);
   const spBottomY = useTransform(scrollYProgress, [0.45, 0.5], ["0%", "100%"]);
+  const sideImagesVisibility = useTransform(scrollYProgress, (v) =>
+    v > 0.5 ? "hidden" : "visible",
+  );
 
   // ==========================================
   // 放射アニメーション（0.25 ~ 0.375 付近で発火）
@@ -160,7 +163,11 @@ export default function MessagePhase({ scrollYProgress }: Props) {
           左右の無限ループ画像（PC版）
       ========================================== */}
       <motion.div
-        style={{ opacity: sideImagesOpacity, x: pcLeftX }}
+        style={{
+          opacity: sideImagesOpacity,
+          x: pcLeftX,
+          visibility: sideImagesVisibility,
+        }}
         className="absolute left-[2%] top-0 w-[18%] hidden md:flex flex-col gap-6 z-10 will-change-transform pointer-events-none"
         aria-hidden="true"
       >
@@ -190,7 +197,11 @@ export default function MessagePhase({ scrollYProgress }: Props) {
       </motion.div>
 
       <motion.div
-        style={{ opacity: sideImagesOpacity, x: pcRightX }}
+        style={{
+          opacity: sideImagesOpacity,
+          x: pcRightX,
+          visibility: sideImagesVisibility,
+        }}
         className="absolute right-[2%] top-0 w-[18%] hidden md:flex flex-col gap-6 z-10 will-change-transform pointer-events-none"
         aria-hidden="true"
       >
@@ -223,7 +234,11 @@ export default function MessagePhase({ scrollYProgress }: Props) {
           上下の無限ループ画像（スマホ版）
       ========================================== */}
       <motion.div
-        style={{ opacity: sideImagesOpacity, y: spTopY }}
+        style={{
+          opacity: sideImagesOpacity,
+          y: spTopY,
+          visibility: sideImagesVisibility,
+        }}
         className="absolute top-[5%] left-0 h-[18vh] flex md:hidden flex-row gap-4 z-10 will-change-transform pointer-events-none w-max"
         aria-hidden="true"
       >
@@ -250,7 +265,11 @@ export default function MessagePhase({ scrollYProgress }: Props) {
       </motion.div>
 
       <motion.div
-        style={{ opacity: sideImagesOpacity, y: spBottomY }}
+        style={{
+          opacity: sideImagesOpacity,
+          y: spBottomY,
+          visibility: sideImagesVisibility,
+        }}
         className="absolute bottom-[5%] left-0 h-[18vh] flex md:hidden flex-row gap-4 z-10 will-change-transform pointer-events-none w-max"
         aria-hidden="true"
       >

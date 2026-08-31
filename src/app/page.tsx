@@ -81,7 +81,7 @@ export default function Home() {
       <GlobalHeader
         isVisible={isHeaderVisible}
         activePage={activePage}
-        onPageChange={handlePageChange} // ← 拡張した関数を渡す
+        onPageChange={handlePageChange}
       />
 
       {/* --- 想いから感じる（右脳）ページ --- */}

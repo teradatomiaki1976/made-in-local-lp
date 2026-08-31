@@ -54,8 +54,10 @@ export default function Phase4_LightOfHope({ scrollYProgress }: Props) {
         style={{ opacity: textOpacity, y: textY }}
         className="relative z-30 w-full px-6 flex flex-col items-center justify-between gap-12 text-white"
       >
-        <h2 className="text-4xl md:text-6xl font-serif font-bold leading-tight flex-1 drop-shadow-lg">
-          まだ知られていない価値を届ける
+        <h2 className="text-3xl md:text-6xl font-serif font-bold leading-tight flex-1 drop-shadow-lg">
+          まだ知られていない
+          <br className="block md:hidden" />
+          価値を届ける
         </h2>
         <div className="flex-1 flex max-w-4xl flex-col gap-6 text-base md:text-xl leading-relaxed opacity-90 drop-shadow-md">
           <p>

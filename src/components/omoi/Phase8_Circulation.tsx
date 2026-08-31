@@ -89,8 +89,10 @@ export default function Phase8_Circulation() {
             style={{ opacity: text1Opacity, y: text1Y }}
             className="absolute text-center w-full"
           >
-            <h2 className="font-serif text-2xl md:text-4xl lg:text-6xl font-bold tracking-normal text-midblue leading-relaxed">
-              一社の光が、地域を照らす。
+            <h2 className="font-serif text-3xl md:text-4xl lg:text-6xl font-bold tracking-normal text-midblue leading-relaxed">
+              一社の光が、
+              <br className="block md:hidden" />
+              地域を照らす。
             </h2>
           </motion.div>
 
@@ -98,8 +100,10 @@ export default function Phase8_Circulation() {
             style={{ opacity: text2Opacity, y: text2Y }}
             className="absolute text-center w-full"
           >
-            <h2 className="font-serif text-2xl md:text-4xl lg:text-6xl font-bold tracking-normal text-midblue leading-relaxed">
-              地域の光が、日本を照らす。
+            <h2 className="font-serif text-3xl md:text-4xl lg:text-6xl font-bold tracking-normal text-midblue leading-relaxed">
+              地域の光が、
+              <br className="block md:hidden" />
+              日本を照らす。
             </h2>
           </motion.div>
 
@@ -109,8 +113,10 @@ export default function Phase8_Circulation() {
           >
             <h2 className="font-serif text-2xl md:text-4xl lg:text-5xl font-bold tracking-normal text-midblue leading-normal">
               一社一社の力は微力でも、
-              <br className="hidden md:block" />
-              私たち全員で立ち向かえば挑戦できる。
+              <br />
+              私たち全員で立ち向かえば
+              <br className="block md:hidden" />
+              挑戦できる。
             </h2>
           </motion.div>
 
@@ -120,9 +126,11 @@ export default function Phase8_Circulation() {
           >
             <h2 className="font-serif text-xl md:text-3xl lg:text-6xl font-bold tracking-normal text-midblue leading-tight">
               <span className="block text-base md:text-xl lg:text-2xl mb-4 text-midblue">
-                私たちが次世代に紡いでいく日本は衰退していく日本ではなく
+                私たちが次世代に紡いでいく日本は
+                <br className="block md:hidden" />
+                衰退していく日本ではなく
               </span>
-              <span className="text-olive">
+              <span className="text-olive block md:inline">
                 「地域から輝く世界に誇れる日本」
               </span>
               である

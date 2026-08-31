@@ -9,7 +9,6 @@ import PrefectureHighlightPhase from "./PrefectureHighlightPhase";
 export default function MapStoryWrapper() {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // 2つのフェーズを合わせた巨大なスクロール領域（600vh）を監視
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
@@ -22,10 +21,7 @@ export default function MapStoryWrapper() {
     >
       {/* 画面に固定（FIX）されるコンテナ。この中で2つのコンポーネントがオーバーラップする */}
       <div className="sticky top-0 left-0 w-full h-svh overflow-hidden">
-        {/* 前半（0.0 ~ 0.5）を担当 */}
         <MessagePhase scrollYProgress={scrollYProgress} />
-
-        {/* 後半（0.5 ~ 1.0）を担当 */}
         <PrefectureHighlightPhase scrollYProgress={scrollYProgress} />
       </div>
     </section>

@@ -152,7 +152,7 @@ export default function Phase9_Finale() {
               }}
               className="w-full max-w-4xl"
             >
-              <h2 className=" px-4 md:px-12 text-yellow font-serif font-bold leading-tight drop-shadow-2xl text-6xl md:text-8xl lg:text-[8rem]">
+              <h2 className=" px-4 md:px-12 text-yellow font-serif font-bold leading-tight drop-shadow-2xl text-6xl md:text-8xl lg:text-[8rem] whitespace-nowrap">
                 本気で日本を
                 <br />
                 変えたい
@@ -167,18 +167,18 @@ export default function Phase9_Finale() {
                 地域を代表する企業100選
               </p>
               <p className="text-2xl md:text-4xl font-bold mb-8">
-                発起人{" "}
-                <span className="text-4xl md:text-6xl ml-4">石井智大</span>
+                発起人
+                <span className="text-4xl md:text-6xl mt-2 md:mt-0 ml-0 md:ml-4 block md:inline">
+                  石井智大
+                </span>
               </p>
               <p className="text-sm md:text-lg leading-loose opacity-90 mb-12">
                 あなたの会社が、地域のために大切にしてきたこと。
-                <br />
+                <br className="hidden md:block" />
                 事業に込めてきた想い。これから実現したい未来。
-                <br />
-                <br />
                 <span className="text-2xl md:text-4xl font-bold block mt-4">
                   あなたの会社の想いを、
-                  <br />
+                  <br className="hidden md:block" />
                   私たちに聞かせてください。
                 </span>
               </p>
