@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 
 // 24枚程度の異なる画像パスを用意
 const DUMMY_IMAGES = Array.from({ length: 24 }).map(
-  (_, i) => `/images/photo/scene${(i % 5) + 1}.webp`,
+  (_, i) => `/images/photo/scene${i + 1}.webp`,
 );
 
 export default function Phase7_NewStandard() {
