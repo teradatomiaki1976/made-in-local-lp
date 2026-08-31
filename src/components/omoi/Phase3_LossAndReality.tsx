@@ -70,7 +70,7 @@ export default function Phase3_LossAndReality({ scrollYProgress }: Props) {
       {/* 3,000,000社 フェーズ */}
       <motion.div
         style={{ opacity: numberOpacity, y: numberY }}
-        className="absolute flex flex-col items-center text-center gap-6"
+        className="absolute flex flex-col items-center text-center gap-2 md:gap-6"
       >
         <p className="text-xl md:text-2xl font-serif">日本では</p>
         <h2 className="text-5xl md:text-9xl text-yellow font-bold tracking-normal">
@@ -78,14 +78,16 @@ export default function Phase3_LossAndReality({ scrollYProgress }: Props) {
           <span className="text-white text-3xl md:text-5xl ml-2">社</span>
         </h2>
         <p className="text-lg md:text-2xl font-serif mt-4">
-          以上の法人が地方経済を支えている
+          以上の法人が
+          <br className="block md:hidden" />
+          地方経済を支えている
         </p>
       </motion.div>
 
       {/* 人知れず消えていく企業 フェーズ */}
       <motion.div
         style={{ opacity: textOpacity, y: textY, filter: textBlur }}
-        className="absolute w-full max-w-4xl px-6 flex flex-col items-center justify-between gap-12"
+        className="absolute w-full max-w-4xl px-6 flex flex-col items-center justify-between gap-6 md:gap-12"
       >
         <h2 className="text-3xl md:text-6xl font-serif font-bold leading-tight flex-1 text-center">
           人知れず
