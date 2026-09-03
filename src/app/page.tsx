@@ -16,7 +16,6 @@ import Phase7_NewStandard from "@/components/omoi/Phase7_NewStandard";
 import Phase8_Circulation from "@/components/omoi/Phase8_Circulation";
 import Phase9_Finale from "@/components/omoi/Phase9_Finale";
 import GlobalFooter from "@/components/layouts/GlobalFooter";
-//shikumi
 import TeaserPhase from "@/components/shikumi/TeaserPhase";
 import { cn } from "@/lib/utils";
 
@@ -25,15 +24,16 @@ export default function Home() {
   const [omoiPhase, setOmoiPhase] = useState<"loading" | "hero">("loading");
   const [isHeaderVisible, setIsHeaderVisible] = useState(false);
 
-  // Zustandからスクロール管理用の状態と関数を取得
-  const { visited, scrollPos, markVisited, saveScroll } = usePageStore();
+  const [isTransitioning, setIsTransitioning] = useState(false);
+
+  // 【変更点】saveScroll, scrollPos の呼び出しを削除
+  const { visited, markVisited } = usePageStore();
   const lenis = useLenis();
 
   const handleShowHeader = useCallback(() => {
     setIsHeaderVisible(true);
   }, []);
 
-  // リロード時の強制スクロールジャンプを防止
   useEffect(() => {
     if (typeof window !== "undefined") {
       window.history.scrollRestoration = "manual";
@@ -41,57 +41,67 @@ export default function Home() {
     }
   }, []);
 
-  // ページ切り替えとスクロール位置復元のロジック（Lenis対応版）
+  // 1. ページ切り替えとトランジションの制御
   const handlePageChange = useCallback(
     (nextPage: "omoi" | "shikumi") => {
-      if (activePage === nextPage) return;
+      if (activePage === nextPage || isTransitioning) return;
 
-      // 1. 現在のページのスクロール位置を保存（Lenis非稼働時のフォールバックとしてwindow.scrollYも取得）
-      const currentScrollY = lenis ? lenis.scroll : window.scrollY;
-      saveScroll(activePage, currentScrollY);
+      if (lenis) lenis.stop();
 
-      // 2. ページ表示を切り替え
-      setActivePage(nextPage);
+      // STEP 1: トランジションの「幕」を下ろす
+      setIsTransitioning(true);
 
-      // 3. スクロール位置の復元
-      requestAnimationFrame(() => {
-        if (!visited[nextPage]) {
-          // 初回訪問：一番上へ
+      // STEP 2: 幕が下りきった裏側（200ms後）でページを切り替える
+      setTimeout(() => {
+        setActivePage(nextPage);
+
+        // STEP 3: 強制的にページトップへ戻す
+        requestAnimationFrame(() => {
           if (lenis) {
-            lenis.scrollTo(0, { immediate: true }); // immediate: true でアニメーションなしで瞬間移動
+            lenis.scrollTo(0, { immediate: true, force: true });
+            lenis.start();
           } else {
             window.scrollTo(0, 0);
           }
-          markVisited(nextPage);
-        } else {
-          // 2回目以降：保存した位置へ復元
-          if (lenis) {
-            lenis.scrollTo(scrollPos[nextPage], { immediate: true });
-          } else {
-            window.scrollTo(0, scrollPos[nextPage]);
-          }
-        }
-      });
+
+          if (!visited[nextPage]) markVisited(nextPage);
+
+          // STEP 4: 幕を開ける
+          setIsTransitioning(false);
+        });
+      }, 200);
     },
-    [activePage, saveScroll, visited, markVisited, scrollPos, lenis], // 💡 lenisを依存配列に追加
+    [activePage, lenis, visited, markVisited, isTransitioning],
   );
 
   return (
-    <main className="flex min-h-screen w-full flex-col">
+    <main className="flex min-h-screen w-full flex-col bg-creem relative">
       <GlobalHeader
         isVisible={isHeaderVisible}
         activePage={activePage}
         onPageChange={handlePageChange}
       />
 
-      {/* --- 想いから感じる（右脳）ページ --- */}
+      <AnimatePresence>
+        {isTransitioning && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2, ease: "easeInOut" }}
+            className="fixed inset-0 z-[60] bg-creem"
+            aria-hidden="true"
+          />
+        )}
+      </AnimatePresence>
+
       <div
         className={cn(
           "w-full relative min-h-screen",
           activePage === "omoi" ? "block" : "hidden",
         )}
         aria-hidden={activePage !== "omoi"}
-        inert={activePage !== "omoi"}
+        {...({ inert: activePage !== "omoi" ? true : undefined } as any)}
       >
         <AnimatePresence mode="wait">
           {omoiPhase === "loading" && (
@@ -128,14 +138,17 @@ export default function Home() {
         </AnimatePresence>
       </div>
 
-      {/* --- 仕組みから理解する（左脳）ページ --- */}
       <div
-        className={cn("w-full", activePage === "shikumi" ? "block" : "hidden")}
+        className={cn(
+          "w-full relative min-h-screen",
+          activePage === "shikumi" ? "block" : "hidden",
+        )}
         aria-hidden={activePage !== "shikumi"}
-        inert={activePage !== "shikumi"}
+        {...({ inert: activePage !== "shikumi" ? true : undefined } as any)}
       >
         <TeaserPhase />
       </div>
+
       {(activePage === "shikumi" || omoiPhase === "hero") && (
         <GlobalFooter activePage={activePage} onPageChange={handlePageChange} />
       )}

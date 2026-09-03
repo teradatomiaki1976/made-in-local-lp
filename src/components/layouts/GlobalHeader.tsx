@@ -2,7 +2,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { useHeaderStore } from "@/store/useHeaderStore";
 import { FiChevronRight } from "react-icons/fi";
@@ -19,11 +19,31 @@ export default function GlobalHeader({
   activePage,
   onPageChange,
 }: GlobalHeaderProps) {
-  // Zustandのストアから状態を取得
   const isDarkBg = useHeaderStore((state) => state.isDarkBg);
-
-  // ハイドレーションエラー対策
   const [mounted, setMounted] = useState(false);
+
+  // 新規追加：FVを通過したかどうかを判定するステート
+  const [isPastFV, setIsPastFV] = useState(false);
+  const { scrollY } = useScroll();
+
+  // スクロール位置の監視（Framer Motionの最適化されたフックを使用）
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    // 【重要追加】前回のフレームからの移動距離を計算
+    const prev = scrollY.getPrevious() || 0;
+    const diff = Math.abs(latest - prev);
+
+    // 1フレームで500px以上動くことは人間のスクロールでは不可能。
+    // つまりプログラムによるジャンプ（復元）なので、ヘッダーの判定を無視する！
+    if (diff > 500) return;
+
+    const fvHeight = typeof window !== "undefined" ? window.innerHeight : 800;
+    if (latest > fvHeight * 0.9) {
+      setIsPastFV(true);
+    } else {
+      setIsPastFV(false);
+    }
+  });
+
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -41,31 +61,28 @@ export default function GlobalHeader({
         style={{ pointerEvents: isVisible ? "auto" : "none" }}
       >
         {/* 左: ロゴエリア */}
-        <div className="relative flex items-center h-10 md:h-16 w-[180px] md:w-[240px]">
-          {/* 暗い背景用（白ロゴ） */}
-          <Image
-            src="/images/logo/logo_white.svg"
-            alt="100選エンブレム 白"
-            fill
-            className={cn(
-              "object-contain transition-opacity duration-300",
-              mounted && isDarkBg ? "opacity-100" : "opacity-0",
-            )}
-          />
-          {/* 明るい背景用（黒ロゴ） */}
-          <Image
-            src="/images/logo/logo_dark.svg"
-            alt="100選エンブレム 黒"
-            fill
-            className={cn(
-              "object-contain transition-opacity duration-300",
-              mounted && isDarkBg ? "opacity-0" : "opacity-100",
-            )}
-          />
+        <div
+          className={cn(
+            "relative flex items-center justify-center rounded-lg overflow-hidden transition-all duration-300 ease-out",
+            isPastFV
+              ? "h-10 md:h-14 w-[120px] md:w-[220px] bg-white backdrop-blur-md border border-white/40 shadow-[0_4px_12px_rgba(0,0,0,0.05)] px-3 py-1"
+              : "h-14 md:h-20 w-[180px] md:w-[300px] bg-transparent border-transparent shadow-none px-0 py-0",
+          )}
+          style={{ transformOrigin: "top left" }}
+        >
+          <div className="relative w-full h-full transition-all duration-300 ease-out">
+            <Image
+              src="/images/logo/logo_dark.svg"
+              alt="100選エンブレム"
+              fill
+              priority
+              className="object-contain"
+            />
+          </div>
         </div>
 
         {/* 中央: 切り替えトグル */}
-        <div className="flex bg-white rounded-full shadow-sm border border-gray-100 p-1">
+        <div className="flex bg-white/80 rounded-full shadow-sm border border-gray-100 p-1">
           <button
             onClick={() => onPageChange("shikumi")}
             className={cn(
@@ -96,7 +113,7 @@ export default function GlobalHeader({
 
         {/* 右: PC版CTAボタン */}
         <a
-          href="https://madeinlocal.jp/contact/article"
+          href="https://madeinlocal.jp/contact/100selection"
           className="hidden md:flex items-center justify-center gap-1.5 bg-linear-to-b from-[#007a8c] to-[#00535f] font-sans text-white leading-tight px-8 py-3.5 rounded-lg font-bold text-lg shadow-[0_4px_12px_rgba(0,42,92,0.4)] hover:from-[#008396] hover:to-[#005b68] hover:shadow-[0_6px_16px_rgba(0,42,92,0.5)] border border-[#00454f]/30 transition-all duration-300 cursor-pointer group relative overflow-hidden"
         >
           <span className="absolute top-0 left-0 w-full h-px bg-white/20"></span>
@@ -117,7 +134,7 @@ export default function GlobalHeader({
         style={{ pointerEvents: isVisible ? "auto" : "none" }}
       >
         <a
-          href="https://madeinlocal.jp/contact/article"
+          href="https://madeinlocal.jp/contact/100selection"
           className="w-full flex items-center justify-center gap-2 bg-linear-to-b from-[#007a8c] to-[#00535f] text-white font-sans font-bold text-lg pt-4 shadow-[0_-4px_12px_rgba(0,42,92,0.3)] active:from-[#008396] active:to-[#005b68] transition-colors duration-300 cursor-pointer group relative overflow-hidden"
           style={{ paddingBottom: "calc(env(safe-area-inset-bottom) + 16px)" }}
         >

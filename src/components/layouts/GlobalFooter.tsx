@@ -64,7 +64,7 @@ export default function GlobalFooter({
               エントリーのご相談・面談予約はこちら
             </p>
             <a
-              href="https://madeinlocal.jp/contact/article"
+              href="https://madeinlocal.jp/contact/100selection"
               className="w-full max-w-sm bg-linear-to-b from-[#007a8c] to-[#00535f] font-sans text-white py-8 rounded-lg font-bold text-xl shadow-[0_4px_12px_rgba(0,42,92,0.4)] hover:from-[#008396] hover:to-[#005b68] hover:shadow-[0_6px_16px_rgba(0,42,92,0.5)] border border-[#00454f]/30 transition-all duration-300 cursor-pointer group relative overflow-hidden flex items-center justify-center gap-2"
               style={{
                 paddingBottom: "calc(env(safe-area-inset-bottom) + 32px)",

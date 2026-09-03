@@ -10,14 +10,30 @@ import {
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 
-// ループ用に画像を定義
-const SIDE_IMAGES = [
-  { src: "/images/section3/scene1.webp", height: "h-[300px]" },
-  { src: "/images/section3/scene2.webp", height: "h-[300px]" },
-  { src: "/images/section3/scene3.webp", height: "h-[300px]" },
-  { src: "/images/section3/scene4.webp", height: "h-[300px]" },
+// ==========================================
+// ループ用に画像を定義（左右独立）
+// ==========================================
+
+// 左側（SP上部）用画像（6枚）
+const LEFT_IMAGES = [
+  { src: "/images/section3/scene1.webp", height: "h-[160px]" },
+  { src: "/images/section3/scene2.webp", height: "h-[160px]" },
+  { src: "/images/section3/scene3.webp", height: "h-[160px]" },
+  { src: "/images/section3/scene4.webp", height: "h-[160px]" },
+  { src: "/images/section3/scene5.webp", height: "h-[160px]" },
 ];
-const LOOPED_IMAGES = [...SIDE_IMAGES, ...SIDE_IMAGES];
+
+// 右側（SP下部）用画像（6枚）※ファイル名は実際のプロジェクトアセットに合わせて調整してほしい[cite: 2]
+const RIGHT_IMAGES = [
+  { src: "/images/section3/scene6.webp", height: "h-[160px]" },
+  { src: "/images/section3/scene7.webp", height: "h-[160px]" },
+  { src: "/images/section3/scene8.webp", height: "h-[160px]" },
+  { src: "/images/section3/scene9.webp", height: "h-[160px]" },
+  { src: "/images/section3/scene10.webp", height: "h-[160px]" },
+];
+
+const LOOPED_LEFT_IMAGES = [...LEFT_IMAGES, ...LEFT_IMAGES];
+const LOOPED_RIGHT_IMAGES = [...RIGHT_IMAGES, ...RIGHT_IMAGES];
 
 interface Props {
   scrollYProgress: MotionValue<number>;
@@ -28,7 +44,6 @@ export default function MessagePhase({ scrollYProgress }: Props) {
   // 前半フェーズのスクロール制御（0.0 ~ 0.5 に圧縮）
   // ==========================================
 
-  // Scene 1: 0%〜17.5%は表示、17.5%〜25%で消える
   const scene1Opacity = useTransform(
     scrollYProgress,
     [0, 0.175, 0.25],
@@ -44,7 +59,6 @@ export default function MessagePhase({ scrollYProgress }: Props) {
     v > 0.25 ? "hidden" : "visible",
   );
 
-  // Scene 2: 地図を消さずに維持する（0.3以降はずっとopacity 1）
   const scene2Opacity = useTransform(scrollYProgress, [0.2, 0.3], [0, 1]);
   const scene2BlurValue = useTransform(scrollYProgress, [0.2, 0.3], [12, 0]);
   const scene2Filter = useMotionTemplate`blur(${scene2BlurValue}px)`;
@@ -52,7 +66,6 @@ export default function MessagePhase({ scrollYProgress }: Props) {
     v > 1.0 ? "hidden" : "visible",
   );
 
-  // サイドの無限ループ画像のフェードアウト（0.45〜0.5で消える）
   const sideImagesOpacity = useTransform(scrollYProgress, [0.45, 0.5], [1, 0]);
   const pcLeftX = useTransform(scrollYProgress, [0.45, 0.5], ["0%", "-100%"]);
   const pcRightX = useTransform(scrollYProgress, [0.45, 0.5], ["0%", "100%"]);
@@ -65,20 +78,16 @@ export default function MessagePhase({ scrollYProgress }: Props) {
   // ==========================================
   // 放射アニメーション（0.25 ~ 0.375 付近で発火）
   // ==========================================
-
-  // 1. 「0社」
   const radialOpacity0 = useTransform(scrollYProgress, [0.25, 0.325], [0, 0.6]);
   const radialScale0 = useTransform(scrollYProgress, [0.25, 0.35], [0.2, 1]);
   const pos0_X = useTransform(scrollYProgress, [0.25, 0.375], ["0vw", "-18vw"]);
   const pos0_Y = useTransform(scrollYProgress, [0.25, 0.375], ["0vh", "22vh"]);
 
-  // 2. 「3社」
   const radialOpacity3 = useTransform(scrollYProgress, [0.25, 0.3], [0, 0.6]);
   const radialScale3 = useTransform(scrollYProgress, [0.25, 0.35], [0.2, 1]);
   const pos3_X = useTransform(scrollYProgress, [0.25, 0.375], ["0vw", "-12vw"]);
   const pos3_Y = useTransform(scrollYProgress, [0.25, 0.375], ["0vh", "-18vh"]);
 
-  // 3. 「10社」
   const radialOpacity10 = useTransform(
     scrollYProgress,
     [0.27, 0.345],
@@ -92,18 +101,15 @@ export default function MessagePhase({ scrollYProgress }: Props) {
     ["0vh", "-12vh"],
   );
 
-  // 4. 「1社」
   const radialOpacity1 = useTransform(scrollYProgress, [0.28, 0.355], [0, 0.6]);
   const radialScale1 = useTransform(scrollYProgress, [0.28, 0.38], [0.2, 1]);
   const pos1_X = useTransform(scrollYProgress, [0.25, 0.375], ["0vw", "12vw"]);
   const pos1_Y = useTransform(scrollYProgress, [0.25, 0.375], ["0vh", "20vh"]);
 
-  // 5. 「5社」
   const radialOpacity5 = useTransform(scrollYProgress, [0.27, 0.325], [0, 0.6]);
   const radialScale5 = useTransform(scrollYProgress, [0.27, 0.34], [0.2, 1]);
   const pos5_Y = useTransform(scrollYProgress, [0.25, 0.375], ["0vh", "30vh"]);
 
-  // 中央テキスト「何社思い浮かべられますか」のフェードアウト
   const centerTextOpacity = useTransform(
     scrollYProgress,
     [0.25, 0.3, 0.45, 0.48],
@@ -115,11 +121,8 @@ export default function MessagePhase({ scrollYProgress }: Props) {
 
   return (
     <div className="absolute inset-0 w-full h-full pointer-events-none z-10 overflow-hidden flex items-center justify-center">
-      {/* ==========================================
-          背景レイヤー（最背面）
-      ========================================== */}
+      {/* 背景レイヤー（省略せず記述） */}
       <div className="absolute inset-0 w-full h-full z-0" aria-hidden="true">
-        {/* Scene 1 背景 */}
         <motion.div
           style={{
             opacity: scene1Opacity,
@@ -136,8 +139,6 @@ export default function MessagePhase({ scrollYProgress }: Props) {
             className="object-cover opacity-30"
           />
         </motion.div>
-
-        {/* Scene 2 背景 */}
         <motion.div
           style={{
             opacity: scene2Opacity,
@@ -155,12 +156,11 @@ export default function MessagePhase({ scrollYProgress }: Props) {
             className="object-contain opacity-30"
           />
         </motion.div>
-
         <div className="absolute inset-0 bg-midblue/60 mix-blend-multiply" />
       </div>
 
       {/* ==========================================
-          左右の無限ループ画像（PC版）
+          PC版: 左側無限ループ (LEFT_IMAGES)
       ========================================== */}
       <motion.div
         style={{
@@ -176,11 +176,11 @@ export default function MessagePhase({ scrollYProgress }: Props) {
           transition={{ duration: 120, ease: "linear", repeat: Infinity }}
           className="w-full flex flex-col gap-6"
         >
-          {LOOPED_IMAGES.map((img, index) => (
+          {LOOPED_LEFT_IMAGES.map((img, index) => (
             <div
               key={`pc-left-${index}`}
               className={cn(
-                "relative w-full rounded-lg overflow-hidden",
+                "relative w-full rounded-md overflow-hidden",
                 img.height,
               )}
             >
@@ -190,12 +190,16 @@ export default function MessagePhase({ scrollYProgress }: Props) {
                 fill
                 sizes="20vw"
                 className="object-cover opacity-70"
+                priority={index < 2} // ★ 先回り提案: 画面内に入る最初の画像を優先ロード
               />
             </div>
           ))}
         </motion.div>
       </motion.div>
 
+      {/* ==========================================
+          PC版: 右側無限ループ (RIGHT_IMAGES)
+      ========================================== */}
       <motion.div
         style={{
           opacity: sideImagesOpacity,
@@ -210,11 +214,11 @@ export default function MessagePhase({ scrollYProgress }: Props) {
           transition={{ duration: 120, ease: "linear", repeat: Infinity }}
           className="w-full flex flex-col gap-6"
         >
-          {LOOPED_IMAGES.map((img, index) => (
+          {LOOPED_RIGHT_IMAGES.map((img, index) => (
             <div
               key={`pc-right-${index}`}
               className={cn(
-                "relative w-full rounded-lg overflow-hidden",
+                "relative w-full rounded-md overflow-hidden",
                 img.height,
               )}
             >
@@ -224,6 +228,7 @@ export default function MessagePhase({ scrollYProgress }: Props) {
                 fill
                 sizes="20vw"
                 className="object-cover opacity-70"
+                priority={index < 2} // ★ 先回り提案
               />
             </div>
           ))}
@@ -231,7 +236,7 @@ export default function MessagePhase({ scrollYProgress }: Props) {
       </motion.div>
 
       {/* ==========================================
-          上下の無限ループ画像（スマホ版）
+          スマホ版: 上部無限ループ (LEFT_IMAGES)
       ========================================== */}
       <motion.div
         style={{
@@ -247,10 +252,10 @@ export default function MessagePhase({ scrollYProgress }: Props) {
           transition={{ duration: 120, ease: "linear", repeat: Infinity }}
           className="h-full flex flex-row gap-4"
         >
-          {LOOPED_IMAGES.map((img, index) => (
+          {LOOPED_LEFT_IMAGES.map((img, index) => (
             <div
               key={`sp-top-${index}`}
-              className="relative h-full w-[60vw] rounded-lg overflow-hidden"
+              className="relative h-full w-[60vw] rounded-md overflow-hidden"
             >
               <Image
                 src={img.src}
@@ -258,12 +263,16 @@ export default function MessagePhase({ scrollYProgress }: Props) {
                 fill
                 sizes="60vw"
                 className="object-cover opacity-70"
+                priority={index < 2} // ★ 先回り提案
               />
             </div>
           ))}
         </motion.div>
       </motion.div>
 
+      {/* ==========================================
+          スマホ版: 下部無限ループ (RIGHT_IMAGES)
+      ========================================== */}
       <motion.div
         style={{
           opacity: sideImagesOpacity,
@@ -278,10 +287,10 @@ export default function MessagePhase({ scrollYProgress }: Props) {
           transition={{ duration: 120, ease: "linear", repeat: Infinity }}
           className="h-full flex flex-row gap-4"
         >
-          {LOOPED_IMAGES.map((img, index) => (
+          {LOOPED_RIGHT_IMAGES.map((img, index) => (
             <div
               key={`sp-bottom-${index}`}
-              className="relative h-full w-[60vw] rounded-lg overflow-hidden"
+              className="relative h-full w-[60vw] rounded-md overflow-hidden"
             >
               <Image
                 src={img.src}
@@ -289,6 +298,7 @@ export default function MessagePhase({ scrollYProgress }: Props) {
                 fill
                 sizes="60vw"
                 className="object-cover opacity-70"
+                priority={index < 2} // ★ 先回り提案
               />
             </div>
           ))}
@@ -296,7 +306,7 @@ export default function MessagePhase({ scrollYProgress }: Props) {
       </motion.div>
 
       {/* ==========================================
-          中央メッセージレイヤー
+          中央メッセージレイヤー（変更なし）
       ========================================== */}
       <div className="relative z-20 w-full max-w-content px-6 md:px-0 text-center flex flex-col items-center justify-center h-full">
         {/* Scene 1 テキスト */}
@@ -324,7 +334,6 @@ export default function MessagePhase({ scrollYProgress }: Props) {
             <br />
             なくなっている
           </motion.h2>
-
           <motion.p
             className="text-left text-base md:text-2xl leading-normal text-white/80 drop-shadow-md max-w-3xl"
             initial={{ opacity: 0, filter: "blur(12px)", y: 20 }}
@@ -333,8 +342,7 @@ export default function MessagePhase({ scrollYProgress }: Props) {
             transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
             style={{ willChange: "opacity, filter, transform" }}
           >
-            活気のあった商店街にはシャッターが下りている。変化は、ある日突然ではなく、
-            気づかないほど静かに進んでいる。
+            活気のあった商店街にはシャッターが下りている。変化は、ある日突然ではなく、気づかないほど静かに進んでいる。
           </motion.p>
         </motion.div>
 
@@ -348,7 +356,7 @@ export default function MessagePhase({ scrollYProgress }: Props) {
           className="absolute inset-0 flex flex-col items-center justify-center w-full h-full"
         >
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
-            {/* 0社 */}
+            {/* 0社, 3社, 10社, 1社, 5社の放射アニメーション（省略せず記述） */}
             <motion.div
               style={{
                 opacity: radialOpacity0,
@@ -363,7 +371,6 @@ export default function MessagePhase({ scrollYProgress }: Props) {
                 <span className="text-4xl md:text-6xl mr-1">0</span>社
               </div>
             </motion.div>
-            {/* 3社 */}
             <motion.div
               style={{
                 opacity: radialOpacity3,
@@ -378,7 +385,6 @@ export default function MessagePhase({ scrollYProgress }: Props) {
                 <span className="text-3xl md:text-7xl mr-1">3</span>社
               </div>
             </motion.div>
-            {/* 10社 */}
             <motion.div
               style={{
                 opacity: radialOpacity10,
@@ -393,7 +399,6 @@ export default function MessagePhase({ scrollYProgress }: Props) {
                 <span className="text-5xl md:text-8xl mr-1">10</span>社
               </div>
             </motion.div>
-            {/* 1社 */}
             <motion.div
               style={{
                 opacity: radialOpacity1,
@@ -408,7 +413,6 @@ export default function MessagePhase({ scrollYProgress }: Props) {
                 <span className="text-3xl md:text-7xl mr-1">1</span>社
               </div>
             </motion.div>
-            {/* 5社 */}
             <motion.div
               style={{
                 opacity: radialOpacity5,
