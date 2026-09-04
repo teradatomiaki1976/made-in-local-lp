@@ -20,6 +20,7 @@ export default function GlobalHeader({
   onPageChange,
 }: GlobalHeaderProps) {
   const isDarkBg = useHeaderStore((state) => state.isDarkBg);
+  const isFooterVisible = useHeaderStore((state) => state.isFooterVisible);
   const [mounted, setMounted] = useState(false);
 
   // 新規追加：FVを通過したかどうかを判定するステート
@@ -129,9 +130,16 @@ export default function GlobalHeader({
       <motion.div
         className="md:hidden fixed bottom-0 left-0 w-full z-50 print:hidden"
         initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 20 }}
-        transition={{ duration: 1.5, ease: "easeOut" }}
-        style={{ pointerEvents: isVisible ? "auto" : "none" }}
+        // isVisible（ページ上部の制御）と isFooterVisible（フッター到達時の制御）を組み合わせる
+        animate={{
+          opacity: isVisible && !isFooterVisible ? 1 : 0,
+          y: isVisible && !isFooterVisible ? 0 : 20,
+        }}
+        // 遷移時間を少し短くし、サッと隠れるようにUXを調整
+        transition={{ duration: 0.3, ease: "easeOut" }}
+        style={{
+          pointerEvents: isVisible && !isFooterVisible ? "auto" : "none",
+        }}
       >
         <a
           href="https://madeinlocal.jp/contact/100selection"

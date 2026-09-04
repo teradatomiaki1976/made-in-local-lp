@@ -1,8 +1,11 @@
 // src/components/layouts/GlobalFooter.tsx
 "use client";
 
+import { useRef, useEffect } from "react";
 import Image from "next/image";
 import { FiChevronRight } from "react-icons/fi";
+import { useInView } from "framer-motion";
+import { useHeaderStore } from "@/store/useHeaderStore";
 
 type GlobalFooterProps = {
   activePage: "omoi" | "shikumi";
@@ -16,6 +19,17 @@ export default function GlobalFooter({
   const currentYear = new Date().getFullYear();
   const isOmoi = activePage === "omoi";
 
+  const footerRef = useRef<HTMLElement>(null);
+  // 少し早めに検知させるため、マージンを上部へ拡張
+  const isInView = useInView(footerRef, { margin: "0px 0px -50px 0px" });
+  const setIsFooterVisible = useHeaderStore(
+    (state) => state.setIsFooterVisible,
+  );
+
+  useEffect(() => {
+    setIsFooterVisible(isInView);
+  }, [isInView, setIsFooterVisible]);
+
   // 左ボタン（ページ遷移）の動的コンテンツ設定
   const switchTarget = isOmoi ? "shikumi" : "omoi";
   const switchLabel = isOmoi
@@ -23,11 +37,9 @@ export default function GlobalFooter({
     : "100選に込めた想いと物語を読む";
   const switchBtnText = isOmoi ? "仕組みから理解する" : "想いから感じる";
 
-  // 色の出し分け: 仕組みへはOlive(オリーブ/ゴールド)系、想いへはMidblue(青)系
   const switchColorClass = isOmoi
     ? "from-[#695F1F] to-[#49410e] hover:from-[#726722] hover:to-[#564d11] border-[#4f460f]/30"
     : "from-[#00529B] to-[#002A5C] hover:from-[#0062B8] hover:to-[#003370] border-[#001D40]/30";
-  // ※右の相談ボタン(濃いネイビー)と同化しないよう、少し明るめのブルーに設定
 
   // スクロール状態の管理
   const scrollToTop = () => {
@@ -35,7 +47,7 @@ export default function GlobalFooter({
   };
 
   return (
-    <footer className="w-full flex flex-col z-50 relative">
+    <footer ref={footerRef} className="w-full flex flex-col z-50 relative">
       {/* --- CTA領域（全ページ共通配置） --- */}
       <div className="relative z-10 w-full bg-creem text-midblue py-16 md:py-24 px-6 shadow-[0_-20px_50px_rgba(0,0,0,0.1)]">
         <div className="max-w-6xl mx-auto flex flex-col md:flex-row mb-6 gap-8 md:gap-16 justify-center items-center">
