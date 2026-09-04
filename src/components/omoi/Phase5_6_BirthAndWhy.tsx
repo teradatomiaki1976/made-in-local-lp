@@ -141,9 +141,9 @@ export default function Phase5_6_BirthAndWhy() {
               それは、名実ともに地域を代表するような企業でなくても良い。
               <br className="hidden md:block" />
               大事なのは、自分たちの可能性を信じる想いがあるかだ。
-              <br className="hidden md:block" />
+              <br />
               一人から数百人の従業員を抱える企業になるという意志。数百年先も紡いでいこうという意志。
-              <br className="hidden md:block" />
+              <br />
               自社技術が世界の舞台で輝けるという自信。過去なんてどうでもいい。未来に向けてどれだけ努力できるか。
               <br className="hidden md:block" />
               努力する意思があるか。 それが、地域企業の新しいシンボルになる。

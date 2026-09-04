@@ -113,8 +113,8 @@ export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
     scrollYProgress,
     [0.1, 0.4, 0.8],
     isMobile
-      ? [0.9, 5, 12] // 【スマホ用】
-      : [0.6, 10, 18], // 【PC用】
+      ? [0.9, 5, 12] // スマホ用
+      : [0.6, 10, 18], // PC用
   );
   const svgScale = useSpring(rawSvgScale, { stiffness: 100, damping: 30 });
 
