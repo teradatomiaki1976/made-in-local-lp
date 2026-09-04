@@ -41,18 +41,17 @@ function Phase9Content() {
     offset: ["start start", "end end"],
   });
 
+  // --- 背景アニメーション ---
   const clipX = useTransform(
     scrollYProgress,
     [0, 0.1, 0.3, 0.5, 1],
     isMobile ? [50, 10, 10, 0, 0] : [50, 25, 25, 0, 0],
   );
-
   const clipY = useTransform(
     scrollYProgress,
     [0, 0.1, 0.3, 0.5, 1],
     isMobile ? [50, 25, 25, 0, 0] : [50, 30, 30, 0, 0],
   );
-
   const clipPath = useMotionTemplate`inset(${clipY}vh ${clipX}vw)`;
 
   const imgScale = useTransform(
@@ -73,86 +72,57 @@ function Phase9Content() {
   );
   const img3Opacity = useTransform(scrollYProgress, [0.25, 0.3, 1], [0, 1, 1]);
 
-  // 文字出現に合わせて、暗転とブラーのタイミングを前倒し
+  // 0.3で画像が定着した後、0.45まで「間」を持たせてから暗転・ブラーを開始
   const imgBlur = useTransform(
     scrollYProgress,
-    [0.35, 0.45, 1],
+    [0.45, 0.55, 1],
     ["blur(0px)", "blur(12px)", "blur(12px)"],
   );
-
   const overlayOpacity = useTransform(
     scrollYProgress,
-    [0.35, 0.45, 0.55, 1],
+    [0.45, 0.55, 0.65, 1],
     [0, 0.6, 0.85, 0.85],
   );
 
-  // H2とP要素を包む「全体コンテナ」のアニメーション
-  // const containerY = useTransform(
-  //   scrollYProgress,
-  //   [0.35, 0.45, 0.5, 0.6, 0.95, 1],
-  //   isMobile
-  //     ? ["35vh", "35vh", "15vh", "15vh", "-70vh", "-70vh"] // SP
-  //     : ["35vh", "35vh", "12vh", "12vh", "-60vh", "-60vh"], // PC
-  // );
+  // --- 1. エンドロール（タイトル＋長文）のアニメーション ---
+  const titleScale = useTransform(scrollYProgress, [0.45, 0.55], [1.3, 1]);
 
-  // 1. 要素自身の高さに対する移動量（0%から-100%へ）
-  const yPercent = useTransform(
+  const textY = useTransform(
     scrollYProgress,
-    [0.35, 0.45, 0.5, 0.6, 0.95, 1],
-    [0, 0, 0, 0, -100, -100],
+    [0.45, 0.6, 0.75, 0.85],
+    isMobile
+      ? ["15vh", "0vh", "-60vh", "-100vh"]
+      : ["20vh", "0vh", "-50vh", "-80vh"],
   );
-
-  // 2. 画面高さに対する移動量（数値のみ抽出して計算）
-  // PC: 35 -> 12 -> 80
-  const yVhPc = useTransform(
+  // 文字の出現も0.45から開始
+  const textOpacity = useTransform(
     scrollYProgress,
-    [0.35, 0.45, 0.5, 0.6, 0.95, 1],
-    [35, 35, 12, 12, 80, 80],
-  );
-  // SP: 35 -> 15 -> 75
-  const yVhSp = useTransform(
-    scrollYProgress,
-    [0.35, 0.45, 0.5, 0.6, 0.95, 1],
-    [35, 35, 15, 15, 75, 75],
+    [0.45, 0.55, 0.75, 0.85],
+    [0, 1, 1, 0],
   );
 
-  // 3. 環境に応じて使用するMotionValueを切り替え
-  const currentYVh = isMobile ? yVhSp : yVhPc;
-
-  // 4. useMotionTemplateで滑らかに変化するcalc文字列を毎フレーム生成
-  const containerY = useMotionTemplate`calc(${yPercent}% + ${currentYVh}dvh)`;
-
-  // 各要素のOpacityのみを個別に制御
-  const titleOpacity = useTransform(
+  // --- 2. 発起人＋CTA ---
+  const ctaY = useTransform(
     scrollYProgress,
-    [0.35, 0.45, 1],
-    [0, 1, 1],
+    [0.85, 0.95, 1],
+    ["10vh", "0vh", "0vh"],
   );
-  const titleScale = useTransform(
-    scrollYProgress,
-    [0.35, 0.45, 1],
-    [1.3, 1, 1],
-  );
-  const profileOpacity = useTransform(
-    scrollYProgress,
-    [0.5, 0.55, 1],
-    [0, 1, 1],
-  );
+  const ctaOpacity = useTransform(scrollYProgress, [0.85, 0.95, 1], [0, 1, 1]);
 
   return (
     <section className="relative w-full bg-yellow">
       <div ref={containerRef} className="relative h-[700vh]">
         <div className="sticky top-0 left-0 w-full h-svh overflow-hidden">
-          {/* ----- 背景・ブラー・オーバーレイ ----- */}
+          {/* ----- 背景・ブラー・オーバーレイ (z-0) ----- */}
           <motion.div
             style={{ clipPath, willChange: "clip-path" }}
-            className="absolute inset-0 w-full h-full flex items-center justify-center bg-black"
+            className="absolute inset-0 w-full h-full flex items-center justify-center bg-black z-0"
           >
             <motion.div
               style={{
                 scale: imgScale,
                 filter: imgBlur,
-                willChange: "transform, filter",
+                willChange: "transform", // 負荷軽減のため filter を除外
               }}
               className="relative w-full h-full"
             >
@@ -181,22 +151,16 @@ function Phase9Content() {
             />
           </motion.div>
 
-          {/* ----- コンテンツレイヤー ----- */}
-          {/* justify-center ではなくトップ起点のコンテナを用意 */}
-          <div className="absolute inset-0 w-full pointer-events-none overflow-hidden">
-            {/* このラッパーごと上下に動かす */}
+          {/* ----- コンテンツレイヤー (z-10) ----- */}
+          <div className="absolute inset-0 w-full h-full flex items-center justify-center pointer-events-none z-10 px-8 md:px-12">
+            {/* 1. タイトル＆エンドロール（上に流れて消える） */}
             <motion.div
-              style={{ y: containerY, willChange: "transform" }}
-              className="w-full max-w-4xl mx-auto px-8 md:px-12 flex flex-col items-start"
+              style={{ y: textY, opacity: textOpacity }}
+              className="absolute w-full max-w-4xl mx-auto flex flex-col items-start"
             >
-              {/* メインタイトル (h2) */}
               <motion.div
-                style={{
-                  opacity: titleOpacity,
-                  scale: titleScale,
-                  transformOrigin: "left center",
-                }}
-                className="w-full"
+                style={{ scale: titleScale, transformOrigin: "left center" }}
+                className="w-full mb-8 md:mb-16"
               >
                 <h2 className="text-yellow font-bold leading-tight drop-shadow-2xl text-5xl md:text-8xl lg:text-[8rem] whitespace-nowrap">
                   本気で日本を
@@ -205,12 +169,8 @@ function Phase9Content() {
                 </h2>
               </motion.div>
 
-              {/* エンドロールテキスト (p要素群) */}
-              <motion.div
-                style={{ opacity: profileOpacity }}
-                className="w-full text-white pointer-events-auto max-w-3xl mt-4 md:mt-20 flex flex-col"
-              >
-                <p className="text-base md:text-xl tracking-wide mb-8 md:mb-12 leading-relaxed md:leading-loose">
+              <div className="w-full text-white max-w-3xl flex flex-col">
+                <p className="text-base md:text-xl tracking-wide leading-relaxed md:leading-loose">
                   地方には、まだ世の中に知られていない「誇るべき企業」が数多くあります。
                   <br />
                   <br />
@@ -231,30 +191,36 @@ function Phase9Content() {
                   <br />
                   その想いから、「地域を代表する企業100選」を立ち上げました。
                 </p>
+              </div>
+            </motion.div>
 
-                <div className="mb-6 md:mb-12">
-                  <p className="text-sm md:text-base tracking-widest mb-0 md:mb-2 text-yellow">
-                    地域を代表する企業100選
-                  </p>
-                  <p className="text-base md:text-2xl font-bold">
-                    発起人
-                    <span className="text-3xl md:text-5xl ml-4 inline-block">
-                      石井智大
-                    </span>
-                  </p>
-                </div>
+            {/* 2. 発起人＋CTA（最後に現れて留まる） */}
+            <motion.div
+              style={{ y: ctaY, opacity: ctaOpacity }}
+              className="absolute w-full max-w-3xl mx-auto flex flex-col pointer-events-auto"
+            >
+              <div className="mb-6 md:mb-12">
+                <p className="text-sm md:text-base tracking-widest mb-0 md:mb-2 text-yellow">
+                  地域を代表する企業100選
+                </p>
+                <p className="text-base md:text-2xl font-bold text-white">
+                  発起人
+                  <span className="text-3xl md:text-5xl ml-4 inline-block">
+                    石井智大
+                  </span>
+                </p>
+              </div>
 
-                <div className="bg-white/5 p-3 md:p-8 rounded-lg md:rounded-xl backdrop-blur-md border border-white/10 shadow-2xl">
-                  <p className="text-sm md:text-lg leading-normal">
-                    あなたの会社が、地域のために大切にしてきたこと。
-                    <br className="hidden md:block" />
-                    事業に込めてきた想い。これから実現したい未来。
-                    <span className="text-xl md:text-3xl font-bold block mt-2 md:mt-6 text-yellow leading-tight">
-                      あなたの会社の想いを、私達に聞かせてください。
-                    </span>
-                  </p>
-                </div>
-              </motion.div>
+              <div className="bg-white/5 p-6 md:p-10 rounded-lg md:rounded-xl backdrop-blur-md border border-white/10 shadow-2xl">
+                <p className="text-sm md:text-lg leading-normal text-white">
+                  あなたの会社が、地域のために大切にしてきたこと。
+                  <br className="hidden md:block" />
+                  事業に込めてきた想い。これから実現したい未来。
+                  <span className="text-xl md:text-3xl font-bold block mt-4 md:mt-6 text-yellow leading-tight">
+                    あなたの会社の想いを、私達に聞かせてください。
+                  </span>
+                </p>
+              </div>
             </motion.div>
           </div>
         </div>
