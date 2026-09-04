@@ -86,15 +86,13 @@ function Phase9Content() {
     [0, 0.6, 0.85, 0.85],
   );
 
-  // H2とP要素を包む「全体コンテナ」のアニメーション（絶対被らない構造）
+  // H2とP要素を包む「全体コンテナ」のアニメーション
   const containerY = useTransform(
     scrollYProgress,
     [0.35, 0.45, 0.5, 0.6, 0.95, 1],
-    // 0.35~0.45: H2出現時、H2が画面中央に見えるよう全体を下げる
-    // 0.45~0.50: コンテナ全体を上部へスッと移動させて待機
-    // 0.50~0.60: P要素がフェードインするのを待つ
-    // 0.60~0.95: 全体を上へスクロール (最後のテキストが見える位置まで大きく移動)
-    ["35vh", "35vh", "10vh", "10vh", "-55vh", "-55vh"],
+    isMobile
+      ? ["35vh", "35vh", "15vh", "15vh", "-70vh", "-70vh"] // SP
+      : ["35vh", "35vh", "12vh", "12vh", "-55vh", "-55vh"], // PC
   );
 
   // 各要素のOpacityのみを個別に制御
@@ -185,7 +183,7 @@ function Phase9Content() {
                 style={{ opacity: profileOpacity }}
                 className="w-full text-white pointer-events-auto max-w-3xl mt-4 md:mt-20 flex flex-col"
               >
-                <p className="text-base md:text-lg tracking-wide mb-8 md:mb-12 leading-relaxed md:leading-loose">
+                <p className="text-base md:text-xl tracking-wide mb-8 md:mb-12 leading-relaxed md:leading-loose">
                   地方には、まだ世の中に知られていない「誇るべき企業」が数多くあります。
                   <br />
                   <br />

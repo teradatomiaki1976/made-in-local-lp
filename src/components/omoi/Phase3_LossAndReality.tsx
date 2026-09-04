@@ -34,7 +34,7 @@ export default function Phase3_LossAndReality({ scrollYProgress }: Props) {
   // 後半：人知れず消えていく企業 フェーズの制御
   const textOpacity = useTransform(
     scrollYProgress,
-    [0.3, 0.35, 0.55, 0.6],
+    [0.2, 0.25, 0.75, 0.8],
     [0, 1, 1, 0],
   );
   const textY = useTransform(scrollYProgress, [0.3, 0.35], [30, 0]);
@@ -89,14 +89,26 @@ export default function Phase3_LossAndReality({ scrollYProgress }: Props) {
         style={{ opacity: textOpacity, y: textY, filter: textBlur }}
         className="absolute w-full max-w-4xl px-6 flex flex-col items-center justify-between gap-6 md:gap-12"
       >
-        <h2 className="text-4xl md:text-6xl font-serif font-bold leading-tight flex-1 text-center">
+        <h2 className="text-4xl md:text-6xl font-bold leading-tight flex-1 text-center">
           人知れず
           <br className="block md:hidden" />
           消えていく企業
         </h2>
-        <div className="flex-1 flex flex-col gap-6 text-base md:text-2xl leading-relaxed ">
+        <div className="flex-1 flex flex-col gap-6 text-left md:text-center text-base md:text-2xl leading-relaxed ">
           <p>
-            素晴らしい会社なのに、知られていない。必要とされている会社なのに、未来へ残れない。人手不足や後継者不足によって、地域を支えてきた企業が、人知れず姿を消していく。そのたびに、雇用が失われる。技術が途絶える。地域の魅力が、またひとつ消えていく。
+            素晴らしい会社なのに、知られていない。
+            <br />
+            必要とされている会社なのに、未来へ残れない。
+            <br />
+            <br />
+            人手不足や後継者不足によって、地域を支えてきた企業が
+            <br className="hidden md:block" />
+            人知れず姿を消していく。
+            <br />
+            <br />
+            そのたびに、雇用が失われる。技術が途絶える。
+            <br className="hidden md:block" />
+            地域の魅力が、またひとつ消えていく。
           </p>
         </div>
       </motion.div>

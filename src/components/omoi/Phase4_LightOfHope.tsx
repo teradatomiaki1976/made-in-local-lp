@@ -54,13 +54,19 @@ export default function Phase4_LightOfHope({ scrollYProgress }: Props) {
         style={{ opacity: textOpacity, y: textY }}
         className="relative z-30 w-full px-6 flex flex-col items-center justify-between gap-6 md:gap-12 text-white"
       >
-        <h2 className="md:text-center text-3xl md:text-6xl font-serif font-bold leading-tight flex-1 drop-shadow-lg">
-          日本の宝である、地域の企業に
-          <br className="hidden md:block" />
-          光をあてないといけない
+        <h2 className="text-center text-3xl md:text-6xl font-serif font-bold leading-tight flex-1 drop-shadow-lg">
+          日本の宝である
+          <br />
+          地域の企業に光を
+          <br />
+          あてないといけない
         </h2>
-        <div className="flex-1 flex max-w-4xl flex-col gap-6 text-base md:text-2xl leading-relaxed drop-shadow-md">
-          <p>地域の企業が元気になれば、必ず世界と戦える日本が戻ってくる。</p>
+        <div className="flex-1 flex max-w-4xl flex-col gap-6 text-center text-base md:text-2xl leading-relaxed drop-shadow-md">
+          <p>
+            地域の企業が元気になれば
+            <br />
+            必ず世界と戦える日本が戻ってくる。
+          </p>
         </div>
       </motion.div>
     </div>
