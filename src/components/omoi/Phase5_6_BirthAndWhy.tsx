@@ -85,17 +85,19 @@ export default function Phase5_6_BirthAndWhy() {
           <img
             src="/images/logo/emblem_dark.svg"
             alt="地域を代表する企業100選"
-            className="w-50 md:w-90 drop-shadow-2xl max-md:mb-2 md:mr-16"
+            className="w-36 md:w-80 drop-shadow-2xl max-md:mb-2 md:mr-16"
           />
           <div className="max-w-3xl flex flex-col items-center md:items-start max-md:border-t md:border-l border-midblue/30  max-md:pt-8 md:pl-16 md:py-8">
-            <h2 className="text-center md:text-left text-3xl md:text-5xl font-bold text-olive mb-6">
-              <span className="text-midblue block text-lg md:text-2xl mb-2">
+            <h2 className="text-center md:text-left text-4xl md:text-5xl font-bold text-olive mb-6">
+              <span className="text-midblue block text-xl md:text-3xl mb-2">
                 そこで、
               </span>
               地域を代表する
               <br className="block md:hidden" />
               企業100選
-              <span className="text-midblue block mt-2">を創設した</span>
+              <span className="text-midblue block mt-2 text-xl md:text-3xl">
+                を創設した。
+              </span>
             </h2>
             <p className="text-base md:text-xl font-bold leading-relaxed text-midblue/80">
               100社上限だからこそ埋もれない新しい地域の旗印になる。
@@ -106,7 +108,7 @@ export default function Phase5_6_BirthAndWhy() {
         </motion.div>
 
         {/* Phase6コンテンツ */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center gap-8 px-6 text-midblue z-20 pointer-events-none">
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-10 px-6 text-midblue z-20 pointer-events-none">
           {/* h2: 先に出現 */}
           <motion.h2
             style={{
@@ -114,10 +116,13 @@ export default function Phase5_6_BirthAndWhy() {
               y: h2Y,
               willChange: "transform, opacity",
             }}
-            className="text-3xl md:text-5xl font-bold tracking-normal text-left md:text-center leading-normal"
+            className="text-2xl md:text-5xl font-bold tracking-normal text-center leading-tight"
           >
-            埋もれないために、100社だけ。
-            <br className="hidden md:block" />
+            <span className="text-3xl md:text-6xl block leading-tight mb-4">
+              埋もれないために、
+              <br />
+              100社だけ。
+            </span>
             100社だから一社一社が新しい
             <br className="hidden md:block" />
             「地域の顔」になれる。
@@ -130,7 +135,7 @@ export default function Phase5_6_BirthAndWhy() {
               y: pY,
               willChange: "transform, opacity",
             }}
-            className="text-sm md:text-lg font-bold leading-loose opacity-90 text-left md:text-center"
+            className="text-base md:text-lg font-bold leading-loose text-left md:text-center"
           >
             <p>
               それは、名実ともに地域を代表するような企業でなくても良い。

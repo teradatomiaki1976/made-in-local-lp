@@ -13,7 +13,7 @@ export default function TeaserPhase() {
           <h2 className="text-base md:text-xl font-bold tracking-widest text-gray-500 uppercase">
             Coming Soon
           </h2>
-          <h1 className="text-2xl md:text-4xl font-bold leading-tight">
+          <h1 className="text-xl md:text-4xl font-bold leading-normal">
             只今、詳細な審査基準や事例を
             <br className="hidden md:block" />
             まとめたページを準備中です。

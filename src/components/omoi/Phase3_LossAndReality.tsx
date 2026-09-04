@@ -89,12 +89,12 @@ export default function Phase3_LossAndReality({ scrollYProgress }: Props) {
         style={{ opacity: textOpacity, y: textY, filter: textBlur }}
         className="absolute w-full max-w-4xl px-6 flex flex-col items-center justify-between gap-6 md:gap-12"
       >
-        <h2 className="text-3xl md:text-6xl font-serif font-bold leading-tight flex-1 text-center">
+        <h2 className="text-4xl md:text-6xl font-serif font-bold leading-tight flex-1 text-center">
           人知れず
           <br className="block md:hidden" />
           消えていく企業
         </h2>
-        <div className="flex-1 flex flex-col gap-6 text-base md:text-2xl leading-relaxed opacity-90">
+        <div className="flex-1 flex flex-col gap-6 text-base md:text-2xl leading-relaxed ">
           <p>
             素晴らしい会社なのに、知られていない。必要とされている会社なのに、未来へ残れない。人手不足や後継者不足によって、地域を支えてきた企業が、人知れず姿を消していく。そのたびに、雇用が失われる。技術が途絶える。地域の魅力が、またひとつ消えていく。
           </p>

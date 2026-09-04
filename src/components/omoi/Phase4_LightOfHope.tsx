@@ -59,7 +59,7 @@ export default function Phase4_LightOfHope({ scrollYProgress }: Props) {
           <br className="hidden md:block" />
           光をあてないといけない
         </h2>
-        <div className="flex-1 flex max-w-4xl flex-col gap-6 text-base md:text-2xl leading-relaxed opacity-90 drop-shadow-md">
+        <div className="flex-1 flex max-w-4xl flex-col gap-6 text-base md:text-2xl leading-relaxed drop-shadow-md">
           <p>地域の企業が元気になれば、必ず世界と戦える日本が戻ってくる。</p>
         </div>
       </motion.div>

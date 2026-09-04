@@ -38,13 +38,15 @@ export default function GlobalFooter({
     <footer className="w-full flex flex-col z-50 relative">
       {/* --- CTA領域（全ページ共通配置） --- */}
       <div className="relative z-10 w-full bg-creem text-midblue py-16 md:py-24 px-6 shadow-[0_-20px_50px_rgba(0,0,0,0.1)]">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-8 md:gap-16 justify-center items-center">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row mb-6 md:mb-0 gap-8 md:gap-16 justify-center items-center">
           {/* 左：ページ遷移ボタン（動的） */}
           <div className="flex-1 w-full text-center flex flex-col items-center border-b md:border-b-0 md:border-r border-midblue/20 pb-8 md:pb-0 md:pr-16">
-            <p className="font-bold mb-6 font-sans text-lg">{switchLabel}</p>
+            <p className="font-bold mb-3 md:mb-6 font-sans text-base md:text-lg">
+              {switchLabel}
+            </p>
             <button
               onClick={() => onPageChange(switchTarget)}
-              className={`w-full max-w-sm bg-linear-to-b font-sans text-white py-8 rounded-lg font-bold text-xl shadow-[0_4px_12px_rgba(0,42,92,0.4)] hover:shadow-[0_6px_16px_rgba(0,42,92,0.5)] border transition-all duration-300 cursor-pointer group relative overflow-hidden flex items-center justify-center gap-2 ${switchColorClass}`}
+              className={`w-full max-w-sm bg-linear-to-b font-sans text-white py-6 md:py-8 rounded-lg font-bold text-xl shadow-[0_4px_12px_rgba(0,42,92,0.4)] hover:shadow-[0_6px_16px_rgba(0,42,92,0.5)] border transition-all duration-300 cursor-pointer group relative overflow-hidden flex items-center justify-center gap-2 ${switchColorClass}`}
               style={{
                 paddingBottom: "calc(env(safe-area-inset-bottom) + 32px)",
               }}
@@ -60,12 +62,12 @@ export default function GlobalFooter({
 
           {/* 右：CVボタン（固定） */}
           <div className="flex-1 w-full text-center flex flex-col items-center">
-            <p className="font-bold mb-6 font-sans text-lg">
-              エントリーのご相談・面談予約はこちら
+            <p className="font-bold mb-3 md:mb-6 font-sans text-base md:text-lg">
+              エントリーご相談・面談予約はこちら
             </p>
             <a
               href="https://madeinlocal.jp/contact/100selection"
-              className="w-full max-w-sm bg-linear-to-b from-[#007a8c] to-[#00535f] font-sans text-white py-8 rounded-lg font-bold text-xl shadow-[0_4px_12px_rgba(0,42,92,0.4)] hover:from-[#008396] hover:to-[#005b68] hover:shadow-[0_6px_16px_rgba(0,42,92,0.5)] border border-[#00454f]/30 transition-all duration-300 cursor-pointer group relative overflow-hidden flex items-center justify-center gap-2"
+              className="w-full max-w-sm bg-linear-to-b from-[#007a8c] to-[#00535f] font-sans text-white py-6 md:py-8 rounded-lg font-bold text-xl shadow-[0_4px_12px_rgba(0,42,92,0.4)] hover:from-[#008396] hover:to-[#005b68] hover:shadow-[0_6px_16px_rgba(0,42,92,0.5)] border border-[#00454f]/30 transition-all duration-300 cursor-pointer group relative overflow-hidden flex items-center justify-center gap-2"
               style={{
                 paddingBottom: "calc(env(safe-area-inset-bottom) + 32px)",
               }}
@@ -82,15 +84,15 @@ export default function GlobalFooter({
       </div>
 
       {/* --- フッター領域 --- */}
-      <div className="w-full bg-midblue py-16 md:py-24 flex flex-col items-center justify-center relative">
+      <div className="w-full bg-midblue py-8 md:py-20 flex flex-col items-center justify-center relative">
         <button
           onClick={scrollToTop}
           // z-20を追加して直前のCTA領域（z-10）より前面に表示させる
           className="absolute right-4 md:right-12 top-2 -translate-y-[calc(100%+16px)] z-20 flex flex-col items-center justify-center group cursor-pointer"
           aria-label="ページトップへ戻る"
         >
-          <div className="w-0 h-0 border-l-[18px] border-l-transparent border-r-[18px] border-r-transparent border-b-[22px] border-b-midblue transition-transform duration-300 group-hover:-translate-y-1"></div>
-          <span className="text-midblue font-bold text-base mt-1 font-sans tracking-widest">
+          <div className="w-0 h-0 border-l-18 border-l-transparent border-r-18 border-r-transparent border-b-22 border-b-midblue transition-transform duration-300 group-hover:-translate-y-1"></div>
+          <span className="text-midblue font-bold text-sm md:text-base mt-1 font-sans tracking-widest">
             PAGE TOP
           </span>
         </button>

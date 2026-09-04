@@ -100,7 +100,7 @@ export default function PrefectureHighlightPhase({ scrollYProgress }: Props) {
         <h2 className="text-3xl md:text-6xl font-bold text-white tracking-widest drop-shadow-lg">
           都道府県別企業数
         </h2>
-        <p className="text-center mt-8 text-white font-sans tracking-wider">
+        <p className="text-center mt-4 md:mt-8 text-white font-sans tracking-wider">
           【2026年7月現在】
         </p>
       </motion.div>

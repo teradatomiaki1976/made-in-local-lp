@@ -57,32 +57,32 @@ export default function Phase7_NewStandard() {
   const op0 = useTransform(
     scrollYProgress,
     [0.4, 0.5, 0.8, 1],
-    [0, 0.14, 0.06, 0.03],
+    [0, 0.14, 0.06, 0.06],
   );
   const op1 = useTransform(
     scrollYProgress,
     [0.4, 0.5, 0.8, 1],
-    [0, 0.14, 0.06, 0.03],
+    [0, 0.14, 0.06, 0.06],
   );
   const op2 = useTransform(
     scrollYProgress,
     [0.4, 0.5, 0.8, 1],
-    [0, 0.14, 0.06, 0.03],
+    [0, 0.14, 0.06, 0.06],
   );
   const op3 = useTransform(
     scrollYProgress,
     [0.4, 0.5, 0.8, 1],
-    [0, 0.14, 0.06, 0.03],
+    [0, 0.14, 0.06, 0.06],
   );
   const op4 = useTransform(
     scrollYProgress,
     [0.4, 0.5, 0.8, 1],
-    [0, 0.14, 0.06, 0.03],
+    [0, 0.14, 0.06, 0.06],
   );
   const op5 = useTransform(
     scrollYProgress,
     [0.4, 0.5, 0.8, 1],
-    [0, 0.14, 0.06, 0.04],
+    [0, 0.14, 0.06, 0.06],
   );
 
   // 配列にまとめる
@@ -126,7 +126,7 @@ export default function Phase7_NewStandard() {
           {/* 前半（暗い背景）用コンテンツ */}
           <motion.div
             style={{ opacity: darkPhaseOpacity }}
-            className="absolute inset-0 flex flex-col items-center justify-center gap-6"
+            className="absolute inset-0 flex flex-col items-center justify-center gap-4"
           >
             <div className="w-40 md:w-56">
               <img
@@ -138,7 +138,7 @@ export default function Phase7_NewStandard() {
             <h2 className="text-3xl md:text-7xl font-serif font-bold text-white tracking-widest text-shadow-lg text-shadow-midblue">
               「地域の新しい旗印」
             </h2>
-            <p className="text-xl md:text-3xl leading-normal tracking-widest text-white text-center text-shadow-md text-shadow-midblue">
+            <p className="text-lg md:text-3xl leading-normal tracking-wide text-white text-center text-shadow-md text-shadow-midblue">
               埋もれないために、100社だけ。
             </p>
           </motion.div>
@@ -146,7 +146,7 @@ export default function Phase7_NewStandard() {
           {/* 後半（明るい背景）用コンテンツ */}
           <motion.div
             style={{ opacity: lightPhaseOpacity }}
-            className="absolute inset-0 flex flex-col items-center justify-center gap-6"
+            className="absolute inset-0 flex flex-col items-center justify-center gap-4"
           >
             <div className="w-40 md:w-56">
               <img
@@ -158,7 +158,7 @@ export default function Phase7_NewStandard() {
             <h2 className="text-3xl md:text-7xl font-serif font-bold tracking-widest text-midblue text-shadow-lg text-shadow-white">
               「未来の旗印」
             </h2>
-            <p className="text-xl md:text-3xl font-bold leading-normal tracking-widest text-midble text-center text-shadow-md text-shadow-white">
+            <p className="text-lg md:text-3xl font-bold leading-normal tracking-wide text-midblue text-center text-shadow-md text-shadow-white">
               100社だから、1社1社が
               <br />
               新しい「地域の顔」になれる。

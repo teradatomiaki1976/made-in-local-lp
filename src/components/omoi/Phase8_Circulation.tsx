@@ -84,12 +84,12 @@ export default function Phase8_Circulation() {
       {/* 画面に固定（sticky）されるコンテナ */}
       <div className="sticky top-0 left-0 w-full h-svh flex flex-col overflow-hidden">
         {/* --- 上部：テキストエリア (高さ約40%) --- */}
-        <div className="relative w-full flex-[0.35] flex items-end justify-center bg-creem pb-12 px-6 z-20">
+        <div className="relative w-full flex-[0.4] flex items-end justify-center bg-creem pb-6 md:pb-12 px-6 z-20">
           <motion.div
             style={{ opacity: text1Opacity, y: text1Y }}
             className="absolute text-center w-full"
           >
-            <h2 className="font-serif text-3xl md:text-4xl lg:text-6xl font-bold tracking-normal text-midblue leading-relaxed">
+            <h2 className="mb-12 text-3xl md:text-4xl lg:text-6xl font-bold tracking-normal text-midblue leading-relaxed">
               一社の光が、
               <br className="block md:hidden" />
               地域を照らす。
@@ -100,7 +100,7 @@ export default function Phase8_Circulation() {
             style={{ opacity: text2Opacity, y: text2Y }}
             className="absolute text-center w-full"
           >
-            <h2 className="font-serif text-3xl md:text-4xl lg:text-6xl font-bold tracking-normal text-midblue leading-relaxed">
+            <h2 className="mb-12 text-3xl md:text-4xl lg:text-6xl font-bold tracking-normal text-midblue leading-relaxed">
               地域の光が、
               <br className="block md:hidden" />
               日本を照らす。
@@ -111,7 +111,7 @@ export default function Phase8_Circulation() {
             style={{ opacity: text3Opacity, y: text3Y }}
             className="absolute text-center w-full"
           >
-            <h2 className="font-serif text-2xl md:text-4xl lg:text-5xl font-bold tracking-normal text-midblue leading-normal">
+            <h2 className="mb-12 text-2xl md:text-4xl lg:text-5xl font-bold tracking-normal text-midblue leading-normal">
               一社一社の力は微力でも、
               <br />
               私たち全員で立ち向かえば
@@ -124,22 +124,24 @@ export default function Phase8_Circulation() {
             style={{ opacity: text4Opacity, y: text4Y }}
             className="absolute text-center w-full"
           >
-            <h2 className="font-serif text-xl md:text-3xl lg:text-6xl font-bold tracking-normal text-midblue leading-tight">
-              <span className="block text-base md:text-xl lg:text-2xl mb-4 text-midblue">
+            <h2 className="flex flex-col gap-4 md:gap-6 text-4xl md:text-6xl font-bold tracking-normal text-midblue leading-tight">
+              <span className="block text-base md:text-3xl leading-normal text-midblue">
                 私たちが次世代に紡いでいく日本は
-                <br className="block md:hidden" />
+                <br />
                 衰退していく日本ではなく
               </span>
               <span className="text-olive block md:inline">
-                「地域から輝く世界に誇れる日本」
+                地域から輝く
+                <br className="block md:hidden" />
+                世界に誇れる日本
               </span>
-              である
+              <span className="text-base md:text-5xl">である。</span>
             </h2>
           </motion.div>
         </div>
 
         {/* --- 下部：画像エリア (高さ約60%) --- */}
-        <div className="relative w-full flex-[0.65] bg-midblue overflow-hidden z-10">
+        <div className="relative w-full flex-[0.6] bg-midblue overflow-hidden z-10">
           {/* 画像1 (ベース) */}
           <div className="absolute inset-0 w-full h-full">
             <Image

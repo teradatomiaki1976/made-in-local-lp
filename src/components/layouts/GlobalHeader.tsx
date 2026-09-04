@@ -52,7 +52,7 @@ export default function GlobalHeader({
     <>
       <motion.header
         className={cn(
-          "fixed top-0 left-0 w-full z-50 flex items-center justify-between px-4 md:px-8 py-3 md:py-4 backdrop-blur-md transition-colors duration-300 print:hidden",
+          "fixed top-0 left-0 w-full z-100 flex items-center justify-between px-4 md:px-8 py-3 md:py-4 backdrop-blur-md transition-colors duration-300 print:hidden",
           mounted && isDarkBg ? "bg-transparent" : "bg-creem/10",
         )}
         initial={{ opacity: 0, y: -20 }}
@@ -65,7 +65,7 @@ export default function GlobalHeader({
           className={cn(
             "relative flex items-center justify-center rounded-lg overflow-hidden transition-all duration-300 ease-out",
             isPastFV
-              ? "h-10 md:h-14 w-[120px] md:w-[220px] bg-white backdrop-blur-md border border-white/40 shadow-[0_4px_12px_rgba(0,0,0,0.05)] px-3 py-1"
+              ? "h-12 md:h-14 w-[160px] md:w-[220px] bg-white backdrop-blur-md border border-white/40 shadow-[0_4px_12px_rgba(0,0,0,0.05)] px-2 py-1"
               : "h-14 md:h-20 w-[180px] md:w-[300px] bg-transparent border-transparent shadow-none px-0 py-0",
           )}
           style={{ transformOrigin: "top left" }}

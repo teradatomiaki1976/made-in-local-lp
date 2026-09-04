@@ -320,7 +320,7 @@ export default function MessagePhase({ scrollYProgress }: Props) {
           className="absolute flex flex-col items-center px-6 gap-8 md:gap-16 w-full pointer-events-none"
         >
           <motion.h2
-            className="text-3xl md:text-7xl font-bold leading-tight text-white drop-shadow-xl"
+            className="text-4xl md:text-7xl font-bold leading-tight text-white drop-shadow-xl"
             initial={{ opacity: 0, filter: "blur(12px)", y: 20 }}
             whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
             viewport={{ once: true, margin: "-20%" }}
@@ -335,14 +335,16 @@ export default function MessagePhase({ scrollYProgress }: Props) {
             なくなっている
           </motion.h2>
           <motion.p
-            className="text-left text-base md:text-2xl leading-normal text-white/80 drop-shadow-md max-w-3xl"
+            className="text-left md:text-center text-base md:text-2xl leading-normal text-white drop-shadow-md max-w-3xl"
             initial={{ opacity: 0, filter: "blur(12px)", y: 20 }}
             whileInView={{ opacity: 1, filter: "blur(0px)", y: 0 }}
             viewport={{ once: true, margin: "-20%" }}
             transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
             style={{ willChange: "opacity, filter, transform" }}
           >
-            活気のあった商店街にはシャッターが下りている。変化は、ある日突然ではなく、気づかないほど静かに進んでいる。
+            活気のあった商店街にはシャッターが下りている。
+            <br />
+            変化は、ある日突然ではなく、気づかないほど静かに進んでいる。
           </motion.p>
         </motion.div>
 
@@ -429,9 +431,11 @@ export default function MessagePhase({ scrollYProgress }: Props) {
             </motion.div>
           </div>
 
-          <div className="relative z-10 flex flex-col gap-10 w-full items-center">
+          <div className="relative z-10 flex flex-col gap-4 w-full items-center">
             <p className="text-xl md:text-3xl text-white opacity-90 drop-shadow-md">
-              あなたは、自分の地域の企業を
+              あなたは、
+              <br className="block md:hidden" />
+              自分の地域の企業を
             </p>
             <h2 className="text-4xl md:text-7xl font-bold leading-tight text-white drop-shadow-xl tracking-wide">
               何社？思い
