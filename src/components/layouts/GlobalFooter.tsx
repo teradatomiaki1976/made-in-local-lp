@@ -38,7 +38,7 @@ export default function GlobalFooter({
     <footer className="w-full flex flex-col z-50 relative">
       {/* --- CTA領域（全ページ共通配置） --- */}
       <div className="relative z-10 w-full bg-creem text-midblue py-16 md:py-24 px-6 shadow-[0_-20px_50px_rgba(0,0,0,0.1)]">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row mb-6 md:mb-0 gap-8 md:gap-16 justify-center items-center">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row mb-6 gap-8 md:gap-16 justify-center items-center">
           {/* 左：ページ遷移ボタン（動的） */}
           <div className="flex-1 w-full text-center flex flex-col items-center border-b md:border-b-0 md:border-r border-midblue/20 pb-8 md:pb-0 md:pr-16">
             <p className="font-bold mb-3 md:mb-6 font-sans text-base md:text-lg">

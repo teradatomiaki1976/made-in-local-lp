@@ -113,8 +113,8 @@ export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
     scrollYProgress,
     [0.1, 0.4, 0.8],
     isMobile
-      ? [0.9, 5, 12] // スマホ用
-      : [0.6, 10, 18], // PC用
+      ? [0.06, 0.41, 1] // SP
+      : [0.02, 0.55, 1], // PC
   );
   const svgScale = useSpring(rawSvgScale, { stiffness: 100, damping: 30 });
 
@@ -283,11 +283,10 @@ export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
           style={{
             scale: svgScale,
             y: svgY,
-            originX: 0.5, // 今後、フォーカス先（東京など）に合わせて微調整する
+            originX: 0.5,
             originY: 0.5,
-            z: 0, // Framer Motionにおける translateZ(0) の指定
           }}
-          className="absolute z-20 w-full max-w-[800px] text-midblue flex items-center justify-center pointer-events-none"
+          className="absolute z-20 w-[1200vw] md:w-[1800vw] text-midblue flex items-center justify-center pointer-events-none"
         >
           <JapanMapSVG
             className="w-full h-auto object-contain"

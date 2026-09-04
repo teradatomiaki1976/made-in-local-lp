@@ -139,7 +139,7 @@ export default function Phase7_NewStandard() {
               「地域の新しい旗印」
             </h2>
             <p className="text-lg md:text-3xl leading-normal tracking-wide text-white text-center text-shadow-md text-shadow-midblue">
-              埋もれないために、100社だけ。
+              埋もれないために、100社だけ
             </p>
           </motion.div>
 
@@ -161,7 +161,7 @@ export default function Phase7_NewStandard() {
             <p className="text-lg md:text-3xl font-bold leading-normal tracking-wide text-midblue text-center text-shadow-md text-shadow-white">
               100社だから、1社1社が
               <br />
-              新しい「地域の顔」になれる。
+              新しい「地域の顔」になれる
             </p>
           </motion.div>
         </div>

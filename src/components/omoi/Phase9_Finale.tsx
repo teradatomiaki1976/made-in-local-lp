@@ -91,7 +91,7 @@ function Phase9Content() {
     scrollYProgress,
     [0.35, 0.45, 0.5, 0.6, 0.95, 1],
     isMobile
-      ? ["35vh", "35vh", "15vh", "15vh", "-60vh", "-60vh"] // SP
+      ? ["35vh", "35vh", "15vh", "15vh", "-64vh", "-64vh"] // SP
       : ["35vh", "35vh", "12vh", "12vh", "-55vh", "-55vh"], // PC
   );
 
