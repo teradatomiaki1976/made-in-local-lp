@@ -92,7 +92,7 @@ function Phase9Content() {
     [0.35, 0.45, 0.5, 0.6, 0.95, 1],
     isMobile
       ? ["35vh", "35vh", "15vh", "15vh", "-70vh", "-70vh"] // SP
-      : ["35vh", "35vh", "12vh", "12vh", "-55vh", "-55vh"], // PC
+      : ["35vh", "35vh", "12vh", "12vh", "-60vh", "-60vh"], // PC
   );
 
   // 各要素のOpacityのみを個別に制御
