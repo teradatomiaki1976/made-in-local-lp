@@ -15,14 +15,13 @@ export default function TeaserPhase() {
           </h2>
           <h1 className="text-xl md:text-4xl font-bold leading-normal">
             只今、詳細な審査基準や事例を
-            <br className="hidden md:block" />
+            <br />
             まとめたページを準備中です。
           </h1>
         </div>
 
         <p className="text-left text-sm md:text-base text-gray-600 leading-relaxed max-w-xl mx-auto">
-          「地域を代表する企業100選」の仕組みや、選出による具体的な事例、
-          審査プロセスについての内容を制作しております。公開まで今しばらくお待ちください。
+          「地域を代表する企業100選」の仕組みや、選出による具体的な事例、審査プロセスについての内容を制作しております。公開まで今しばらくお待ちください。
         </p>
       </motion.div>
     </section>

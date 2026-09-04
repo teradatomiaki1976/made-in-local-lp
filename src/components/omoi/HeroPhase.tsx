@@ -1,7 +1,7 @@
 // src/components/omoi/HeroPhase.tsx
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import {
   motion,
   useScroll,
@@ -88,22 +88,44 @@ const AnimatedWord = ({ text, delay }: { text: string; delay: number }) => (
 
 export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-  // Zustandの更新関数のみ取得（state全体を取得しないことで不要な再レンダリングを防ぐ）
   const setIsDarkBg = useHeaderStore((state) => state.setIsDarkBg);
+
+  // 1. スマホ判定用のStateを追加
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // 768px以下をスマホとする
+    const mediaQuery = window.matchMedia("(max-width: 768px)");
+    setIsMobile(mediaQuery.matches);
+
+    const handleResize = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mediaQuery.addEventListener("change", handleResize);
+    return () => mediaQuery.removeEventListener("change", handleResize);
+  }, []);
 
   const { scrollYProgress, scrollY } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
   });
 
+  // 2. スマホとPCでスケール倍率を分岐
   const rawSvgScale = useTransform(
     scrollYProgress,
     [0.1, 0.4, 0.8],
-    [0.6, 10, 18],
+    isMobile
+      ? [0.9, 5, 12] // 【スマホ用】
+      : [0.6, 10, 18], // 【PC用】
   );
   const svgScale = useSpring(rawSvgScale, { stiffness: 100, damping: 30 });
 
-  const rawSvgY = useTransform(scrollYProgress, [0.25, 0.65], ["32vh", "0vh"]);
+  // 3. (オプション) Y軸の移動量もスマホ用に微調整可能
+  const rawSvgY = useTransform(
+    scrollYProgress,
+    [0.25, 0.65],
+    isMobile
+      ? ["25vh", "0vh"] // スマホは画面が縦長なので少し調整
+      : ["32vh", "0vh"],
+  );
   const svgY = useSpring(rawSvgY, { stiffness: 100, damping: 30 });
 
   const blueFillOpacity = useTransform(scrollYProgress, [0.4, 1], [0, 1]);
@@ -210,7 +232,7 @@ export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
         </motion.div>
 
         {/* --- 2. 中央メッセージテキスト --- */}
-        <motion.div className="relative z-10 flex flex-col items-center text-center pointer-events-none py-80 px-48 rounded-full bg-[radial-gradient(circle,#fefbf1_30%,transparent_60%)]">
+        <motion.div className="relative z-10 flex flex-col items-center text-center pointer-events-none py-80 px-48 rounded-full bg-[radial-gradient(circle,#fefbf1_25%,transparent_60%)]">
           <h1
             className="font-serif font-bold md:font-semibold text-4xl md:text-8xl leading-tight text-nowrap text-shadow-lg text-shadow-white"
             aria-label="地域から本気で日本を変えたい"
