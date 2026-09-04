@@ -54,7 +54,7 @@ export default function Phase4_LightOfHope({ scrollYProgress }: Props) {
         style={{ opacity: textOpacity, y: textY }}
         className="relative z-30 w-full px-6 flex flex-col items-center justify-between gap-6 md:gap-12 text-white"
       >
-        <h2 className="text-center text-3xl md:text-6xl font-serif font-bold leading-tight flex-1 drop-shadow-lg">
+        <h2 className="text-center text-3xl md:text-6xl font-serif font-bold leading-normal flex-1 drop-shadow-lg">
           日本の宝である
           <br />
           地域の企業に光を

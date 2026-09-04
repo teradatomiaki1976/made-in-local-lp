@@ -25,7 +25,7 @@ export default function Phase5_6_BirthAndWhy() {
   const phase5Scale = useTransform(
     scrollYProgress,
     [0, 0.05, 0.4, 0.5],
-    [0.85, 1, 1.05, 1.1],
+    [0.75, 0.8, 0.9, 1],
   );
 
   // 背景「100」のパララックス
@@ -80,7 +80,7 @@ export default function Phase5_6_BirthAndWhy() {
             scale: phase5Scale,
             willChange: "transform, opacity",
           }}
-          className="absolute inset-0 flex flex-col md:flex-row items-center justify-center gap-8 px-6 z-20"
+          className="absolute inset-0 flex flex-col md:flex-row items-center justify-center gap-6 px-6 z-20"
         >
           <img
             src="/images/logo/emblem_dark.svg"
@@ -89,13 +89,13 @@ export default function Phase5_6_BirthAndWhy() {
           />
           <div className="max-w-3xl flex flex-col items-center md:items-start max-md:border-t md:border-l border-midblue/30  max-md:pt-8 md:pl-16 md:py-8">
             <h2 className="text-center md:text-left text-4xl md:text-5xl font-bold text-olive mb-6">
-              <span className="text-midblue block text-xl md:text-3xl mb-2">
+              <span className="text-midblue block text-lg md:text-3xl mb-2">
                 そこで、
               </span>
               地域を代表する
               <br className="block md:hidden" />
               企業100選
-              <span className="text-midblue block mt-2 text-xl md:text-3xl">
+              <span className="text-midblue block mt-2 text-lg md:text-3xl">
                 を創設した。
               </span>
             </h2>
@@ -116,15 +116,15 @@ export default function Phase5_6_BirthAndWhy() {
               y: h2Y,
               willChange: "transform, opacity",
             }}
-            className="text-2xl md:text-5xl font-bold tracking-normal text-center leading-tight"
+            className="text-xl md:text-5xl font-bold tracking-normal text-center leading-tight"
           >
-            <span className="text-3xl md:text-6xl block leading-tight mb-4">
-              埋もれないために、
+            <span className="text-3xl md:text-6xl block leading-tight mb-2">
+              埋もれないために
               <br />
-              100社だけ。
+              100社だけ
             </span>
             100社だから一社一社が新しい
-            <br className="hidden md:block" />
+            <br />
             「地域の顔」になれる。
           </motion.h2>
 
@@ -141,9 +141,9 @@ export default function Phase5_6_BirthAndWhy() {
               それは、名実ともに地域を代表するような企業でなくても良い。
               <br className="hidden md:block" />
               大事なのは、自分たちの可能性を信じる想いがあるかだ。
-              <br />
+              <br className="hidden md:block" />
               一人から数百人の従業員を抱える企業になるという意志。数百年先も紡いでいこうという意志。
-              <br />
+              <br className="hidden md:block" />
               自社技術が世界の舞台で輝けるという自信。過去なんてどうでもいい。未来に向けてどれだけ努力できるか。
               <br className="hidden md:block" />
               努力する意思があるか。 それが、地域企業の新しいシンボルになる。

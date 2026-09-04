@@ -124,7 +124,7 @@ export default function Phase8_Circulation() {
             style={{ opacity: text4Opacity, y: text4Y }}
             className="absolute text-center w-full"
           >
-            <h2 className="flex flex-col gap-4 md:gap-6 text-4xl md:text-6xl font-bold tracking-normal text-midblue leading-tight">
+            <h2 className="flex flex-col gap-2 md:gap-6 text-4xl md:text-6xl font-bold tracking-normal text-midblue leading-tight">
               <span className="block text-base md:text-3xl leading-normal text-midblue">
                 私たちが次世代に紡いでいく日本は
                 <br />

@@ -343,7 +343,7 @@ export default function MessagePhase({ scrollYProgress }: Props) {
             style={{ willChange: "opacity, filter, transform" }}
           >
             活気のあった商店街にはシャッターが下りている。
-            <br />
+            <br className="hidden md:block" />
             変化は、ある日突然ではなく、気づかないほど静かに進んでいる。
           </motion.p>
         </motion.div>
@@ -433,9 +433,7 @@ export default function MessagePhase({ scrollYProgress }: Props) {
 
           <div className="relative z-10 flex flex-col gap-4 w-full items-center">
             <p className="text-xl md:text-3xl text-white opacity-90 drop-shadow-md">
-              あなたは、
-              <br className="block md:hidden" />
-              自分の地域の企業を
+              あなたは、自分の地域の企業を
             </p>
             <h2 className="text-4xl md:text-7xl font-bold leading-tight text-white drop-shadow-xl tracking-wide">
               何社？思い
