@@ -234,7 +234,7 @@ export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
         {/* --- 2. 中央メッセージテキスト --- */}
         <motion.div className="relative z-10 flex flex-col items-center text-center pointer-events-none py-80 px-48 rounded-full bg-[radial-gradient(circle,#fefbf1_30%,transparent_60%)]">
           <h1
-            className="font-serif font-bold md:font-semibold text-[2.4rem] md:text-8xl leading-tight text-nowrap text-shadow-lg text-shadow-white"
+            className="font-serif font-bold md:font-semibold text-4xl md:text-8xl leading-tight text-nowrap text-shadow-lg text-shadow-white"
             aria-label="地域から本気で日本を変えたい"
           >
             <span aria-hidden="true">
