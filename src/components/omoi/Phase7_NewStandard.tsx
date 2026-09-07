@@ -19,7 +19,7 @@ export default function Phase7_NewStandard() {
   });
 
   // ==========================================
-  // 1. 背景色とグリッド線の色をクロスフェード（0.3 〜 0.4 で暗→明）
+  // 1. 背景色とグリッド線の色をクロスフェード
   // ==========================================
   const backgroundColor = useTransform(
     scrollYProgress,

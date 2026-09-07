@@ -9,11 +9,9 @@ interface Props {
 }
 
 export default function Phase4_LightOfHope({ scrollYProgress }: Props) {
-  // 💡 追加：背景のクロスフェード制御
-  // Phase3が0.45〜0.5で消えゆくのと交差するように、0.45〜0.5で背景をフェードインさせる
   const bgOpacity = useTransform(scrollYProgress, [0.45, 0.5], [0, 1]);
 
-  // 💡 テキストのアニメーション
+  // テキストのアニメーション
   const textOpacity = useTransform(
     scrollYProgress,
     [0.5, 0.55, 0.82, 0.88],

@@ -23,7 +23,7 @@ const LEFT_IMAGES = [
   { src: "/images/section3/scene5.webp", height: "h-[160px]" },
 ];
 
-// 右側（SP下部）用画像（6枚）※ファイル名は実際のプロジェクトアセットに合わせて調整してほしい[cite: 2]
+// 右側（SP下部）用画像（6枚）
 const RIGHT_IMAGES = [
   { src: "/images/section3/scene6.webp", height: "h-[160px]" },
   { src: "/images/section3/scene7.webp", height: "h-[160px]" },
@@ -41,7 +41,7 @@ interface Props {
 
 export default function MessagePhase({ scrollYProgress }: Props) {
   // ==========================================
-  // 前半フェーズのスクロール制御（0.0 ~ 0.5 に圧縮）
+  // 前半フェーズのスクロール制御
   // ==========================================
 
   const scene1Opacity = useTransform(
@@ -76,7 +76,7 @@ export default function MessagePhase({ scrollYProgress }: Props) {
   );
 
   // ==========================================
-  // 放射アニメーション（0.25 ~ 0.375 付近で発火）
+  // 放射アニメーション
   // ==========================================
   const radialOpacity0 = useTransform(scrollYProgress, [0.25, 0.325], [0, 0.6]);
   const radialScale0 = useTransform(scrollYProgress, [0.25, 0.35], [0.2, 1]);
@@ -121,7 +121,6 @@ export default function MessagePhase({ scrollYProgress }: Props) {
 
   return (
     <div className="absolute inset-0 w-full h-full pointer-events-none z-10 overflow-hidden flex items-center justify-center">
-      {/* 背景レイヤー（省略せず記述） */}
       <div className="absolute inset-0 w-full h-full z-0" aria-hidden="true">
         <motion.div
           style={{
@@ -190,7 +189,7 @@ export default function MessagePhase({ scrollYProgress }: Props) {
                 fill
                 sizes="20vw"
                 className="object-cover opacity-70"
-                priority={index < 2} // ★ 先回り提案: 画面内に入る最初の画像を優先ロード
+                priority={index < 2}
               />
             </div>
           ))}
@@ -263,7 +262,7 @@ export default function MessagePhase({ scrollYProgress }: Props) {
                 fill
                 sizes="60vw"
                 className="object-cover opacity-70"
-                priority={index < 2} // ★ 先回り提案
+                priority={index < 2}
               />
             </div>
           ))}
@@ -298,7 +297,7 @@ export default function MessagePhase({ scrollYProgress }: Props) {
                 fill
                 sizes="60vw"
                 className="object-cover opacity-70"
-                priority={index < 2} // ★ 先回り提案
+                priority={index < 2}
               />
             </div>
           ))}
@@ -358,7 +357,6 @@ export default function MessagePhase({ scrollYProgress }: Props) {
           className="absolute inset-0 flex flex-col items-center justify-center w-full h-full"
         >
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
-            {/* 0社, 3社, 10社, 1社, 5社の放射アニメーション（省略せず記述） */}
             <motion.div
               style={{
                 opacity: radialOpacity0,

@@ -12,7 +12,6 @@ interface Props {
   activeRegionId: string;
 }
 
-// サイズ感を安定させたカメラワーク設定（PC/SP）
 const CAMERA_CONFIG: Record<string, { pc: any; sp: any }> = {
   hokkaido: {
     pc: { scale: 2.2, x: "5%", y: "55%" },
@@ -65,14 +64,12 @@ const JapanMapInteractive = memo(({ activePrefId, activeRegionId }: Props) => {
   const config = CAMERA_CONFIG[activeRegionId] || CAMERA_CONFIG.kanto;
   const targetCamera = isMobile ? config.sp : config.pc;
 
-  // 📌 現在アクティブな地方に属する「都道府県IDのリスト」を取得
   const activeRegion = REGIONS.find((r) => r.id === activeRegionId);
   const activeRegionPrefIds = activeRegion
     ? activeRegion.prefectures.map((p) => p.prefId)
     : [];
 
   return (
-    // 📌 地図全体が暴走しないよう、最大幅と中央配置を制限するインナーコンテナ
     <div className="relative w-full max-w-[300px] md:max-w-[500px] aspect-[3750.8/4260.3] flex items-center justify-center pointer-events-none">
       <motion.div
         animate={targetCamera}
@@ -85,9 +82,8 @@ const JapanMapInteractive = memo(({ activePrefId, activeRegionId }: Props) => {
           aria-hidden="true"
         >
           {MAP_PATHS.map((pref) => {
-            // 📌 3段階の判定ロジック
-            const isActivePref = activePrefId === pref.id; // ①ドンピシャの県
-            const isActiveRegion = activeRegionPrefIds.includes(pref.id); // ②同じ地方の県
+            const isActivePref = activePrefId === pref.id;
+            const isActiveRegion = activeRegionPrefIds.includes(pref.id);
 
             return (
               <path

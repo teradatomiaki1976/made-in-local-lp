@@ -14,14 +14,11 @@ export default function Phase5_6_BirthAndWhy() {
   });
 
   // --- Phase5（誕生）のタイムライン設計 ---
-  // 💡 出現タイミングを微調整し、キープ（タメ）区間を 0.35 -> 0.4 へ延長
   const phase5Opacity = useTransform(
     scrollYProgress,
     [0, 0.05, 0.4, 0.5],
     [0, 1, 1, 0],
   );
-  // 💡 大→小(1→0.9)から、小→大へのスケールアップに変更
-  // 出現時(0.85 -> 1)にフワッと大きくなり、タメ区間(1 -> 1.05)でじわじわ迫ってくる演出
   const phase5Scale = useTransform(
     scrollYProgress,
     [0, 0.05, 0.4, 0.5],
@@ -32,8 +29,7 @@ export default function Phase5_6_BirthAndWhy() {
   const bgScale = useTransform(scrollYProgress, [0.1, 1], [0.4, 1.2]);
   const bgOpacity = useTransform(scrollYProgress, [0.1, 1], [0, 0.08]);
 
-  // --- Phase6（テキスト統合版）タイムライン設計 ---
-  // Phase5のタメ延長に合わせて、出現タイミングを後ろにシフト
+  // --- Phase6 タイムライン設計 ---
   const h2Opacity = useTransform(
     scrollYProgress,
     [0.45, 0.55, 0.85, 0.95],

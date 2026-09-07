@@ -65,8 +65,6 @@ export default function Phase8_Circulation() {
   // 画像のクロスフェード制御（オパシティ・リレー方式）
   // ==========================================
   // 画像1は常に最下層で不透明度1（ベースとして固定）
-
-  // 💡 修正点: 配列の最後に `1.0`（スクロール終端）を追加し、Opacity `1` を明示的に維持させる
   const img2Opacity = useTransform(
     scrollYProgress,
     [0.15, 0.35, 1.0],

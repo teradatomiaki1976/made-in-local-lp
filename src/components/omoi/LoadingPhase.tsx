@@ -18,8 +18,6 @@ const BACKGROUND_IMAGES = [
   "/images/photo/scene10.webp",
 ];
 
-// 【演出のキモ】各画像の表示時間を配列で定義（ミリ秒）
-// ゆっくり始まり → 加速し → 最後（10枚目）で長く「タメる」
 const TIMINGS = [800, 600, 400, 200, 150, 150, 150, 200, 300, 1500];
 
 // プログレスバー用に合計時間を計算
@@ -46,10 +44,8 @@ export default function LoadingPhase({
 
   // 2. 可変リズムの画像切り替えロジック
   useEffect(() => {
-    // 最後の画像を「タメた」あと、Phase 2へ移行
     if (currentImageIndex >= BACKGROUND_IMAGES.length - 1) {
       const timeout = setTimeout(() => {
-        // 👇 状態更新をstartTransitionでラップしてレンダリングの優先度を下げる
         startTransition(() => {
           onComplete();
         });
@@ -57,7 +53,6 @@ export default function LoadingPhase({
       return () => clearTimeout(timeout);
     }
 
-    // TIMINGS配列で指定した秒数後に、次の画像へインデックスを進める
     const timeout = setTimeout(() => {
       setCurrentImageIndex((prev) => prev + 1);
     }, TIMINGS[currentImageIndex]);
@@ -73,7 +68,6 @@ export default function LoadingPhase({
       )}
       style={{ backgroundColor: "#003064" }}
     >
-      {/* --- 背景画像の切り替え（スケール＋イージング追加） --- */}
       <AnimatePresence mode="popLayout">
         <motion.img
           key={currentImageIndex}
@@ -85,8 +79,8 @@ export default function LoadingPhase({
           initial={{ opacity: 0, scale: 1.1 }}
           animate={{ opacity: 0.6, scale: 1 }}
           transition={{
-            opacity: { duration: 0.2 }, // 0.2秒でパッとフェードイン
-            scale: { duration: 4, ease: "easeOut" }, // 4秒かけてゆっくり縮小（表示中は常に動き続ける）
+            opacity: { duration: 0.2 },
+            scale: { duration: 4, ease: "easeOut" },
           }}
           style={{ willChange: "transform, opacity" }}
         />
@@ -106,7 +100,7 @@ export default function LoadingPhase({
         />
       </motion.div>
 
-      {/* --- ローディングバー（全体の可変時間と同期） --- */}
+      {/* --- ローディングバー --- */}
       <div
         className={cn(
           "relative z-10 w-48 md:w-64 h-px bg-white/20 mt-8 overflow-hidden",
@@ -116,14 +110,13 @@ export default function LoadingPhase({
           className="h-full bg-white"
           initial={{ width: "0%" }}
           animate={{ width: "100%" }}
-          // TOTAL_DURATIONを使って、加速やタメを含めた全体の時間とバーの進行をピッタリ合わせる
           transition={{ duration: TOTAL_DURATION, ease: "easeInOut" }}
         />
       </div>
       <motion.div
         className={cn("absolute inset-0 bg-midblue z-50 pointer-events-none")}
         initial={{ opacity: 0 }}
-        exit={{ opacity: 1 }} // コンポーネントが破棄される瞬間にフェードイン（不透明になる）
+        exit={{ opacity: 1 }}
         transition={{ duration: 0.6, ease: "easeInOut" }}
       />
     </motion.div>

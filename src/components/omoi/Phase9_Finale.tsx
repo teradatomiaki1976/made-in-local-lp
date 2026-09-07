@@ -86,15 +86,6 @@ function Phase9Content() {
     [0, 0.6, 0.85, 0.85],
   );
 
-  // H2とP要素を包む「全体コンテナ」のアニメーション
-  // const containerY = useTransform(
-  //   scrollYProgress,
-  //   [0.35, 0.45, 0.5, 0.6, 0.95, 1],
-  //   isMobile
-  //     ? ["35vh", "35vh", "15vh", "15vh", "-70vh", "-70vh"] // SP
-  //     : ["35vh", "35vh", "12vh", "12vh", "-60vh", "-60vh"], // PC
-  // );
-
   // 1. 要素自身の高さに対する移動量（0%から-100%へ）
   const yPercent = useTransform(
     scrollYProgress,
@@ -180,11 +171,8 @@ function Phase9Content() {
               className="absolute inset-0 bg-linear-to-b from-black/80 via-black/60 to-black/90 pointer-events-none"
             />
           </motion.div>
-
-          {/* ----- コンテンツレイヤー ----- */}
-          {/* justify-center ではなくトップ起点のコンテナを用意 */}
+          {/* ----- コンテンツレイヤー ----- */}\
           <div className="absolute inset-0 w-full pointer-events-none overflow-hidden">
-            {/* このラッパーごと上下に動かす */}
             <motion.div
               style={{ y: containerY, willChange: "transform" }}
               className="w-full max-w-4xl mx-auto px-8 md:px-12 flex flex-col items-start"
