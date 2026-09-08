@@ -144,7 +144,8 @@ export default function Phase8_Circulation() {
           <div className="absolute inset-0 w-full h-full">
             <Image
               src="/images/section8/map-1.jpg"
-              alt="一社の光"
+              alt=""
+              aria-hidden="true"
               fill
               priority
               className="object-cover"
@@ -159,7 +160,8 @@ export default function Phase8_Circulation() {
           >
             <Image
               src="/images/section8/map-2.jpg"
-              alt="地域の光"
+              alt=""
+              aria-hidden="true"
               fill
               className="object-cover"
               sizes="100vw"
@@ -173,7 +175,8 @@ export default function Phase8_Circulation() {
           >
             <Image
               src="/images/section8/map-3.jpg"
-              alt="つながる光"
+              alt=""
+              aria-hidden="true"
               fill
               className="object-cover"
               sizes="100vw"
@@ -187,7 +190,8 @@ export default function Phase8_Circulation() {
           >
             <Image
               src="/images/section8/map-4.jpg"
-              alt="輝く日本"
+              alt=""
+              aria-hidden="true"
               fill
               className="object-cover"
               sizes="100vw"

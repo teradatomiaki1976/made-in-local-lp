@@ -73,6 +73,7 @@ export default function LoadingPhase({
           key={currentImageIndex}
           src={BACKGROUND_IMAGES[currentImageIndex]}
           alt=""
+          aria-hidden="true"
           className={cn(
             "absolute inset-0 w-full h-full object-cover opacity-75 mix-blend-screen blur-none",
           )}
@@ -95,7 +96,7 @@ export default function LoadingPhase({
       >
         <img
           src="/images/logo/emblem.png"
-          alt="地域を代表する企業100選"
+          alt="地域を代表する企業100選 Best 100 Companies Selected By Made In Local"
           className="w-full h-auto"
         />
       </motion.div>

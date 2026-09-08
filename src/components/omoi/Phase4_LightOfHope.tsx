@@ -28,14 +28,14 @@ export default function Phase4_LightOfHope({ scrollYProgress }: Props) {
       <motion.div
         style={{ opacity: bgOpacity }}
         className="absolute inset-0 w-full h-full -z-20"
+        aria-hidden="true"
       >
         <div className="absolute inset-0 bg-deepblue/40 z-10" />
         <Image
           src="/images/section3/bg-kurayami.jpg"
-          alt="暗闇背景"
+          alt=""
           fill
           className="object-cover opacity-80"
-          priority
         />
       </motion.div>
 

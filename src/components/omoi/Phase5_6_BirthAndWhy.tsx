@@ -80,7 +80,7 @@ export default function Phase5_6_BirthAndWhy() {
         >
           <img
             src="/images/logo/emblem_dark.svg"
-            alt="地域を代表する企業100選"
+            alt="地域を代表する企業100選 Best 100 Companies Selected By Made In Local"
             className="w-36 md:w-80 drop-shadow-2xl max-md:mb-2 md:mr-16"
           />
           <div className="max-w-3xl flex flex-col items-center md:items-start max-md:border-t md:border-l border-midblue/30  max-md:pt-8 md:pl-16 md:py-8">

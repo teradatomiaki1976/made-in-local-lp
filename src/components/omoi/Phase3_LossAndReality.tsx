@@ -51,19 +51,18 @@ export default function Phase3_LossAndReality({ scrollYProgress }: Props) {
       style={{ opacity: phaseOpacity, pointerEvents: "none" }}
       className="absolute inset-0 w-full h-full z-20 flex flex-col items-center justify-center text-white"
     >
-      {/* 暗闇背景レイヤー（スクロールに応じてフェードイン） */}
+      {/* 暗闇背景レイヤー */}
       <motion.div
         style={{ opacity: bgOpacity }}
         className="absolute inset-0 w-full h-full -z-10"
+        aria-hidden="true"
       >
-        {/* 背景テクスチャが強すぎる場合の可読性担保用オーバーレイ */}
         <div className="absolute inset-0 bg-deepblue/40 z-10" />
         <Image
           src="/images/section3/bg-kurayami.jpg"
-          alt="暗闇背景"
+          alt=""
           fill
           className="object-cover opacity-80"
-          priority
         />
       </motion.div>
 

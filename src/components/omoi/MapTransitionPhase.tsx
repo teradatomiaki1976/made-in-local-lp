@@ -35,7 +35,7 @@ export default function MapTransitionPhase() {
         >
           <img
             src="/images/section2/japan.svg"
-            alt="Japan Map"
+            alt=""
             className="w-full h-auto object-contain"
             aria-hidden="true"
           />

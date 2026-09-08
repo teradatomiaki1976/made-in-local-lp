@@ -14,7 +14,7 @@ export default function StoryPhase() {
     offset: ["start start", "end end"],
   });
 
-  // 💡 調整: 背景色の切り替えをPhase4の「光」が広がるタイミング(0.8〜1.0)に合わせる
+  // 背景色の切り替え
   const backgroundColor = useTransform(
     scrollYProgress,
     [0.75, 0.9],

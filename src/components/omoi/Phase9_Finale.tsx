@@ -150,19 +150,21 @@ function Phase9Content() {
               <motion.img
                 src="/images/phase9/founder-1.webp"
                 style={{ opacity: img1Opacity }}
-                className="absolute inset-0 w-full h-full object-cover grayscale"
+                className="absolute inset-0 w-full h-full object-cover"
                 alt=""
+                aria-hidden="true"
               />
               <motion.img
                 src="/images/phase9/founder-2.webp"
                 style={{ opacity: img2Opacity }}
-                className="absolute inset-0 w-full h-full object-cover grayscale"
+                className="absolute inset-0 w-full h-full object-cover"
                 alt=""
+                aria-hidden="true"
               />
               <motion.img
                 src="/images/phase9/founder-3.webp"
                 style={{ opacity: img3Opacity }}
-                className="absolute inset-0 w-full h-full object-cover grayscale"
+                className="absolute inset-0 w-full h-full object-cover"
                 alt="発起人 石井智大"
               />
             </motion.div>

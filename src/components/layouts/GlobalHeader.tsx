@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import { useHeaderStore } from "@/store/useHeaderStore";
 import { FiChevronRight } from "react-icons/fi";
 import Image from "next/image";
+import Link from "next/link"; // 追加
 
 type GlobalHeaderProps = {
   isVisible: boolean;
@@ -23,18 +24,16 @@ export default function GlobalHeader({
   const isFooterVisible = useHeaderStore((state) => state.isFooterVisible);
   const [mounted, setMounted] = useState(false);
 
-  // 新規追加：FVを通過したかどうかを判定するステート
+  // FVを通過したかどうかを判定するステート
   const [isPastFV, setIsPastFV] = useState(false);
   const { scrollY } = useScroll();
 
   // スクロール位置の監視（Framer Motionの最適化されたフックを使用）
   useMotionValueEvent(scrollY, "change", (latest) => {
-    // 【重要追加】前回のフレームからの移動距離を計算
     const prev = scrollY.getPrevious() || 0;
     const diff = Math.abs(latest - prev);
 
-    // 1フレームで500px以上動くことは人間のスクロールでは不可能。
-    // つまりプログラムによるジャンプ（復元）なので、ヘッダーの判定を無視する！
+    // ジャンプ（復元）の場合はヘッダーの判定を無視
     if (diff > 500) return;
 
     const fvHeight = typeof window !== "undefined" ? window.innerHeight : 800;
@@ -48,6 +47,12 @@ export default function GlobalHeader({
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  // ロゴクリック時のスムーズスクロールハンドラー
+  const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <>
@@ -71,15 +76,19 @@ export default function GlobalHeader({
           )}
           style={{ transformOrigin: "top left" }}
         >
-          <div className="relative w-full h-full transition-all duration-300 ease-out">
+          <Link
+            href="/"
+            onClick={handleLogoClick}
+            className="relative w-full h-full block outline-none focus-visible:ring-2 focus-visible:ring-olive rounded-sm"
+          >
             <Image
               src="/images/logo/logo_dark.svg"
-              alt="100選エンブレム"
+              alt="地域を代表する企業100選 Best 100 Companies Selected By Made In Local"
               fill
               priority
               className="object-contain"
             />
-          </div>
+          </Link>
         </div>
 
         {/* 中央: 切り替えトグル */}
@@ -130,12 +139,10 @@ export default function GlobalHeader({
       <motion.div
         className="md:hidden fixed bottom-0 left-0 w-full z-50 print:hidden"
         initial={{ opacity: 0, y: 20 }}
-        // isVisible（ページ上部の制御）と isFooterVisible（フッター到達時の制御）を組み合わせる
         animate={{
           opacity: isVisible && !isFooterVisible ? 1 : 0,
           y: isVisible && !isFooterVisible ? 0 : 20,
         }}
-        // 遷移時間を少し短くし、サッと隠れるようにUXを調整
         transition={{ duration: 0.3, ease: "easeOut" }}
         style={{
           pointerEvents: isVisible && !isFooterVisible ? "auto" : "none",

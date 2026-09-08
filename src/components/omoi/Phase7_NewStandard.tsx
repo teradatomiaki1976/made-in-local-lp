@@ -116,6 +116,7 @@ export default function Phase7_NewStandard() {
                   willChange: "opacity",
                 }}
                 className="absolute inset-0 w-full h-full object-cover"
+                aria-hidden="true"
               />
             </motion.div>
           ))}
@@ -131,7 +132,7 @@ export default function Phase7_NewStandard() {
             <div className="w-40 md:w-56">
               <img
                 src="/images/logo/emblem_white.svg"
-                alt=""
+                alt="地域を代表する企業100選 Best 100 Companies Selected By Made In Local"
                 className="w-full h-auto drop-shadow-md"
               />
             </div>
