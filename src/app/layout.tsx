@@ -91,6 +91,16 @@ export default function RootLayout({
           gtag('config', 'G-TMFN0X1T67');
         `}
       </Script>
+      {/* Microsoft Clarity（ヒートマップ・セッション録画） */}
+      <Script id="clarity-init" strategy="afterInteractive">
+        {`
+          (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "yfmfbho5rr");
+        `}
+      </Script>
       <body className="min-h-screen flex flex-col font-sans bg-midblue text-text">
         {/* 構造化データ (JSON-LD): Google検索でのリッチリザルト表示に有効 */}
         <script
