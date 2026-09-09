@@ -78,7 +78,7 @@ export default function Phase8_Circulation() {
   );
 
   return (
-    <section ref={containerRef} className="relative w-full h-[400vh] bg-creem">
+    <section ref={containerRef} className="relative w-full h-[800vh] bg-creem">
       {/* 画面に固定（sticky）されるコンテナ */}
       <div className="sticky top-0 left-0 w-full h-svh flex flex-col overflow-hidden">
         {/* --- 上部：テキストエリア (高さ約40%) --- */}

@@ -97,7 +97,7 @@ export default function Phase7_NewStandard() {
     <motion.section
       ref={containerRef}
       style={{ backgroundColor, willChange: "background-color" }}
-      className="relative w-full h-[400vh]"
+      className="relative w-full h-[800vh]"
     >
       <div className="sticky top-0 left-0 w-full h-svh overflow-hidden flex items-center justify-center">
         {/* --- 背景のグリッド（地方企業の棚） --- */}

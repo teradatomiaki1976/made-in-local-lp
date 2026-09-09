@@ -32,11 +32,11 @@ export default function PrefectureHighlightPhase({ scrollYProgress }: Props) {
   );
   const titleOpacity = useTransform(
     scrollYProgress,
-    [0.5, 0.54, 0.65, 0.7],
+    [0.5, 0.54, 0.58, 0.62],
     [0, 1, 1, 0],
   );
-  const titleY = useTransform(scrollYProgress, [0.5, 0.58], [40, 0]);
-  const uiOpacity = useTransform(scrollYProgress, [0.62, 0.7], [0, 1]);
+  const titleY = useTransform(scrollYProgress, [0.5, 0.54], [40, 0]);
+  const uiOpacity = useTransform(scrollYProgress, [0.63, 0.68], [0, 1]);
 
   // 1. スクロール位置による自動再生のトリガー
   useEffect(() => {
@@ -82,7 +82,7 @@ export default function PrefectureHighlightPhase({ scrollYProgress }: Props) {
   const handleManualRegionChange = (idx: number) => {
     setActiveRegionIndex(idx);
     setActivePrefIndex(0);
-    setIsPlaying(false); // 💡 ユーザーが操作したら自動再生を止める（マニュアルモードへ移行）
+    setIsPlaying(true); //false:ユーザーが操作したら自動再生を止める
   };
 
   const currentRegion = REGIONS[activeRegionIndex];

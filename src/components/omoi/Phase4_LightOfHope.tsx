@@ -9,19 +9,25 @@ interface Props {
 }
 
 export default function Phase4_LightOfHope({ scrollYProgress }: Props) {
-  const bgOpacity = useTransform(scrollYProgress, [0.45, 0.5], [0, 1]);
+  const bgOpacity = useTransform(scrollYProgress, [0.7, 0.75], [0, 1]);
 
   // テキストのアニメーション
   const textOpacity = useTransform(
     scrollYProgress,
-    [0.5, 0.55, 0.82, 0.88],
+    [0.72, 0.76, 0.9, 1],
     [0, 1, 1, 0],
   );
-  const textY = useTransform(scrollYProgress, [0.5, 0.55], [30, 0]);
+  const textY = useTransform(scrollYProgress, [0.72, 0.76], [30, 0]);
+  // テキスト色の変化
+  const textColor = useTransform(
+    scrollYProgress,
+    [0.82, 0.88],
+    ["#ffffff", "#003064"],
+  );
 
   // 光のアニメーション
-  const glowScale = useTransform(scrollYProgress, [0.75, 0.9, 1], [0, 15, 15]);
-  const glowOpacity = useTransform(scrollYProgress, [0.7, 0.8, 1], [0, 1, 1]);
+  const glowOpacity = useTransform(scrollYProgress, [0.78, 0.85, 1], [0, 1, 1]);
+  const glowScale = useTransform(scrollYProgress, [0.8, 0.95, 1], [0, 15, 15]);
 
   return (
     <div className="absolute inset-0 w-full h-full z-30 flex items-center justify-center overflow-hidden pointer-events-none">
@@ -49,8 +55,8 @@ export default function Phase4_LightOfHope({ scrollYProgress }: Props) {
 
       {/* テキストレイヤー */}
       <motion.div
-        style={{ opacity: textOpacity, y: textY }}
-        className="relative z-30 w-full px-6 flex flex-col items-center justify-between gap-6 md:gap-12 text-white"
+        style={{ opacity: textOpacity, y: textY, color: textColor }}
+        className="relative z-30 w-full px-6 flex flex-col items-center justify-between gap-6 md:gap-12"
       >
         <h2 className="text-center text-3xl md:text-6xl font-serif font-bold leading-normal flex-1 drop-shadow-lg">
           日本の宝である

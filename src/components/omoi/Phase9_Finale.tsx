@@ -43,13 +43,13 @@ function Phase9Content() {
 
   const clipX = useTransform(
     scrollYProgress,
-    [0, 0.1, 0.3, 0.5, 1],
+    [0, 0.1, 0.4, 0.55, 1],
     isMobile ? [50, 10, 10, 0, 0] : [50, 25, 25, 0, 0],
   );
 
   const clipY = useTransform(
     scrollYProgress,
-    [0, 0.1, 0.3, 0.5, 1],
+    [0, 0.1, 0.4, 0.55, 1],
     isMobile ? [50, 25, 25, 0, 0] : [50, 30, 30, 0, 0],
   );
 
@@ -57,39 +57,39 @@ function Phase9Content() {
 
   const imgScale = useTransform(
     scrollYProgress,
-    [0, 0.1, 0.3, 0.5, 1],
+    [0, 0.1, 0.4, 0.55, 1],
     isMobile ? [0.2, 0.85, 0.85, 1, 1] : [0.1, 0.5, 0.5, 1, 1],
   );
 
   const img1Opacity = useTransform(
     scrollYProgress,
-    [0, 0.15, 0.2, 1],
+    [0, 0.18, 0.23, 1],
     [1, 1, 0, 0],
   );
   const img2Opacity = useTransform(
     scrollYProgress,
-    [0.15, 0.2, 0.25, 0.3, 1],
+    [0.18, 0.23, 0.33, 0.38, 1],
     [0, 1, 1, 0, 0],
   );
-  const img3Opacity = useTransform(scrollYProgress, [0.25, 0.3, 1], [0, 1, 1]);
+  const img3Opacity = useTransform(scrollYProgress, [0.33, 0.38, 1], [0, 1, 1]);
 
-  // 文字出現に合わせて、暗転とブラーのタイミングを前倒し
+  // テキスト出現や暗転のアニメーションを後ろへ
   const imgBlur = useTransform(
     scrollYProgress,
-    [0.35, 0.45, 1],
+    [0.45, 0.55, 1],
     ["blur(0px)", "blur(12px)", "blur(12px)"],
   );
 
   const overlayOpacity = useTransform(
     scrollYProgress,
-    [0.35, 0.45, 0.55, 1],
+    [0.45, 0.55, 0.65, 1],
     [0, 0.6, 0.85, 0.85],
   );
 
   // 1. 要素自身の高さに対する移動量（0%から-100%へ）
   const yPercent = useTransform(
     scrollYProgress,
-    [0.35, 0.45, 0.5, 0.6, 0.95, 1],
+    [0.45, 0.55, 0.6, 0.7, 0.95, 1],
     [0, 0, 0, 0, -100, -100],
   );
 
@@ -97,13 +97,13 @@ function Phase9Content() {
   // PC: 35 -> 12 -> 80
   const yVhPc = useTransform(
     scrollYProgress,
-    [0.35, 0.45, 0.5, 0.6, 0.95, 1],
+    [0.45, 0.55, 0.6, 0.7, 0.95, 1],
     [35, 35, 12, 12, 80, 80],
   );
   // SP: 35 -> 15 -> 75
   const yVhSp = useTransform(
     scrollYProgress,
-    [0.35, 0.45, 0.5, 0.6, 0.95, 1],
+    [0.45, 0.55, 0.6, 0.7, 0.95, 1],
     [35, 35, 15, 15, 75, 75],
   );
 
@@ -116,23 +116,23 @@ function Phase9Content() {
   // 各要素のOpacityのみを個別に制御
   const titleOpacity = useTransform(
     scrollYProgress,
-    [0.35, 0.45, 1],
+    [0.45, 0.55, 1],
     [0, 1, 1],
   );
   const titleScale = useTransform(
     scrollYProgress,
-    [0.35, 0.45, 1],
+    [0.45, 0.55, 1],
     [1.3, 1, 1],
   );
   const profileOpacity = useTransform(
     scrollYProgress,
-    [0.5, 0.55, 1],
+    [0.6, 0.65, 1],
     [0, 1, 1],
   );
 
   return (
     <section className="relative w-full bg-yellow">
-      <div ref={containerRef} className="relative h-[700vh]">
+      <div ref={containerRef} className="relative h-[1300vh]">
         <div className="sticky top-0 left-0 w-full h-svh overflow-hidden">
           {/* ----- 背景・ブラー・オーバーレイ ----- */}
           <motion.div

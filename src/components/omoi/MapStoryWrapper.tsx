@@ -17,7 +17,7 @@ export default function MapStoryWrapper() {
   return (
     <section
       ref={containerRef}
-      className="relative w-full h-[800vh] bg-midblue"
+      className="relative w-full h-[1000vh] bg-midblue"
     >
       <div className="sticky top-0 left-0 w-full h-svh overflow-hidden">
         <MessagePhase scrollYProgress={scrollYProgress} />

@@ -9,17 +9,17 @@ interface Props {
 }
 
 export default function Phase3_LossAndReality({ scrollYProgress }: Props) {
-  // 💡 0.5 で完全に消えるように全体を制御
+  // Phase3全体
   const phaseOpacity = useTransform(
     scrollYProgress,
-    [0.0, 0.05, 0.55, 0.6],
+    [0.0, 0.05, 0.7, 0.75],
     [0, 1, 1, 0],
   );
 
   // 前半：3,000,000社 フェーズの制御
   const numberOpacity = useTransform(
     scrollYProgress,
-    [0.0, 0.05, 0.25, 0.3],
+    [0.0, 0.05, 0.2, 0.25],
     [0, 1, 1, 0],
   );
   const numberY = useTransform(scrollYProgress, [0.0, 0.05], [50, 0]);
@@ -27,14 +27,14 @@ export default function Phase3_LossAndReality({ scrollYProgress }: Props) {
   // 背景
   const bgOpacity = useTransform(
     scrollYProgress,
-    [0.2, 0.3, 0.55, 0.6],
+    [0.0, 0.1, 0.7, 0.75],
     [0, 1, 1, 0],
   );
 
   // 後半：人知れず消えていく企業 フェーズの制御
   const textOpacity = useTransform(
     scrollYProgress,
-    [0.2, 0.25, 0.75, 0.8],
+    [0.3, 0.35, 0.65, 0.7],
     [0, 1, 1, 0],
   );
   const textY = useTransform(scrollYProgress, [0.3, 0.35], [30, 0]);
@@ -42,8 +42,8 @@ export default function Phase3_LossAndReality({ scrollYProgress }: Props) {
   // ブラーイン効果
   const textBlur = useTransform(
     scrollYProgress,
-    [0.3, 0.35],
-    ["blur(12px)", "blur(0px)"],
+    [0.3, 0.32, 0.65, 0.7],
+    ["blur(12px)", "blur(0px)", "blur(0px)", "blur(12px)"],
   );
 
   return (

@@ -16,12 +16,12 @@ export default function Phase5_6_BirthAndWhy() {
   // --- Phase5（誕生）のタイムライン設計 ---
   const phase5Opacity = useTransform(
     scrollYProgress,
-    [0, 0.05, 0.4, 0.5],
+    [0, 0.05, 0.35, 0.45],
     [0, 1, 1, 0],
   );
   const phase5Scale = useTransform(
     scrollYProgress,
-    [0, 0.05, 0.4, 0.5],
+    [0, 0.05, 0.35, 0.45],
     [0.75, 0.8, 0.9, 1],
   );
 
@@ -32,28 +32,28 @@ export default function Phase5_6_BirthAndWhy() {
   // --- Phase6 タイムライン設計 ---
   const h2Opacity = useTransform(
     scrollYProgress,
-    [0.45, 0.55, 0.85, 0.95],
+    [0.45, 0.55, 0.9, 0.98],
     [0, 1, 1, 0],
   );
   const h2Y = useTransform(
     scrollYProgress,
-    [0.45, 0.55, 0.85, 0.95],
+    [0.45, 0.55, 0.9, 0.98],
     [30, 0, 0, -30],
   );
 
   const pOpacity = useTransform(
     scrollYProgress,
-    [0.6, 0.7, 0.85, 0.95],
+    [0.55, 0.65, 0.9, 0.98],
     [0, 1, 1, 0],
   );
   const pY = useTransform(
     scrollYProgress,
-    [0.6, 0.7, 0.85, 0.95],
+    [0.55, 0.65, 0.9, 0.98],
     [30, 0, 0, -30],
   );
 
   return (
-    <section ref={containerRef} className="relative w-full bg-creem h-[400vh]">
+    <section ref={containerRef} className="relative w-full bg-creem h-[600vh]">
       <div className="sticky top-0 left-0 w-full h-svh overflow-hidden flex flex-col items-center justify-center">
         {/* 背景の巨大な「100」 */}
         <motion.div
