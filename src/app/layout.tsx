@@ -59,6 +59,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "",
   },
+  // Google Search Console 所有権確認用
+  verification: {
+    google: "QMnkW1azNfV0nrBvGuSKPWEhpzy5WYnqUua4XntUlEM",
+  },
 };
 
 export default function RootLayout({
