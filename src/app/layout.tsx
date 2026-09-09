@@ -1,6 +1,7 @@
 // src/app/layout.tsx
 import type { Metadata, Viewport } from "next";
 import { Noto_Sans_JP, Noto_Serif_JP } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import ScrollObserver from "@/components/layouts/ScrollObserver";
 import SmoothScroll from "@/components/layouts/SmoothScroll";
@@ -75,6 +76,19 @@ export default function RootLayout({
       lang="ja"
       className={`${notoSans.variable} ${notoSerif.variable} antialiased`}
     >
+      {/* Google Analytics (GA4) */}
+      <Script
+        src="https://www.googletagmanager.com/gtag/js?id=G-TMFN0X1T67"
+        strategy="afterInteractive"
+      />
+      <Script id="ga-init" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-TMFN0X1T67');
+        `}
+      </Script>
       <body className="min-h-screen flex flex-col font-sans bg-midblue text-text">
         <SmoothScroll>
           <ScrollObserver />
