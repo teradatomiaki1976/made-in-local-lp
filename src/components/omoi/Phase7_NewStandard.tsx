@@ -111,6 +111,8 @@ export default function Phase7_NewStandard() {
               <motion.img
                 src={src}
                 alt=""
+                loading="lazy"
+                decoding="async"
                 style={{
                   opacity: getGroupOpacity(idx),
                   willChange: "opacity",

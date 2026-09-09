@@ -3,6 +3,7 @@
 
 import { useState, useEffect, startTransition } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 const BACKGROUND_IMAGES = [
@@ -35,11 +36,30 @@ export default function LoadingPhase({
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   // 1. 画像のプリロード処理（初回のみ）
+  // Why: 全10枚（圧縮後でも合計数百KB）を一斉にプリロードすると
+  //      ネットワーク帯域を圧迫しLCPが大幅に遅延するため、
+  //      1枚目のみ即時ロードし、残りはブラウザのアイドル時間に順次ロードする
   useEffect(() => {
-    BACKGROUND_IMAGES.forEach((src) => {
-      const img = new Image();
-      img.src = src;
-    });
+    // 1枚目は即時プリロード（すぐ表示に必要）
+    const firstImg = new window.Image();
+    firstImg.src = BACKGROUND_IMAGES[0];
+
+    // 残りはアイドル時に順次ロード
+    const preloadRemaining = () => {
+      BACKGROUND_IMAGES.slice(1).forEach((src) => {
+        const img = new window.Image();
+        img.src = src;
+      });
+    };
+
+    // requestIdleCallback が使える環境では活用、なければ短い遅延で代替
+    if ("requestIdleCallback" in window) {
+      const idleId = window.requestIdleCallback(preloadRemaining);
+      return () => window.cancelIdleCallback(idleId);
+    } else {
+      const timerId = setTimeout(preloadRemaining, 200);
+      return () => clearTimeout(timerId);
+    }
   }, []);
 
   // 2. 可変リズムの画像切り替えロジック
@@ -88,15 +108,19 @@ export default function LoadingPhase({
       </AnimatePresence>
 
       {/* --- SVGロゴのフェードイン --- */}
+      {/* Why: LCP要素のため Next.js <Image priority> で最優先ロードする */}
       <motion.div
         className={cn("relative z-10 w-48 md:w-64 drop-shadow-2xl")}
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.5, ease: "easeOut" }}
       >
-        <img
+        <Image
           src="/images/logo/emblem.png"
           alt="地域を代表する企業100選 Best 100 Companies Selected By Made In Local"
+          width={500}
+          height={685}
+          priority
           className="w-full h-auto"
         />
       </motion.div>
@@ -123,3 +147,4 @@ export default function LoadingPhase({
     </motion.div>
   );
 }
+

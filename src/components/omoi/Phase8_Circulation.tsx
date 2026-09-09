@@ -147,7 +147,6 @@ export default function Phase8_Circulation() {
               alt=""
               aria-hidden="true"
               fill
-              priority
               className="object-cover"
               sizes="100vw"
             />

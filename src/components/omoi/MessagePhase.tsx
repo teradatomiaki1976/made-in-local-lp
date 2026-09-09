@@ -189,7 +189,6 @@ export default function MessagePhase({ scrollYProgress }: Props) {
                 fill
                 sizes="20vw"
                 className="object-cover opacity-70"
-                priority={index < 2}
               />
             </div>
           ))}
@@ -227,7 +226,6 @@ export default function MessagePhase({ scrollYProgress }: Props) {
                 fill
                 sizes="20vw"
                 className="object-cover opacity-70"
-                priority={index < 2} // ★ 先回り提案
               />
             </div>
           ))}
@@ -262,7 +260,6 @@ export default function MessagePhase({ scrollYProgress }: Props) {
                 fill
                 sizes="60vw"
                 className="object-cover opacity-70"
-                priority={index < 2}
               />
             </div>
           ))}
@@ -297,7 +294,6 @@ export default function MessagePhase({ scrollYProgress }: Props) {
                 fill
                 sizes="60vw"
                 className="object-cover opacity-70"
-                priority={index < 2}
               />
             </div>
           ))}

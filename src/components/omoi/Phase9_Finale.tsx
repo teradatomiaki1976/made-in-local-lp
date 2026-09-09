@@ -149,6 +149,8 @@ function Phase9Content() {
             >
               <motion.img
                 src="/images/phase9/founder-1.webp"
+                loading="lazy"
+                decoding="async"
                 style={{ opacity: img1Opacity }}
                 className="absolute inset-0 w-full h-full object-cover"
                 alt=""
@@ -156,6 +158,8 @@ function Phase9Content() {
               />
               <motion.img
                 src="/images/phase9/founder-2.webp"
+                loading="lazy"
+                decoding="async"
                 style={{ opacity: img2Opacity }}
                 className="absolute inset-0 w-full h-full object-cover"
                 alt=""
@@ -163,6 +167,8 @@ function Phase9Content() {
               />
               <motion.img
                 src="/images/phase9/founder-3.webp"
+                loading="lazy"
+                decoding="async"
                 style={{ opacity: img3Opacity }}
                 className="absolute inset-0 w-full h-full object-cover"
                 alt="発起人 石井智大"
