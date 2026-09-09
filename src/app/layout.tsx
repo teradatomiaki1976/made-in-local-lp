@@ -25,6 +25,8 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
+  // Why: metadataBase を設定することで OG画像等の相対パスが自動で絶対URLに解決される
+  metadataBase: new URL("https://100selection-lp.madeinlocal.jp"),
   title: "地域を代表する企業100選 | Made In Local",
   description:
     "知らない企業から、記憶に残る企業へ。地域から本気で日本を変えたい。",
@@ -37,7 +39,7 @@ export const metadata: Metadata = {
     title: "地域を代表する企業100選 | Made In Local",
     description:
       "知らない企業から、記憶に残る企業へ。地域から本気で日本を変えたい。",
-    url: "",
+    url: "https://100selection-lp.madeinlocal.jp",
     siteName: "Made In Local",
     images: [
       {
@@ -58,7 +60,7 @@ export const metadata: Metadata = {
     images: ["/images/og-image.jpg"],
   },
   alternates: {
-    canonical: "",
+    canonical: "https://100selection-lp.madeinlocal.jp",
   },
   // Google Search Console 所有権確認用
   verification: {
@@ -90,6 +92,36 @@ export default function RootLayout({
         `}
       </Script>
       <body className="min-h-screen flex flex-col font-sans bg-midblue text-text">
+        {/* 構造化データ (JSON-LD): Google検索でのリッチリザルト表示に有効 */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@graph": [
+                {
+                  "@type": "WebSite",
+                  name: "地域を代表する企業100選 | Made In Local",
+                  url: "https://100selection-lp.madeinlocal.jp",
+                  description:
+                    "知らない企業から、記憶に残る企業へ。地域から本気で日本を変えたい。",
+                  inLanguage: "ja",
+                  publisher: { "@id": "#organization" },
+                },
+                {
+                  "@type": "Organization",
+                  "@id": "#organization",
+                  name: "Made In Local",
+                  url: "https://100selection-lp.madeinlocal.jp",
+                  logo: {
+                    "@type": "ImageObject",
+                    url: "https://100selection-lp.madeinlocal.jp/images/logo/emblem.png",
+                  },
+                },
+              ],
+            }),
+          }}
+        />
         <SmoothScroll>
           <ScrollObserver />
           {children}
