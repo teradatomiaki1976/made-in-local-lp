@@ -8,6 +8,8 @@ import type { MetadataRoute } from "next";
 
 const BASE_URL = "https://100selection-lp.madeinlocal.jp";
 
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
