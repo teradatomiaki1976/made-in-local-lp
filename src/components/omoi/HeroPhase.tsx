@@ -201,6 +201,8 @@ export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
               <motion.img
                 key={`b1-${index}`}
                 src={img.src}
+                alt="" // ここは装飾画像なのでaltは空にする
+                aria-hidden="true"
                 className={`absolute object-cover rounded-md shadow-md ${img.className} will-change-transform`}
                 initial={{ opacity: 0, filter: "grayscale(100%) blur(10px)" }}
                 animate={{ opacity: 0.8, filter: "grayscale(0%) blur(0px)" }} // ここを統一
@@ -218,6 +220,8 @@ export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
               <motion.img
                 key={`b2-${index}`}
                 src={img.src}
+                alt="" // ここは装飾画像なのでaltは空にする
+                aria-hidden="true"
                 loading="lazy"
                 decoding="async"
                 className={`absolute object-cover rounded-md shadow-md ${img.className} will-change-transform`}
