@@ -16,7 +16,10 @@ import Phase7_NewStandard from "@/components/omoi/Phase7_NewStandard";
 import Phase8_Circulation from "@/components/omoi/Phase8_Circulation";
 import Phase9_Finale from "@/components/omoi/Phase9_Finale";
 import GlobalFooter from "@/components/layouts/GlobalFooter";
-import TeaserPhase from "@/components/shikumi/TeaserPhase";
+
+import ShikumiPageWrapper from "@/components/shikumi/ShikumiPageWrapper";
+import HeroLeftBrain from "@/components/shikumi/HeroLeftBrain";
+
 import { cn } from "@/lib/utils";
 
 export default function Home() {
@@ -138,16 +141,9 @@ export default function Home() {
         </AnimatePresence>
       </div>
 
-      <div
-        className={cn(
-          "w-full relative min-h-screen",
-          activePage === "shikumi" ? "block" : "hidden",
-        )}
-        aria-hidden={activePage !== "shikumi"}
-        {...({ inert: activePage !== "shikumi" ? true : undefined } as any)}
-      >
-        <TeaserPhase />
-      </div>
+      <AnimatePresence mode="wait">
+        {activePage === "shikumi" && <ShikumiPageWrapper key="shikumi-page" />}
+      </AnimatePresence>
 
       {(activePage === "shikumi" || omoiPhase === "hero") && (
         <GlobalFooter activePage={activePage} onPageChange={handlePageChange} />
