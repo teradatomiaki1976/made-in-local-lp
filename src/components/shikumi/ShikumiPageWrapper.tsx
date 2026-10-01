@@ -15,7 +15,8 @@ export default function ShikumiPageWrapper() {
       className="w-full flex flex-col bg-white"
     >
       {/* 1. FVセクション */}
-      <TeaserPhase />
+      {/* <TeaserPhase /> */}
+      <HeroLeftBrain />
     </motion.div>
   );
 }
