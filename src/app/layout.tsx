@@ -1,6 +1,6 @@
 // src/app/layout.tsx
 import type { Metadata, Viewport } from "next";
-import { Noto_Sans_JP, Noto_Serif_JP } from "next/font/google";
+import { Noto_Sans_JP, Noto_Serif_JP, Libre_Bodoni } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import ScrollObserver from "@/components/layouts/ScrollObserver";
@@ -16,6 +16,13 @@ const notoSerif = Noto_Serif_JP({
   variable: "--font-noto-serif",
   subsets: ["latin"],
   display: "swap",
+});
+
+const libreBodoni = Libre_Bodoni({
+  variable: "--font-libre-bodoni",
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["400", "500", "600", "700"],
 });
 
 export const viewport: Viewport = {
@@ -76,7 +83,7 @@ export default function RootLayout({
   return (
     <html
       lang="ja"
-      className={`${notoSans.variable} ${notoSerif.variable} antialiased`}
+      className={`${notoSans.variable} ${notoSerif.variable} ${libreBodoni.variable} antialiased`}
     >
       {/* Google Analytics (GA4) */}
       <Script

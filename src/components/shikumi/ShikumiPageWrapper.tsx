@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import TeaserPhase from "./TeaserPhase";
 import HeroLeftBrain from "./HeroLeftBrain";
+import IntroLeftBrain from "./IntroLeftBrain";
 
 export default function ShikumiPageWrapper() {
   return (
@@ -17,6 +18,7 @@ export default function ShikumiPageWrapper() {
       {/* 1. FVセクション */}
       {/* <TeaserPhase /> */}
       <HeroLeftBrain />
+      <IntroLeftBrain />
     </motion.div>
   );
 }

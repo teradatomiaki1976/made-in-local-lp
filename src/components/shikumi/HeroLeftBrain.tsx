@@ -39,12 +39,11 @@ const PILLARS = [
 
 export default function HeroLeftBrain() {
   return (
-    // 【修正】 pt-[100px] md:pt-[120px] を追加し、ヘッダーの高さを考慮
-    <section className="relative w-full h-screen min-h-[800px] overflow-hidden flex flex-col items-center justify-center bg-[#f4f7f9] pt-[100px] md:pt-[120px]">
+    <section className="relative w-full min-h-[calc(100dvh-72px)] md:min-h-[100dvh] overflow-hidden flex flex-col items-center justify-center bg-[#f4f7f9]">
       {/* 1. 最背面背景画像 */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/shikumi/bg-left-brain.webp"
+          src="/images/shikumi/bg-left_fv.webp"
           alt=""
           fill
           priority
@@ -111,7 +110,7 @@ export default function HeroLeftBrain() {
       </div>
 
       {/* 3. コンテンツエリア（前面） */}
-      <div className="relative z-20 flex flex-col items-center text-center">
+      <div className="relative z-20 flex flex-col items-center justify-center text-center w-full h-full pt-[60px] pb-0 md:pt-[100px] md:pb-[50px]">
         {/* エンブレム */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -119,7 +118,7 @@ export default function HeroLeftBrain() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="mb-8"
         >
-          <div className="text-sm font-bold text-[#9a8452] tracking-widest mb-4">
+          <div className="text-sm font-bold tracking-[2] mb-2 md:mb-4">
             ── 地域を代表する企業100選 ──
           </div>
         </motion.div>
@@ -128,55 +127,120 @@ export default function HeroLeftBrain() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
         >
-          <h1 className="text-4xl md:text-6xl font-bold leading-tight tracking-tight text-[#111821] mb-6">
+          <h1 className="text-3xl md:text-7xl font-bold leading-tight tracking-tight mb-6 text-shadow-sm text-shadow-white">
             企業の価値を、
             <br />
             見つけ、選び、社会へ。
           </h1>
-          <p className="text-lg md:text-xl text-gray-700 font-medium">
+          <p className="text-base md:text-xl font-medium">
             まだ知られていない、すごい会社を、世の中へ。
           </p>
         </motion.div>
 
         {/* トロフィー画像 */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
+          initial={{ opacity: 0.4, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, ease: "easeOut", delay: 0.5 }}
-          className="mt-12 relative w-64 h-80 md:w-80 md:h-[400px]"
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
+          className="mt-4 relative w-56 h-64 md:w-80 md:h-[360px]"
         >
-          {/* 【修正】 浮遊アニメーションのラッパー motion.div を削除し、どっしり置く */}
           <Image
-            src="/images/shikumi/trophy-shadow.webp"
-            alt="100選 トロフィー"
+            src="/images/shikumi/trophy.webp"
+            alt="地域を代表する企業100選 トロフィー"
             fill
             priority
             className="object-contain"
-            sizes="(max-width: 768px) 256px, 320px"
+            sizes="(max-width: 768px) 224px, 320px"
           />
         </motion.div>
       </div>
 
       {/* 4. 下部アーチ形状 */}
-      <div className="absolute bottom-0 left-0 w-full z-30">
-        <div
-          className="w-full h-24 md:h-32 bg-[#111821]"
-          style={{ borderRadius: "50% 50% 0 0 / 100% 100% 0 0" }}
-        ></div>
-
-        <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
-          <span className="text-white text-xs tracking-widest font-serif mb-2">
-            Scroll
-          </span>
-          <div className="w-px h-16 bg-white/20 relative overflow-hidden">
-            <motion.div
-              animate={{ y: ["-100%", "100%"] }}
-              transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
-              className="absolute top-0 left-0 w-full h-full bg-white"
-            />
+      <div className="absolute bottom-0 left-0 w-full z-30 flex flex-col">
+        <div className="w-full h-28 md:h-34 relative">
+          {/* Scrollガイド */}
+          <div className="absolute top-14 md:top-6 left-1/2 transform -translate-x-1/2 flex flex-col items-center z-20">
+            <span className="text-white text-[10px] md:text-xs tracking-widest font-serif mb-1 md:mb-2 drop-shadow-md">
+              Scroll
+            </span>
+            <div className="w-px h-10 md:h-16 bg-white/20 relative overflow-hidden">
+              <motion.div
+                animate={{ y: ["-100%", "100%"] }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+                className="absolute top-0 left-0 w-full h-full bg-white"
+              />
+            </div>
           </div>
+
+          {/* スマホ用SVG (md:未満で表示) */}
+          <svg
+            viewBox="0 0 1440 120"
+            preserveAspectRatio="none"
+            className="absolute bottom-0 left-0 w-full h-full block md:hidden"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <linearGradient id="archGradientSp" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0%" stopColor="#1B4A84" />
+                <stop offset="100%" stopColor="#19324D" />
+              </linearGradient>
+              <filter id="archNoiseSp">
+                <feTurbulence
+                  type="fractalNoise"
+                  baseFrequency="0.85"
+                  numOctaves="3"
+                  stitchTiles="stitch"
+                />
+              </filter>
+            </defs>
+            <path
+              d="M0,120 L0,80 Q720,20 1440,80 L1440,120 Z"
+              fill="url(#archGradientSp)"
+            />
+            <path
+              d="M0,120 L0,80 Q720,20 1440,80 L1440,120 Z"
+              fill="white"
+              filter="url(#archNoiseSp)"
+              style={{ mixBlendMode: "overlay", opacity: 0.15 }}
+              pointerEvents="none"
+            />
+          </svg>
+
+          {/* PC用SVG (md:以上で表示) */}
+          <svg
+            viewBox="0 0 1440 120"
+            preserveAspectRatio="none"
+            className="absolute bottom-0 left-0 w-full h-full hidden md:block"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <defs>
+              <linearGradient id="archGradientPc" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0%" stopColor="#1B4A84" />
+                <stop offset="100%" stopColor="#19324D" />
+              </linearGradient>
+              <filter id="archNoisePc">
+                <feTurbulence
+                  type="fractalNoise"
+                  baseFrequency="0.85"
+                  numOctaves="3"
+                  stitchTiles="stitch"
+                />
+              </filter>
+            </defs>
+            <path
+              d="M0,120 L0,80 Q720,-60 1440,80 L1440,120 Z"
+              fill="url(#archGradientPc)"
+            />
+            <path
+              d="M0,120 L0,80 Q720,-60 1440,80 L1440,120 Z"
+              fill="white"
+              filter="url(#archNoisePc)"
+              style={{ mixBlendMode: "overlay", opacity: 0.15 }}
+              pointerEvents="none"
+            />
+          </svg>
         </div>
       </div>
     </section>

@@ -4,6 +4,7 @@
 @theme inline {
   --font-sans: var(--font-noto-sans);
   --font-serif: var(--font-noto-serif);
+  --font-bodoni: var(--font-libre-bodoni);
 
   --color-midblue: #003064;
   --color-deepblue: #001935;

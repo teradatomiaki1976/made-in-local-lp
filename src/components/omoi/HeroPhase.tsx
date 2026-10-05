@@ -240,7 +240,7 @@ export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
         {/* --- 2. 中央メッセージテキスト --- */}
         <motion.div className="relative z-10 flex flex-col items-center text-center pointer-events-none py-80 px-48 rounded-full bg-[radial-gradient(circle,#fefbf1_30%,transparent_60%)]">
           <h1
-            className="font-serif font-bold md:font-semibold text-4xl md:text-8xl leading-tight text-nowrap text-shadow-lg text-shadow-white"
+            className="font-serif font-bold md:font-semibold text-4xl md:text-8xl leading-tight text-nowrap text-shadow-md text-shadow-white"
             aria-label="地域から本気で日本を変えたい"
           >
             <span aria-hidden="true">
@@ -257,20 +257,13 @@ export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
             animate={{ opacity: 0.7 }}
             transition={{ delay: 4.5, duration: 1.5, ease: "easeOut" }}
           >
-            <span className="font-serif text-xs md:text-lg tracking-widest">
-              Scroll
-            </span>
-            <div className="relative w-px h-20 overflow-hidden">
+            <span className="font-serif text-xs tracking-widest">Scroll</span>
+            <div className="relative w-px h-16 overflow-hidden">
               <div className="absolute inset-0 w-full h-full bg-midblue/50" />
               <motion.div
-                className="absolute w-full h-1/2 bg-midblue"
-                initial={{ y: "-100%" }}
-                animate={{ y: "200%" }}
-                transition={{
-                  duration: 1.5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
+                animate={{ y: ["-100%", "100%"] }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+                className="absolute top-0 left-0 w-full h-full bg-white"
               />
             </div>
           </motion.div>
