@@ -110,7 +110,7 @@ export default function HeroLeftBrain() {
       </div>
 
       {/* 3. コンテンツエリア（前面） */}
-      <div className="relative z-20 flex flex-col items-center justify-center text-center w-full h-full pt-[60px] pb-0 md:pt-[100px] md:pb-[50px]">
+      <div className="relative z-20 flex flex-col items-center justify-center text-center w-full h-full pt-[100px] pb-0 md:pt-[100px] md:pb-[50px]">
         {/* エンブレム */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -130,12 +130,12 @@ export default function HeroLeftBrain() {
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
         >
           <h1 className="text-3xl md:text-7xl font-bold leading-tight tracking-tight mb-6 text-shadow-sm text-shadow-white">
-            企業の価値を、
+            企業の価値を
             <br />
-            見つけ、選び、社会へ。
+            見つけ、選び、社会へ
           </h1>
           <p className="text-base md:text-xl font-medium">
-            まだ知られていない、すごい会社を、世の中へ。
+            まだ知られていない、すごい会社を、世の中へ
           </p>
         </motion.div>
 
@@ -144,7 +144,7 @@ export default function HeroLeftBrain() {
           initial={{ opacity: 0.4, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
-          className="mt-4 relative w-56 h-64 md:w-80 md:h-[360px]"
+          className="mt-6 relative w-56 h-64 md:w-80 md:h-[360px]"
         >
           <Image
             src="/images/shikumi/trophy.webp"
@@ -159,9 +159,9 @@ export default function HeroLeftBrain() {
 
       {/* 4. 下部アーチ形状 */}
       <div className="absolute bottom-0 left-0 w-full z-30 flex flex-col">
-        <div className="w-full h-28 md:h-34 relative">
+        <div className="w-full h-30 md:h-34 relative">
           {/* Scrollガイド */}
-          <div className="absolute top-14 md:top-6 left-1/2 transform -translate-x-1/2 flex flex-col items-center z-20">
+          <div className="absolute top-18 md:top-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center z-20">
             <span className="text-white text-[10px] md:text-xs tracking-widest font-serif mb-1 md:mb-2 drop-shadow-md">
               Scroll
             </span>
@@ -196,11 +196,11 @@ export default function HeroLeftBrain() {
               </filter>
             </defs>
             <path
-              d="M0,120 L0,80 Q720,20 1440,80 L1440,120 Z"
+              d="M0,120 L0,80 Q720,40 1440,80 L1440,120 Z"
               fill="url(#archGradientSp)"
             />
             <path
-              d="M0,120 L0,80 Q720,20 1440,80 L1440,120 Z"
+              d="M0,120 L0,80 Q720,40 1440,80 L1440,120 Z"
               fill="white"
               filter="url(#archNoiseSp)"
               style={{ mixBlendMode: "overlay", opacity: 0.15 }}

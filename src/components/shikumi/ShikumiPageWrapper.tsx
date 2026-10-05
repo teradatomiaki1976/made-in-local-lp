@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import TeaserPhase from "./TeaserPhase";
 import HeroLeftBrain from "./HeroLeftBrain";
 import IntroLeftBrain from "./IntroLeftBrain";
+import Section2 from "./Section2";
+import Section3 from "./Section3";
 
 export default function ShikumiPageWrapper() {
   return (
@@ -15,10 +17,10 @@ export default function ShikumiPageWrapper() {
       transition={{ duration: 0.5, ease: "easeInOut" }}
       className="w-full flex flex-col bg-white"
     >
-      {/* 1. FVセクション */}
-      {/* <TeaserPhase /> */}
       <HeroLeftBrain />
       <IntroLeftBrain />
+      <Section2 />
+      <Section3 />
     </motion.div>
   );
 }

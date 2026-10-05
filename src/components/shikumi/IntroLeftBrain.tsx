@@ -118,7 +118,7 @@ export default function IntroLeftBrain() {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 1, delay: 0.6 }}
-              className="text-white text-xs border-t border-white/20 pt-6 mt-6 text-right"
+              className="font-sans text-white text-xs border-t border-white/20 pt-6 mt-6 text-right"
             >
               地方創生メディア「Made In Local」が選定
             </motion.p>
