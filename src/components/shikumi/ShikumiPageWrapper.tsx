@@ -6,6 +6,7 @@ import HeroLeftBrain from "./HeroLeftBrain";
 import IntroLeftBrain from "./IntroLeftBrain";
 import Section2 from "./Section2";
 import Section3 from "./Section3";
+import Section4 from "./Section4";
 
 export default function ShikumiPageWrapper() {
   return (
@@ -21,6 +22,7 @@ export default function ShikumiPageWrapper() {
       <IntroLeftBrain />
       <Section2 />
       <Section3 />
+      <Section4 />
     </motion.div>
   );
 }

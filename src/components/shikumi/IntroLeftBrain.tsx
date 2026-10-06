@@ -4,6 +4,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
 import { FiChevronRight } from "react-icons/fi";
+import { Heading2, Text } from "@/components/ui/Typography";
 
 // --- サブコンポーネント: 1文字ずつのアニメーション制御 ---
 const Char = ({
@@ -46,7 +47,7 @@ export default function IntroLeftBrain() {
 
   // アニメーションさせるテキスト（\n で改行位置を指定）
   const leadText =
-    "地域には、まだ十分に知られていないだけで、独自の技術を持つ会社。\n新しい産業をつくる会社。\n地域の暮らしを支える会社。\n未来に残すべき事業を続ける会社があります。\n\n「地域を代表する企業100選」は、売上や知名度だけでは見つけられない、地域の未来をつくる企業を発見し、選出し、その価値を社会へ伝えるプロジェクトです。";
+    "地域には、まだ十分に知られていないだけで、独自の技術を持つ会社。新しい産業をつくる会社。地域の暮らしを支える会社。\n未来に残すべき事業を続ける会社があります。\n\n「地域を代表する企業100選」は、売上や知名度だけでは見つけられない、地域の未来をつくる企業を発見し、選出し、その価値を社会へ伝えるプロジェクトです。";
   const characters = Array.from(leadText);
 
   return (
@@ -78,17 +79,14 @@ export default function IntroLeftBrain() {
         </motion.div>
 
         {/* メイン見出し */}
-        <motion.div
+        <Heading2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-center mb-16 md:mb-24"
         >
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight">
-            まだ知られていないだけ
-          </h2>
-        </motion.div>
+          まだ知られていないだけ
+        </Heading2>
 
         {/* スクロール連動テキストエリア */}
         <div

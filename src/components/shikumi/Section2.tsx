@@ -43,7 +43,6 @@ export default function Section2() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className=""
         >
           この地域を、誰がつくっているのか。
         </Heading2>

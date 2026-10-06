@@ -42,12 +42,23 @@ export default function Section3() {
     },
   };
 
+  // 【修正】左右が中央に近づいたタイミング（0.6秒後）で「×」を出現させる
   const crossPop: Variants = {
     hidden: { opacity: 0, scale: 0.4 },
     visible: {
       opacity: 1,
       scale: 1,
-      transition: { duration: 0.8, delay: 0.4, ease: "backOut" },
+      transition: { duration: 0.8, delay: 0.6, ease: "backOut" },
+    },
+  };
+
+  // 【新規追加】下部カード専用のVariant。「×」が出た後（1.2秒後）にフェードイン
+  const cardsFadeUp: Variants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, delay: 1.2, ease: "easeOut" },
     },
   };
 
@@ -133,7 +144,7 @@ export default function Section3() {
 
           {/* --- 解説カード --- */}
           <motion.div
-            variants={itemFadeUp}
+            variants={cardsFadeUp}
             className="w-full flex flex-col md:flex-row items-stretch justify-center gap-6 md:gap-10 z-10"
           >
             {/* 左カード */}
