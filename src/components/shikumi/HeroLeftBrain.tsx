@@ -39,7 +39,7 @@ const PILLARS = [
 
 export default function HeroLeftBrain() {
   return (
-    <section className="relative w-full min-h-[calc(100dvh-72px)] md:min-h-[100dvh] overflow-hidden flex flex-col items-center justify-center bg-[#f4f7f9]">
+    <section className="relative w-full min-h-[calc(100dvh-72px)] md:min-h-[100dvh] overflow-hidden flex flex-col bg-[#f4f7f9]">
       {/* 1. 最背面背景画像 */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -110,7 +110,7 @@ export default function HeroLeftBrain() {
       </div>
 
       {/* 3. コンテンツエリア（前面） */}
-      <div className="relative z-20 flex flex-col items-center justify-center text-center w-full h-full pt-[100px] pb-0 md:pt-[100px] md:pb-[50px]">
+      <div className="relative z-20 flex flex-col items-center justify-center text-center w-full flex-1 px-4 pt-[100px] pb-0 md:pt-[120px] md:pb-[80px]">
         {/* エンブレム */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -125,11 +125,11 @@ export default function HeroLeftBrain() {
 
         {/* キャッチコピー */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
         >
-          <h1 className="text-3xl md:text-7xl font-bold leading-tight tracking-tight mb-6 text-shadow-sm text-shadow-white">
+          <h1 className="text-[clamp(1.875rem,5vw,4.5rem)] font-bold leading-tight tracking-tight mb-6 text-shadow-sm text-shadow-white">
             企業の価値を
             <br />
             見つけ、選び、社会へ
@@ -141,10 +141,10 @@ export default function HeroLeftBrain() {
 
         {/* トロフィー画像 */}
         <motion.div
-          initial={{ opacity: 0.4, scale: 0.9 }}
+          initial={{ opacity: 0.4, scale: 0.94 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
-          className="mt-6 relative w-56 h-64 md:w-80 md:h-[360px]"
+          transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+          className="mt-12 md:mt-16 relative w-56 h-[min(256px,30vh)] md:w-80 md:h-[min(360px,35vh)] shrink-0"
         >
           <Image
             src="/images/shikumi/trophy.webp"
@@ -192,7 +192,9 @@ export default function HeroLeftBrain() {
                   baseFrequency="0.85"
                   numOctaves="3"
                   stitchTiles="stitch"
+                  result="noise"
                 />
+                <feComposite operator="in" in="noise" in2="SourceGraphic" />
               </filter>
             </defs>
             <path
@@ -226,7 +228,9 @@ export default function HeroLeftBrain() {
                   baseFrequency="0.85"
                   numOctaves="3"
                   stitchTiles="stitch"
+                  result="noise"
                 />
+                <feComposite operator="in" in="noise" in2="SourceGraphic" />
               </filter>
             </defs>
             <path

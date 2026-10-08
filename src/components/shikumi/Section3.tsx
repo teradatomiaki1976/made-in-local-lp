@@ -84,19 +84,29 @@ export default function Section3() {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={containerVariants}
-          className="flex flex-col items-center mb-6 md:mb-8"
+          className="mb-12 md:mb-16"
         >
           <motion.div variants={itemFadeUp} className="mb-6 md:mb-8">
-            <span className="bg-[linear-gradient(135deg,#FFFFFF_32%,#DDDDDD_53%,#BABABA_67%,#E2E2E2_76%,#FFFFFF_88%)] text-[#19324D] text-xs md:text-sm font-bodoni tracking-widest px-6 py-1.5 shadow-sm">
+            <span className="bg-[linear-gradient(135deg,#FFFFFF_32%,#DDDDDD_53%,#BABABA_67%,#E2E2E2_76%,#FFFFFF_88%)] text-[#19324D] text-xs md:text-sm font-bodoni tracking-widest px-6 py-1 shadow-sm">
               What determines it?
             </span>
           </motion.div>
-          <motion.div variants={itemFadeUp}>
-            <Heading2>何をもって、地域を代表とするのか？</Heading2>
-          </motion.div>
-          <motion.div variants={itemFadeUp}>
-            <Text>その審査基準は</Text>
-          </motion.div>
+          <Heading2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            何をもって、地域を代表とするのか？
+          </Heading2>
+          <Text
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            その審査基準は
+          </Text>
         </motion.div>
 
         <motion.div

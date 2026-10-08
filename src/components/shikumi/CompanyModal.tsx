@@ -100,7 +100,7 @@ export default function CompanyModal({
                 </div>
 
                 {/* メインビジュアル */}
-                <div className="relative w-full aspect-[4/2] md:aspect-video bg-gray-100 rounded-md overflow-hidden mb-6 md:mb-8">
+                <div className="relative w-full aspect-[5/2] bg-gray-100 rounded-md overflow-hidden mb-6 md:mb-8">
                   <Image
                     src={`${company.mainImagePath}`}
                     alt={`${company.name}の現場写真`}

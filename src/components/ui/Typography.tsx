@@ -29,7 +29,7 @@ interface TextProps extends HTMLMotionProps<"p"> {
 export function Text({ children, className = "", ...props }: TextProps) {
   return (
     <motion.p
-      className={`text-lg md:text-2xl leading-loose text-left ${className}`}
+      className={`text-lg md:text-2xl leading-loose text-left md:text-center mx-auto ${className}`}
       {...props}
     >
       {children}
