@@ -111,7 +111,7 @@ export default function CompanyModal({
                 </div>
 
                 {/* 企業説明テキスト */}
-                <Dialog.Description className="text-[12px] md:text-[15px] leading-base m-0 pb-4">
+                <Dialog.Description className="text-[12px] md:text-[15px] leading-relaxed m-0 pb-4 font-sans">
                   {company.desc}
                 </Dialog.Description>
               </div>

@@ -125,7 +125,7 @@ export default function Section7() {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={itemFadeUp}
-          className="w-full max-w-5xl bg-white rounded-xl shadow-2xl p-8 md:p-16 text-midblue flex flex-col items-center text-center"
+          className="w-full max-w-5xl bg-white rounded-xl shadow-2xl p-5 md:p-16 text-midblue flex flex-col items-center text-center"
         >
           <div className="mb-12">
             <Heading2>
@@ -133,16 +133,19 @@ export default function Section7() {
               <br className="md:hidden" />
               社会との新しい接点へ
             </Heading2>
-            <Text className="md:text-left">
-              選出されたことを、しまっておく必要はありません。自社サイトでも。採用の場でも。
-              営業の場でも。会社説明会でも。名刺でも。オフィスでも。
+            <Text>
+              選出されたことを、しまっておく必要はありません。
+              <br />
+              自社サイトでも。採用の場でも。営業の場でも。
+              <br />
+              会社説明会でも。名刺でも。オフィスでも。
             </Text>
           </div>
 
           {/* 活用シーンのグリッド（SP: 1列, PC: 2列） */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
-            <div className="relative w-full aspect-[4/3] bg-gray-100 rounded-md border border-gray-200 flex items-center justify-center overflow-hidden">
-              <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-text font-bold bg-white/90 py-3 px-5 tracking-wide text-xl z-1 whitespace-nowrap drop-shadow-lg">
+          <div className="grid grid-cols-2 gap-2 md:gap-6 w-full max-w-2xl">
+            <div className="relative w-full aspect-[1/1] rounded-full border border-gray-200 flex items-center justify-center overflow-hidden">
+              <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-text font-bold bg-white/90 py-1 px-2 md:py-3 md:px-5 tracking-wide text-xs md:text-xl z-1 whitespace-nowrap drop-shadow-lg">
                 Web・採用の接点で
               </span>
               <Image
@@ -153,8 +156,8 @@ export default function Section7() {
               />
             </div>
 
-            <div className="relative w-full aspect-[4/3] bg-gray-100 rounded-md border border-gray-200 flex items-center justify-center overflow-hidden">
-              <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-text font-bold bg-white/90 py-3 px-5 tracking-wide text-xl z-1 whitespace-nowrap drop-shadow-lg">
+            <div className="relative w-full aspect-[1/1] rounded-full border border-gray-200 flex items-center justify-center overflow-hidden">
+              <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-text font-bold bg-white/90 py-1 px-2 md:py-3 md:px-5 tracking-wide text-xs md:text-xl z-1 whitespace-nowrap drop-shadow-lg">
                 営業・商談の接点で
               </span>
               <Image
@@ -165,8 +168,8 @@ export default function Section7() {
               />
             </div>
 
-            <div className="relative w-full aspect-[4/3] rounded-md border border-gray-200 flex items-center justify-center overflow-hidden">
-              <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-text font-bold bg-white/90 py-3 px-5 tracking-wide text-xl z-1 whitespace-nowrap drop-shadow-lg">
+            <div className="relative w-full aspect-[1/1] rounded-full border border-gray-200 flex items-center justify-center overflow-hidden">
+              <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-text font-bold bg-white/90 py-1 px-2 md:py-3 md:px-5 tracking-wide text-xs md:text-xl z-1 whitespace-nowrap drop-shadow-lg">
                 会社の空間で
               </span>
               <Image
@@ -177,8 +180,8 @@ export default function Section7() {
               />
             </div>
 
-            <div className="relative w-full aspect-[4/3] bg-gray-100 rounded-md border border-gray-200 flex items-center justify-center overflow-hidden">
-              <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-text font-bold bg-white/90 py-3 px-5 tracking-wide text-xl z-1 whitespace-nowrap drop-shadow-lg">
+            <div className="relative w-full aspect-[1/1] rounded-full border border-gray-200 flex items-center justify-center overflow-hidden">
+              <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-text font-bold bg-white/90 py-1 px-2 md:py-3 md:px-5 tracking-wide text-xs md:text-xl z-1 whitespace-nowrap drop-shadow-lg">
                 発信の接点で
               </span>
               <Image

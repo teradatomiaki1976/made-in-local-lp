@@ -159,19 +159,19 @@ export default function Section3() {
             className="w-full flex flex-col md:flex-row items-stretch justify-center gap-6 md:gap-10 z-10"
           >
             {/* 左カード */}
-            <div className="flex-1 rounded-md p-3 md:p-5 shadow-lg text-text flex flex-col text-left bg-[linear-gradient(160deg,#ffffff_0%,#ffffff_29%,#ececec_47%,#ffffff_62%,#bcbcbc_80%,#ececec_100%)]">
+            <div className="flex-1 rounded-md p-3 md:p-5 shadow-lg text-text flex flex-col justify-between text-left bg-[linear-gradient(160deg,#ffffff_0%,#ffffff_29%,#ececec_47%,#ffffff_62%,#bcbcbc_80%,#ececec_100%)]">
               <h3 className="text-3xl md:text-4xl leading-tight font-bold mb-4 text-center bg-[linear-gradient(160deg,#003064_32%,#004895_53%,#0069DA_67%,#004289_76%,#003064_88%)] bg-clip-text text-transparent">
                 企業独自の
                 <br />
                 魅力を見る
               </h3>
               <div className="flex flex-col items-center justify-center gap-4 bg-white p-2 md:p-4">
-                <p className="text-base md:text-lg font-bold text-center">
+                <p className="text-lg md:text-xl font-bold text-center">
                   その企業ならではの
                   <br />
                   もっと知られるべき価値
                 </p>
-                <p className="text-xs md:text-sm font-sans leading-relaxed">
+                <p className="text-sm md:text-base font-sans leading-relaxed">
                   企業が独自に保有している技術や、製品・サービスの革新性、独自のビジネスモデル、事業の社会的意義などを見て、「地域を代表する企業100選」にふさわしい企業かを判断します。
                 </p>
               </div>
@@ -185,12 +185,12 @@ export default function Section3() {
                 への意志を見る
               </h3>
               <div className="flex flex-col items-center justify-center gap-4 bg-white p-2 md:p-4">
-                <p className="text-base md:text-lg font-bold text-center mb-4">
+                <p className="text-lg md:text-xl font-bold text-center mb-4">
                   その価値を地域の未来に
                   <br />
                   どう繋げようとしているか
                 </p>
-                <p className="text-xs md:text-sm font-sans leading-relaxed">
+                <p className="text-sm md:text-base font-sans leading-relaxed">
                   地域をより良くしたいという想い、経営者が描く未来像、その実現に向けた意志などを見て、「地域を代表する企業100選」にふさわしい企業かを判断します。
                 </p>
               </div>

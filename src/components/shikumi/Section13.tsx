@@ -122,7 +122,7 @@ export default function Section13() {
                   onClick={() => toggleFAQ(faq.id)}
                   aria-expanded={isOpen}
                   aria-controls={`faq-answer-${faq.id}`}
-                  className="w-full flex items-center justify-between bg-white/10 hover:bg-white/15 backdrop-blur-sm border border-white/10 rounded-md p-5 md:p-6 text-left transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
+                  className="w-full flex items-center justify-between bg-white/10 hover:bg-white/15 backdrop-blur-sm border border-white/10 rounded-md p-5 md:p-8 text-left transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
                 >
                   <span className="text-base md:text-lg font-bold pr-4">
                     <span className="mr-2 font-serif">Q.</span>
@@ -156,7 +156,7 @@ export default function Section13() {
                       transition={{ duration: 0.3, ease: "easeInOut" }}
                       className="overflow-hidden"
                     >
-                      <div className="bg-white text-[#19324D] rounded-b-md p-5 md:p-6 mt-1 text-sm md:text-base leading-relaxed shadow-inner">
+                      <div className="bg-white text-text font-sans text-left rounded-b-md p-5 md:p-8 mt-1 text-sm md:text-base leading-relaxed shadow-inner">
                         {faq.answer}
                       </div>
                     </motion.div>

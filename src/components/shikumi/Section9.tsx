@@ -111,7 +111,7 @@ export default function Section9() {
             variants={itemFadeUp}
             className="flex justify-center items-center mb-8 md:mb-12"
           >
-            <span className="bg-[linear-gradient(135deg,#FFFFFF_32%,#DDDDDD_53%,#BABABA_67%,#E2E2E2_76%,#FFFFFF_88%)] text-deepblue text-xs md:text-sm font-bodoni tracking-widest px-6 py-1 shadow-sm">
+            <span className="bg-[linear-gradient(135deg,#FFFFFF_32%,#DDDDDD_53%,#BABABA_67%,#E2E2E2_76%,#FFFFFF_88%)] text-text text-xs md:text-sm font-bodoni tracking-widest px-6 py-1 shadow-sm">
               Ask AI
             </span>
           </motion.div>
@@ -142,21 +142,23 @@ export default function Section9() {
             whileInView="visible"
             viewport={{ once: true, margin: "-50px" }}
             variants={itemFadeUp}
-            className="lg:col-span-2 bg-white rounded-xl shadow-xl overflow-hidden flex flex-col text-deepblue"
+            className="lg:col-span-2 bg-white rounded-xl shadow-xl overflow-hidden flex flex-col text-text"
           >
-            <div className="bg-deepblue text-white font-sans font-bold text-base md:text-xl leading-relaxed m-6 md:m-8 py-1 text-center">
-              生成AIを検索手段として利用する割合
+            <div className="bg-text text-white font-sans font-bold text-lg md:text-xl leading-relaxed m-6 md:m-8 py-1 px-2 text-center">
+              生成AIを検索手段として
+              <br className="block md:hidden" />
+              利用する割合
             </div>
-            <div className="px-6 md:px-8 pb-6 md:pb-8 flex flex-col sm:flex-row items-center gap-8 justify-center h-full">
-              {/* 💎 修正: 棒グラフエリア */}
+            <div className="px-6 md:px-8 pb-6 md:pb-8 flex flex-col sm:flex-row items-center gap-10 justify-center h-full">
+              {/* 棒グラフエリア */}
               <div
-                className="flex items-end gap-3 md:gap-4 h-full pt-4"
+                className="flex items-end gap-3 md:gap-4 h-full"
                 aria-hidden="true"
               >
                 {[
-                  { label: "2025.5", value: 21.3, height: "40%" },
-                  { label: "2025.10", value: 31.1, height: "60%" },
-                  { label: "2026.2", value: 37.0, height: "70%" },
+                  { label: "2025.5", value: 21.3, height: "30%" },
+                  { label: "2025.10", value: 31.1, height: "50%" },
+                  { label: "2026.2", value: 37.0, height: "60%" },
                   {
                     label: "2026.8",
                     value: 52.3,
@@ -164,14 +166,17 @@ export default function Section9() {
                     isHighlight: true,
                   },
                 ].map((item, idx) => (
-                  <div key={idx} className="flex flex-col items-center gap-2">
+                  <div
+                    key={idx}
+                    className="flex flex-col items-center gap-2 h-full"
+                  >
                     <span
-                      className={`text-[10px] md:text-xs font-bold ${item.isHighlight ? "text-[#C3A800]" : "text-gray-500"}`}
+                      className={`text-sm md:text-base font-bold ${item.isHighlight ? "text-text2" : "text-text"}`}
                     >
-                      {item.value}%
+                      {item.value}
+                      <span className="text-xs">%</span>
                     </span>
-                    {/* 親に h-24 を持たせて計算基準を作る */}
-                    <div className="w-8 md:w-10 h-24 flex items-end">
+                    <div className="w-10 md:w-12 h-30 md:h-full flex items-end">
                       <motion.div
                         initial={{ height: "0%" }}
                         whileInView={{ height: item.height }}
@@ -181,37 +186,41 @@ export default function Section9() {
                           delay: idx * 0.1,
                           ease: "easeOut",
                         }}
-                        className={`w-full rounded-t-sm ${item.isHighlight ? "bg-[#FFD666]" : "bg-[#FFD666]/40"}`}
+                        className={`w-full ${item.isHighlight ? "bg-[#FFD666]" : "bg-[#FFD666]/40"}`}
                       />
                     </div>
-                    <span className="text-[10px] text-gray-400 font-sans tracking-tighter">
+                    <span className="text-[10px] text-text font-sans tracking-tighter">
                       {item.label}
                     </span>
                   </div>
                 ))}
               </div>
 
-              <div className="hidden sm:block w-px h-32 bg-gray-200"></div>
+              <div className="hidden sm:block w-px h-full bg-text/30"></div>
 
               {/* 年代別利用率 */}
-              <div className="flex flex-col items-center justify-center gap-4">
-                <span className="text-xs md:text-sm font-bold text-gray-500">
+              <div className="flex flex-col w-full items-center justify-center gap-8">
+                <span className="text-lg md:text-base font-bold font-sans bg-text text-white px-4 py-0.5 w-full text-center">
                   年代別利用率
                 </span>
-                <div className="text-center">
-                  <div className="text-xs font-bold border-b border-deepblue pb-1 mb-1">
-                    10代
+                <div className="flex md:flex-col w-full justify-evenly items-center md:gap-6">
+                  <div className="text-center">
+                    <div className="text-base font-bold font-sans border-b border-text/30 pb-1 mb-1">
+                      10代
+                    </div>
+                    <div className="text-3xl md:text-4xl font-serif font-bold text-text2">
+                      <CountUp to={80.6} />
+                      <span className="text-base ml-1">%</span>
+                    </div>
                   </div>
-                  <div className="text-3xl md:text-4xl font-serif font-bold text-deepblue">
-                    <CountUp to={80.6} />%
-                  </div>
-                </div>
-                <div className="text-center">
-                  <div className="text-xs font-bold border-b border-gray-300 pb-1 mb-1 text-gray-500">
-                    20代
-                  </div>
-                  <div className="text-2xl md:text-3xl font-serif font-bold text-gray-600">
-                    <CountUp to={60.0} />%
+                  <div className="text-center">
+                    <div className="text-base font-bold font-sans border-b border-text/30 pb-1 mb-1 text-text">
+                      20代
+                    </div>
+                    <div className="text-3xl md:text-4xl font-serif font-bold text-text2">
+                      <CountUp to={60.0} />
+                      <span className="text-base ml-1">%</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -219,7 +228,7 @@ export default function Section9() {
             <div className="sr-only">
               生成AIを検索手段として利用する割合は、2026年8月時点で52.3%に上昇。年代別利用率では10代が80.6%、20代が60.0%となっています。
             </div>
-            <div className="px-4 py-2 text-[8px] md:text-[10px] text-gray-400 bg-gray-50 text-right">
+            <div className="px-4 py-2 text-[8px] md:text-[10px] text-text font-sans bg-text/10 text-right">
               出典：株式会社サイバーエージェント GEO
               Lab「生成AIのユーザー利用実態調査」
             </div>
@@ -231,7 +240,7 @@ export default function Section9() {
             whileInView="visible"
             viewport={{ once: true, margin: "-50px" }}
             variants={itemFadeUp}
-            className="lg:col-span-1 bg-white rounded-xl shadow-xl p-6 md:p-8 flex flex-col justify-center items-center text-deepblue"
+            className="lg:col-span-1 bg-white rounded-xl shadow-xl p-6 md:p-8 flex flex-col justify-center items-center text-text"
           >
             <p className="font-bold text-base md:text-xl leading-relaxed mb-8 text-center md:text-left">
               AIは、Web上に存在する
@@ -265,7 +274,7 @@ export default function Section9() {
                     r="45"
                     fill="none"
                     stroke="#19324D"
-                    strokeWidth="1"
+                    strokeWidth="0.5"
                   />
                   <motion.circle
                     variants={drawCircle}
@@ -274,7 +283,7 @@ export default function Section9() {
                     r="45"
                     fill="none"
                     stroke="#19324D"
-                    strokeWidth="1"
+                    strokeWidth="0.5"
                   />
                   <motion.circle
                     variants={drawCircle}
@@ -283,7 +292,7 @@ export default function Section9() {
                     r="45"
                     fill="none"
                     stroke="#19324D"
-                    strokeWidth="1"
+                    strokeWidth="0.5"
                   />
                   <motion.circle
                     variants={drawCircle}
@@ -292,7 +301,7 @@ export default function Section9() {
                     r="45"
                     fill="none"
                     stroke="#19324D"
-                    strokeWidth="1"
+                    strokeWidth="0.5"
                   />
 
                   {/* 円が描かれた後にテキストをフェードイン */}
@@ -358,13 +367,13 @@ export default function Section9() {
           </motion.div>
         </div>
 
-        {/* 下段：62.2% インパクトカード */}
+        {/* 下段：62.2% */}
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
           variants={itemFadeUp}
-          className="w-full max-w-5xl bg-white rounded-xl shadow-xl overflow-hidden flex flex-col text-deepblue"
+          className="w-full max-w-5xl bg-white rounded-xl shadow-xl overflow-hidden flex flex-col text-text"
         >
           <div className="p-8 md:p-12 text-center flex flex-col items-center">
             <h3 className="text-lg md:text-2xl font-bold leading-relaxed mb-6 md:mb-10">
@@ -379,25 +388,20 @@ export default function Section9() {
                 whileInView={{ scale: 1, opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 1, ease: "backOut" }}
-                className="text-[72px] md:text-[100px] font-serif font-bold leading-none tracking-tighter"
-                style={{
-                  background:
-                    "linear-gradient(160deg, #5B4A14 0%, #8C752B 50%, #4D3F11 100%)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                }}
+                className="text-[80px] md:text-[140px] font-serif font-bold leading-none tracking-tighter w-full text-center text-text2"
               >
-                <CountUp to={62.2} />%
+                <CountUp to={62.2} />
+                <span className="text-2xl md:text-6xl ml-1">%</span>
               </motion.div>
 
               <div className="text-left max-w-sm flex flex-col gap-4">
-                <p className="text-sm md:text-base font-bold">
+                <p className="text-sm md:text-base font-sans">
                   選出企業を対象にGoogle AI Modeで調査。
                   <br />
                   Made In
                   Localの引用、または「地域を代表する企業100選」への言及を確認。
                 </p>
-                <p className="text-[10px] md:text-xs text-gray-500 leading-relaxed">
+                <p className=" text-[8px] md:text-[10px] text-text font-sans leading-relaxed">
                   ※2026年8月、「地域を代表する企業100選」選出企業を対象にGoogle
                   AI
                   Modeで調査。AI回答を取得できた1,271社のうち791社、62.2%でMade

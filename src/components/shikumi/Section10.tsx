@@ -99,9 +99,9 @@ export default function Section10() {
           >
             <CountUp
               to={1500}
-              className="text-7xl md:text-[120px] font-serif font-bold text-[#5B4A14] leading-none tracking-tighter mr-2"
+              className="text-[80px] md:text-[140px] font-serif font-bold text-text2 leading-none tracking-tighter mr-2"
             />
-            <span className="text-2xl md:text-4xl font-bold text-[#5B4A14]">
+            <span className="text-2xl md:text-4xl font-bold text-text2">
               社超
             </span>
           </motion.div>
@@ -124,7 +124,7 @@ export default function Section10() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="w-full max-w-5xl bg-white rounded-xl shadow-xl border border-gray-100 p-8 md:p-12"
+          className="w-full max-w-5xl bg-white rounded-xl shadow-md border border-gray-100 p-8 md:p-12"
         >
           <div className="flex flex-col lg:flex-row gap-10">
             {/* テキストエリア */}
@@ -136,7 +136,7 @@ export default function Section10() {
                 <br />
                 企業交流会。
               </h3>
-              <p className=" text-midblue leading-loose">
+              <p className=" text-midblue leading-relaxed">
                 「地域を代表する企業100選」の先出企業同士がつながる交流会を、毎月1回以上開催しています。選出企業同士だからこそ、互いに一定の信頼や期待感を持った状態で出会うことができ、初対面でも話が進みやすく、商談や事業連携につながる機会が生まれています。
               </p>
             </div>
@@ -166,10 +166,10 @@ export default function Section10() {
                   <img
                     src={img.src}
                     alt={`${img.label}での企業交流会の様子`}
-                    className="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110"
+                    className="object-cover w-full h-full"
                     loading="lazy"
                   />
-                  <div className="absolute top-2 left-2 bg-[#00A859] text-white text-[10px] md:text-xs font-bold px-3 py-1 rounded-full shadow-md z-10">
+                  <div className="absolute top-2 left-2 bg-text font-sans text-white text-[10px] md:text-xs font-bold px-3 py-1 rounded-full shadow-md z-10">
                     {img.label}
                   </div>
                 </div>

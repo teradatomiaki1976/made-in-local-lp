@@ -19,13 +19,32 @@ interface CaseStudy {
 }
 
 // --- データ構造 ---
-const tabData: { id: TabId; label: string; en: string }[] = [
-  { id: "recruit", label: "採用で生まれた変化", en: "Recruit" },
-  { id: "business", label: "ビジネスで生まれた変化", en: "Business" },
-  { id: "media", label: "発信で生まれた変化", en: "Media" },
+const tabData: {
+  id: TabId;
+  label: string;
+  mobileLabels: string[];
+  en: string;
+}[] = [
+  {
+    id: "recruit",
+    label: "採用で生まれた変化",
+    mobileLabels: ["採用で", "生まれた", "変化"],
+    en: "Recruit",
+  },
+  {
+    id: "business",
+    label: "ビジネスで生まれた変化",
+    mobileLabels: ["ビジネスで", "生まれた", "変化"],
+    en: "Business",
+  },
+  {
+    id: "media",
+    label: "発信で生まれた変化",
+    mobileLabels: ["発信で", "生まれた", "変化"],
+    en: "Media",
+  },
 ];
 
-// 💎 エラー原因解消：全タブ分のデータを用意
 const caseStudies: Record<TabId, CaseStudy[]> = {
   recruit: [
     {
@@ -182,7 +201,7 @@ export default function Section8() {
           </Text>
         </motion.div>
         {/* --- タブ＆コンテンツエリア --- */}
-        <div className="w-full max-w-5xl flex flex-col lg:flex-row gap-2 lg:gap-0 relative">
+        <div className="w-full max-w-5xl flex flex-col lg:flex-row gap-3 lg:gap-0 relative">
           {/* 左：タブリスト */}
           <div
             role="tablist"
@@ -191,22 +210,6 @@ export default function Section8() {
             {tabData.map((tab) => {
               const isActive = activeTab === tab.id;
 
-              // スマホ表示時の自然な改行位置を作るための簡易処理
-              // （※より厳密にするならtabDataに配列で持たせるのがベスト）
-              const formatLabelForMobile = (label: string) => {
-                const parts = label.split(/(で|生まれた)/);
-                return (
-                  <span className="block lg:inline">
-                    <span className="block lg:inline">
-                      {parts[0]}
-                      {parts[1]}
-                    </span>
-                    <span className="block lg:inline">{parts[2]}</span>
-                    <span className="block lg:inline">{parts[3]}</span>
-                  </span>
-                );
-              };
-
               return (
                 <button
                   key={tab.id}
@@ -214,7 +217,7 @@ export default function Section8() {
                   aria-selected={isActive}
                   onClick={() => setActiveTab(tab.id)}
                   className={`
-                    relative flex flex-col lg:flex-row bg-white items-center justify-center lg:justify-between px-0 py-8 lg:px-6 lg:py-8 rounded-lg border border-text2/30 
+                    relative flex flex-col lg:flex-row bg-white items-center justify-center lg:justify-between px-0 py-6 lg:px-6 lg:py-8 rounded-lg border border-text2/30 
                     transition-all duration-300 ease-out 
                     
                     /* PCホバー時のアクション (大きくして右に被せる) */
@@ -236,11 +239,19 @@ export default function Section8() {
                       {tab.en}
                     </span>
                     <h3 className="text-[13px] md:text-base lg:text-xl font-bold mt-2 md:mt-3 tracking-wide text-text leading-snug lg:leading-normal">
-                      {formatLabelForMobile(tab.label)}
+                      <span className="hidden lg:inline">{tab.label}</span>
+                      {/* スマホ表示用 */}
+                      <span className="lg:hidden">
+                        {tab.mobileLabels.map((text, i) => (
+                          <span key={i} className="block">
+                            {text}
+                          </span>
+                        ))}
+                      </span>
                     </h3>
                   </div>
 
-                  {/* スマホ用アイコン (下矢印 ∨) */}
+                  {/* スマホ用アイコン (下矢印) */}
                   <span
                     className={`mt-2 lg:hidden transition-transform duration-300 flex items-center justify-center ${
                       isActive ? "text-text translate-y-1" : "text-gray-300"
@@ -260,7 +271,7 @@ export default function Section8() {
                     </svg>
                   </span>
 
-                  {/* PC用アイコン (右矢印 ＞) */}
+                  {/* PC用アイコン (右矢印) */}
                   <span
                     className={`hidden lg:block text-xl transition-transform duration-300 ${
                       isActive ? "translate-x-1 text-text" : "text-gray-300"
@@ -284,7 +295,7 @@ export default function Section8() {
             })}
           </div>
 
-          {/* 右：コンテンツエリア（Framer Motion） */}
+          {/* 右：コンテンツエリア */}
           <div className="relative z-0 lg:w-2/3 lg:flex-1 bg-white rounded-2xl shadow-md border border-text2/30 p-6 md:p-10 lg:pl-14 min-h-[500px]">
             <AnimatePresence mode="wait">
               <motion.div

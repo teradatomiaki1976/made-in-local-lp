@@ -115,7 +115,7 @@ export default function Section6() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="mb-16 flex flex-col items-center text-center w-full"
+          className="mb-8 md:mb-16 flex flex-col items-center text-center w-full"
         >
           <p className="text-sm md:text-base border border-gray-400 px-6 py-2 mb-8 bg-white inline-block">
             「地域を代表する企業100選」は
@@ -160,7 +160,7 @@ export default function Section6() {
         {/* 実績バッジ */}
         <motion.div
           variants={itemFadeUp}
-          className="flex flex-col md:flex-row gap-4 md:gap-8 justify-center w-full max-w-3xl mb-20"
+          className="flex flex-col md:flex-row gap-4 md:gap-8 justify-center w-full max-w-3xl mb-12 md:mb-20"
         >
           <div className="flex-1 flex justify-center items-center gap-3 p-6 rounded shadow-md text-center bg-[linear-gradient(160deg,#FFE121_29%,#FFEE65_63%,#F1D41A_83%,#F6D601_100%)]">
             <FaCrown className="text-6xl text-[#000000] mix-blend-overlay inset-shadow-sm" />
@@ -220,12 +220,12 @@ export default function Section6() {
                 <div className="flex-1 flex flex-col w-full h-full justify-between py-2">
                   <div>
                     <h3 className="text-lg md:text-xl font-bold mb-3 flex group-hover:text-[#004895] transition-colors">
-                      <span className="hidden md:block border border-midblue px-2 py-1 text-xs font-sans mr-2">
+                      <span className="hidden md:block border border-text px-2 py-1 text-xs font-sans mr-2">
                         {article.tag}
                       </span>
                       {article.title}
                     </h3>
-                    <p className="text-sm text-gray-600 leading-relaxed line-clamp-2 md:line-clamp-none">
+                    <p className="text-base text-text font-sans leading-relaxed line-clamp-2 md:line-clamp-none">
                       {article.description}
                     </p>
                   </div>
