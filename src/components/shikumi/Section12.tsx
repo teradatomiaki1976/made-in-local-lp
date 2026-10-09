@@ -62,7 +62,7 @@ export default function Section12() {
         >
           <motion.div
             variants={itemFadeUp}
-            className="flex justify-center items-center mb-6 md:mb-8"
+            className="flex justify-center items-center mb-8 md:mb-12"
           >
             <span className="bg-[linear-gradient(135deg,#003064_32%,#004895_53%,#0052AA_67%,#004289_76%,#003064_88%)] text-white text-xs md:text-sm font-bodoni tracking-widest px-6 py-1 shadow-sm">
               Selection Process

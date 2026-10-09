@@ -39,12 +39,13 @@ const PILLARS = [
 
 export default function HeroLeftBrain() {
   return (
-    <section className="relative w-full min-h-[calc(100dvh-72px)] md:min-h-[100dvh] overflow-hidden flex flex-col bg-[#f4f7f9]">
+    <section className="relative w-full min-h-[calc(100dvh-72px)] md:min-h-[100dvh] overflow-hidden flex flex-col">
       {/* 1. 最背面背景画像 */}
       <div className="absolute inset-0 z-0">
         <Image
           src="/images/shikumi/bg-left_fv.webp"
           alt=""
+          aria-hidden="true"
           fill
           priority
           className="object-cover object-center"
@@ -79,9 +80,9 @@ export default function HeroLeftBrain() {
                 left: pillar.offset,
                 opacity: pillar.opacity,
                 backgroundImage:
-                  "linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%)",
+                  "linear-gradient(0deg, rgba(220,255,253,1) 0%, rgba(220,255,253,0) 100%)",
                 backgroundSize: "100% 400%",
-                boxShadow: "0 0 60px rgba(255, 255, 255, 0.6)",
+                boxShadow: "0 0 60px rgba(220,255,253, 0.6)",
               }}
             />
             {/* 右側の柱（左側と対称） */}
@@ -100,9 +101,9 @@ export default function HeroLeftBrain() {
                 right: pillar.offset,
                 opacity: pillar.opacity,
                 backgroundImage:
-                  "linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%)",
+                  "linear-gradient(0deg, rgba(220,255,253,1) 0%, rgba(220,255,253,0) 100%)",
                 backgroundSize: "100% 400%",
-                boxShadow: "0 0 60px rgba(255, 255, 255, 0.6)",
+                boxShadow: "0 0 60px rgba(220,255,253, 0.6)",
               }}
             />
           </div>
@@ -118,8 +119,10 @@ export default function HeroLeftBrain() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="mb-8"
         >
-          <div className="text-sm font-bold tracking-[2] mb-2 md:mb-4">
-            ── 地域を代表する企業100選 ──
+          <div className="text-sm font-bold mb-2 md:mb-4">
+            ──{" "}
+            <span className="px-2 tracking-[4]">地域を代表する企業100選</span>{" "}
+            ──
           </div>
         </motion.div>
 

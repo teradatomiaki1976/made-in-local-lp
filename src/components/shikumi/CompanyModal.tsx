@@ -120,7 +120,7 @@ export default function CompanyModal({
               <div className="shrink-0 bg-white/95 backdrop-blur-sm border-t border-gray-100 p-4 md:p-6 flex flex-col items-center z-10 shadow-[0_-4px_10px_rgba(0,0,0,0.02)]">
                 <div className="flex justify-center w-full">
                   <a
-                    href={`/100sen/companies/${company.id}`}
+                    href={`https://madeinlocal.jp/category/companies/${company.id}`}
                     className="w-full md:w-auto inline-flex items-center justify-center bg-[#003064] text-white font-bold text-sm tracking-wider py-4 px-6 md:px-10 rounded-md transition-all hover:bg-[#004895] hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-[#003064] focus:ring-offset-2"
                   >
                     → 100選特設ページを見る

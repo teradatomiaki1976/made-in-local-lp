@@ -13,7 +13,7 @@ export function Heading2({
 }: Heading2Props) {
   return (
     <motion.h2
-      className={`text-2xl md:text-5xl font-bold tracking-tight leading-normal mb-8 md:mb-12 text-left md:text-center ${className}`}
+      className={`text-3xl md:text-5xl font-bold tracking-tight leading-normal mb-8 md:mb-12 text-left md:text-center ${className}`}
       {...props}
     >
       {children}

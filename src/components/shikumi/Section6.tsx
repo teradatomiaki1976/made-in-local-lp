@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Heading2, Text } from "@/components/ui/Typography";
+import { FaCrown } from "react-icons/fa";
 
 // 外部API連携を見据えたモックデータ
 const mockArticles = [
@@ -101,7 +102,7 @@ export default function Section6() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
-          className="mb-12 md:mb-16"
+          className="mb-8 md:mb-12"
         >
           <span className="bg-[linear-gradient(135deg,#003064_32%,#004895_53%,#0052AA_67%,#004289_76%,#003064_88%)] text-white text-xs md:text-sm font-bodoni tracking-widest px-6 py-1 shadow-sm">
             madeinlocal.jp
@@ -124,10 +125,11 @@ export default function Section6() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, delay: 0.2 }}
+            className="flex md:block flex-col items-center"
           >
             地方創生メディア
             <span className="text-text2">『Made In Local』</span>
-            <br />
+            <br className="hidden md:block" />
             が選定しています
           </Heading2>
 
@@ -160,21 +162,27 @@ export default function Section6() {
           variants={itemFadeUp}
           className="flex flex-col md:flex-row gap-4 md:gap-8 justify-center w-full max-w-3xl mb-20"
         >
-          <div className="flex-1 bg-gradient-to-br from-[#FFD666] to-[#FDB813] p-6 rounded shadow-md text-center">
-            <p className="text-xs md:text-sm font-bold text-gray-800 mb-1">
-              〈地方創生メディア SEO〉
-            </p>
-            <p className="text-2xl md:text-3xl font-bold text-gray-900">
-              4年連続 No.1
-            </p>
+          <div className="flex-1 flex justify-center items-center gap-3 p-6 rounded shadow-md text-center bg-[linear-gradient(160deg,#FFE121_29%,#FFEE65_63%,#F1D41A_83%,#F6D601_100%)]">
+            <FaCrown className="text-6xl text-[#000000] mix-blend-overlay inset-shadow-sm" />
+            <div className="flex flex-col items-center justify-center">
+              <p className="text-xs md:text-sm font-bold text-gray-800 mb-1">
+                〈地方創生メディア SEO〉
+              </p>
+              <p className="text-2xl md:text-3xl font-bold text-gray-900">
+                4年連続 No.1
+              </p>
+            </div>
           </div>
-          <div className="flex-1 bg-gradient-to-br from-[#FFD666] to-[#FDB813] p-6 rounded shadow-md text-center">
-            <p className="text-xs md:text-sm font-bold text-gray-800 mb-1">
-              〈開始から5年で全国〉
-            </p>
-            <p className="text-2xl md:text-3xl font-bold text-gray-900">
-              選出1,500社超
-            </p>
+          <div className="flex-1 flex justify-center items-center gap-3 p-6 rounded shadow-md text-center bg-[linear-gradient(160deg,#FFE121_29%,#FFEE65_63%,#F1D41A_83%,#F6D601_100%)]">
+            <FaCrown className="text-6xl text-[#000000] mix-blend-overlay inset-shadow-sm" />
+            <div className="flex flex-col items-center justify-center">
+              <p className="text-xs md:text-sm font-bold text-gray-800 mb-1">
+                〈開始から5年で全国〉
+              </p>
+              <p className="text-2xl md:text-3xl font-bold text-gray-900">
+                選出1,500社超
+              </p>
+            </div>
           </div>
         </motion.div>
 
@@ -212,7 +220,7 @@ export default function Section6() {
                 <div className="flex-1 flex flex-col w-full h-full justify-between py-2">
                   <div>
                     <h3 className="text-lg md:text-xl font-bold mb-3 flex group-hover:text-[#004895] transition-colors">
-                      <span className="border border-midblue px-2 py-1 text-xs mr-2">
+                      <span className="hidden md:block border border-midblue px-2 py-1 text-xs font-sans mr-2">
                         {article.tag}
                       </span>
                       {article.title}

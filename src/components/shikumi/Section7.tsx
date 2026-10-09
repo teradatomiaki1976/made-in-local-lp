@@ -48,7 +48,7 @@ export default function Section7() {
         >
           <motion.div
             variants={itemFadeUp}
-            className="flex justify-center items-center mb-6 md:mb-8"
+            className="flex justify-center items-center mb-8 md:mb-12"
           >
             <span className="bg-[linear-gradient(135deg,#FFFFFF_32%,#DDDDDD_53%,#BABABA_67%,#E2E2E2_76%,#FFFFFF_88%)] text-[#19324D] text-xs md:text-sm font-bodoni tracking-widest px-6 py-1 shadow-sm">
               If selected
@@ -84,12 +84,12 @@ export default function Section7() {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={containerVariants}
-          className="flex flex-col md:flex-row gap-8 justify-center items-center w-full mb-24"
+          className="flex gap-4 md:gap-8 justify-center items-center w-full mb-12 md:mb-24"
         >
           {/* エンブレム */}
           <motion.div
             variants={itemFadeUp}
-            className="w-48 h-48 md:w-64 md:h-64 rounded-full flex items-center justify-center shadow-xl p-6 md:p-8  bg-[linear-gradient(160deg,#ffffff_0%,#ffffff_29%,#ececec_47%,#ffffff_62%,#bcbcbc_80%,#ececec_100%)]"
+            className="w-36 h-36 md:w-64 md:h-64 rounded-full flex items-center justify-center shadow-xl p-6 md:p-8  bg-[linear-gradient(160deg,#ffffff_0%,#ffffff_29%,#ececec_47%,#ffffff_62%,#bcbcbc_80%,#ececec_100%)]"
           >
             {/* overflow-hiddenを外し、タイポを修正。パディングで安全な余白を確保 */}
             <div className="relative w-full h-full flex items-center justify-center">
@@ -105,12 +105,12 @@ export default function Section7() {
           {/* 認定証 */}
           <motion.div
             variants={itemFadeUp}
-            className="w-48 h-48 md:w-64 md:h-64 rounded-full flex items-center justify-center shadow-xl p-6 md:p-8  bg-[linear-gradient(160deg,#ffffff_0%,#ffffff_29%,#ececec_47%,#ffffff_62%,#bcbcbc_80%,#ececec_100%)]"
+            className="w-36 h-36 md:w-64 md:h-64 rounded-full flex items-center justify-center shadow-xl p-6 md:p-8  bg-[linear-gradient(160deg,#ffffff_0%,#ffffff_29%,#ececec_47%,#ffffff_62%,#bcbcbc_80%,#ececec_100%)]"
           >
             {/* overflow-hiddenを外し、タイポを修正。パディングで安全な余白を確保 */}
             <div className="relative w-full h-full flex items-center justify-center">
               <Image
-                src="/images/shikumi/section7/certificate.webp"
+                src="/images/shikumi/section7/certificate2.webp"
                 alt="100選認定証"
                 fill
                 className="object-contain"
@@ -142,27 +142,51 @@ export default function Section7() {
           {/* 活用シーンのグリッド（SP: 1列, PC: 2列） */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
             <div className="relative w-full aspect-[4/3] bg-gray-100 rounded-md border border-gray-200 flex items-center justify-center overflow-hidden">
-              <span className="text-gray-400 text-sm">
-                Image: Web・採用の接点で
+              <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-text font-bold bg-white/90 py-3 px-5 tracking-wide text-xl z-1 whitespace-nowrap drop-shadow-lg">
+                Web・採用の接点で
               </span>
-              {/* <Image src="/images/shikumi/section7/scene-web.jpg" alt="Webや採用サイトでのエンブレム活用例" fill className="object-cover" /> */}
+              <Image
+                src="/images/shikumi/section7/scene-web.webp"
+                alt="Webや採用サイトでのエンブレム活用例"
+                fill
+                className="object-cover"
+              />
             </div>
 
             <div className="relative w-full aspect-[4/3] bg-gray-100 rounded-md border border-gray-200 flex items-center justify-center overflow-hidden">
-              <span className="text-gray-400 text-sm">
-                Image: 営業・商談の接点で
+              <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-text font-bold bg-white/90 py-3 px-5 tracking-wide text-xl z-1 whitespace-nowrap drop-shadow-lg">
+                営業・商談の接点で
               </span>
-              {/* <Image src="/images/shikumi/section7/scene-sales.jpg" alt="名刺や営業資料でのエンブレム活用例" fill className="object-cover" /> */}
+              <Image
+                src="/images/shikumi/section7/scene-sales.webp"
+                alt="名刺や営業資料でのエンブレム活用例"
+                fill
+                className="object-cover"
+              />
+            </div>
+
+            <div className="relative w-full aspect-[4/3] rounded-md border border-gray-200 flex items-center justify-center overflow-hidden">
+              <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-text font-bold bg-white/90 py-3 px-5 tracking-wide text-xl z-1 whitespace-nowrap drop-shadow-lg">
+                会社の空間で
+              </span>
+              <Image
+                src="/images/shikumi/section7/scene-office.webp"
+                alt="オフィスでの認定証の掲示例"
+                fill
+                className="object-cover"
+              />
             </div>
 
             <div className="relative w-full aspect-[4/3] bg-gray-100 rounded-md border border-gray-200 flex items-center justify-center overflow-hidden">
-              <span className="text-gray-400 text-sm">Image: 会社の空間で</span>
-              {/* <Image src="/images/shikumi/section7/scene-office.jpg" alt="オフィスでの認定証の掲示例" fill className="object-cover" /> */}
-            </div>
-
-            <div className="relative w-full aspect-[4/3] bg-gray-100 rounded-md border border-gray-200 flex items-center justify-center overflow-hidden">
-              <span className="text-gray-400 text-sm">Image: 発信の接点で</span>
-              {/* <Image src="/images/shikumi/section7/scene-pr.jpg" alt="PRや発信でのエンブレム活用例" fill className="object-cover" /> */}
+              <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-text font-bold bg-white/90 py-3 px-5 tracking-wide text-xl z-1 whitespace-nowrap drop-shadow-lg">
+                発信の接点で
+              </span>
+              <Image
+                src="/images/shikumi/section7/scene-pr.webp"
+                alt="PRや発信でのエンブレム活用例"
+                fill
+                className="object-cover"
+              />
             </div>
           </div>
         </motion.div>

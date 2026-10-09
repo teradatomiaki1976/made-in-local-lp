@@ -3,7 +3,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 
 import { Container } from "@/components/ui/Container";
 import { Heading2, Text } from "@/components/ui/Typography";
@@ -11,6 +11,23 @@ import { companies, Company } from "@/data/companies";
 import CompanyModal from "./CompanyModal";
 
 export default function Section4() {
+  // --- アニメーションの定義（variants） ---
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.3 },
+    },
+  };
+
+  const itemFadeUp: Variants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: "easeOut" },
+    },
+  };
   const [selectedCompany, setSelectedCompany] = useState<Company | null>(null);
 
   const carouselRef = useRef<HTMLDivElement>(null);
@@ -116,7 +133,7 @@ export default function Section4() {
   return (
     <section
       id="section4"
-      className="relative w-full bg-[linear-gradient(to_bottom,#ECFFF5_0%,#F9FDF2_30%,#F9FDF2_100%)] py-16 md:py-24 overflow-hidden"
+      className="relative w-full bg-[linear-gradient(to_bottom,#ECFFF5_0%,#F9FDF2_30%,#F9FDF2_100%)] py-24 md:py-32 overflow-hidden"
     >
       <Container className="relative z-10 flex flex-col items-center text-center shrink-0">
         <motion.div
@@ -124,31 +141,33 @@ export default function Section4() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
-          className="mb-8"
+          className="mb-12 md:mb-16"
         >
-          <span className="bg-[linear-gradient(135deg,#003064_32%,#004895_53%,#0052AA_67%,#004289_76%,#003064_88%)] text-white text-xs md:text-sm font-bodoni tracking-widest px-6 py-1.5 shadow-sm">
-            There is a reason.
-          </span>
-        </motion.div>
+          <motion.div variants={itemFadeUp} className="mb-8 md:mb-12">
+            <span className="bg-[linear-gradient(135deg,#003064_32%,#004895_53%,#0052AA_67%,#004289_76%,#003064_88%)] text-white text-xs md:text-sm font-bodoni tracking-widest px-6 py-1.5 shadow-sm">
+              There is a reason.
+            </span>
+          </motion.div>
 
-        <Heading2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          地域も、業種も、企業規模も違う。
-          <br className="hidden md:block" />
-          それでも、地域を代表する理由がある。
-        </Heading2>
-        <Text
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-        >
-          全国の選出企業から、一部をご紹介。
-        </Text>
+          <Heading2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            地域も業種も、企業規模も違う。
+            <br className="hidden md:block" />
+            それでも地域を代表する理由がある。
+          </Heading2>
+          <Text
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            全国の選出企業から、一部をご紹介。
+          </Text>
+        </motion.div>
       </Container>
 
       <div className="relative w-full mt-8 md:mt-12 flex flex-col items-start">

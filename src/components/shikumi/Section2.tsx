@@ -1,7 +1,7 @@
 // src/components/shikumi/Section2.tsx
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { Heading2, Text } from "@/components/ui/Typography";
@@ -18,6 +18,23 @@ const SCROLL_IMAGES = [
 const LOOP_IMAGES = [...SCROLL_IMAGES, ...SCROLL_IMAGES];
 
 export default function Section2() {
+  // --- アニメーションの定義（variants） ---
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.3 },
+    },
+  };
+
+  const itemFadeUp: Variants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: "easeOut" },
+    },
+  };
   return (
     <section
       id="section2"
@@ -30,40 +47,37 @@ export default function Section2() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
-          className="mb-12 md:mb-16"
         >
-          <span className="bg-[linear-gradient(135deg,#003064_32%,#004895_53%,#0052AA_67%,#004289_76%,#003064_88%)] text-white text-xs md:text-sm font-bodoni tracking-widest px-6 py-1 shadow-sm">
-            Who makes it?
-          </span>
-        </motion.div>
+          <motion.div variants={itemFadeUp} className="mb-8 md:mb-12">
+            <span className="bg-[linear-gradient(135deg,#003064_32%,#004895_53%,#0052AA_67%,#004289_76%,#003064_88%)] text-white text-xs md:text-sm font-bodoni tracking-widest px-6 py-1 shadow-sm">
+              Who makes it?
+            </span>
+          </motion.div>
 
-        {/* メイン見出し */}
-        <Heading2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          この地域を、誰がつくっているのか。
-        </Heading2>
+          {/* メイン見出し */}
+          <Heading2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            この地域を、誰がつくっているのか。
+          </Heading2>
 
-        {/* コピー部分 */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="flex flex-col gap-8"
-        >
-          <Text className="font-bold">
+          {/* コピー部分 */}
+          <Text
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="flex flex-col gap-8"
+          >
             地域の未来をつくっているのは、誰もが知っている企業だけではありません。
-          </Text>
-          <Text>
+            <br /> <br />
             長年磨き続けてきた技術。業界の常識を変えるサービス。
             <br className="hidden md:block" />
             地域に欠かせない仕事。次の世代へ残したい文化や産業。
-          </Text>
-          <Text>
+            <br /> <br />
             まだ広く知られていなくても、その地域だからこそ生まれた、価値ある企業がある。
             <br className="hidden md:block" />
             私たちは、そんな企業を見つけたいと考えています。
@@ -90,7 +104,7 @@ export default function Section2() {
           {LOOP_IMAGES.map((src, index) => (
             <div
               key={index}
-              className="relative w-[280px] h-[180px] md:w-[400px] md:h-[260px] rounded-md overflow-hidden shadow-sm shrink-0"
+              className="relative w-[200px] h-[130px] md:w-[400px] md:h-[260px] rounded-md overflow-hidden shadow-sm shrink-0"
             >
               <Image
                 src={src}

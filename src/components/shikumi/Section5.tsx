@@ -44,9 +44,9 @@ export default function Section5() {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={containerVariants}
-          className="mb-12 md:mb-16"
+          className="mb-4 md:mb-16"
         >
-          <motion.div variants={itemFadeUp} className="mb-6 md:mb-8">
+          <motion.div variants={itemFadeUp} className="mb-8 md:mb-12">
             <span className="bg-[linear-gradient(135deg,#FFFFFF_32%,#DDDDDD_53%,#BABABA_67%,#E2E2E2_76%,#FFFFFF_88%)] text-[#19324D] text-xs md:text-sm font-bodoni tracking-widest px-6 py-1 shadow-sm">
               Worthless?
             </span>
@@ -69,40 +69,43 @@ export default function Section5() {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={containerVariants}
-          className="relative flex flex-col md:flex-row justify-center items-center gap-4 md:gap-0 mb-16 md:mb-20 w-full max-w-3xl"
+          // 💡 スマホ時は固定サイズ(280px)でabsoluteの基準とし、PC時はflexで横並びに切り替え
+          className="relative w-[300px] h-[300px] sm:w-[320px] sm:h-[320px] md:w-full md:h-auto md:max-w-3xl mx-auto flex md:flex-row justify-center items-center mb-16 md:mb-20"
           aria-label="プロセス：すでにある価値を見つける、評価する、そして社会に伝える"
         >
-          {/* 円1 */}
+          {/* 円1 (スマホ: 上段中央 / PC: 左) */}
           <motion.div
             variants={itemFadeUp}
-            className="w-48 h-48 md:w-56 md:h-56 rounded-full border border-white/20 bg-white/5 flex flex-col items-center justify-center z-10 -mb-16 md:mb-0 md:-mr-8"
+            className="absolute top-5 md:top-0 left-0 right-0 mx-auto md:mx-0 md:static w-40 h-40 sm:w-48 sm:h-48 md:w-66 md:h-66 rounded-full border border-white/20 bg-white/5 flex flex-col items-center justify-center z-10 md:mb-0 md:-mr-8"
           >
-            <p className="text-sm md:text-base leading-relaxed text-center">
+            <p className="text-sm md:text-xl leading-relaxed text-center">
               すでにある
               <br />
-              <span className="text-lg md:text-xl font-bold">
+              <span className="text-base md:text-2xl font-bold">
                 「価値を見つける」
               </span>
             </p>
           </motion.div>
-          {/* 円2 */}
+
+          {/* 円2 (スマホ: 下段左 / PC: 中央) */}
           <motion.div
             variants={itemFadeUp}
-            className="w-48 h-48 md:w-56 md:h-56 rounded-full border border-white/20 bg-white/10 flex flex-col items-center justify-center z-20 shadow-lg"
+            className="absolute bottom-0 left-0 md:static w-40 h-40 sm:w-48 sm:h-48 md:w-66 md:h-66 rounded-full border border-white/20 bg-white/10 flex flex-col items-center justify-center z-20 shadow-lg"
           >
-            <p className="text-lg md:text-xl font-bold text-center">
+            <p className="text-lg md:text-2xl font-bold text-center">
               「評価する」
             </p>
           </motion.div>
-          {/* 円3 */}
+
+          {/* 円3 (スマホ: 下段右 / PC: 右) */}
           <motion.div
             variants={itemFadeUp}
-            className="w-48 h-48 md:w-56 md:h-56 rounded-full border border-white/20 bg-white/5 flex flex-col items-center justify-center z-10 -mt-16 md:mt-0 md:-ml-8"
+            className="absolute bottom-0 right-0 md:static w-40 h-40 sm:w-48 sm:h-48 md:w-66 md:h-66 rounded-full border border-white/20 bg-white/5 flex flex-col items-center justify-center z-10 md:mt-0 md:-ml-8"
           >
-            <p className="text-sm md:text-base leading-relaxed text-center">
+            <p className="text-sm md:text-xl leading-relaxed text-center">
               そして
               <br />
-              <span className="text-lg md:text-xl font-bold">
+              <span className="text-base md:text-2xl font-bold">
                 「社会に伝える」
               </span>
             </p>

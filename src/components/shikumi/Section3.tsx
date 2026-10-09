@@ -86,7 +86,7 @@ export default function Section3() {
           variants={containerVariants}
           className="mb-12 md:mb-16"
         >
-          <motion.div variants={itemFadeUp} className="mb-6 md:mb-8">
+          <motion.div variants={itemFadeUp} className="mb-8 md:mb-12">
             <span className="bg-[linear-gradient(135deg,#FFFFFF_32%,#DDDDDD_53%,#BABABA_67%,#E2E2E2_76%,#FFFFFF_88%)] text-[#19324D] text-xs md:text-sm font-bodoni tracking-widest px-6 py-1 shadow-sm">
               What determines it?
             </span>
@@ -104,6 +104,7 @@ export default function Section3() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, delay: 0.4 }}
+            className="flex justify-center"
           >
             その審査基準は
           </Text>
@@ -120,11 +121,11 @@ export default function Section3() {
           className="relative w-full max-w-4xl flex flex-col items-center justify-center"
         >
           <div className="relative w-full flex flex-row items-center justify-center px-4 md:px-12 mb-12 md:mb-16 z-20">
-            <motion.div variants={leftSlide} className="text-center">
+            <motion.div variants={leftSlide} className="text-center -mt-10">
               <div className="text-[#FFD666] text-center text-xl md:text-5xl font-medium italic leading-relaxed tracking-wider">
                 知られるべき
                 <br />
-                <span className="text-4xl md:text-7xl italic tracking-wider bg-gradient-to-b from-[#FFD666] to-[#C3A800] bg-clip-text text-transparent">
+                <span className="text-5xl md:text-7xl italic tracking-wider bg-gradient-to-b from-[#FFD666] to-[#C3A800] bg-clip-text text-transparent">
                   魅力
                 </span>
               </div>
@@ -132,20 +133,20 @@ export default function Section3() {
 
             <motion.div
               variants={crossPop}
-              className="relative shrink-0 w-12 h-12 md:w-20 md:h-20 flex items-center justify-center mx-4 md:mx-10 opacity-80"
+              className="relative shrink-0 w-10 h-10 md:w-20 md:h-20 flex items-center justify-center mx-2 md:mx-10 opacity-80"
             >
-              <div className="absolute w-[1px] md:w-[2px] h-full bg-white transform -rotate-45"></div>
-              <div className="absolute w-[1px] md:w-[2px] h-[250%] bg-white transform rotate-45"></div>
+              <div className="absolute w-[1px] h-full bg-white transform -rotate-45"></div>
+              <div className="absolute w-[1px] h-[250%] bg-white transform rotate-45"></div>
             </motion.div>
 
             <motion.div
               variants={rightSlide}
-              className="text-center pt-10 md:pt-20"
+              className="text-center pt-15 -ml-1 md:pt-20 md:ml-0"
             >
               <div className="text-[#FFD666] text-center text-xl md:text-5xl font-medium italic leading-relaxed tracking-wider">
                 未来への
                 <br />
-                <span className="text-4xl md:text-7xl italic tracking-wider bg-gradient-to-b from-[#FFD666] to-[#C3A800] bg-clip-text text-transparent">
+                <span className="text-5xl md:text-7xl italic tracking-wider bg-gradient-to-b from-[#FFD666] to-[#C3A800] bg-clip-text text-transparent">
                   意志
                 </span>
               </div>
@@ -158,8 +159,8 @@ export default function Section3() {
             className="w-full flex flex-col md:flex-row items-stretch justify-center gap-6 md:gap-10 z-10"
           >
             {/* 左カード */}
-            <div className="flex-1 rounded-md p-2 md:p-4 shadow-lg text-text flex flex-col text-left bg-[linear-gradient(160deg,#ffffff_0%,#ffffff_29%,#ececec_47%,#ffffff_62%,#bcbcbc_80%,#ececec_100%)]">
-              <h3 className="text-2xl md:text-4xl leading-tight font-bold mb-4 text-center bg-[linear-gradient(160deg,#003064_32%,#004895_53%,#0069DA_67%,#004289_76%,#003064_88%)] bg-clip-text text-transparent">
+            <div className="flex-1 rounded-md p-3 md:p-5 shadow-lg text-text flex flex-col text-left bg-[linear-gradient(160deg,#ffffff_0%,#ffffff_29%,#ececec_47%,#ffffff_62%,#bcbcbc_80%,#ececec_100%)]">
+              <h3 className="text-3xl md:text-4xl leading-tight font-bold mb-4 text-center bg-[linear-gradient(160deg,#003064_32%,#004895_53%,#0069DA_67%,#004289_76%,#003064_88%)] bg-clip-text text-transparent">
                 企業独自の
                 <br />
                 魅力を見る
@@ -177,8 +178,8 @@ export default function Section3() {
             </div>
 
             {/* 右カード */}
-            <div className="flex-1 rounded-md p-2 md:p-4 shadow-lg text-text flex flex-col text-left bg-[linear-gradient(160deg,#ffffff_0%,#ffffff_29%,#ececec_47%,#ffffff_62%,#bcbcbc_80%,#ececec_100%)]">
-              <h3 className="text-2xl md:text-4xl leading-tight font-bold mb-4 text-center bg-[linear-gradient(160deg,#003064_32%,#004895_53%,#0069DA_67%,#004289_76%,#003064_88%)] bg-clip-text text-transparent">
+            <div className="flex-1 rounded-md p-3 md:p-5 shadow-lg text-text flex flex-col text-left bg-[linear-gradient(160deg,#ffffff_0%,#ffffff_29%,#ececec_47%,#ffffff_62%,#bcbcbc_80%,#ececec_100%)]">
+              <h3 className="text-3xl md:text-4xl leading-tight font-bold mb-4 text-center bg-[linear-gradient(160deg,#003064_32%,#004895_53%,#0069DA_67%,#004289_76%,#003064_88%)] bg-clip-text text-transparent">
                 地域の未来
                 <br />
                 への意志を見る

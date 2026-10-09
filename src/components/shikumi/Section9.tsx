@@ -109,7 +109,7 @@ export default function Section9() {
         >
           <motion.div
             variants={itemFadeUp}
-            className="flex justify-center items-center mb-6 md:mb-8"
+            className="flex justify-center items-center mb-8 md:mb-12"
           >
             <span className="bg-[linear-gradient(135deg,#FFFFFF_32%,#DDDDDD_53%,#BABABA_67%,#E2E2E2_76%,#FFFFFF_88%)] text-deepblue text-xs md:text-sm font-bodoni tracking-widest px-6 py-1 shadow-sm">
               Ask AI

@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 import { useHeaderStore } from "@/store/useHeaderStore";
 import { FiChevronRight } from "react-icons/fi";
 import Image from "next/image";
-import Link from "next/link"; // 追加
+import Link from "next/link";
 
 type GlobalHeaderProps = {
   isVisible: boolean;
@@ -70,9 +70,10 @@ export default function GlobalHeader({
         <div
           className={cn(
             "relative flex items-center justify-center rounded-lg overflow-hidden transition-all duration-300 ease-out",
+            // SP時は縦型ロゴに合わせてwidthを小さめに設定（調整が必要）
             isPastFV
-              ? "h-12 md:h-14 w-[160px] md:w-[220px] bg-white backdrop-blur-md border border-white/40 shadow-[0_4px_12px_rgba(0,0,0,0.05)] px-2 py-1"
-              : "h-14 md:h-20 w-[180px] md:w-[300px] bg-transparent border-transparent shadow-none px-0 py-0",
+              ? "h-12 md:h-14 w-[60px] sm:w-[80px] md:w-[220px] bg-white backdrop-blur-md border border-white/40 shadow-[0_4px_12px_rgba(0,0,0,0.05)] px-2 py-1"
+              : "h-14 md:h-20 w-[70px] sm:w-[90px] md:w-[300px] bg-transparent border-transparent shadow-none px-0 py-0",
           )}
           style={{ transformOrigin: "top left" }}
         >
@@ -81,43 +82,55 @@ export default function GlobalHeader({
             onClick={handleLogoClick}
             className="relative w-full h-full block outline-none focus-visible:ring-2 focus-visible:ring-olive rounded-sm"
           >
+            {/* PC用横長ロゴ (md以上で表示) */}
             <Image
               src="/images/logo/logo_dark.svg"
-              alt="地域を代表する企業100選 Best 100 Companies Selected By Made In Local"
+              alt="地域を代表する企業100選"
               fill
               priority
-              className="object-contain"
+              className="object-contain hidden md:block"
+            />
+            {/* SP用縦型ロゴ (md未満で表示) - ※新しいアセットパスを指定 */}
+            <Image
+              src="/images/logo/emblem_dark.svg"
+              alt="地域を代表する企業100選"
+              fill
+              priority
+              className="object-contain block md:hidden"
             />
           </Link>
         </div>
 
         {/* 中央: 切り替えトグル */}
-        <div className="flex bg-white/80 rounded-full shadow-sm border border-gray-100 p-1">
+        <div className="flex bg-white/80 rounded-full shadow-sm border border-gray-100 p-1 ml-auto md:ml-0 md:absolute md:left-1/2 md:-translate-x-1/2">
           <button
             onClick={() => onPageChange("shikumi")}
+            // aria属性を追加し、アクセシビリティ（A11y）を向上
+            aria-current={activePage === "shikumi" ? "page" : undefined}
             className={cn(
               "flex items-center justify-center rounded-full font-sans font-bold transition-colors cursor-pointer",
-              "w-12 h-10 md:w-auto md:h-auto md:px-8 md:py-3 text-sm",
+              // SPの極小画面を考慮し、pxをさらに柔軟に設定。whitespace-nowrapで改行を強制ブロック
+              "px-3 sm:px-4 py-2 md:px-8 md:py-3 text-xs md:text-base whitespace-nowrap",
               activePage === "shikumi"
                 ? "bg-olive text-white"
                 : "text-text hover:bg-gray-50",
             )}
           >
-            <span className="md:hidden">理</span>
-            <span className="hidden md:inline">仕組みから理解する</span>
+            仕組みから理解する
           </button>
+
           <button
             onClick={() => onPageChange("omoi")}
+            aria-current={activePage === "omoi" ? "page" : undefined}
             className={cn(
               "flex items-center justify-center rounded-full font-sans font-bold transition-colors cursor-pointer",
-              "w-12 h-10 md:w-auto md:h-auto md:px-8 md:py-3 text-sm",
+              "px-3 sm:px-4 py-2 md:px-8 md:py-3 text-xs md:text-base whitespace-nowrap",
               activePage === "omoi"
                 ? "bg-midblue text-white"
                 : "text-text hover:bg-gray-50",
             )}
           >
-            <span className="md:hidden">想</span>
-            <span className="hidden md:inline">想いから感じる</span>
+            想いから感じる
           </button>
         </div>
 
