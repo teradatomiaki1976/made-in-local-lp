@@ -94,7 +94,7 @@ export default function IntroLeftBrain() {
           className="max-w-4xl mx-auto w-full flex flex-col gap-8 md:gap-12"
         >
           {/* リードコピー (1文字ずつ色が変化) */}
-          <div className="relative text-lg md:text-3xl leading-loose font-medium">
+          <div className="relative text-xl md:text-4xl leading-loose font-normal">
             {/* 【a11y対策】スクリーンリーダー用の不可視テキスト */}
             <p className="sr-only">{leadText.replace(/\n/g, "")}</p>
 

@@ -2,20 +2,20 @@
 "use client";
 
 import { motion, Variants } from "framer-motion";
+import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { Heading2, Text } from "@/components/ui/Typography";
 
 const initialSteps = [
-  { id: 1, title: "担当者との面談" },
+  { id: 1, title: "担当者\nとの面談" },
   { id: 2, title: "エントリー" },
   { id: 3, title: "審査" },
 ];
 
 const successSteps = [
-  { id: 4, title: "選出企業\n特設ページ制作" },
-  { id: 5, title: "エンブレム・額入り\n認定証を贈呈" },
-  { id: 6, title: "入稿ミーティング" },
-  { id: 7, title: "選出企業\n特設ページ公開" },
+  { id: 4, title: "選出企業特設\nページ制作" },
+  { id: 5, title: "エンブレム\n認定証贈呈" },
+  { id: 6, title: "入稿\nミーティング" },
 ];
 
 export default function Section12() {
@@ -23,66 +23,40 @@ export default function Section12() {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.2 },
+      transition: { staggerChildren: 0.15 },
     },
   };
 
   const itemFadeUp: Variants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.8, ease: "easeOut" },
+      transition: { duration: 0.6, ease: "easeOut" },
     },
-  };
-
-  const lineHVariants: Variants = {
-    hidden: { scaleX: 0 },
-    visible: { scaleX: 1, transition: { duration: 0.6, ease: "easeInOut" } },
-  };
-
-  const lineVVariants: Variants = {
-    hidden: { scaleY: 0 },
-    visible: { scaleY: 1, transition: { duration: 0.6, ease: "easeInOut" } },
   };
 
   return (
     <section
       id="section12"
-      className="relative w-full overflow-hidden bg-[linear-gradient(to_bottom,#ECFFF5_0%,#F9FDF2_30%,#F9FDF2_100%)] py-24 md:py-32"
+      className="relative w-full overflow-hidden bg-[linear-gradient(to_bottom,#ECFFF5_0%,#F9FDF2_30%,#F9FDF2_100%)] py-16 md:py-32"
     >
       <Container className="relative z-10 flex flex-col items-center">
         {/* タイトル周り */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
+          viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.8 }}
-          className="mb-12 md:mb-16"
+          className="mb-10 md:mb-16 text-center"
         >
-          <motion.div
-            variants={itemFadeUp}
-            className="flex justify-center items-center mb-8 md:mb-12"
-          >
-            <span className="bg-[linear-gradient(135deg,#003064_32%,#004895_53%,#0052AA_67%,#004289_76%,#003064_88%)] text-white text-xs md:text-sm font-bodoni tracking-widest px-6 py-1 shadow-sm">
+          <div className="flex justify-center items-center mb-6 md:mb-8">
+            <span className="bg-[linear-gradient(135deg,#003064_32%,#004895_53%,#0052AA_67%,#004289_76%,#003064_88%)] text-white text-xs md:text-sm font-bodoni tracking-widest px-6 py-1 shadow-md">
               Selection Process
             </span>
-          </motion.div>
-          <Heading2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            エントリーから選出後の活用
-          </Heading2>
-
-          <Text
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
+          </div>
+          <Heading2>エントリーから選出後の活用</Heading2>
+          <Text className="mt-4">
             まずは、担当者との面談から。
             <br />
             自社に選出の可能性があるのか。どのような基準で審査されるのか。
@@ -92,206 +66,160 @@ export default function Section12() {
         </motion.div>
 
         {/* フロー図本体 */}
-        <div className="w-full max-w-[1000px] relative">
-          {/* --- PC版レイアウト --- */}
-          <div className="hidden md:block relative w-full pt-4 pb-12">
-            {/* フェーズ1: Start 〜 審査 */}
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={containerVariants}
-              className="flex justify-between items-center relative mb-12 h-[100px]"
-            >
-              <div className="bg-white border border-[#E0EBEF] w-[180px] h-full rounded shadow-sm text-[32px] font-bodoni text-[#003064] z-10 font-bold flex items-center justify-center">
-                Start
-              </div>
-
-              <motion.div
-                className="absolute top-1/2 -mt-[3px] left-[180px] w-[60px] h-[6px] bg-[#003064] origin-left"
-                variants={lineHVariants}
-              />
-              <motion.div
-                className="absolute top-1/2 -mt-[3px] left-[460px] w-[30px] h-[6px] bg-[#003064] origin-left"
-                variants={lineHVariants}
-              />
-              <motion.div
-                className="absolute top-1/2 -mt-[3px] left-[710px] w-[30px] h-[6px] bg-[#003064] origin-left"
-                variants={lineHVariants}
-              />
-
-              {initialSteps.map((step) => (
-                <motion.div
-                  key={`pc-step-${step.id}`}
-                  variants={itemFadeUp}
-                  className="bg-white border border-[#E0EBEF] w-[220px] h-full rounded shadow-sm flex items-center justify-center z-10 px-4"
-                >
-                  <span className="text-[72px] font-bodoni text-[#F0F4F8] mr-4 leading-none select-none">
-                    {step.id}
-                  </span>
-                  <span className="font-bold text-sm text-gray-800">
-                    {step.title}
-                  </span>
-                </motion.div>
-              ))}
-            </motion.div>
-
-            {/* フェーズ2: 分岐（選出 / 非選出） */}
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={containerVariants}
-              className="flex gap-10 relative mb-12 justify-center"
-            >
-              <motion.div
-                variants={itemFadeUp}
-                className="relative w-[500px] h-[130px] bg-[#EBB914] rounded-md shadow-md overflow-hidden flex z-10"
-              >
-                <div className="w-[140px] bg-[#DDA808] flex flex-col justify-center items-center relative overflow-hidden">
-                  <div className="absolute inset-0 opacity-20 bg-[url('/images/laurel-wreath.svg')] bg-center bg-no-repeat bg-contain scale-150"></div>
-                  <span className="text-5xl font-bodoni text-white/90 z-10 font-bold mb-1">
-                    100
-                  </span>
-                  <span className="text-[9px] text-white/90 font-bold z-10 text-center tracking-widest leading-tight">
-                    SELECTION
-                    <br />
-                    2026-2027
-                  </span>
-                </div>
-                <div className="p-6 flex flex-col justify-center text-left text-gray-900">
-                  <h3 className="font-bold text-2xl mb-2">選出された場合</h3>
-                  <p className="text-xs font-medium">
-                    100選としての発信がここから始まります。
-                  </p>
-                </div>
-              </motion.div>
-
-              <motion.div
-                variants={itemFadeUp}
-                className="w-[340px] h-[130px] bg-[#F8F9FA] border border-[#E0EBEF] rounded-md text-center flex flex-col justify-center shadow-sm z-10"
-              >
-                <h3 className="font-bold text-[#003064] mb-3 text-lg">
-                  今回は選出に
-                  <br />
-                  至らなかった場合
-                </h3>
-                <p className="text-sm font-bold text-gray-600">
-                  1年後に再挑戦可能
-                </p>
-              </motion.div>
-            </motion.div>
-
-            {/* フェーズ3: 選出後のフロー */}
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={containerVariants}
-              className="flex justify-between items-center relative h-[100px]"
-            >
-              <motion.div
-                className="absolute -top-[48px] left-[65px] w-[12px] h-[48px] bg-black origin-top z-0"
-                variants={lineVVariants}
-              />
-
-              <motion.div
-                className="absolute top-1/2 -mt-[3px] left-[220px] w-[30px] h-[6px] bg-[#003064] origin-left"
-                variants={lineHVariants}
-              />
-              <motion.div
-                className="absolute top-1/2 -mt-[3px] left-[470px] w-[30px] h-[6px] bg-[#003064] origin-left"
-                variants={lineHVariants}
-              />
-              <motion.div
-                className="absolute top-1/2 -mt-[3px] left-[720px] w-[30px] h-[6px] bg-[#003064] origin-left"
-                variants={lineHVariants}
-              />
-
-              {successSteps.map((step) => (
-                <motion.div
-                  key={`pc-step-${step.id}`}
-                  variants={itemFadeUp}
-                  className="bg-white border border-[#E0EBEF] w-[220px] h-full rounded shadow-sm flex items-center justify-center z-10 px-2"
-                >
-                  <span className="text-[72px] font-bodoni text-[#F0F4F8] mr-2 leading-none select-none">
-                    {step.id}
-                  </span>
-                  <span className="font-bold text-xs text-gray-800 whitespace-pre-line leading-relaxed">
-                    {step.title}
-                  </span>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-
-          {/* --- Future セクション --- */}
+        <div className="w-full max-w-5xl relative">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-50px" }}
-            variants={itemFadeUp}
-            className="mt-16 md:mt-20 w-full relative"
+            variants={containerVariants}
+            className="flex flex-col gap-6 md:gap-8"
           >
-            <div className="text-center mb-8">
-              <p className="text-xl md:text-2xl font-bold tracking-widest text-[#003064]">
-                選出は、ゴールではありません。
-              </p>
+            {/* Start と 1〜3のステップ */}
+            <div className="flex flex-col md:flex-row gap-4 md:gap-4 items-stretch">
+              <motion.div variants={itemFadeUp} className="w-full md:w-1/4">
+                <div className="bg-white border border-text/50 h-full py-2 rounded shadow-md text-2xl md:text-4xl font-bodoni text-text font-bold flex items-center justify-center">
+                  Start <span className="ml-2 md:ml-4 text-lg">→</span>
+                </div>
+              </motion.div>
+
+              <div className="w-full md:w-3/4 grid grid-cols-3 gap-2 md:gap-4">
+                {initialSteps.map((step) => (
+                  <motion.div
+                    key={`step-${step.id}`}
+                    variants={itemFadeUp}
+                    // 💎 step.id が奇数なら #F1FDFF、偶数なら白
+                    className={`border border-text/50 rounded shadow-md flex flex-col md:flex-row items-center justify-center p-2 md:p-5 text-center md:text-left gap-1 md:gap-3 ${
+                      step.id % 2 !== 0 ? "bg-[#F1FDFF]" : "bg-white"
+                    }`}
+                  >
+                    <span className="text-4xl md:text-7xl font-bodoni text-text/10 leading-none select-none">
+                      {step.id}
+                    </span>
+                    <span className="font-bold font-sans text-sm md:text-xl text-text whitespace-pre-line leading-tight">
+                      {step.title}
+                    </span>
+                  </motion.div>
+                ))}
+              </div>
             </div>
 
-            {/* Future カード */}
-            <div className="bg-[#FCFAEC] border border-[#F0EAD6] rounded-md p-8 md:p-12 shadow-sm relative overflow-hidden group">
-              {/* 透かし文字 (A11y対応: aria-hiddenを追加し読み上げを防止) */}
-              <div
-                aria-hidden="true"
-                className="absolute -bottom-4 -right-2 text-[100px] md:text-[180px] font-bodoni text-[#DDA808]/10"
+            {/* 分岐（選出 / 非選出） */}
+            <div className="flex flex-col md:flex-row gap-4 md:gap-8 justify-center">
+              <motion.div
+                variants={itemFadeUp}
+                className="w-auto flex-1 bg-[#F2F2F2] border border-text/50 rounded-md text-center flex flex-col md:flex-row items-center justify-center p-4 shadow-md gap-2 mx-4 md:mx-30"
               >
-                Future
+                <h3 className="font-bold text-text text-xl md:text-2xl">
+                  選出に至らなかった場合
+                </h3>
+                <span className="hidden md:inline text-text">＞</span>
+                <p className="text-sm md:text-base font-bold font-sans text-text">
+                  1年後に再挑戦可能
+                </p>
+              </motion.div>
+            </div>
+
+            <motion.div
+              variants={itemFadeUp}
+              className="relative w-auto h-[100px] md:h-[130px] rounded-md shadow-md overflow-hidden flex items-center justify-end mx-4 md:mx-30 border border-text/50 bg-[linear-gradient(to_right,#E3C500_0%,#FFDD00_60%)]"
+            >
+              {/* 背景ロゴ（不透明度30%・左側に見切れるように配置） */}
+              <div className="absolute -left-12 md:-left-10 top-0 md:-top-6 w-[200px] md:w-[400px] h-[200px] md:h-[400px] opacity-30 pointer-events-none select-none z-0">
+                <Image
+                  src="/images/logo/emblem_white.svg"
+                  alt="100 SELECTION Emblem"
+                  fill
+                  className="object-contain"
+                />
               </div>
 
-              <div className="relative z-10 grid grid-cols-1 md:grid-cols-3 gap-y-10 gap-x-8">
-                <div>
-                  <span className="text-xs text-[#C3A800] font-bodoni block mb-1 tracking-widest">
-                    Network
-                  </span>
-                  <h4 className="text-base md:text-lg font-bold text-gray-900">
-                    交流会
-                  </h4>
-                </div>
-                <div>
-                  <span className="text-xs text-[#C3A800] font-bodoni block mb-1 tracking-widest">
-                    Matching
-                  </span>
-                  <h4 className="text-base md:text-lg font-bold text-gray-900">
-                    企業間マッチング
-                  </h4>
-                </div>
-                <div>
-                  <span className="text-xs text-[#C3A800] font-bodoni block mb-1 tracking-widest">
-                    Media
-                  </span>
-                  <h4 className="text-base md:text-lg font-bold text-gray-900">
-                    企業ニュース取り組みの継続発信
-                  </h4>
-                </div>
-                <div className="md:col-span-2">
-                  <span className="text-xs text-[#C3A800] font-bodoni block mb-1 tracking-widest">
-                    Support
-                  </span>
-                  <h4 className="text-base md:text-lg font-bold text-gray-900">
-                    定期的なサポートミーティング
-                  </h4>
-                </div>
-                <div className="flex items-end">
-                  <span className="text-lg font-bodoni text-gray-900 font-bold mb-0.5 tracking-widest">
-                    etc.
-                  </span>
-                </div>
+              {/* テキスト部分（右側に配置して中央揃え） */}
+              <div className="relative z-10 p-2 md:p-6 flex flex-col justify-center text-center text-text w-2/3 md:w-[60%] shrink-0">
+                <h3 className="font-bold text-2xl md:text-4xl mb-1 md:mb-2 font-serif tracking-wide">
+                  選出された場合
+                </h3>
+                <p className="text-sm md:text-base font-sans font-medium tracking-wide">
+                  100選としての発信がここから始まります。
+                </p>
               </div>
+            </motion.div>
+
+            {/* 選出後のフロー 4〜6 */}
+            <div className="w-full grid grid-cols-3 gap-2 md:gap-4">
+              {successSteps.map((step) => (
+                <motion.div
+                  key={`success-step-${step.id}`}
+                  variants={itemFadeUp}
+                  // 💎 ここも同様に奇数・偶数で背景色を切り替え
+                  className={`border border-text/50 rounded shadow-md flex flex-col md:flex-row items-center justify-center p-2 md:p-5 text-center md:text-left gap-1 md:gap-3 ${
+                    step.id % 2 !== 0 ? "bg-[#F1FDFF]" : "bg-white"
+                  }`}
+                >
+                  <span className="text-4xl md:text-7xl font-bodoni text-text/10 leading-none select-none">
+                    {step.id}
+                  </span>
+                  <span className="font-bold font-sans text-sm md:text-xl text-text whitespace-pre-line leading-tight">
+                    {step.title}
+                  </span>
+                </motion.div>
+              ))}
             </div>
+
+            {/* 選出企業特設ページ公開 */}
+            <motion.div
+              variants={itemFadeUp}
+              className="w-full bg-[#FCFAEC] border border-[#F2E8C9] rounded-md p-6 md:p-12 shadow-md flex flex-col items-center mt-2"
+            >
+              <h3 className="font-bold text-xl md:text-3xl text-text tracking-wider mb-6 md:mb-10">
+                選出企業特設ページ公開
+              </h3>
+
+              {/* サムネイル画像グリッド (PC/SP共通で2x2) */}
+              <div className="grid grid-cols-2 gap-3 md:gap-6 w-full max-w-4xl">
+                {[1, 2, 3, 4].map((num) => (
+                  <div
+                    key={`thumb-${num}`}
+                    className="relative aspect-[16/9] w-full overflow-hidden shadow-md"
+                  >
+                    <Image
+                      src={`/images/shikumi/section12/webpage-${num}.webp`}
+                      alt={`特設ページ公開例 ${num}`}
+                      fill
+                      className="object-cover object-top"
+                      sizes="(max-width: 768px) 50vw, 33vw"
+                    />
+                  </div>
+                ))}
+              </div>
+
+              <div className="w-full max-w-4xl text-right mt-4 md:mt-6">
+                <p className="text-[10px] md:text-sm text-gray-700 font-medium tracking-wide">
+                  公開例：株式会社スケールフェイス
+                </p>
+              </div>
+            </motion.div>
           </motion.div>
-          {/* --- Future セクション ここまで --- */}
         </div>
+
+        {/* --- Future --- */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          variants={itemFadeUp}
+          className="mt-10 md:mt-20 w-full flex flex-col items-center text-center px-4"
+        >
+          <Heading2>
+            選出は、ゴールでは
+            <br className="md:hidden" />
+            ありません。
+          </Heading2>
+          <Text>
+            交流会／企業間マッチング／企業ニュース取り 組みの継続発信／
+            <br className="hidden md:block" />
+            定期的なサポートミーティング
+          </Text>
+        </motion.div>
       </Container>
     </section>
   );
