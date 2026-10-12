@@ -52,9 +52,9 @@ const caseStudies: Record<TabId, CaseStudy[]> = {
         <>
           応募数が
           <span className="text-4xl md:text-[2.5rem] leading-none mx-1 font-extrabold text-text">
-            30
+            30倍
           </span>
-          倍に急増
+          に急増
         </>
       ),
       subTitle: "3か月で1名から1か月で10名へ!",
@@ -67,9 +67,9 @@ const caseStudies: Record<TabId, CaseStudy[]> = {
         <>
           1時間で
           <span className="text-4xl md:text-[2.5rem] leading-none mx-1 font-extrabold text-text">
-            40
+            40件
           </span>
-          件以上の応募
+          以上の応募
         </>
       ),
       company: "愛知 / 2024年選出 株式会社HELLObase",
@@ -93,22 +93,38 @@ const caseStudies: Record<TabId, CaseStudy[]> = {
   ],
   business: [
     {
-      title: "仕事の問い合わせが年間10倍以上に",
+      title: (
+        <>
+          問い合わせ年間
+          <span className="text-4xl md:text-[2.5rem] leading-none mx-1 font-extrabold text-text">
+            10倍
+          </span>
+          以上
+        </>
+      ),
       company: "堺・泉州 / 2024年選出 株式会社弘進製作所",
       desc: "エンブレムを自社ホームページに掲載。選出前にはほとんどなかった仕事の問い合わせが増加した事例。",
       img: "/images/shikumi/section8/business1.webp",
     },
     {
-      title: "「費用は高くても御社に決めます」",
+      title: "費用は高くても御社に決めます",
       company: "愛知 / 2024年選出 株式会社中部住器",
       desc: "選出実績を顧客とのコミュニケーションに活用し、企業を判断する材料の一つとして機能した事例。",
-      img: "/images/shikumi/section8/business1.webp",
+      img: "/images/shikumi/section8/business2.webp",
     },
     {
-      title: "年間2,000万円の新規売上へ",
+      title: (
+        <>
+          年間
+          <span className="text-4xl md:text-[2.5rem] leading-none mx-1 font-extrabold text-text">
+            2000万
+          </span>
+          円の新規売上
+        </>
+      ),
       company: "愛知 / 2024年選出 タカツー株式会社",
       desc: "Webサイトで選出実績を発信した後、新規問い合わせが増え、新しい顧客との接点につながった事例。",
-      img: "/images/shikumi/section8/business1.webp",
+      img: "/images/shikumi/section8/business3.webp",
     },
   ],
   media: [
@@ -122,13 +138,7 @@ const caseStudies: Record<TabId, CaseStudy[]> = {
       title: "100選選出をきっかけにテレビの経済番組で紹介",
       company: "埼玉 / 2024年選出 株式会社埼玉アニメーション",
       desc: "テレビ埼玉「埼玉ビジネスウォッチ」で、企業の取り組みが紹介された事例。",
-      img: "/images/shikumi/section8/media1.webp",
-    },
-    {
-      title: "選出後メディアを通じて全国へ発信",
-      company: "埼玉 / 2024年選出 サンクジャパン株式会社",
-      desc: "Yahoo!ニュースのエキスパート記事などで、100選への選出と企業の取り組みが紹介された事例。",
-      img: "/images/shikumi/section8/media1.webp",
+      img: "/images/shikumi/section8/media2.webp",
     },
   ],
 };
@@ -221,7 +231,7 @@ export default function Section8() {
                     transition-all duration-300 ease-out 
                     
                     /* PCホバー時のアクション (大きくして右に被せる) */
-                    lg:hover:w-[calc(100%+16px)] lg:hover:scale-[1.1] lg:hover:shadow-lg lg:hover:z-20 lg:hover:bg-[#F9FDF2]
+                    lg:hover:w-[calc(100%+16px)] lg:hover:scale-[1.1] lg:hover:shadow-lg lg:hover:z-20 lg:hover:bg-[linear-gradient(to_right,#ECFFF5_0%,#F9FDF2_30%,#F9FDF2_100%)]
                     
                     /* スマホホバー時のアクション */
                     hover:bg-[#F9FDF2]/80 hover:border-gray-300
@@ -229,7 +239,7 @@ export default function Section8() {
                     /* アクティブ状態のスタイル */
                     ${
                       isActive
-                        ? "bg-[#F9FDF2] shadow-md text-text w-full scale-100 border-[#003064]/30 lg:border-text2/30"
+                        ? "bg-[linear-gradient(to_right,#ECFFF5_0%,#F9FDF2_30%,#F9FDF2_100%)] shadow-md text-text w-full scale-100 border-text2/30 lg:border-text2/30"
                         : "bg-white text-text w-full scale-100"
                     }
                   `}

@@ -141,7 +141,7 @@ export default function Section10() {
               </p>
             </div>
 
-            {/* 画像エリア（4枚グリッド） */}
+            {/* 画像エリア */}
             <div className="lg:w-1/2 grid grid-cols-2 gap-3 md:gap-4">
               {[
                 {
@@ -157,6 +157,8 @@ export default function Section10() {
                   src: "/images/shikumi/section10/hiroshima.webp",
                 },
                 { label: "愛知", src: "/images/shikumi/section10/aichi.webp" },
+                { label: "大阪", src: "/images/shikumi/section10/osaka.webp" },
+                { label: "京都", src: "/images/shikumi/section10/kyoto.webp" },
               ].map((img, idx) => (
                 <div
                   key={idx}
@@ -169,7 +171,7 @@ export default function Section10() {
                     className="object-cover w-full h-full"
                     loading="lazy"
                   />
-                  <div className="absolute top-2 left-2 bg-text font-sans text-white text-[10px] md:text-xs font-bold px-3 py-1 rounded-full shadow-md z-10">
+                  <div className="absolute top-0 left-0 bg-text font-sans text-white text-[10px] md:text-xs font-bold px-3 py-1 shadow-md z-10">
                     {img.label}
                   </div>
                 </div>
