@@ -42,7 +42,7 @@ export default function IntroLeftBrain() {
     target: containerRef,
     // アニメーションの開始・終了位置を調整
     // 画面下部80%から始まり、中央(50%)に到達するまでにテキストが全て白くなる設定
-    offset: ["start 80%", "center 50%"],
+    offset: ["start 70%", "center 10%"],
   });
 
   // アニメーションさせるテキスト（\n で改行位置を指定）

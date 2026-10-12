@@ -136,7 +136,7 @@ export default function Section10() {
                 <br />
                 企業交流会。
               </h3>
-              <p className=" text-midblue leading-relaxed">
+              <p className=" text-text leading-relaxed font-sans">
                 「地域を代表する企業100選」の先出企業同士がつながる交流会を、毎月1回以上開催しています。選出企業同士だからこそ、互いに一定の信頼や期待感を持った状態で出会うことができ、初対面でも話が進みやすく、商談や事業連携につながる機会が生まれています。
               </p>
             </div>
