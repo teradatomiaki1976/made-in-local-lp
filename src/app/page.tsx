@@ -1,7 +1,7 @@
 // src/app/page.tsx
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useLenis } from "lenis/react";
 import LoadingPhase from "@/components/omoi/LoadingPhase";
@@ -33,6 +33,8 @@ export default function Home() {
   const { visited, markVisited } = usePageStore();
   const lenis = useLenis();
 
+  const scrollPosRef = useRef({ omoi: 0, shikumi: 0 });
+
   const handleShowHeader = useCallback(() => {
     setIsHeaderVisible(true);
   }, []);
@@ -51,20 +53,25 @@ export default function Home() {
 
       if (lenis) lenis.stop();
 
-      // STEP 1: トランジションの「幕」を下ろす
+      // STEP 1: 幕を下ろす前に「現在のスクロール位置」を保存する
+      scrollPosRef.current[activePage] = window.scrollY;
       setIsTransitioning(true);
 
       // STEP 2: 幕が下りきった裏側（200ms後）でページを切り替える
       setTimeout(() => {
         setActivePage(nextPage);
 
-        // STEP 3: 強制的にページトップへ戻す
+        // STEP 3: 保存していた位置へスクロールを復元する
         requestAnimationFrame(() => {
+          // 次のページの保存位置を取得（初回は0）
+          const targetScroll = scrollPosRef.current[nextPage] || 0;
+
           if (lenis) {
-            lenis.scrollTo(0, { immediate: true, force: true });
+            // immediate: true でアニメーションさせずに一瞬で移動
+            lenis.scrollTo(targetScroll, { immediate: true, force: true });
             lenis.start();
           } else {
-            window.scrollTo(0, 0);
+            window.scrollTo(0, targetScroll);
           }
 
           if (!visited[nextPage]) markVisited(nextPage);
