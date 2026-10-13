@@ -5,6 +5,7 @@ import { motion, Variants } from "framer-motion";
 import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { Heading2, Text } from "@/components/ui/Typography";
+import { Section } from "@/components/ui/Section";
 
 const initialSteps = [
   { id: 1, title: "担当者\nとの面談" },
@@ -37,10 +38,7 @@ export default function Section12() {
   };
 
   return (
-    <section
-      id="section12"
-      className="relative w-full overflow-hidden bg-[linear-gradient(to_bottom,#ECFFF5_0%,#F9FDF2_30%,#F9FDF2_100%)] py-16 md:py-32"
-    >
+    <Section id="section12" theme="light">
       <Container className="relative z-10 flex flex-col items-center">
         {/* タイトル周り */}
         <motion.div
@@ -58,9 +56,9 @@ export default function Section12() {
           <Heading2>エントリーから選出後の活用</Heading2>
           <Text className="mt-4">
             まずは、担当者との面談から。
-            <br />
+            <br className="hidden lg:block" />
             自社に選出の可能性があるのか。どのような基準で審査されるのか。
-            <br />
+            <br className="hidden lg:block" />
             選出された場合、どのように活用できるのか。担当者との面談でご案内します。
           </Text>
         </motion.div>
@@ -107,7 +105,7 @@ export default function Section12() {
             <div className="flex flex-col md:flex-row gap-4 md:gap-8 justify-center">
               <motion.div
                 variants={itemFadeUp}
-                className="w-auto flex-1 bg-[#F2F2F2] border border-text/50 rounded-md text-center flex flex-col md:flex-row items-center justify-center p-4 shadow-md gap-2 mx-4 md:mx-30"
+                className="w-auto flex-1 bg-[#F2F2F2] border border-text/50 rounded-md text-center flex flex-col md:flex-row items-center justify-center p-4 shadow-md gap-2 mx-4 lg:mx-30"
               >
                 <h3 className="font-bold text-text text-xl md:text-2xl">
                   選出に至らなかった場合
@@ -121,7 +119,7 @@ export default function Section12() {
 
             <motion.div
               variants={itemFadeUp}
-              className="relative w-auto h-[100px] md:h-[130px] rounded-md shadow-md overflow-hidden flex items-center justify-end mx-4 md:mx-30 border border-text/50 bg-[linear-gradient(to_right,#E3C500_0%,#FFDD00_60%)]"
+              className="relative w-auto h-[100px] md:h-[130px] rounded-md shadow-md overflow-hidden flex items-center justify-end mx-4 lg:mx-30 border border-text/50 bg-[linear-gradient(to_right,#E3C500_0%,#FFDD00_60%)]"
             >
               {/* 背景ロゴ（不透明度30%・左側に見切れるように配置） */}
               <div className="absolute -left-12 md:-left-10 top-0 md:-top-6 w-[200px] md:w-[400px] h-[200px] md:h-[400px] opacity-30 pointer-events-none select-none z-0">
@@ -168,9 +166,9 @@ export default function Section12() {
             {/* 選出企業特設ページ公開 */}
             <motion.div
               variants={itemFadeUp}
-              className="w-full bg-[#FCFAEC] border border-[#F2E8C9] rounded-md p-6 md:p-12 shadow-md flex flex-col items-center mt-2"
+              className="w-full bg-[#FCFAEC] border border-text2/50 rounded-md p-6 md:p-12 shadow-md flex flex-col items-center mt-2"
             >
-              <h3 className="font-bold text-xl md:text-3xl text-text tracking-wider mb-6 md:mb-10">
+              <h3 className="font-bold text-xl md:text-3xl text-text2 tracking-wider mb-6 md:mb-10">
                 選出企業特設ページ公開
               </h3>
 
@@ -216,11 +214,11 @@ export default function Section12() {
           </Heading2>
           <Text>
             交流会／企業間マッチング／企業ニュース取り 組みの継続発信／
-            <br className="hidden md:block" />
+            <br className="hidden lg:block" />
             定期的なサポートミーティング
           </Text>
         </motion.div>
       </Container>
-    </section>
+    </Section>
   );
 }

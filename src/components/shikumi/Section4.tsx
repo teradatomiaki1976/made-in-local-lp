@@ -9,6 +9,7 @@ import { Container } from "@/components/ui/Container";
 import { Heading2, Text } from "@/components/ui/Typography";
 import { companies, Company } from "@/data/companies";
 import CompanyModal from "./CompanyModal";
+import { Section } from "@/components/ui/Section";
 
 export default function Section4() {
   // --- アニメーションの定義（variants） ---
@@ -131,17 +132,14 @@ export default function Section4() {
   }, []);
 
   return (
-    <section
-      id="section4"
-      className="relative w-full bg-[linear-gradient(to_bottom,#ECFFF5_0%,#F9FDF2_30%,#F9FDF2_100%)] py-24 md:py-32 overflow-hidden"
-    >
+    <Section id="section4" theme="light">
       <Container className="relative z-10 flex flex-col items-center text-center shrink-0">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
-          className="mb-12 md:mb-16"
+          className="mb-6 md:mb-12"
         >
           <motion.div variants={itemFadeUp} className="mb-8 md:mb-12">
             <span className="bg-[linear-gradient(135deg,#003064_32%,#004895_53%,#0052AA_67%,#004289_76%,#003064_88%)] text-white text-xs md:text-sm font-bodoni tracking-widest px-6 py-1.5 shadow-sm">
@@ -214,6 +212,6 @@ export default function Section4() {
         hasPrev={hasPrev}
         hasNext={hasNext}
       />
-    </section>
+    </Section>
   );
 }

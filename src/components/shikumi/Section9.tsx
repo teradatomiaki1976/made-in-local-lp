@@ -11,6 +11,7 @@ import {
 } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { Heading2, Text } from "@/components/ui/Typography";
+import { Section } from "@/components/ui/Section";
 
 // カウントアップコンポーネント
 function CountUp({
@@ -86,10 +87,7 @@ export default function Section9() {
   };
 
   return (
-    <section
-      id="section9"
-      className="relative w-full bg-[#0a1128] z-20 text-white py-24 md:py-32 overflow-hidden"
-    >
+    <Section id="section9" theme="dark">
       {/* 背景グラデーションとノイズ */}
       <div className="absolute inset-0 z-0 bg-[linear-gradient(-160deg,#19324D_0%,#19324D_50%,#00518B_66%,#19324D_78%,#19324D_100%)]">
         <div
@@ -130,7 +128,7 @@ export default function Section9() {
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             企業を知る方法も、変わり始めています。
-            <br />
+            <br className="hidden md:block" />
             就職先を探すとき。取引先を調べるとき。商品やサービスを検討するとき。
           </Text>
         </motion.div>
@@ -242,11 +240,11 @@ export default function Section9() {
             variants={itemFadeUp}
             className="lg:col-span-1 bg-white rounded-xl shadow-xl p-6 md:p-8 flex flex-col justify-center items-center text-text"
           >
-            <p className="font-bold text-base md:text-xl leading-relaxed mb-8 text-center md:text-left">
+            <p className="font-bold text-base md:text-xl leading-relaxed mb-4 md:mb-8 text-center md:text-left">
               AIは、Web上に存在する
-              <br />
+              <br className="hidden md:block" />
               さまざまな情報を元に、
-              <br />
+              <br className="hidden md:block" />
               企業について説明します。
             </p>
 
@@ -397,7 +395,7 @@ export default function Section9() {
               <div className="text-left max-w-sm flex flex-col gap-4">
                 <p className="text-sm md:text-base font-sans">
                   選出企業を対象にGoogle AI Modeで調査。
-                  <br />
+                  <br className="hidden md:block" />
                   Made In
                   Localの引用、または「地域を代表する企業100選」への言及を確認。
                 </p>
@@ -412,11 +410,11 @@ export default function Section9() {
             </div>
           </div>
 
-          <div className="bg-[linear-gradient(135deg,#003064_32%,#004895_53%,#0052AA_67%,#004289_76%,#003064_88%)] text-white font-sans text-center py-6 font-bold text-base md:text-xl tracking-widest">
+          <div className="bg-[linear-gradient(135deg,#003064_32%,#004895_53%,#0052AA_67%,#004289_76%,#003064_88%)] text-white font-sans text-center px-2 py-4 md:py-6 font-bold text-base md:text-xl tracking-widest">
             選出後も、企業の取り組みやニュースを継続的に発信できます。
           </div>
         </motion.div>
       </Container>
-    </section>
+    </Section>
   );
 }

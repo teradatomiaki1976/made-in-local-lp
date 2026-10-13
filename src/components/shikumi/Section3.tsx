@@ -4,6 +4,7 @@
 import { motion, Variants } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { Heading2, Text } from "@/components/ui/Typography";
+import { Section } from "@/components/ui/Section";
 
 export default function Section3() {
   // --- アニメーションの定義（variants） ---
@@ -63,10 +64,7 @@ export default function Section3() {
   };
 
   return (
-    <section
-      id="section3"
-      className="relative w-full bg-[#0a1128] z-20 text-white py-24 md:py-32 overflow-hidden"
-    >
+    <Section id="section3" theme="dark">
       {/* 背景グラデーションとノイズ */}
       <div className="absolute inset-0 z-0 bg-[linear-gradient(-160deg,#19324D_0%,#19324D_50%,#00518B_66%,#19324D_78%,#19324D_100%)]">
         <div
@@ -84,7 +82,7 @@ export default function Section3() {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={containerVariants}
-          className="mb-12 md:mb-16"
+          className="mb-6 md:mb-12"
         >
           <motion.div variants={itemFadeUp} className="mb-8 md:mb-12">
             <span className="bg-[linear-gradient(135deg,#FFFFFF_32%,#DDDDDD_53%,#BABABA_67%,#E2E2E2_76%,#FFFFFF_88%)] text-[#19324D] text-xs md:text-sm font-bodoni tracking-widest px-6 py-1 shadow-sm">
@@ -198,6 +196,6 @@ export default function Section3() {
           </motion.div>
         </motion.div>
       </Container>
-    </section>
+    </Section>
   );
 }

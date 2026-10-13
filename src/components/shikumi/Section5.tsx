@@ -4,6 +4,7 @@
 import { motion, Variants } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { Heading2, Text } from "@/components/ui/Typography";
+import { Section } from "@/components/ui/Section";
 
 export default function Section5() {
   // --- アニメーションの定義（variants） ---
@@ -25,10 +26,7 @@ export default function Section5() {
   };
 
   return (
-    <section
-      id="section5"
-      className="relative w-full bg-[#0a1128] z-20 text-white py-24 md:py-32 overflow-hidden"
-    >
+    <Section id="section5" theme="dark">
       {/* 背景グラデーションとノイズ */}
       <div className="absolute inset-0 z-0 bg-[linear-gradient(-160deg,#19324D_0%,#19324D_50%,#00518B_66%,#19324D_78%,#19324D_100%)]">
         <div
@@ -44,7 +42,7 @@ export default function Section5() {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={containerVariants}
-          className="mb-4 md:mb-16"
+          className="md:mb-16"
         >
           <motion.div variants={itemFadeUp} className="mb-8 md:mb-12">
             <span className="bg-[linear-gradient(135deg,#FFFFFF_32%,#DDDDDD_53%,#BABABA_67%,#E2E2E2_76%,#FFFFFF_88%)] text-[#19324D] text-xs md:text-sm font-bodoni tracking-widest px-6 py-1 shadow-sm">
@@ -116,21 +114,17 @@ export default function Section5() {
         <motion.div variants={itemFadeUp}>
           <Text>
             素晴らしい技術があっても。社会に必要なサービスがあっても。
-            <br />
+            <br className="hidden md:block" />
             社員が誇りを持って働いていても。地域に大きな貢献をしていても。
-          </Text>
-          <Text>
+            <br className="hidden md:block" />
             知られていなければ、その価値に出会えない人がいる。
-            <br />
-            求職者。取引先。顧客。地域の人。
-          </Text>
-          <Text>
-            そして、次の世代。
-            <br />
+            <br className="hidden md:block" />
+            求職者。取引先。顧客。地域の人。 そして、次の世代。
+            <br className="hidden md:block" />
             100選が目指すのは、企業に新しい価値をつくることではありません。
           </Text>
         </motion.div>
       </Container>
-    </section>
+    </Section>
   );
 }

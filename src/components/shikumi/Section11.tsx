@@ -6,6 +6,7 @@ import Image from "next/image";
 import { motion, Variants, AnimatePresence } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { Heading2, Text } from "@/components/ui/Typography";
+import { Section } from "@/components/ui/Section";
 
 // --- データ構造 ---
 interface VideoItem {
@@ -87,10 +88,7 @@ export default function Section11() {
   };
 
   return (
-    <section
-      id="section11"
-      className="relative w-full bg-[#0a1128] z-20 text-white py-24 md:py-32 overflow-hidden"
-    >
+    <Section id="section11" theme="dark">
       {/* 背景グラデーションとノイズ */}
       <div className="absolute inset-0 z-0 bg-[linear-gradient(-160deg,#19324D_0%,#19324D_50%,#00518B_66%,#19324D_78%,#19324D_100%)]">
         <div
@@ -123,7 +121,7 @@ export default function Section11() {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             選出企業が語る
-            <br />
+            <br className="hidden lg:block" />
             エントリーから選出後の変化。
           </Heading2>
           <Text
@@ -133,9 +131,9 @@ export default function Section11() {
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             なぜ100選にエントリーしたのか？
-            <br className="hidden md:block" />
+            <br className="hidden lg:block" />
             選出後、どのように活用したのか、その結果、どんな変化が生まれたのか。
-            <br className="hidden md:block" />
+            <br className="hidden lg:block" />
             実際の選出企業の言葉から紹介します。
           </Text>
         </motion.div>
@@ -146,7 +144,7 @@ export default function Section11() {
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
           variants={containerVariants}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-5xl mx-auto"
+          className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6 w-full max-w-5xl mx-auto"
         >
           {videoData.map((video) => (
             <motion.div
@@ -173,12 +171,12 @@ export default function Section11() {
               </div>
 
               {/* テキストエリア */}
-              <div className="p-5 flex flex-col flex-1">
-                <h3 className="text-deepblue text-sm md:text-base font-bold leading-snug mb-3 text-clamp-2">
+              <div className="p-3 md:p-5 flex flex-col flex-1">
+                <h3 className="text-text text-left text-sm md:text-base font-bold leading-normal mb-3 text-clamp-2">
                   {video.title}
                 </h3>
-                <div className="mt-auto text-right border-t border-gray-100 pt-3">
-                  <span className="text-gray-500 text-xs font-bold tracking-wider">
+                <div className="mt-auto text-right border-t border-text2/30 pt-2">
+                  <span className="text-text2 text-xs md:text-sm font-bold whitespace-nowrap">
                     {video.company}
                   </span>
                 </div>
@@ -227,6 +225,6 @@ export default function Section11() {
           </motion.div>
         )}
       </AnimatePresence>
-    </section>
+    </Section>
   );
 }

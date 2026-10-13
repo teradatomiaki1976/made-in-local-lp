@@ -5,6 +5,7 @@ import { motion, Variants } from "framer-motion";
 import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { Heading2, Text } from "@/components/ui/Typography";
+import { Section } from "@/components/ui/Section";
 
 export default function Section7() {
   const containerVariants: Variants = {
@@ -25,10 +26,7 @@ export default function Section7() {
   };
 
   return (
-    <section
-      id="section7"
-      className="relative w-full bg-[#0a1128] z-20 text-white py-24 md:py-32 overflow-hidden"
-    >
+    <Section id="section7" theme="dark">
       {/* 背景グラデーションとノイズ */}
       <div className="absolute inset-0 z-0 bg-[linear-gradient(-160deg,#19324D_0%,#19324D_50%,#00518B_66%,#19324D_78%,#19324D_100%)]">
         <div
@@ -61,7 +59,7 @@ export default function Section7() {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             選出されたら、
-            <br />
+            <br className="hidden md:block" />
             胸を張って見せていこう。
           </Heading2>
           <Text
@@ -71,9 +69,9 @@ export default function Section7() {
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             「知られるべき魅力」と「未来への意志」
-            <br />
+            <br className="hidden md:block" />
             その両方を持つ企業として、
-            <br />
+            <br className="hidden md:block" />
             「地域を代表する企業100選」に選ばれたその証がこちら。
           </Text>
         </motion.div>
@@ -128,24 +126,20 @@ export default function Section7() {
           className="w-full max-w-5xl bg-white rounded-xl shadow-2xl p-5 md:p-16 text-midblue flex flex-col items-center text-center"
         >
           <div className="mb-12">
-            <Heading2>
-              選ばれた証を
-              <br className="md:hidden" />
-              社会との新しい接点へ
-            </Heading2>
+            <Heading2>選ばれた証を社会との新しい接点へ</Heading2>
             <Text>
               選出されたことを、しまっておく必要はありません。
-              <br />
+              <br className="hidden md:block" />
               自社サイトでも。採用の場でも。営業の場でも。
-              <br />
+              <br className="hidden md:block" />
               会社説明会でも。名刺でも。オフィスでも。
             </Text>
           </div>
 
           {/* 活用シーンのグリッド */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full md:w-3xl">
-            <div className="relative w-full aspect-[16/9] flex items-center justify-center overflow-hidden">
-              <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-text font-bold bg-white/90 py-3 px-2 md:px-5 tracking-wide text-xs md:text-lg z-1 whitespace-nowrap drop-shadow-lg">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full lg:w-3xl">
+            <div className="relative w-full aspect-[5/2] md:aspect-[16/9] flex items-center justify-center overflow-hidden">
+              <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-text font-bold bg-white/90 py-2 md:py-3 px-2 md:px-5 tracking-wide text-xs md:text-lg z-1 whitespace-nowrap drop-shadow-lg">
                 Web・採用の接点で
               </span>
               <Image
@@ -156,8 +150,8 @@ export default function Section7() {
               />
             </div>
 
-            <div className="relative w-full aspect-[16/9] flex items-center justify-center overflow-hidden">
-              <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-text font-bold bg-white/90 py-3 px-2 md:px-5 tracking-wide text-xs md:text-lg z-1 whitespace-nowrap drop-shadow-lg">
+            <div className="relative w-full aspect-[5/2] md:aspect-[16/9] flex items-center justify-center overflow-hidden">
+              <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-text font-bold bg-white/90 py-2 md:py-3 px-2 md:px-5 tracking-wide text-xs md:text-lg z-1 whitespace-nowrap drop-shadow-lg">
                 営業・商談の接点で
               </span>
               <Image
@@ -168,8 +162,8 @@ export default function Section7() {
               />
             </div>
 
-            <div className="relative w-full aspect-[16/9] flex items-center justify-center overflow-hidden">
-              <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-text font-bold bg-white/90 py-3 px-2 md:px-5 tracking-wide text-xs md:text-lg z-1 whitespace-nowrap drop-shadow-lg">
+            <div className="relative w-full aspect-[5/2] md:aspect-[16/9] flex items-center justify-center overflow-hidden">
+              <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-text font-bold bg-white/90 py-2 md:py-3 px-2 md:px-5 tracking-wide text-xs md:text-lg z-1 whitespace-nowrap drop-shadow-lg">
                 会社の空間で
               </span>
               <Image
@@ -180,8 +174,8 @@ export default function Section7() {
               />
             </div>
 
-            <div className="relative w-full aspect-[16/9] flex items-center justify-center overflow-hidden">
-              <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-text font-bold bg-white/90 py-3 px-2 md:px-5 tracking-wide text-xs md:text-lg z-1 whitespace-nowrap drop-shadow-lg">
+            <div className="relative w-full aspect-[5/2] md:aspect-[16/9] flex items-center justify-center overflow-hidden">
+              <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-text font-bold bg-white/90 py-2 md:py-3 px-2 md:px-5 tracking-wide text-xs md:text-lg z-1 whitespace-nowrap drop-shadow-lg">
                 発信の接点で
               </span>
               <Image
@@ -194,6 +188,6 @@ export default function Section7() {
           </div>
         </motion.div>
       </Container>
-    </section>
+    </Section>
   );
 }

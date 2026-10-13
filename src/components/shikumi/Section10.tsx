@@ -12,6 +12,7 @@ import {
 } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { Heading2, Text } from "@/components/ui/Typography";
+import { Section } from "@/components/ui/Section";
 
 // 💎 Section9から引用・改良：カンマ区切りに対応したカウントアップ
 function CountUp({ to, className = "" }: { to: number; className?: string }) {
@@ -59,10 +60,7 @@ export default function Section10() {
   };
 
   return (
-    <section
-      id="section10"
-      className="relative w-full overflow-hidden bg-[linear-gradient(to_bottom,#ECFFF5_0%,#F9FDF2_30%,#F9FDF2_100%)] py-24 md:py-32"
-    >
+    <Section id="section10" theme="light">
       <Container className="relative z-10 flex flex-col items-center">
         {/* --- ヘッダー部分 --- */}
         <motion.div
@@ -131,12 +129,12 @@ export default function Section10() {
             <div className="lg:w-1/2 flex flex-col justify-center">
               <h3 className="text-2xl md:text-4xl font-bold text-midblue leading-normal mb-6">
                 地域を超えて
-                <br />
+                <br className="hidden lg:block" />
                 選出企業が繋がる
-                <br />
+                <br className="hidden lg:block" />
                 企業交流会。
               </h3>
-              <p className=" text-text leading-relaxed font-sans">
+              <p className="text-sm md:text-base text-text leading-loose font-sans">
                 「地域を代表する企業100選」の先出企業同士がつながる交流会を、毎月1回以上開催しています。選出企業同士だからこそ、互いに一定の信頼や期待感を持った状態で出会うことができ、初対面でも話が進みやすく、商談や事業連携につながる機会が生まれています。
               </p>
             </div>
@@ -180,6 +178,6 @@ export default function Section10() {
           </div>
         </motion.div>
       </Container>
-    </section>
+    </Section>
   );
 }

@@ -13,7 +13,7 @@ export function Heading2({
 }: Heading2Props) {
   return (
     <motion.h2
-      className={`text-3xl md:text-5xl font-bold tracking-tight leading-normal mb-8 md:mb-12 text-left md:text-center ${className}`}
+      className={`text-3xl md:text-5xl font-bold tracking-tight leading-normal mb-8 md:mb-12 text-left lg:text-center ${className}`}
       {...props}
     >
       {children}
@@ -29,7 +29,7 @@ interface TextProps extends HTMLMotionProps<"p"> {
 export function Text({ children, className = "", ...props }: TextProps) {
   return (
     <motion.p
-      className={`text-lg md:text-2xl leading-loose text-left md:text-center mx-auto ${className}`}
+      className={`text-lg md:text-2xl leading-loose text-left lg:text-center mx-auto ${className}`}
       {...props}
     >
       {children}

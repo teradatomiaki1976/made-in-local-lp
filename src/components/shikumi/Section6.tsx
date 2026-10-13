@@ -7,6 +7,7 @@ import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Heading2, Text } from "@/components/ui/Typography";
 import { FaCrown } from "react-icons/fa";
+import { Section } from "@/components/ui/Section";
 
 // 外部API連携を見据えたモックデータ
 const mockArticles = [
@@ -14,7 +15,7 @@ const mockArticles = [
     id: 1,
     title: "女優「のん」さんがアンバサダー",
     description:
-      "「Made In Local」公式アンバサダーのんさん継続就任記念「Made In Local×地方創生」特別連携企画を始動。",
+      "「Made In Local」公式アンバサダー[のん]さん継続就任記念「Made In Local×地方創生」特別連携企画を始動。",
     tag: "社会への発信",
     imageUrl:
       "https://madeinlocal.jp/_next/image?url=https%3A%2F%2Fimages.microcms-assets.io%2Fassets%2Fd34e1f3c439b4a3890fb1c321912652d%2F70511acdc06c447e8bbf27820d1b6da2%2FFrame%25204.png&w=2048&q=75",
@@ -91,10 +92,7 @@ export default function Section6() {
   };
 
   return (
-    <section
-      id="section6"
-      className="relative w-full overflow-hidden bg-[linear-gradient(to_bottom,#ECFFF5_0%,#F9FDF2_30%,#F9FDF2_100%)] py-24 md:py-32"
-    >
+    <Section id="section6" theme="light">
       <Container className="relative z-10 flex flex-col items-center">
         {/* ラベル */}
         <motion.div
@@ -129,7 +127,7 @@ export default function Section6() {
           >
             地方創生メディア
             <span className="text-text2">『Made In Local』</span>
-            <br className="hidden md:block" />
+            <br className="hidden lg:block" />
             が選定しています
           </Heading2>
 
@@ -150,9 +148,9 @@ export default function Section6() {
           >
             全国各地の企業や、地域の魅力を発信してきた地方創生メディア「Made In
             Local」
-            <br />
+            <br className="hidden md:block" />
             企業一社一社の価値と、その先に描く未来を見つめながら
-            <br />
+            <br className="hidden md:block" />
             「地域を代表する企業100選」を選定しています。
           </Text>
         </motion.div>
@@ -162,24 +160,24 @@ export default function Section6() {
           variants={itemFadeUp}
           className="flex flex-col md:flex-row gap-4 md:gap-8 justify-center w-full max-w-3xl mb-12 md:mb-20"
         >
-          <div className="flex-1 flex justify-center items-center gap-3 p-6 rounded shadow-md text-center bg-[linear-gradient(160deg,#FFE121_29%,#FFEE65_63%,#F1D41A_83%,#F6D601_100%)]">
+          <div className="flex-1 flex justify-center items-center gap-3 p-3 md:p-6 rounded shadow-md text-center bg-[linear-gradient(160deg,#FFE121_29%,#FFEE65_63%,#F1D41A_83%,#F6D601_100%)]">
             <FaCrown className="text-6xl text-[#000000] mix-blend-overlay inset-shadow-sm" />
             <div className="flex flex-col items-center justify-center">
-              <p className="text-xs md:text-sm font-bold text-gray-800 mb-1">
+              <p className="text-xs md:text-sm font-bold text-text mb-1">
                 〈地方創生メディア SEO〉
               </p>
-              <p className="text-2xl md:text-3xl font-bold text-gray-900">
+              <p className="text-2xl md:text-3xl font-bold text-text">
                 4年連続 No.1
               </p>
             </div>
           </div>
-          <div className="flex-1 flex justify-center items-center gap-3 p-6 rounded shadow-md text-center bg-[linear-gradient(160deg,#FFE121_29%,#FFEE65_63%,#F1D41A_83%,#F6D601_100%)]">
+          <div className="flex-1 flex justify-center items-center gap-3 p-3 md:p-6 rounded shadow-md text-center bg-[linear-gradient(160deg,#FFE121_29%,#FFEE65_63%,#F1D41A_83%,#F6D601_100%)]">
             <FaCrown className="text-6xl text-[#000000] mix-blend-overlay inset-shadow-sm" />
             <div className="flex flex-col items-center justify-center">
-              <p className="text-xs md:text-sm font-bold text-gray-800 mb-1">
+              <p className="text-xs md:text-sm font-bold text-text mb-1">
                 〈開始から5年で全国〉
               </p>
-              <p className="text-2xl md:text-3xl font-bold text-gray-900">
+              <p className="text-2xl md:text-3xl font-bold text-text">
                 選出1,500社超
               </p>
             </div>
@@ -192,13 +190,13 @@ export default function Section6() {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={containerVariants}
-          className="w-full flex flex-wrap justify-between gap-8"
+          className="w-full  grid grid-cols-2 md:grid-cols-3 justify-between gap-4 md:gap-8"
         >
           {mockArticles.map((article) => (
             <motion.div key={article.id} variants={itemFadeUp}>
-              <div className="w-full md:w-[280px] group flex flex-col items-stretch justify-between gap-6 pb-6 border-b border-text/30">
+              <div className="w-full h-full lg:w-[280px] group flex flex-col items-stretch justify-between gap-3 pb-3 md:gap-6 md:pb-6 border-b border-text/30">
                 {/* サムネイル画像 */}
-                <div className="w-full md:w-[280px] h-[160px] md:h-[140px] shrink-0 relative overflow-hidden">
+                <div className="w-full lg:w-[280px] h-[80px] md:h-[120px] lg:h-[140px] shrink-0 relative overflow-hidden">
                   <div className="absolute z-2 left-0 bottom-0 bg-white px-2 py-1 text-xs font-sans font-bold">
                     {article.tag}
                   </div>
@@ -213,10 +211,10 @@ export default function Section6() {
                 {/* 記事テキスト */}
                 <div className="flex-1 flex flex-col w-full h-full justify-between">
                   <div>
-                    <h3 className="text-lg md:text-xl font-bold mb-3 flex">
+                    <h3 className="text-base md:text-xl font-bold md:mb-3 flex">
                       {article.title}
                     </h3>
-                    <p className="text-base text-text font-sans leading-relaxed line-clamp-2 md:line-clamp-none">
+                    <p className="hidden md:block text-base text-text font-sans leading-relaxed line-clamp-2 md:line-clamp-none">
                       {article.description}
                     </p>
                   </div>
@@ -226,6 +224,6 @@ export default function Section6() {
           ))}
         </motion.div>
       </Container>
-    </section>
+    </Section>
   );
 }

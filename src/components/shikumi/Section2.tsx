@@ -5,6 +5,7 @@ import { motion, Variants } from "framer-motion";
 import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { Heading2, Text } from "@/components/ui/Typography";
+import { Section } from "@/components/ui/Section";
 
 const SCROLL_IMAGES = [
   "/images/shikumi/section2/scene-1.webp",
@@ -36,10 +37,7 @@ export default function Section2() {
     },
   };
   return (
-    <section
-      id="section2"
-      className="relative w-full overflow-hidden bg-[linear-gradient(to_bottom,#ECFFF5_0%,#F9FDF2_30%,#F9FDF2_100%)] py-24 md:py-32"
-    >
+    <Section id="section2" theme="light">
       <Container className="relative z-10 flex flex-col items-center text-center">
         {/* ラベル */}
         <motion.div
@@ -118,6 +116,6 @@ export default function Section2() {
           ))}
         </motion.div>
       </div>
-    </section>
+    </Section>
   );
 }

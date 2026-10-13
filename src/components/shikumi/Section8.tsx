@@ -6,6 +6,7 @@ import Image from "next/image";
 import { motion, Variants, AnimatePresence } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { Heading2, Text } from "@/components/ui/Typography";
+import { Section } from "@/components/ui/Section";
 
 // --- 型定義 ---
 type TabId = "recruit" | "business" | "media";
@@ -51,7 +52,7 @@ const caseStudies: Record<TabId, CaseStudy[]> = {
       title: (
         <>
           応募数が
-          <span className="text-4xl md:text-[2.5rem] leading-none mx-1 font-extrabold text-text">
+          <span className="text-3xl md:text-[2.5rem] leading-none mx-1 font-extrabold text-text">
             30倍
           </span>
           に急増
@@ -66,7 +67,7 @@ const caseStudies: Record<TabId, CaseStudy[]> = {
       title: (
         <>
           1時間で
-          <span className="text-4xl md:text-[2.5rem] leading-none mx-1 font-extrabold text-text">
+          <span className="text-3xl md:text-[2.5rem] leading-none mx-1 font-extrabold text-text">
             40件
           </span>
           以上の応募
@@ -80,7 +81,7 @@ const caseStudies: Record<TabId, CaseStudy[]> = {
       title: (
         <>
           年間1名から
-          <span className="text-4xl md:text-[2.5rem] leading-none mx-1 font-extrabold text-text">
+          <span className="text-3xl md:text-[2.5rem] leading-none mx-1 font-extrabold text-text">
             10名
           </span>
           採用へ
@@ -96,7 +97,7 @@ const caseStudies: Record<TabId, CaseStudy[]> = {
       title: (
         <>
           問い合わせ年間
-          <span className="text-4xl md:text-[2.5rem] leading-none mx-1 font-extrabold text-text">
+          <span className="text-3xl md:text-[2.5rem] leading-none mx-1 font-extrabold text-text">
             10倍
           </span>
           以上
@@ -116,7 +117,7 @@ const caseStudies: Record<TabId, CaseStudy[]> = {
       title: (
         <>
           年間
-          <span className="text-4xl md:text-[2.5rem] leading-none mx-1 font-extrabold text-text">
+          <span className="text-3xl md:text-[2.5rem] leading-none mx-1 font-extrabold text-text">
             2000万
           </span>
           円の新規売上
@@ -166,10 +167,7 @@ export default function Section8() {
   };
 
   return (
-    <section
-      id="section8"
-      className="relative w-full overflow-hidden bg-[linear-gradient(to_bottom,#ECFFF5_0%,#F9FDF2_30%,#F9FDF2_100%)] py-24 md:py-32"
-    >
+    <Section id="section8" theme="light">
       <Container className="relative z-10 flex flex-col items-center">
         {/* --- ヘッダー部分 --- */}
         <motion.div
@@ -194,9 +192,7 @@ export default function Section8() {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            企業の価値に、
-            <br className="md:hidden" />
-            結果が追いついていく。
+            企業の価値に、結果が追いついていく。
           </Heading2>
 
           <Text
@@ -227,7 +223,7 @@ export default function Section8() {
                   aria-selected={isActive}
                   onClick={() => setActiveTab(tab.id)}
                   className={`
-                    relative flex flex-col lg:flex-row bg-white items-center justify-center lg:justify-between px-0 py-6 lg:px-6 lg:py-8 rounded-lg border border-text2/30 
+                    relative flex flex-col lg:flex-row bg-white items-center justify-center lg:justify-between px-0 py-3 md:py-6 lg:px-6 lg:py-8 rounded-lg border border-text2/30 
                     transition-all duration-300 ease-out 
                     
                     /* PCホバー時のアクション (大きくして右に被せる) */
@@ -315,16 +311,16 @@ export default function Section8() {
                 exit={{ opacity: 0, y: -10 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
                 role="tabpanel"
-                className="flex flex-col gap-10"
+                className="flex flex-col gap-4 md:gap-10"
               >
                 {currentStudies.length > 0 ? (
                   currentStudies.map((item, idx) => (
                     <div
                       key={idx}
-                      className="flex flex-col md:flex-row gap-6 border-b border-gray-100 pb-10 last:border-0 last:pb-0"
+                      className="flex flex-col md:flex-row gap-3 md:gap-6 border-b border-text2/30 pb-4 md:pb-10 last:border-0 last:pb-0"
                     >
                       {/* 画像エリア */}
-                      <div className="w-full md:w-1/3 aspect-video md:aspect-square bg-gray-50 overflow-hidden relative shrink-0">
+                      <div className="w-full md:w-1/3 aspect-[5/2] md:aspect-square overflow-hidden relative shrink-0">
                         <Image
                           src={item.img}
                           alt={`${item.company}の事例画像`}
@@ -364,6 +360,6 @@ export default function Section8() {
           </div>
         </div>
       </Container>
-    </section>
+    </Section>
   );
 }

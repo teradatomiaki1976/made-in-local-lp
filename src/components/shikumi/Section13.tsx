@@ -5,6 +5,7 @@ import { useState } from "react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { Heading2 } from "@/components/ui/Typography";
+import { Section } from "@/components/ui/Section";
 
 // --- データ構造 ---
 interface FAQItem {
@@ -64,10 +65,7 @@ export default function Section13() {
   };
 
   return (
-    <section
-      id="section13"
-      className="relative w-full bg-[#0a1128] z-20 text-white py-24 md:py-32 overflow-hidden"
-    >
+    <Section id="section13" theme="dark">
       {/* 背景グラデーションとノイズ */}
       <div className="absolute inset-0 z-0 bg-[linear-gradient(-160deg,#19324D_0%,#19324D_50%,#00518B_66%,#19324D_78%,#19324D_100%)]">
         <div
@@ -84,7 +82,7 @@ export default function Section13() {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={containerVariants}
-          className="mb-12 md:mb-16"
+          className="md:mb-16"
         >
           <motion.div
             variants={itemFadeUp}
@@ -122,9 +120,9 @@ export default function Section13() {
                   onClick={() => toggleFAQ(faq.id)}
                   aria-expanded={isOpen}
                   aria-controls={`faq-answer-${faq.id}`}
-                  className="w-full flex items-center justify-between bg-white/10 hover:bg-white/15 backdrop-blur-sm border border-white/10 rounded-md p-5 md:p-8 text-left transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
+                  className="w-full flex items-center justify-between bg-white/10 hover:bg-white/15 backdrop-blur-sm border border-white/10 rounded-md p-4 md:p-8 text-left transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
                 >
-                  <span className="text-base md:text-lg font-bold pr-4">
+                  <span className="text-base md:text-xl font-bold pr-4">
                     <span className="mr-2 font-serif">Q.</span>
                     {faq.question}
                   </span>
@@ -156,7 +154,7 @@ export default function Section13() {
                       transition={{ duration: 0.3, ease: "easeInOut" }}
                       className="overflow-hidden"
                     >
-                      <div className="bg-white text-text font-sans text-left rounded-b-md p-5 md:p-8 mt-1 text-sm md:text-base leading-relaxed shadow-inner">
+                      <div className="bg-white text-text font-sans text-left rounded-b-md p-4 md:p-8 mt-1 text-sm md:text-base leading-relaxed shadow-inner">
                         {faq.answer}
                       </div>
                     </motion.div>
@@ -167,6 +165,6 @@ export default function Section13() {
           })}
         </motion.div>
       </Container>
-    </section>
+    </Section>
   );
 }

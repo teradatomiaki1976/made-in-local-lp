@@ -5,6 +5,7 @@ import { motion, Variants } from "framer-motion";
 import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { Heading2, Text } from "@/components/ui/Typography";
+import { Section } from "@/components/ui/Section";
 
 export default function Section14() {
   // --- タイムライン設計（秒数） ---
@@ -103,10 +104,7 @@ export default function Section14() {
   };
 
   return (
-    <section
-      id="section14"
-      className="relative w-full overflow-hidden py-24 md:py-32 bg-[#F9FDF2]"
-    >
+    <Section id="section14">
       {/* --- 擬似ランダム画像エリア --- */}
       <div className="absolute inset-0 z-0 flex items-center justify-center overflow-hidden">
         {COLLAGE_LAYERS.map((layer, index) => (
@@ -204,6 +202,6 @@ export default function Section14() {
           </motion.div>
         </motion.div>
       </Container>
-    </section>
+    </Section>
   );
 }
