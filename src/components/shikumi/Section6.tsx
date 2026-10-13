@@ -14,7 +14,7 @@ const mockArticles = [
     id: 1,
     title: "女優「のん」さんがアンバサダー",
     description:
-      "「Made In Local」公式アンバサダー“のん”さんのアンバサダー継続就任を記念し、「Made In Local×地方創生」の特別連携企画を始動させます。",
+      "「Made In Local」公式アンバサダーのんさん継続就任記念「Made In Local×地方創生」特別連携企画を始動。",
     tag: "社会への発信",
     imageUrl:
       "https://madeinlocal.jp/_next/image?url=https%3A%2F%2Fimages.microcms-assets.io%2Fassets%2Fd34e1f3c439b4a3890fb1c321912652d%2F70511acdc06c447e8bbf27820d1b6da2%2FFrame%25204.png&w=2048&q=75",
@@ -24,7 +24,7 @@ const mockArticles = [
     id: 2,
     title: "経済産業省 近畿経済産業局と連携",
     description:
-      "地方創生メディア「Made In Local」が情報発信を強化！経済産業省近畿経済産業局の施策を広く紹介",
+      "地方創生メディア「Made In Local」が情報発信を強化！経済産業省近畿経済産業局の施策を広く紹介。",
     tag: "行政との接点",
     imageUrl:
       "https://madeinlocal.jp/_next/image?url=https%3A%2F%2Fimages.microcms-assets.io%2Fassets%2Fd34e1f3c439b4a3890fb1c321912652d%2Fa2566b495495461c98b09d637dec392f%2F%25E3%2580%2590MIL%25E3%2580%2591%25E7%25B5%258C%25E6%25B8%2588%25E7%2594%25A3%25E6%25A5%25AD%25E7%259C%2581%25E8%25BF%2591%25E7%2595%25BF%25E7%25B5%258C%25E6%25B8%2588%25E7%2594%25A3%25E6%25A5%25AD%25E5%25B1%2580%25E3%2582%25B3%25E3%2583%25A9%25E3%2583%259B%25E3%2582%2599%25E8%25A8%2598%25E4%25BA%258B.jpg&w=2048&q=75",
@@ -34,7 +34,7 @@ const mockArticles = [
     id: 3,
     title: "産経新聞主催 地方創生イベント審査員",
     description:
-      "株式会社IOBI代表取締役の石井が「地方鉄道×地方創生 ビジネスプランコンテスト」で審査員を務めました",
+      "株式会社IOBI代表取締役の石井が「地方鉄道×地方創生 ビジネスプランコンテスト」で審査員を務めました。",
     tag: "外部評価の場",
     imageUrl:
       "https://madeinlocal.jp/_next/image?url=https%3A%2F%2Fimages.microcms-assets.io%2Fassets%2Fd34e1f3c439b4a3890fb1c321912652d%2F873798f013a54051ab849ab8a9b4420a%2F%25E3%2580%2590%25E3%2583%25A1%25E3%2582%25A4%25E3%2583%2588%25E3%2582%2599%25E3%2582%25A4%25E3%2583%25B3%25E3%2583%25AD%25E3%2583%25BC%25E3%2582%25AB%25E3%2583%25AB%25E7%2594%25A8%25E3%2580%2591%25E9%2589%2584%25E9%2581%2593%25E3%2582%25A4%25E3%2583%2598%25E3%2582%2599%25E3%2583%25B3%25E3%2583%2588%25E3%2583%258F%25E3%2582%2599%25E3%2583%258A%25E3%2583%25BC.png&w=2048&q=75",
@@ -192,50 +192,36 @@ export default function Section6() {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={containerVariants}
-          className="w-full max-w-4xl flex flex-col gap-0 border-t border-gray-300"
+          className="w-full flex flex-wrap justify-between gap-8"
         >
           {mockArticles.map((article) => (
-            <motion.div
-              key={article.id}
-              variants={itemFadeUp}
-              className="w-full"
-            >
-              <Link
-                href={article.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex flex-col md:flex-row items-center gap-6 py-6 border-b border-gray-300 hover:bg-gray-50 transition-colors duration-300"
-              >
+            <motion.div key={article.id} variants={itemFadeUp}>
+              <div className="w-full md:w-[280px] group flex flex-col items-stretch justify-between gap-6 pb-6 border-b border-text/30">
                 {/* サムネイル画像 */}
-                <div className="w-full md:w-[280px] h-[160px] md:h-[140px] shrink-0 relative bg-gray-200 overflow-hidden">
+                <div className="w-full md:w-[280px] h-[160px] md:h-[140px] shrink-0 relative overflow-hidden">
+                  <div className="absolute z-2 left-0 bottom-0 bg-white px-2 py-1 text-xs font-sans font-bold">
+                    {article.tag}
+                  </div>
                   <Image
                     src={article.imageUrl}
                     alt={article.title}
                     fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="object-cover"
                   />
                 </div>
 
                 {/* 記事テキスト */}
-                <div className="flex-1 flex flex-col w-full h-full justify-between py-2">
+                <div className="flex-1 flex flex-col w-full h-full justify-between">
                   <div>
-                    <h3 className="text-lg md:text-xl font-bold mb-3 flex group-hover:text-[#004895] transition-colors">
-                      <span className="hidden md:block border border-text px-2 py-1 text-xs font-sans mr-2">
-                        {article.tag}
-                      </span>
+                    <h3 className="text-lg md:text-xl font-bold mb-3 flex">
                       {article.title}
                     </h3>
                     <p className="text-base text-text font-sans leading-relaxed line-clamp-2 md:line-clamp-none">
                       {article.description}
                     </p>
                   </div>
-                  <div className="flex justify-end mt-4">
-                    <span className="inline-flex items-center text-xs font-sans text-white bg-midblue px-4 py-2 hover:bg-[#004895] transition-colors">
-                      → 記事を読む
-                    </span>
-                  </div>
                 </div>
-              </Link>
+              </div>
             </motion.div>
           ))}
         </motion.div>
