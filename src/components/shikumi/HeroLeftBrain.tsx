@@ -118,14 +118,16 @@ export default function HeroLeftBrain() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
         >
-          <h1 className="text-[clamp(1.875rem,5vw,4.5rem)] font-bold leading-snug tracking-tight mb-8 text-shadow-sm text-shadow-white">
+          <h1 className="text-[clamp(1.9rem,9vw,4.5rem)] font-bold leading-snug tracking-tight mb-4 lg:mb-8 text-shadow-sm text-shadow-white">
             もっと知られるべき
             <br />
             日本各地の企業に贈る
           </h1>
-          <div className="text-xl font-bold">
+          <div className="text-sm md:text-xl font-bold">
             ───{" "}
-            <span className="px-2 tracking-[6]">地域を代表する企業100選</span>{" "}
+            <span className="px-2 tracking-[2] md:tracking-[6]">
+              地域を代表する企業100選
+            </span>{" "}
             ───
           </div>
         </motion.div>
@@ -135,7 +137,7 @@ export default function HeroLeftBrain() {
           initial={{ opacity: 0.4, scale: 0.94 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-          className="mt-12 md:mt-16 relative w-56 h-[min(256px,30vh)] md:w-80 md:h-[min(360px,35vh)] shrink-0"
+          className="mt-14 md:mt-6 lg:mt-16 relative w-56 h-[min(256px,35vh)] md:w-80 md:h-[min(360px,35vh)] shrink-0"
         >
           <Image
             src="/images/shikumi/trophy.webp"
@@ -150,7 +152,7 @@ export default function HeroLeftBrain() {
 
       {/* 4. 下部アーチ形状 */}
       <div className="absolute bottom-0 left-0 w-full z-30 flex flex-col">
-        <div className="w-full h-30 md:h-34 relative">
+        <div className="w-full h-32 md:h-28 lg:h-36 relative">
           {/* Scrollガイド */}
           <div className="absolute top-18 md:top-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center z-20">
             <span className="text-white text-[10px] md:text-xs tracking-widest font-serif mb-1 md:mb-2 drop-shadow-md">
