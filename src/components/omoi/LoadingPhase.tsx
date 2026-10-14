@@ -19,7 +19,7 @@ const BACKGROUND_IMAGES = [
   "/images/photo/scene10.webp",
 ];
 
-const TIMINGS = [800, 600, 400, 200, 150, 150, 150, 200, 300, 1500];
+const TIMINGS = [800, 600, 400, 200, 150, 150, 150, 200, 300, 1200];
 
 // プログレスバー用に合計時間を計算
 const TOTAL_DURATION = TIMINGS.reduce((a, b) => a + b, 0) / 1000;
@@ -147,4 +147,3 @@ export default function LoadingPhase({
     </motion.div>
   );
 }
-

@@ -141,8 +141,7 @@ export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
   );
   const firstTextFilter = useMotionTemplate`blur(${textBlurValue}px)`;
 
-  // 👇 【最適化版】Framer Motionのイベントを利用した状態更新
-  // `useMotionValueEvent` はスクロール値が変化した時だけ発火し、Reactのライフサイクルと相性が良い
+  // `useMotionValueEvent` はスクロール値が変化した時だけ発火
   useMotionValueEvent(scrollY, "change", (latestScrollY) => {
     const isDark = latestScrollY > 300;
 
@@ -166,16 +165,16 @@ export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
     document.body.style.overflow = "hidden";
     document.body.style.touchAction = "none";
 
-    // 1. ヘッダーを表示させるタイミング (4.5秒後)
+    // 1. ヘッダーを表示させるタイミング
     const headerTimer = setTimeout(() => {
       onShowHeader();
-    }, 3000);
+    }, 2200);
 
-    // 2. ヘッダーのインアニメーション(例:0.5秒)完了後にスクロールロックを解除 (合計5.0秒後)
+    // 2. ヘッダーのインアニメーション完了後にスクロールロックを解除
     const unlockTimer = setTimeout(() => {
       document.body.style.overflow = originalOverflow;
       document.body.style.touchAction = originalTouchAction;
-    }, 3500);
+    }, 3000);
 
     // アンマウント時（途中で別ページへ遷移した際など）に確実にロックを解除するクリーンアップ
     return () => {
@@ -207,7 +206,7 @@ export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
                 initial={{ opacity: 0, filter: "grayscale(100%) blur(10px)" }}
                 animate={{ opacity: 0.8, filter: "grayscale(0%) blur(0px)" }} // ここを統一
                 transition={{
-                  delay: 4.0 + index * 0.2, // ここを統一
+                  delay: 2.6 + index * 0.2, // ここを統一
                   duration: 3,
                   ease: "easeOut",
                 }}
@@ -228,7 +227,7 @@ export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
                 initial={{ opacity: 0, filter: "grayscale(100%) blur(10px)" }}
                 animate={{ opacity: 0.8, filter: "grayscale(0%) blur(0px)" }} // b1と完全に一致させる
                 transition={{
-                  delay: 4.0 + index * 0.2, // b1と完全に一致させる
+                  delay: 2.6 + index * 0.2, // b1と完全に一致させる
                   duration: 3,
                   ease: "easeOut",
                 }}
@@ -255,7 +254,7 @@ export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
             className="mt-12 md:mt-16 flex flex-col items-center gap-2"
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.7 }}
-            transition={{ delay: 4.5, duration: 1.5, ease: "easeOut" }}
+            transition={{ delay: 3.0, duration: 1.5, ease: "easeOut" }}
           >
             <span className="font-serif text-xs tracking-widest">Scroll</span>
             <div className="relative w-px h-16 overflow-hidden">
@@ -275,7 +274,7 @@ export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{
-            delay: 2.8,
+            delay: 2.2,
             duration: 2.8,
             ease: "easeOut",
           }}

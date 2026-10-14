@@ -18,7 +18,6 @@ import Phase9_Finale from "@/components/omoi/Phase9_Finale";
 import GlobalFooter from "@/components/layouts/GlobalFooter";
 
 import ShikumiPageWrapper from "@/components/shikumi/ShikumiPageWrapper";
-import HeroLeftBrain from "@/components/shikumi/HeroLeftBrain";
 
 import { cn } from "@/lib/utils";
 
@@ -29,7 +28,6 @@ export default function Home() {
 
   const [isTransitioning, setIsTransitioning] = useState(false);
 
-  // 【変更点】saveScroll, scrollPos の呼び出しを削除
   const { visited, markVisited } = usePageStore();
   const lenis = useLenis();
 
@@ -99,7 +97,7 @@ export default function Home() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2, ease: "easeInOut" }}
-            className="fixed inset-0 z-[60] bg-creem"
+            className="fixed inset-0 z-60 bg-creem"
             aria-hidden="true"
           />
         )}
