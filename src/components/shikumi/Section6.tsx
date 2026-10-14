@@ -17,8 +17,7 @@ const mockArticles = [
     description:
       "「Made In Local」公式アンバサダー[のん]さん継続就任記念「Made In Local×地方創生」特別連携企画を始動。",
     tag: "社会への発信",
-    imageUrl:
-      "https://madeinlocal.jp/_next/image?url=https%3A%2F%2Fimages.microcms-assets.io%2Fassets%2Fd34e1f3c439b4a3890fb1c321912652d%2F70511acdc06c447e8bbf27820d1b6da2%2FFrame%25204.png&w=2048&q=75",
+    imageUrl: "/images/shikumi/section6/thumb1.webp",
     link: "https://madeinlocal.jp/category/feature/026",
   },
   {
@@ -27,8 +26,7 @@ const mockArticles = [
     description:
       "地方創生メディア「Made In Local」が情報発信を強化！経済産業省近畿経済産業局の施策を広く紹介。",
     tag: "行政との接点",
-    imageUrl:
-      "https://madeinlocal.jp/_next/image?url=https%3A%2F%2Fimages.microcms-assets.io%2Fassets%2Fd34e1f3c439b4a3890fb1c321912652d%2Fa2566b495495461c98b09d637dec392f%2F%25E3%2580%2590MIL%25E3%2580%2591%25E7%25B5%258C%25E6%25B8%2588%25E7%2594%25A3%25E6%25A5%25AD%25E7%259C%2581%25E8%25BF%2591%25E7%2595%25BF%25E7%25B5%258C%25E6%25B8%2588%25E7%2594%25A3%25E6%25A5%25AD%25E5%25B1%2580%25E3%2582%25B3%25E3%2583%25A9%25E3%2583%259B%25E3%2582%2599%25E8%25A8%2598%25E4%25BA%258B.jpg&w=2048&q=75",
+    imageUrl: "/images/shikumi/section6/thumb2.webp",
     link: "https://madeinlocal.jp/category/feature/046",
   },
   {
@@ -37,8 +35,7 @@ const mockArticles = [
     description:
       "株式会社IOBI代表取締役の石井が「地方鉄道×地方創生 ビジネスプランコンテスト」で審査員を務めました。",
     tag: "外部評価の場",
-    imageUrl:
-      "https://madeinlocal.jp/_next/image?url=https%3A%2F%2Fimages.microcms-assets.io%2Fassets%2Fd34e1f3c439b4a3890fb1c321912652d%2F873798f013a54051ab849ab8a9b4420a%2F%25E3%2580%2590%25E3%2583%25A1%25E3%2582%25A4%25E3%2583%2588%25E3%2582%2599%25E3%2582%25A4%25E3%2583%25B3%25E3%2583%25AD%25E3%2583%25BC%25E3%2582%25AB%25E3%2583%25AB%25E7%2594%25A8%25E3%2580%2591%25E9%2589%2584%25E9%2581%2593%25E3%2582%25A4%25E3%2583%2598%25E3%2582%2599%25E3%2583%25B3%25E3%2583%2588%25E3%2583%258F%25E3%2582%2599%25E3%2583%258A%25E3%2583%25BC.png&w=2048&q=75",
+    imageUrl: "/images/shikumi/section6/thumb3.webp",
     link: "https://madeinlocal.jp/category/feature/048",
   },
   {
@@ -47,8 +44,7 @@ const mockArticles = [
     description:
       "株式会社IOBI 代表取締役の石井が、兵庫県西脇市の企業版ふるさと納税営業代行・アドバイザーに就任しました！",
     tag: "地域施策",
-    imageUrl:
-      "https://madeinlocal.jp/_next/image?url=https%3A%2F%2Fimages.microcms-assets.io%2Fassets%2Fd34e1f3c439b4a3890fb1c321912652d%2Fa2c2ea9dc4504830ac908c7cbdbdd7df%2F%25E3%2580%2590MIL%25E3%2580%2591%25E8%25A5%25BF%25E8%2584%2587%25E5%25B8%2582%25E4%25BC%2581%25E6%25A5%25AD%25E7%2589%2588%25E3%2581%25B5%25E3%2582%258B%25E3%2581%2595%25E3%2581%25A8%25E7%25B4%258D%25E7%25A8%258E%25E5%2596%25B6%25E6%25A5%25AD%25E4%25BB%25A3%25E8%25A1%258C%25E3%2583%25BB%25E3%2582%25A2%25E3%2583%2588%25E3%2582%2599%25E3%2583%258F%25E3%2582%2599%25E3%2582%25A4%25E3%2582%25B5%25E3%2582%2599%25E3%2583%25BC.jpg&w=2048&q=75",
+    imageUrl: "/images/shikumi/section6/thumb4.webp",
     link: "https://madeinlocal.jp/category/feature/061",
   },
   {
@@ -57,8 +53,7 @@ const mockArticles = [
     description:
       "三重県名張市の公民連携コーディネーターに株式会社IOBI代表取締役石井が就任しました！",
     tag: "地域施策",
-    imageUrl:
-      "https://madeinlocal.jp/_next/image?url=https%3A%2F%2Fimages.microcms-assets.io%2Fassets%2Fd34e1f3c439b4a3890fb1c321912652d%2F59f6d2fc61a74617aed0f465007b1325%2F%25E3%2580%2590MIL%25E3%2580%2591%25E5%2590%258D%25E5%25BC%25B5%25E5%25B8%2582%25E3%2582%25B3%25E3%2583%25BC%25E3%2583%2586%25E3%2582%2599%25E3%2582%25A3%25E3%2583%258D%25E3%2583%25BC%25E3%2582%25BF%25E3%2583%25BC%25E5%25B0%25B1%25E4%25BB%25BB.jpg&w=2048&q=75",
+    imageUrl: "/images/shikumi/section6/thumb5.webp",
     link: "https://madeinlocal.jp/category/feature/040",
   },
   {
@@ -67,8 +62,7 @@ const mockArticles = [
     description:
       "株式会社IOBIが内閣府「地方創生SDGs官民連携プラットフォーム」に分科会を設置しました！",
     tag: "官民連携",
-    imageUrl:
-      "https://madeinlocal.jp/_next/image?url=https%3A%2F%2Fimages.microcms-assets.io%2Fassets%2Fd34e1f3c439b4a3890fb1c321912652d%2F5e7c92e6ca2b4f31adaee1f299eae5c9%2F%25E3%2580%2590MIL%25E3%2580%2591%25E5%2586%2585%25E9%2596%25A3%25E5%25BA%259C%25E5%2588%2586%25E7%25A7%2591%25E4%25BC%259A%25E3%2583%258F%25E3%2582%2599%25E3%2583%258A%25E3%2583%25BC.jpg&w=2048&q=75",
+    imageUrl: "/images/shikumi/section6/thumb6.webp",
     link: "https://madeinlocal.jp/category/feature/068",
   },
 ];

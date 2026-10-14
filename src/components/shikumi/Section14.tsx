@@ -197,7 +197,7 @@ export default function Section14() {
           </motion.div>
           <motion.div variants={itemFadeUp}>
             <Text className="font-bold text-lg md:text-xl">
-              あなたの会社にある価値と、その先に描いている未来を聞かせてください。
+              あなたの会社にある魅力と、その先に描いている未来を聞かせてください。
             </Text>
           </motion.div>
         </motion.div>

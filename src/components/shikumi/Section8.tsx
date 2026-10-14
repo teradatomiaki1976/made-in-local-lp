@@ -141,6 +141,12 @@ const caseStudies: Record<TabId, CaseStudy[]> = {
       desc: "テレビ埼玉「埼玉ビジネスウォッチ」で、企業の取り組みが紹介された事例。",
       img: "/images/shikumi/section8/media2.webp",
     },
+    {
+      title: "100選選出を機に市長を表敬訪問。5社のメディアが取材",
+      company: "福島 / 2026年選出 株式会社一歩",
+      desc: "いわき市初の100選選出を受け、内田広之いわき市長を表敬訪問。市長から事業への評価と応援の言葉を頂いたほか、5社メディアから取材を受けた事例。",
+      img: "/images/shikumi/section8/media3.webp",
+    },
   ],
 };
 
@@ -317,7 +323,7 @@ export default function Section8() {
                   currentStudies.map((item, idx) => (
                     <div
                       key={idx}
-                      className="flex flex-col md:flex-row gap-3 md:gap-6 border-b border-text2/30 pb-4 md:pb-10 last:border-0 last:pb-0"
+                      className="flex flex-col md:flex-row md:items-start gap-3 md:gap-6 border-b border-text2/30 pb-4 md:pb-10 last:border-0 last:pb-0"
                     >
                       {/* 画像エリア */}
                       <div className="w-full md:w-1/3 aspect-[5/2] md:aspect-square overflow-hidden relative shrink-0">

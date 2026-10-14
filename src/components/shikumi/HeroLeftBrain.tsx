@@ -112,34 +112,22 @@ export default function HeroLeftBrain() {
 
       {/* 3. コンテンツエリア（前面） */}
       <div className="relative z-20 flex flex-col items-center justify-center text-center w-full flex-1 px-4 pt-[100px] pb-0 md:pt-[120px] md:pb-[80px]">
-        {/* エンブレム */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="mb-8"
-        >
-          <div className="text-sm font-bold mb-2 md:mb-4">
-            ──{" "}
-            <span className="px-2 tracking-[4]">地域を代表する企業100選</span>{" "}
-            ──
-          </div>
-        </motion.div>
-
         {/* キャッチコピー */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
         >
-          <h1 className="text-[clamp(1.875rem,5vw,4.5rem)] font-bold leading-tight tracking-tight mb-6 text-shadow-sm text-shadow-white">
-            企業の価値を
+          <h1 className="text-[clamp(1.875rem,5vw,4.5rem)] font-bold leading-snug tracking-tight mb-8 text-shadow-sm text-shadow-white">
+            もっと知られるべき
             <br />
-            見つけ、選び、社会へ
+            日本各地の企業に贈る
           </h1>
-          <p className="text-base md:text-xl font-medium">
-            まだ知られていない、すごい会社を、世の中へ
-          </p>
+          <div className="text-xl font-bold">
+            ───{" "}
+            <span className="px-2 tracking-[6]">地域を代表する企業100選</span>{" "}
+            ───
+          </div>
         </motion.div>
 
         {/* トロフィー画像 */}

@@ -35,7 +35,7 @@ export default function GlobalFooter({
   const switchLabel = isOmoi
     ? "審査基準や、具体的な仕組みを見る"
     : "100選に込めた想いと物語を読む";
-  const switchBtnText = isOmoi ? "仕組みから理解する" : "想いから感じる";
+  const switchBtnText = isOmoi ? "魅力と意思を伝える" : "想いを伝える";
 
   const switchColorClass = isOmoi
     ? "from-[#695F1F] to-[#49410e] hover:from-[#726722] hover:to-[#564d11] border-[#4f460f]/30"
@@ -89,7 +89,7 @@ export default function GlobalFooter({
                 className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1"
                 aria-hidden="true"
               />
-              <span className="tracking-wide">選出について相談する</span>
+              <span className="tracking-wide">エントリーについて相談する</span>
             </a>
           </div>
         </div>

@@ -144,7 +144,7 @@ export default function GlobalHeader({
             className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1"
             aria-hidden="true"
           />
-          <span className="tracking-wide">選出について相談する</span>
+          <span className="tracking-wide">エントリーについて相談する</span>
         </a>
       </motion.header>
 
@@ -171,7 +171,7 @@ export default function GlobalHeader({
             className="w-6 h-6 transition-transform duration-300 group-active:translate-x-1"
             aria-hidden="true"
           />
-          <span className="tracking-wide">選出について相談する</span>
+          <span className="tracking-wide">エントリーについて相談する</span>
         </a>
       </motion.div>
     </>
