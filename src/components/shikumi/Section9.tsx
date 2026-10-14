@@ -12,6 +12,7 @@ import {
 import { Container } from "@/components/ui/Container";
 import { Heading2, Text } from "@/components/ui/Typography";
 import { Section } from "@/components/ui/Section";
+import { CTAButton } from "@/components/ui/CTAButton";
 
 // カウントアップコンポーネント
 function CountUp({
@@ -414,6 +415,7 @@ export default function Section9() {
             選出後も、企業の取り組みやニュースを継続的に発信できます。
           </div>
         </motion.div>
+        <CTAButton text="継続的に発信する方法を聞く" />
       </Container>
     </Section>
   );

@@ -5,6 +5,7 @@ import { motion, Variants } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { Heading2, Text } from "@/components/ui/Typography";
 import { Section } from "@/components/ui/Section";
+import { CTAButton } from "@/components/ui/CTAButton";
 
 export default function Section3() {
   // --- アニメーションの定義（variants） ---
@@ -194,6 +195,7 @@ export default function Section3() {
               </div>
             </div>
           </motion.div>
+          <CTAButton text="詳細の審査基準を聞く" />
         </motion.div>
       </Container>
     </Section>

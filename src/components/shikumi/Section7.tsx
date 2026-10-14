@@ -6,6 +6,7 @@ import Image from "next/image";
 import { Container } from "@/components/ui/Container";
 import { Heading2, Text } from "@/components/ui/Typography";
 import { Section } from "@/components/ui/Section";
+import { CTAButton } from "@/components/ui/CTAButton";
 
 export default function Section7() {
   const containerVariants: Variants = {
@@ -186,6 +187,7 @@ export default function Section7() {
               />
             </div>
           </div>
+          <CTAButton text="もっと多くの活用事例を聞く" />
         </motion.div>
       </Container>
     </Section>
