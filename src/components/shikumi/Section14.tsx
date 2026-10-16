@@ -10,8 +10,8 @@ import { Section } from "@/components/ui/Section";
 export default function Section14() {
   // --- タイムライン設計（秒数） ---
   const COLLAGE_LAYERS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; // 枚数
-  const STAGGER_DELAY = 0.4; // 1枚ごとの出現間隔
-  const OVERLAY_START_TIME = 4.4;
+  const STAGGER_DELAY = 0.1; // 1枚ごとの出現間隔
+  const OVERLAY_START_TIME = 1.0;
 
   // --- アニメーションの定義 ---
 
@@ -145,7 +145,7 @@ export default function Section14() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
-          className="relative w-full max-w-4xl flex flex-row items-center justify-center px-4 md:px-12 mb-12 md:mb-16"
+          className="relative w-full max-w-4xl flex flex-row items-center justify-center md:px-12 mb-12 md:mb-16"
         >
           {/* 左側 */}
           <motion.div variants={leftSlide} className="text-center">
