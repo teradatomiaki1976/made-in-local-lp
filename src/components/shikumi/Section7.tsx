@@ -126,7 +126,7 @@ export default function Section7() {
           variants={itemFadeUp}
           className="w-full max-w-5xl bg-white rounded-xl shadow-2xl p-5 md:p-16 text-midblue flex flex-col items-center text-center"
         >
-          <div className="mb-12">
+          <div className="mb-6 md:mb-12">
             <Heading2>選ばれた証を社会との新しい接点へ</Heading2>
             <Text>
               選出されたことを、しまっておく必要はありません。
@@ -141,11 +141,11 @@ export default function Section7() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full lg:w-3xl">
             <div className="relative w-full aspect-[5/2] md:aspect-[16/9] flex items-center justify-center overflow-hidden">
               <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-text font-bold bg-white/90 py-2 md:py-3 px-2 md:px-5 tracking-wide text-xs md:text-lg z-1 whitespace-nowrap drop-shadow-lg">
-                Web・採用の接点で
+                Webの接点で
               </span>
               <Image
                 src="/images/shikumi/section7/scene-web.webp"
-                alt="Webや採用サイトでのエンブレム活用例"
+                alt="Webサイトでのエンブレム活用例"
                 fill
                 className="object-cover"
               />
@@ -165,7 +165,7 @@ export default function Section7() {
 
             <div className="relative w-full aspect-[5/2] md:aspect-[16/9] flex items-center justify-center overflow-hidden">
               <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-text font-bold bg-white/90 py-2 md:py-3 px-2 md:px-5 tracking-wide text-xs md:text-lg z-1 whitespace-nowrap drop-shadow-lg">
-                会社の空間で
+                オフィスの接点で
               </span>
               <Image
                 src="/images/shikumi/section7/scene-office.webp"
@@ -177,11 +177,11 @@ export default function Section7() {
 
             <div className="relative w-full aspect-[5/2] md:aspect-[16/9] flex items-center justify-center overflow-hidden">
               <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-text font-bold bg-white/90 py-2 md:py-3 px-2 md:px-5 tracking-wide text-xs md:text-lg z-1 whitespace-nowrap drop-shadow-lg">
-                発信の接点で
+                採用会場の接点で
               </span>
               <Image
                 src="/images/shikumi/section7/scene-pr.webp"
-                alt="PRや発信でのエンブレム活用例"
+                alt="採用会場でのエンブレム活用例"
                 fill
                 className="object-cover"
               />

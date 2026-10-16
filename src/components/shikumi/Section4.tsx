@@ -32,9 +32,13 @@ export default function Section4() {
   const [selectedCompany, setSelectedCompany] = useState<Company | null>(null);
 
   const carouselRef = useRef<HTMLDivElement>(null);
-  // 💎 再レンダリングによるカクつきを防ぐため、useStateではなくuseRefを使用
   const isHovered = useRef(false);
   const isModalOpen = useRef(false);
+
+  // 💎 PCマウスドラッグ制御用のRef
+  const isDragging = useRef(false);
+  const startX = useRef(0);
+  const scrollLeftPos = useRef(0);
 
   const currentIndex = selectedCompany
     ? companies.findIndex((c) => c.id === selectedCompany.id)
@@ -49,10 +53,37 @@ export default function Section4() {
     if (hasNext) setSelectedCompany(companies[currentIndex + 1]);
   };
 
-  // 💎 モーダルの開閉状態をRefに同期（裏側でのスクロール停止用）
   useEffect(() => {
     isModalOpen.current = !!selectedCompany;
   }, [selectedCompany]);
+
+  // 💎 マウスドラッグ処理のハンドラー
+  const handleMouseDown = (e: React.MouseEvent) => {
+    isDragging.current = true;
+    isHovered.current = true; // 自動スクロールを停止
+    if (carouselRef.current) {
+      startX.current = e.pageX - carouselRef.current.offsetLeft;
+      scrollLeftPos.current = carouselRef.current.scrollLeft;
+    }
+  };
+
+  const handleMouseLeave = () => {
+    isDragging.current = false;
+    isHovered.current = false; // 自動スクロール再開
+  };
+
+  const handleMouseUp = () => {
+    isDragging.current = false;
+    isHovered.current = false; // 自動スクロール再開
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging.current || !carouselRef.current) return;
+    e.preventDefault();
+    const x = e.pageX - carouselRef.current.offsetLeft;
+    const walk = (x - startX.current) * 2; // スクロール速度の倍率
+    carouselRef.current.scrollLeft = scrollLeftPos.current - walk;
+  };
 
   const CompanyList = () => (
     <div className="flex gap-6 pr-6">
@@ -102,17 +133,16 @@ export default function Section4() {
 
     let animationFrameId: number;
 
-    // 初期化はマウント時の1回だけ実行する
     const initTimer = setTimeout(() => {
       if (el) el.scrollLeft = el.scrollWidth / 3;
     }, 100);
 
     const scroll = () => {
-      // ホバーしておらず、モーダルも開いていない時だけ流す
+      // ホバー・ドラッグしておらず、モーダルも開いていない時だけ流す
       if (!isHovered.current && !isModalOpen.current) {
-        el.scrollLeft -= 0.5; // スクロール速度を調整
+        el.scrollLeft -= 0.5;
 
-        // ワープ処理：端数のピクセル落ちを防ぐため += や -= で補正
+        // ワープ処理
         if (el.scrollLeft <= 0) {
           el.scrollLeft += el.scrollWidth / 3;
         } else if (el.scrollLeft >= (el.scrollWidth / 3) * 2) {
@@ -124,7 +154,6 @@ export default function Section4() {
 
     animationFrameId = requestAnimationFrame(scroll);
 
-    // 💎 依存配列を空にして、ホバー時にuseEffectが再起動するのを防ぐ
     return () => {
       clearTimeout(initTimer);
       cancelAnimationFrame(animationFrameId);
@@ -168,38 +197,40 @@ export default function Section4() {
         </motion.div>
       </Container>
 
-      <div className="relative w-full mt-8 md:mt-12 flex flex-col items-start">
+      <div className="relative w-full mt-8 md:mt-12 flex flex-col items-center">
         <div className="absolute inset-y-0 left-0 w-12 md:w-32 bg-gradient-to-r from-[#F9FDF2] to-transparent z-10 pointer-events-none" />
         <div className="absolute inset-y-0 right-0 w-12 md:w-32 bg-gradient-to-l from-[#F9FDF2] to-transparent z-10 pointer-events-none" />
 
         <div
           ref={carouselRef}
-          className="flex w-full overflow-x-auto py-4 cursor-grab active:cursor-grabbing [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
-          // 💎 マウス・タッチ・フォーカス時のイベントを全てRefに繋ぎ込む
-          onMouseEnter={() => {
-            isHovered.current = true;
-          }}
-          onMouseLeave={() => {
-            isHovered.current = false;
-          }}
+          className="flex w-full overflow-x-auto py-4 cursor-grab active:cursor-grabbing [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] select-none"
+          // タッチイベント（スマホ）
           onTouchStart={() => {
             isHovered.current = true;
           }}
           onTouchEnd={() => {
             isHovered.current = false;
           }}
-          onFocus={() => {
-            isHovered.current = true;
-          }}
-          onBlur={() => {
-            isHovered.current = false;
-          }}
+          // マウスイベント（PCドラッグ）
+          onMouseDown={handleMouseDown}
+          onMouseLeave={handleMouseLeave}
+          onMouseUp={handleMouseUp}
+          onMouseMove={handleMouseMove}
         >
-          <div className="flex w-max">
+          <div className="flex w-max pointer-events-auto">
             <CompanyList />
             <CompanyList />
             <CompanyList />
           </div>
+        </div>
+        <div className="mt-2 md:mt-6 w-full flex justify-center z-10 pointer-events-none">
+          <motion.div
+            animate={{ x: [-4, 4, -4] }}
+            transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+            className="bg-white/80 text-[#003064] text-[11px] md:text-sm font-bold font-sans px-5 py-2 md:py-2.5 rounded-full shadow-sm border border-[#003064]/10 flex items-center gap-3 backdrop-blur-sm"
+          >
+            <span>←</span> 横にスクロールして他の企業を見る <span>→</span>
+          </motion.div>
         </div>
       </div>
 

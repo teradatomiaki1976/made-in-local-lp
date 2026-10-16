@@ -148,7 +148,7 @@ export default function Section9() {
               <br className="block md:hidden" />
               利用する割合
             </div>
-            <div className="px-6 md:px-8 pb-6 md:pb-8 flex flex-col sm:flex-row items-center gap-10 justify-center h-full">
+            <div className="px-6 md:px-8 pb-6 md:pb-8 flex flex-col sm:flex-row items-center gap-4 md:gap-8 justify-center h-full">
               {/* 棒グラフエリア */}
               <div
                 className="flex items-end gap-3 md:gap-4 h-full"
@@ -198,7 +198,7 @@ export default function Section9() {
               <div className="hidden sm:block w-px h-full bg-text/30"></div>
 
               {/* 年代別利用率 */}
-              <div className="flex flex-col w-full items-center justify-center gap-8">
+              <div className="flex flex-col w-full items-center justify-center gap-4 md:gap-8">
                 <span className="text-lg md:text-base font-bold font-sans bg-text text-white px-4 py-0.5 w-full text-center">
                   年代別利用率
                 </span>
@@ -228,8 +228,8 @@ export default function Section9() {
               生成AIを検索手段として利用する割合は、2026年8月時点で52.3%に上昇。年代別利用率では10代が80.6%、20代が60.0%となっています。
             </div>
             <div className="px-4 py-2 text-[8px] md:text-[10px] text-text font-sans bg-text/10 text-right">
-              出典：株式会社サイバーエージェント GEO
-              Lab「生成AIのユーザー利用実態調査」
+              出典:株式会社サイバーエージェントGEO Lab
+              生成AIのユーザー利用実態調査
             </div>
           </motion.div>
 
@@ -241,12 +241,8 @@ export default function Section9() {
             variants={itemFadeUp}
             className="lg:col-span-1 bg-white rounded-xl shadow-xl p-6 md:p-8 flex flex-col justify-center items-center text-text"
           >
-            <p className="font-bold text-base md:text-xl leading-relaxed mb-4 md:mb-8 text-center md:text-left">
-              AIは、Web上に存在する
-              <br className="hidden md:block" />
-              さまざまな情報を元に、
-              <br className="hidden md:block" />
-              企業について説明します。
+            <p className="font-bold text-base md:text-xl leading-relaxed mb-4 md:mb-8 text-left">
+              AIは、Web上に存在する様々な情報を元に、企業について説明します。
             </p>
 
             <div
@@ -374,8 +370,8 @@ export default function Section9() {
           variants={itemFadeUp}
           className="w-full max-w-5xl bg-white rounded-xl shadow-xl overflow-hidden flex flex-col text-text"
         >
-          <div className="p-8 md:p-12 text-center flex flex-col items-center">
-            <h3 className="text-lg md:text-2xl font-bold leading-relaxed mb-6 md:mb-10">
+          <div className="p-8 md:p-12 text-left md:text-center flex flex-col items-center">
+            <h3 className="text-base md:text-2xl font-bold leading-relaxed mb-6 md:mb-10">
               「地域を代表する企業100選」選出企業の
               <br className="hidden md:block" />
               特設ページは、すでにAIにも引用されています。

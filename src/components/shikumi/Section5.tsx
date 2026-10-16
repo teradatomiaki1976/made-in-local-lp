@@ -67,8 +67,7 @@ export default function Section5() {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={containerVariants}
-          // 💡 スマホ時は固定サイズ(280px)でabsoluteの基準とし、PC時はflexで横並びに切り替え
-          className="relative w-[300px] h-[300px] sm:w-[320px] sm:h-[320px] md:w-full md:h-auto md:max-w-3xl mx-auto flex md:flex-row justify-center items-center mb-16 md:mb-20"
+          className="relative w-[300px] h-[300px] sm:w-[320px] sm:h-[320px] md:w-full md:h-auto md:max-w-3xl mx-auto flex md:flex-row justify-center items-center mb-10 md:mb-20"
           aria-label="プロセス：すでにある価値を見つける、評価する、そして社会に伝える"
         >
           {/* 円1 (スマホ: 上段中央 / PC: 左) */}
@@ -91,7 +90,7 @@ export default function Section5() {
             className="absolute bottom-0 left-0 md:static w-40 h-40 sm:w-48 sm:h-48 md:w-66 md:h-66 rounded-full border border-white/20 bg-white/10 flex flex-col items-center justify-center z-20 shadow-lg"
           >
             <p className="text-lg md:text-2xl font-bold text-center">
-              「評価する」
+              「理解する」
             </p>
           </motion.div>
 

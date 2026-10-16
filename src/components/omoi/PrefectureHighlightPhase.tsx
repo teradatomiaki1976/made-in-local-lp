@@ -101,7 +101,7 @@ export default function PrefectureHighlightPhase({ scrollYProgress }: Props) {
           都道府県別企業数
         </h2>
         <p className="text-center mt-4 md:mt-8 text-white font-sans tracking-wider">
-          【2021年6月時点/中小企業庁資料参照】
+          【令和6年基礎調査／e-Stat 参照】
         </p>
       </motion.div>
       <motion.div

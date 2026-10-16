@@ -3,9 +3,10 @@
 
 import { useRef } from "react";
 import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
-import { FiChevronRight } from "react-icons/fi";
 import { Heading2, Text } from "@/components/ui/Typography";
 import { CTAButton } from "@/components/ui/CTAButton";
+import { Container } from "@/components/ui/Container";
+import { Section } from "@/components/ui/Section";
 
 // --- サブコンポーネント: 1文字ずつのアニメーション制御 ---
 const Char = ({
@@ -52,79 +53,78 @@ export default function IntroLeftBrain() {
   const characters = Array.from(leadText);
 
   return (
-    <section
-      id="introduction"
-      className="relative w-full bg-gradient-to-b from-[#19324D] to-[#003E80] text-white py-24 md:py-32 flex flex-col items-center px-6 md:px-8 overflow-hidden"
-    >
-      {/* 1. 背景ノイズテクスチャ */}
-      <div
-        className="absolute inset-0 z-0 pointer-events-none opacity-[0.04]"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-        }}
-      />
-
-      {/* 2. コンテンツ群（ノイズの上に配置するため相対配置 z-10 を追加） */}
-      <div className="relative z-10 flex flex-col items-center w-full">
-        {/* Introduction ラベル */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8 }}
-          className="mb-10"
-        >
-          <span className="bg-[linear-gradient(135deg,#FFFFFF_32%,#DDDDDD_53%,#BABABA_67%,#E2E2E2_76%,#FFFFFF_88%)] text-[#19324D] text-xs md:text-sm font-bodoni tracking-widest px-6 py-1.5 shadow-sm">
-            Introduction
-          </span>
-        </motion.div>
-
-        {/* メイン見出し */}
-        <Heading2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          まだ知られていないだけ
-        </Heading2>
-
-        {/* スクロール連動テキストエリア */}
+    <Section id="section3" theme="dark">
+      {/* 背景グラデーションとノイズ */}
+      <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#19324D] to-[#003E80]">
         <div
-          ref={containerRef}
-          className="max-w-4xl mx-auto w-full flex flex-col gap-8 md:gap-12"
-        >
-          {/* リードコピー (1文字ずつ色が変化) */}
-          <div className="relative text-xl md:text-4xl leading-loose font-normal">
-            {/* 【a11y対策】スクリーンリーダー用の不可視テキスト */}
-            <p className="sr-only">{leadText.replace(/\n/g, "")}</p>
-
-            {/* 視覚的なアニメーション用テキスト（音声読み上げからは除外） */}
-            <p aria-hidden="true">
-              {characters.map((char, index) => (
-                <Char
-                  key={index}
-                  char={char}
-                  index={index}
-                  total={characters.length}
-                  progress={scrollYProgress}
-                />
-              ))}
-            </p>
-
-            <motion.p
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 1, delay: 0.6 }}
-              className="font-sans text-white text-xs border-t border-white/20 pt-6 mt-6 text-right"
-            >
-              地方創生メディア「Made In Local」が選定
-            </motion.p>
-          </div>
-        </div>
-        <CTAButton text="エントリーについて相談する" />
+          className="absolute inset-0 z-0 pointer-events-none opacity-[0.04]"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+          }}
+        />
       </div>
-    </section>
+      <Container>
+        <div className="relative z-10 flex flex-col items-center w-full">
+          {/* Introduction ラベル */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8 }}
+            className="mb-10"
+          >
+            <span className="bg-[linear-gradient(135deg,#FFFFFF_32%,#DDDDDD_53%,#BABABA_67%,#E2E2E2_76%,#FFFFFF_88%)] text-[#19324D] text-xs md:text-sm font-bodoni tracking-widest px-6 py-1.5 shadow-sm">
+              Introduction
+            </span>
+          </motion.div>
+
+          {/* メイン見出し */}
+          <Heading2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            まだ知られていないだけ
+          </Heading2>
+
+          {/* スクロール連動テキストエリア */}
+          <div
+            ref={containerRef}
+            className="max-w-4xl mx-auto w-full flex flex-col gap-8 md:gap-12"
+          >
+            {/* リードコピー (1文字ずつ色が変化) */}
+            <div className="relative text-lg md:text-3xl leading-loose font-normal">
+              {/* 【a11y対策】スクリーンリーダー用の不可視テキスト */}
+              <p className="sr-only">{leadText.replace(/\n/g, "")}</p>
+
+              {/* 視覚的なアニメーション用テキスト（音声読み上げからは除外） */}
+              <p aria-hidden="true">
+                {characters.map((char, index) => (
+                  <Char
+                    key={index}
+                    char={char}
+                    index={index}
+                    total={characters.length}
+                    progress={scrollYProgress}
+                  />
+                ))}
+              </p>
+
+              <motion.p
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 1, delay: 0.6 }}
+                className="font-sans text-white text-xs border-t border-white/20 pt-3 mt-3 md:pt-6 md:mt-6 text-right"
+              >
+                地方創生メディア「Made In Local」が選定
+              </motion.p>
+            </div>
+          </div>
+          <CTAButton text="エントリーについて相談する" />
+        </div>
+      </Container>
+    </Section>
   );
 }

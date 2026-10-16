@@ -35,7 +35,8 @@ export default function GlobalFooter({
   const switchLabel = isOmoi
     ? "審査基準や、具体的な仕組みを見る"
     : "100選に込めた想いと物語を読む";
-  const switchBtnText = isOmoi ? "魅力と意思を伝える" : "想いを伝える";
+  const switchBtnText = isOmoi ? "仕組みから理解する" : "想いから感じる";
+  const cvBtnText = isOmoi ? "想いを伝える" : "魅力と意思を伝える";
 
   const switchColorClass = isOmoi
     ? "from-[#695F1F] to-[#49410e] hover:from-[#726722] hover:to-[#564d11] border-[#4f460f]/30"
@@ -58,10 +59,7 @@ export default function GlobalFooter({
             </p>
             <button
               onClick={() => onPageChange(switchTarget)}
-              className={`w-full max-w-sm bg-linear-to-b font-sans text-white py-6 md:py-8 rounded-lg font-bold text-xl shadow-[0_4px_12px_rgba(0,42,92,0.4)] hover:shadow-[0_6px_16px_rgba(0,42,92,0.5)] border transition-all duration-300 cursor-pointer group relative overflow-hidden flex items-center justify-center gap-2 ${switchColorClass}`}
-              style={{
-                paddingBottom: "calc(env(safe-area-inset-bottom) + 32px)",
-              }}
+              className={`w-full max-w-sm bg-linear-to-b font-sans text-white py-6 md:py-8 rounded-lg font-bold text-base md:text-xl shadow-[0_4px_12px_rgba(0,42,92,0.4)] hover:shadow-[0_6px_16px_rgba(0,42,92,0.5)] border transition-all duration-300 cursor-pointer group relative overflow-hidden flex items-center justify-center gap-2 ${switchColorClass}`}
             >
               <span className="absolute top-0 left-0 w-full h-px bg-white/20"></span>
               <FiChevronRight
@@ -79,17 +77,14 @@ export default function GlobalFooter({
             </p>
             <a
               href="https://madeinlocal.jp/contact/100selection"
-              className="w-full max-w-sm bg-linear-to-b from-[#007a8c] to-[#00535f] font-sans text-white py-6 md:py-8 rounded-lg font-bold text-xl shadow-[0_4px_12px_rgba(0,42,92,0.4)] hover:from-[#008396] hover:to-[#005b68] hover:shadow-[0_6px_16px_rgba(0,42,92,0.5)] border border-[#00454f]/30 transition-all duration-300 cursor-pointer group relative overflow-hidden flex items-center justify-center gap-2"
-              style={{
-                paddingBottom: "calc(env(safe-area-inset-bottom) + 32px)",
-              }}
+              className="w-full max-w-sm bg-linear-to-b from-[#007a8c] to-[#00535f] font-sans text-white py-6 md:py-8 rounded-lg font-bold text-base md:text-xl shadow-[0_4px_12px_rgba(0,42,92,0.4)] hover:from-[#008396] hover:to-[#005b68] hover:shadow-[0_6px_16px_rgba(0,42,92,0.5)] border border-[#00454f]/30 transition-all duration-300 cursor-pointer group relative overflow-hidden flex items-center justify-center gap-2"
             >
               <span className="absolute top-0 left-0 w-full h-px bg-white/20"></span>
               <FiChevronRight
                 className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1"
                 aria-hidden="true"
               />
-              <span className="tracking-wide">エントリーについて相談する</span>
+              <span className="tracking-wide">{cvBtnText}</span>
             </a>
           </div>
         </div>
@@ -99,7 +94,6 @@ export default function GlobalFooter({
       <div className="w-full bg-midblue py-8 md:py-20 flex flex-col items-center justify-center relative">
         <button
           onClick={scrollToTop}
-          // z-20を追加して直前のCTA領域（z-10）より前面に表示させる
           className="absolute right-4 md:right-12 top-2 -translate-y-[calc(100%+16px)] z-20 flex flex-col items-center justify-center group cursor-pointer"
           aria-label="ページトップへ戻る"
         >

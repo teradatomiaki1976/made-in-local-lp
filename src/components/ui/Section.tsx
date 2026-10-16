@@ -15,7 +15,7 @@ export function Section({
   ...props
 }: SectionProps) {
   // 共通のベーススタイル
-  const baseClasses = "relative w-full py-18 md:py-32 overflow-hidden";
+  const baseClasses = "relative w-full py-16 md:py-32 overflow-hidden";
 
   // テーマごとのデフォルトスタイル（必要に応じて拡張）
   const themeClasses = {

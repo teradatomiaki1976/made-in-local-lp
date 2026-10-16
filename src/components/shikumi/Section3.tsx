@@ -119,7 +119,7 @@ export default function Section3() {
           }}
           className="relative w-full max-w-4xl flex flex-col items-center justify-center"
         >
-          <div className="relative w-full flex flex-row items-center justify-center px-4 md:px-12 mb-12 md:mb-16 z-20">
+          <div className="relative w-full flex flex-row items-center justify-center md:px-12 mb-12 md:mb-16 z-20">
             <motion.div variants={leftSlide} className="text-center -mt-10">
               <div className="text-[#FFD666] text-center text-xl md:text-5xl font-medium italic leading-relaxed tracking-wider">
                 知られるべき

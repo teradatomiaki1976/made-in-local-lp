@@ -6,8 +6,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Heading2, Text } from "@/components/ui/Typography";
-import { FaCrown } from "react-icons/fa";
 import { Section } from "@/components/ui/Section";
+import { FiExternalLink } from "react-icons/fi";
 
 // 外部API連携を見据えたモックデータ
 const mockArticles = [
@@ -146,34 +146,74 @@ export default function Section6() {
             企業一社一社の価値と、その先に描く未来を見つめながら
             <br className="hidden md:block" />
             「地域を代表する企業100選」を選定しています。
+            <a
+              href="https://madeinlocal.jp/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-1 text-xs md:text-sm font-sans text-text2 hover:text-text2 transition-colors group mt-1 md:mt-2"
+            >
+              <span className="border-b border-text2/30 group-hover:border-text2 transition-colors pb-0.5">
+                地方創生メディア「Made In Local」公式サイトへ
+              </span>
+              <FiExternalLink className="w-4 h-4" aria-hidden="true" />
+            </a>
           </Text>
         </motion.div>
 
         {/* 実績バッジ */}
         <motion.div
           variants={itemFadeUp}
-          className="flex flex-col md:flex-row gap-4 md:gap-8 justify-center w-full max-w-3xl mb-12 md:mb-20"
+          className="flex gap-4 md:gap-16 justify-center items-center w-full max-w-3xl mb-12 md:mb-20"
         >
-          <div className="flex-1 flex justify-center items-center gap-3 p-3 md:p-6 rounded shadow-md text-center bg-[linear-gradient(160deg,#FFE121_29%,#FFEE65_63%,#F1D41A_83%,#F6D601_100%)]">
-            <FaCrown className="text-6xl text-[#000000] mix-blend-overlay inset-shadow-sm" />
-            <div className="flex flex-col items-center justify-center">
-              <p className="text-xs md:text-sm font-bold text-text mb-1">
-                〈地方創生メディア SEO〉
+          {/* バッジ1：SEO No.1 */}
+          <div className="relative w-[220px] h-[150px] md:w-[260px] md:h-[260px] flex flex-col justify-center items-center text-center">
+            <div className="absolute inset-0 z-0">
+              <Image
+                src="/images/shikumi/section6/badge-bg.svg"
+                alt="実績バッジ背景"
+                fill
+                className="object-contain"
+              />
+            </div>
+
+            {/* テキスト領域（中央配置） */}
+            <div className="relative z-10 flex flex-col items-center justify-center pt-5 md:pt-8">
+              <p className="text-[10px] md:text-xs font-bold text-text2 mb-1 md:mb-2 tracking-widest">
+                〈地方創生メディアSEO〉
               </p>
-              <p className="text-2xl md:text-3xl font-bold text-text">
-                4年連続 No.1
+              <p className="text-lg md:text-2xl font-bold text-text leading-tight">
+                4年連続
+              </p>
+              <p className="text-3xl md:text-5xl font-bold font-serif text-text leading-none">
+                No.1
               </p>
             </div>
           </div>
-          <div className="flex-1 flex justify-center items-center gap-3 p-3 md:p-6 rounded shadow-md text-center bg-[linear-gradient(160deg,#FFE121_29%,#FFEE65_63%,#F1D41A_83%,#F6D601_100%)]">
-            <FaCrown className="text-6xl text-[#000000] mix-blend-overlay inset-shadow-sm" />
-            <div className="flex flex-col items-center justify-center">
-              <p className="text-xs md:text-sm font-bold text-text mb-1">
+
+          {/* バッジ2：1,500社超 */}
+          <div className="relative w-[220px] h-[150px] md:w-[260px] md:h-[260px] flex flex-col justify-center items-center text-center">
+            <div className="absolute inset-0 z-0">
+              <Image
+                src="/images/shikumi/section6/badge-bg.svg"
+                alt="実績バッジ背景"
+                fill
+                className="object-contain"
+              />
+            </div>
+
+            <div className="relative z-10 flex flex-col items-center justify-center pt-9 md:pt-15">
+              <p className="text-[10px] md:text-xs font-bold text-text2 mb-1 md:mb-2 tracking-widest">
                 〈開始から5年で全国〉
               </p>
-              <p className="text-2xl md:text-3xl font-bold text-text">
-                選出1,500社超
+              <p className="text-lg md:text-2xl font-bold text-text leading-tight">
+                選出
               </p>
+              <div className="flex flex-col items-center md:gap-1">
+                <p className="text-3xl md:text-5xl font-bold font-serif text-text leading-none">
+                  1,500
+                </p>
+                <p className="text-xs md:text-xl font-bold text-text">社超</p>
+              </div>
             </div>
           </div>
         </motion.div>

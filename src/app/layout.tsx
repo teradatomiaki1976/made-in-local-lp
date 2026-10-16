@@ -34,7 +34,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   // Why: metadataBase を設定することで OG画像等の相対パスが自動で絶対URLに解決される
   metadataBase: new URL("https://100selection-lp.madeinlocal.jp"),
-  title: "地域を代表する企業100選 | Made In Local",
+  title: "地域を代表する企業100選とは？",
   description:
     "知らない企業から、記憶に残る企業へ。地域から本気で日本を変えたい。",
   icons: {
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     apple: "/images/favicon/apple-touch-icon.png",
   },
   openGraph: {
-    title: "地域を代表する企業100選 | Made In Local",
+    title: "地域を代表する企業100選とは？",
     description:
       "知らない企業から、記憶に残る企業へ。地域から本気で日本を変えたい。",
     url: "https://100selection-lp.madeinlocal.jp",
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "地域を代表する企業100選 | Made In Local",
+    title: "地域を代表する企業100選とは？",
     description:
       "知らない企業から、記憶に残る企業へ。地域から本気で日本を変えたい。",
     images: ["/images/og-image.jpg"],
@@ -118,7 +118,7 @@ export default function RootLayout({
               "@graph": [
                 {
                   "@type": "WebSite",
-                  name: "地域を代表する企業100選 | Made In Local",
+                  name: "地域を代表する企業100選とは？",
                   url: "https://100selection-lp.madeinlocal.jp",
                   description:
                     "知らない企業から、記憶に残る企業へ。地域から本気で日本を変えたい。",
