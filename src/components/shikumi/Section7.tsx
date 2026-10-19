@@ -124,7 +124,7 @@ export default function Section7() {
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}
           variants={itemFadeUp}
-          className="w-full max-w-5xl bg-white rounded-xl shadow-2xl p-5 md:p-16 text-midblue flex flex-col items-center text-center"
+          className="w-full max-w-5xl bg-white rounded-xl shadow-2xl p-4 md:p-16 text-midblue flex flex-col items-center text-center"
         >
           <div className="mb-6 md:mb-12">
             <Heading2>選ばれた証を社会との新しい接点へ</Heading2>

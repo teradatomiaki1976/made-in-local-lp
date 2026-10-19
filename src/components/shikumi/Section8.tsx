@@ -308,7 +308,7 @@ export default function Section8() {
           </div>
 
           {/* 右：コンテンツエリア */}
-          <div className="relative z-0 lg:w-2/3 lg:flex-1 bg-white rounded-2xl shadow-md border border-text2/30 p-6 md:p-10 lg:pl-14 min-h-[500px]">
+          <div className="relative z-0 lg:w-2/3 lg:flex-1 bg-white rounded-2xl shadow-md border border-text2/30 p-4 md:p-10 lg:pl-14 min-h-[500px]">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeTab}

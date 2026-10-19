@@ -31,12 +31,12 @@ const mockArticles = [
   },
   {
     id: 3,
-    title: "産経新聞主催 地方創生イベント審査員",
+    title: "内閣府 地方創生SDGs官民連携PFで分科会設立",
     description:
-      "株式会社IOBI代表取締役の石井が「地方鉄道×地方創生 ビジネスプランコンテスト」で審査員を務めました。",
-    tag: "外部評価の場",
-    imageUrl: "/images/shikumi/section6/thumb3.webp",
-    link: "https://madeinlocal.jp/category/feature/048",
+      "株式会社IOBIが内閣府「地方創生SDGs官民連携プラットフォーム」に分科会を設置しました！",
+    tag: "官民連携",
+    imageUrl: "/images/shikumi/section6/thumb6.webp",
+    link: "https://madeinlocal.jp/category/feature/068",
   },
   {
     id: 4,
@@ -58,12 +58,12 @@ const mockArticles = [
   },
   {
     id: 6,
-    title: "内閣府 地方創生SDGs官民連携PFで分科会設立",
+    title: "産経新聞主催 地方創生イベント審査員",
     description:
-      "株式会社IOBIが内閣府「地方創生SDGs官民連携プラットフォーム」に分科会を設置しました！",
-    tag: "官民連携",
-    imageUrl: "/images/shikumi/section6/thumb6.webp",
-    link: "https://madeinlocal.jp/category/feature/068",
+      "株式会社IOBI代表取締役の石井が「地方鉄道×地方創生 ビジネスプランコンテスト」で審査員を務めました。",
+    tag: "外部評価の場",
+    imageUrl: "/images/shikumi/section6/thumb3.webp",
+    link: "https://madeinlocal.jp/category/feature/048",
   },
 ];
 

@@ -166,14 +166,14 @@ export default function Section12() {
             {/* 選出企業特設ページ公開 */}
             <motion.div
               variants={itemFadeUp}
-              className="w-full bg-[#FCFAEC] border border-text2/50 rounded-md p-6 md:p-12 shadow-md flex flex-col items-center mt-2"
+              className="w-full bg-[#FCFAEC] border border-text2/50 rounded-md p-3 md:p-12 shadow-md flex flex-col items-center mt-2"
             >
               <h3 className="font-bold text-xl md:text-3xl text-text2 tracking-wider mb-6 md:mb-10">
                 選出企業特設ページ公開
               </h3>
 
               {/* サムネイル画像グリッド (PC/SP共通で2x2) */}
-              <div className="grid grid-cols-2 gap-3 md:gap-6 w-full max-w-4xl">
+              <div className="grid grid-cols-2 gap-2 md:gap-6 w-full max-w-4xl">
                 {[1, 2, 3, 4].map((num) => (
                   <div
                     key={`thumb-${num}`}
@@ -190,9 +190,9 @@ export default function Section12() {
                 ))}
               </div>
 
-              <div className="w-full max-w-4xl text-right mt-4 md:mt-6">
-                <p className="text-[10px] md:text-sm text-gray-700 font-medium tracking-wide">
-                  公開例：株式会社スケールフェイス
+              <div className="w-full max-w-4xl text-right mt-1 md:mt-3">
+                <p className="text-[10px] md:text-sm text-text2 tracking-wide">
+                  公開例：株式会社ユラク
                 </p>
               </div>
             </motion.div>
@@ -207,11 +207,7 @@ export default function Section12() {
           variants={itemFadeUp}
           className="mt-10 md:mt-20 w-full flex flex-col items-center text-center px-4"
         >
-          <Heading2>
-            選出は、ゴールでは
-            <br className="md:hidden" />
-            ありません。
-          </Heading2>
+          <Heading2>選出は、ゴールではありません。</Heading2>
           <Text>
             交流会／企業間マッチング／企業ニュース取り 組みの継続発信／
             <br className="hidden lg:block" />

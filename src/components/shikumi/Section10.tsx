@@ -122,7 +122,7 @@ export default function Section10() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="w-full max-w-5xl bg-white rounded-xl shadow-md border border-gray-100 p-8 md:p-12"
+          className="w-full max-w-5xl bg-white rounded-xl shadow-md border border-gray-100 p-4 md:p-12"
         >
           <div className="flex flex-col lg:flex-row gap-10">
             {/* テキストエリア */}

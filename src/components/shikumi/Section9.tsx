@@ -134,7 +134,7 @@ export default function Section9() {
           </Text>
         </motion.div>
 
-        <div className="w-full max-w-5xl grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+        <div className="w-full max-w-5xl grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6 mb-6">
           {/* 左カード：生成AI利用率 */}
           <motion.div
             initial="hidden"
@@ -143,12 +143,12 @@ export default function Section9() {
             variants={itemFadeUp}
             className="lg:col-span-2 bg-white rounded-xl shadow-xl overflow-hidden flex flex-col text-text"
           >
-            <div className="bg-text text-white font-sans font-bold text-lg md:text-xl leading-relaxed m-6 md:m-8 py-1 px-2 text-center">
+            <div className="bg-text text-white font-sans font-bold text-lg md:text-xl leading-relaxed m-4 md:m-8 py-1 px-2 text-center">
               生成AIを検索手段として
               <br className="block md:hidden" />
               利用する割合
             </div>
-            <div className="px-6 md:px-8 pb-6 md:pb-8 flex flex-col sm:flex-row items-center gap-4 md:gap-8 justify-center h-full">
+            <div className="px-4 md:px-8 pb-6 md:pb-8 flex flex-col sm:flex-row items-center gap-4 md:gap-8 justify-center h-full">
               {/* 棒グラフエリア */}
               <div
                 className="flex items-end gap-3 md:gap-4 h-full"
@@ -239,19 +239,19 @@ export default function Section9() {
             whileInView="visible"
             viewport={{ once: true, margin: "-50px" }}
             variants={itemFadeUp}
-            className="lg:col-span-1 bg-white rounded-xl shadow-xl p-6 md:p-8 flex flex-col justify-center items-center text-text"
+            className="lg:col-span-1 bg-white rounded-xl shadow-xl p-4 md:p-8 flex flex-col justify-center items-center text-text"
           >
-            <p className="font-bold text-base md:text-xl leading-relaxed mb-4 md:mb-8 text-left">
+            <p className="font-bold text-base md:text-xl leading-relaxed mb-2 md:mb-4 text-left">
               AIは、Web上に存在する様々な情報を元に、企業について説明します。
             </p>
 
             <div
-              className="relative flex-1 flex items-center justify-center min-h-[160px] md:min-h-[240px]"
+              className="relative flex-1 flex items-center justify-center min-h-[220px] md:min-h-[240px]"
               aria-hidden="true"
             >
               <svg
                 viewBox="0 0 200 200"
-                className="w-full max-w-[200px] md:max-w-[240px] h-auto overflow-visible"
+                className="w-full max-w-[220px] md:max-w-[240px] h-auto overflow-visible"
               >
                 <motion.g
                   initial="hidden"
@@ -370,14 +370,14 @@ export default function Section9() {
           variants={itemFadeUp}
           className="w-full max-w-5xl bg-white rounded-xl shadow-xl overflow-hidden flex flex-col text-text"
         >
-          <div className="p-8 md:p-12 text-left md:text-center flex flex-col items-center">
+          <div className="p-4 md:p-12 text-left md:text-center flex flex-col items-center">
             <h3 className="text-base md:text-2xl font-bold leading-relaxed mb-6 md:mb-10">
               「地域を代表する企業100選」選出企業の
               <br className="hidden md:block" />
               特設ページは、すでにAIにも引用されています。
             </h3>
 
-            <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12 w-full">
+            <div className="flex flex-col md:flex-row items-center justify-center gap-3 md:gap-12 w-full">
               <motion.div
                 initial={{ scale: 1.2, opacity: 0 }}
                 whileInView={{ scale: 1, opacity: 1 }}
@@ -407,8 +407,8 @@ export default function Section9() {
             </div>
           </div>
 
-          <div className="bg-[linear-gradient(135deg,#003064_32%,#004895_53%,#0052AA_67%,#004289_76%,#003064_88%)] text-white font-sans text-center px-2 py-4 md:py-6 font-bold text-base md:text-xl tracking-widest">
-            選出後も、企業の取り組みやニュースを継続的に発信できます。
+          <div className="bg-[linear-gradient(135deg,#003064_32%,#004895_53%,#0052AA_67%,#004289_76%,#003064_88%)] text-white font-sans text-center px-4 py-2 md:py-6 font-bold text-sm md:text-xl tracking-widest">
+            選出後も企業の取り組みやニュースを継続的に発信できます。
           </div>
         </motion.div>
         <CTAButton text="継続的に発信する方法を聞く" />
