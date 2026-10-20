@@ -36,8 +36,7 @@ const videoData: VideoItem[] = [
     id: "3",
     youtubeId: "kj_UDsBrKxg",
     company: "合同会社HIGH5",
-    title:
-      "売上・問い合わせ数増加 / 地方の生成AI企業はどう認知を広げたのか【地域を代表する企業100選：選出後の変化】",
+    title: "奇跡の出会い？！100選選出による事業成長の転機を紐解く！",
     thumbnail: "/images/shikumi/section11/thumb3.webp",
   },
   {
