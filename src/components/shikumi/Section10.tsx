@@ -160,7 +160,7 @@ export default function Section10() {
               ].map((img, idx) => (
                 <div
                   key={idx}
-                  className="relative aspect-[4/3] overflow-hidden shadow-sm group"
+                  className="relative aspect-5/3 overflow-hidden shadow-sm group"
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img

@@ -34,7 +34,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   // Why: metadataBase を設定することで OG画像等の相対パスが自動で絶対URLに解決される
   metadataBase: new URL("https://100selection-lp.madeinlocal.jp"),
-  title: "地域を代表する企業100選とは？",
+  title: "【公式】地域を代表する企業100選とは？",
   description:
     "「地域を代表する企業100選」は、地域の企業が持つ知られるべき魅力と未来への意志を見つめ、その価値を社会に届けるブランド認証制度です。各地域で選ばれるのは100社だけ。選出の仕組みから、認定制度が目指す地域の未来、地方創生への想いまでをご紹介します。",
   icons: {
@@ -43,11 +43,11 @@ export const metadata: Metadata = {
     apple: "/images/favicon/apple-touch-icon.png",
   },
   openGraph: {
-    title: "地域を代表する企業100選とは？",
+    title: "【公式】地域を代表する企業100選とは？",
     description:
       "「地域を代表する企業100選」は、地域の企業が持つ知られるべき魅力と未来への意志を見つめ、その価値を社会に届けるブランド認証制度です。各地域で選ばれるのは100社だけ。選出の仕組みから、認定制度が目指す地域の未来、地方創生への想いまでをご紹介します。",
     url: "https://100selection-lp.madeinlocal.jp",
-    siteName: "Made In Local",
+    siteName: "地域を代表する企業100選 公式サイト",
     images: [
       {
         url: "/images/og-image.jpg",
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "地域を代表する企業100選とは？",
+    title: "【公式】地域を代表する企業100選とは？",
     description:
       "「地域を代表する企業100選」は、地域の企業が持つ知られるべき魅力と未来への意志を見つめ、その価値を社会に届けるブランド認証制度です。各地域で選ばれるのは100社だけ。選出の仕組みから、認定制度が目指す地域の未来、地方創生への想いまでをご紹介します。",
     images: ["/images/og-image.jpg"],
@@ -118,7 +118,7 @@ export default function RootLayout({
               "@graph": [
                 {
                   "@type": "WebSite",
-                  name: "地域を代表する企業100選とは？",
+                  name: "地域を代表する企業100選 公式サイト",
                   url: "https://100selection-lp.madeinlocal.jp",
                   description:
                     "「地域を代表する企業100選」は、地域の企業が持つ知られるべき魅力と未来への意志を見つめ、その価値を社会に届けるブランド認証制度です。各地域で選ばれるのは100社だけ。選出の仕組みから、認定制度が目指す地域の未来、地方創生への想いまでをご紹介します。",
@@ -129,10 +129,10 @@ export default function RootLayout({
                   "@type": "Organization",
                   "@id": "#organization",
                   name: "Made In Local",
-                  url: "https://100selection-lp.madeinlocal.jp",
+                  url: "https://madeinlocal.jp/",
                   logo: {
                     "@type": "ImageObject",
-                    url: "https://100selection-lp.madeinlocal.jp/images/logo/emblem.png",
+                    url: "https://madeinlocal.jp/images/logo.svg",
                   },
                 },
               ],

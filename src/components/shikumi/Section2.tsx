@@ -85,8 +85,8 @@ export default function Section2() {
 
       {/* 無限スクロール（Marquee）エリア */}
       <div className="mt-20 md:mt-28 relative w-full flex overflow-hidden">
-        <div className="absolute inset-y-0 left-0 w-8 md:w-24 bg-gradient-to-r from-[#F9FDF2] to-transparent z-10 pointer-events-none" />
-        <div className="absolute inset-y-0 right-0 w-8 md:w-24 bg-gradient-to-l from-[#F9FDF2] to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-y-0 left-0 w-8 md:w-24 bg-linear-to-r from-[#F9FDF2] to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-y-0 right-0 w-8 md:w-24 bg-linear-to-l from-[#F9FDF2] to-transparent z-10 pointer-events-none" />
 
         {/* Framer Motion を使った無限スクロール */}
         <motion.div

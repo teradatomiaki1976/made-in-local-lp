@@ -161,10 +161,9 @@ export default function Section11() {
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
                 />
-                {/* 💎 CSSのみで作る再生ボタン（ホバーで少し浮き上がる） */}
                 <div className="absolute inset-0 flex items-center justify-center bg-black/20 transition-colors duration-300 group-hover:bg-black/10">
                   <div className="w-14 h-14 bg-white/90 rounded-full flex items-center justify-center shadow-md transition-transform duration-300 group-hover:scale-110">
-                    <div className="w-0 h-0 border-y-[10px] border-y-transparent border-l-[16px] border-l-[#003064] ml-1"></div>
+                    <div className="w-0 h-0 border-y-10 border-y-transparent border-l-16 border-l-[#003064] ml-1"></div>
                   </div>
                 </div>
               </div>

@@ -163,7 +163,7 @@ export default function Section7() {
               />
             </div>
 
-            <div className="relative w-full aspect-[5/2] md:aspect-[16/9] flex items-center justify-center overflow-hidden">
+            <div className="relative w-full aspect-5/2 md:aspect-video flex items-center justify-center overflow-hidden">
               <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-text font-bold bg-white/90 py-2 md:py-3 px-2 md:px-5 tracking-wide text-xs md:text-lg z-1 whitespace-nowrap drop-shadow-lg">
                 オフィスの接点で
               </span>
@@ -175,7 +175,7 @@ export default function Section7() {
               />
             </div>
 
-            <div className="relative w-full aspect-[5/2] md:aspect-[16/9] flex items-center justify-center overflow-hidden">
+            <div className="relative w-full aspect-5/2 md:aspect-video flex items-center justify-center overflow-hidden">
               <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-text font-bold bg-white/90 py-2 md:py-3 px-2 md:px-5 tracking-wide text-xs md:text-lg z-1 whitespace-nowrap drop-shadow-lg">
                 採用会場の接点で
               </span>

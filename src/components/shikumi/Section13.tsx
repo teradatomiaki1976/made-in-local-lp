@@ -127,7 +127,7 @@ export default function Section13() {
                     {faq.question}
                   </span>
                   {/* ＋/− アイコン */}
-                  <span className="relative flex-shrink-0 w-6 h-6 flex items-center justify-center">
+                  <span className="relative shrink-0 w-6 h-6 flex items-center justify-center">
                     <span
                       className={`absolute w-4 h-0.5 bg-white transition-transform duration-300 ${
                         isOpen ? "rotate-180" : "rotate-0"

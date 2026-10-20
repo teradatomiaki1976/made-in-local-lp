@@ -85,7 +85,6 @@ export default function Section12() {
                   <motion.div
                     key={`step-${step.id}`}
                     variants={itemFadeUp}
-                    // 💎 step.id が奇数なら #F1FDFF、偶数なら白
                     className={`border border-text/50 rounded shadow-md flex flex-col md:flex-row items-center justify-center p-2 md:p-5 text-center md:text-left gap-1 md:gap-3 ${
                       step.id % 2 !== 0 ? "bg-[#F1FDFF]" : "bg-white"
                     }`}
@@ -148,7 +147,6 @@ export default function Section12() {
                 <motion.div
                   key={`success-step-${step.id}`}
                   variants={itemFadeUp}
-                  // 💎 ここも同様に奇数・偶数で背景色を切り替え
                   className={`border border-text/50 rounded shadow-md flex flex-col md:flex-row items-center justify-center p-2 md:p-5 text-center md:text-left gap-1 md:gap-3 ${
                     step.id % 2 !== 0 ? "bg-[#F1FDFF]" : "bg-white"
                   }`}

@@ -124,7 +124,7 @@ export default function Section3() {
               <div className="text-[#FFD666] text-center text-xl md:text-5xl font-medium italic leading-relaxed tracking-wider">
                 知られるべき
                 <br />
-                <span className="text-5xl md:text-7xl italic tracking-wider bg-gradient-to-b from-[#FFD666] to-[#C3A800] bg-clip-text text-transparent">
+                <span className="text-5xl md:text-7xl italic tracking-wider bg-linear-to-b from-[#FFD666] to-[#C3A800] bg-clip-text text-transparent">
                   魅力
                 </span>
               </div>
@@ -134,8 +134,8 @@ export default function Section3() {
               variants={crossPop}
               className="relative shrink-0 w-10 h-10 md:w-20 md:h-20 flex items-center justify-center mx-2 md:mx-10 opacity-80"
             >
-              <div className="absolute w-[1px] h-full bg-white transform -rotate-45"></div>
-              <div className="absolute w-[1px] h-[250%] bg-white transform rotate-45"></div>
+              <div className="absolute w-px h-full bg-white transform -rotate-45"></div>
+              <div className="absolute w-px h-[250%] bg-white transform rotate-45"></div>
             </motion.div>
 
             <motion.div
@@ -145,7 +145,7 @@ export default function Section3() {
               <div className="text-[#FFD666] text-center text-xl md:text-5xl font-medium italic leading-relaxed tracking-wider">
                 未来への
                 <br />
-                <span className="text-5xl md:text-7xl italic tracking-wider bg-gradient-to-b from-[#FFD666] to-[#C3A800] bg-clip-text text-transparent">
+                <span className="text-5xl md:text-7xl italic tracking-wider bg-linear-to-b from-[#FFD666] to-[#C3A800] bg-clip-text text-transparent">
                   意志
                 </span>
               </div>

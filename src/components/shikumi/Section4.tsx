@@ -94,7 +94,7 @@ export default function Section4() {
           tabIndex={0}
           onClick={() => setSelectedCompany(company)}
           onKeyDown={(e) => e.key === "Enter" && setSelectedCompany(company)}
-          className="group shrink-0 w-[200px] md:w-[280px] h-[180px] md:h-[220px] bg-white/80 border border-white rounded-md p-6 flex flex-col justify-between transition-all duration-300 ease-out shadow-sm hover:scale-[1.03] hover:bg-white/100 hover:shadow-xl hover:border-[#9a8452] outline-none focus-visible:ring-2 focus-visible:ring-[#9a8452] cursor-pointer"
+          className="group shrink-0 w-[200px] md:w-[280px] h-[180px] md:h-[220px] bg-white/80 border border-white rounded-md p-6 flex flex-col justify-between transition-all duration-300 ease-out shadow-sm hover:scale-[1.03] hover:bg-white hover:shadow-xl hover:border-[#9a8452] outline-none focus-visible:ring-2 focus-visible:ring-[#9a8452] cursor-pointer"
         >
           <div className="flex justify-center items-center gap-2">
             <span className="text-xs tracking-wider text-text2 font-bold">
@@ -198,12 +198,12 @@ export default function Section4() {
       </Container>
 
       <div className="relative w-full mt-8 md:mt-12 flex flex-col items-center">
-        <div className="absolute inset-y-0 left-0 w-12 md:w-32 bg-gradient-to-r from-[#F9FDF2] to-transparent z-10 pointer-events-none" />
-        <div className="absolute inset-y-0 right-0 w-12 md:w-32 bg-gradient-to-l from-[#F9FDF2] to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-y-0 left-0 w-12 md:w-32 bg-linear-to-r from-[#F9FDF2] to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-y-0 right-0 w-12 md:w-32 bg-linear-to-l from-[#F9FDF2] to-transparent z-10 pointer-events-none" />
 
         <div
           ref={carouselRef}
-          className="flex w-full overflow-x-auto py-4 cursor-grab active:cursor-grabbing [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] select-none"
+          className="flex w-full overflow-x-auto py-4 cursor-grab active:cursor-grabbing [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] scrollbar-none select-none"
           // タッチイベント（スマホ）
           onTouchStart={() => {
             isHovered.current = true;

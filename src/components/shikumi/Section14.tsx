@@ -191,7 +191,7 @@ export default function Section14() {
           className="mb-12 md:mb-16"
         >
           <motion.div variants={itemFadeUp}>
-            <Heading2 className="!mb-6">
+            <Heading2 className="mb-6">
               まずは、私たちにぶつけてください。
             </Heading2>
           </motion.div>
