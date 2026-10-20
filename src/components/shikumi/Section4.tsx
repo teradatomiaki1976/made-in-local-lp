@@ -97,7 +97,7 @@ export default function Section4() {
           className="group shrink-0 w-[200px] md:w-[280px] h-[180px] md:h-[220px] bg-white/80 border border-white rounded-md p-6 flex flex-col justify-between transition-all duration-300 ease-out shadow-sm hover:scale-[1.03] hover:bg-white/100 hover:shadow-xl hover:border-[#9a8452] outline-none focus-visible:ring-2 focus-visible:ring-[#9a8452] cursor-pointer"
         >
           <div className="flex justify-center items-center gap-2">
-            <span className="text-xs tracking-wider text-text2 font-sans">
+            <span className="text-xs tracking-wider text-text2 font-bold">
               {company.area}
             </span>
           </div>

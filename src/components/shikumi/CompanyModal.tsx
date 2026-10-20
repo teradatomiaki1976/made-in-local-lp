@@ -77,8 +77,8 @@ export default function CompanyModal({
               <div className="flex-1 min-h-0 overflow-y-auto p-6 md:p-10">
                 {/* ヘッダーエリア */}
                 <div className="flex flex-col items-center text-center mb-6 md:mb-8">
-                  <div className="text-[11px] font-extrabold tracking-wider text-[#9a8452] mb-3 md:mb-4">
-                    {company.no} {company.area}
+                  <div className="text-xs md:text-sm font-bold tracking-wider text-text2 mb-3 md:mb-4">
+                    {company.area}
                   </div>
                   <div className="relative h-10 md:h-12 w-3/4 mx-auto mb-4 md:mb-6">
                     {company.logoPath ? (
