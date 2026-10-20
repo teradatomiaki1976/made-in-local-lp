@@ -120,7 +120,7 @@ export default function Section9() {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            今は、AIに聞く。
+            今は、AIで調べる。
           </Heading2>
           <Text
             initial={{ opacity: 0, y: 20 }}
