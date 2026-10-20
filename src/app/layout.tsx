@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://100selection-lp.madeinlocal.jp"),
   title: "地域を代表する企業100選とは？",
   description:
-    "知らない企業から、記憶に残る企業へ。地域から本気で日本を変えたい。",
+    "「地域を代表する企業100選」は、地域の企業が持つ知られるべき魅力と未来への意志を見つめ、その価値を社会に届けるブランド認証制度です。各地域で選ばれるのは100社だけ。選出の仕組みから、認定制度が目指す地域の未来、地方創生への想いまでをご紹介します。",
   icons: {
     icon: "/images/favicon/favicon.ico",
     shortcut: "/images/favicon/favicon-16x16.png",
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "地域を代表する企業100選とは？",
     description:
-      "知らない企業から、記憶に残る企業へ。地域から本気で日本を変えたい。",
+      "「地域を代表する企業100選」は、地域の企業が持つ知られるべき魅力と未来への意志を見つめ、その価値を社会に届けるブランド認証制度です。各地域で選ばれるのは100社だけ。選出の仕組みから、認定制度が目指す地域の未来、地方創生への想いまでをご紹介します。",
     url: "https://100selection-lp.madeinlocal.jp",
     siteName: "Made In Local",
     images: [
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "地域を代表する企業100選とは？",
     description:
-      "知らない企業から、記憶に残る企業へ。地域から本気で日本を変えたい。",
+      "「地域を代表する企業100選」は、地域の企業が持つ知られるべき魅力と未来への意志を見つめ、その価値を社会に届けるブランド認証制度です。各地域で選ばれるのは100社だけ。選出の仕組みから、認定制度が目指す地域の未来、地方創生への想いまでをご紹介します。",
     images: ["/images/og-image.jpg"],
   },
   alternates: {
@@ -121,7 +121,7 @@ export default function RootLayout({
                   name: "地域を代表する企業100選とは？",
                   url: "https://100selection-lp.madeinlocal.jp",
                   description:
-                    "知らない企業から、記憶に残る企業へ。地域から本気で日本を変えたい。",
+                    "「地域を代表する企業100選」は、地域の企業が持つ知られるべき魅力と未来への意志を見つめ、その価値を社会に届けるブランド認証制度です。各地域で選ばれるのは100社だけ。選出の仕組みから、認定制度が目指す地域の未来、地方創生への想いまでをご紹介します。",
                   inLanguage: "ja",
                   publisher: { "@id": "#organization" },
                 },
