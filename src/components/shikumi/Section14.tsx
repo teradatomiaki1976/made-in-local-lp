@@ -10,8 +10,8 @@ import { Section } from "@/components/ui/Section";
 export default function Section14() {
   // --- タイムライン設計（秒数） ---
   const COLLAGE_LAYERS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]; // 枚数
-  const STAGGER_DELAY = 0.1; // 1枚ごとの出現間隔
-  const OVERLAY_START_TIME = 1.0;
+  const STAGGER_DELAY = 0.4; // 1枚ごとの出現間隔
+  const OVERLAY_START_TIME = 0.4;
 
   // --- アニメーションの定義 ---
 
@@ -36,7 +36,7 @@ export default function Section14() {
       opacity: 1,
       transition: {
         delay: OVERLAY_START_TIME,
-        duration: 1.0,
+        duration: 3.0,
         ease: "easeInOut",
       },
     },
