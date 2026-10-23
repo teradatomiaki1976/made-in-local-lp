@@ -28,6 +28,9 @@ export default function GlobalHeader({
   const [isPastFV, setIsPastFV] = useState(false);
   const { scrollY } = useScroll();
 
+  // FVの高さをキャッシュし、スクロール時の再計算（レイアウトスラッシング）を防ぐ
+  const [fvHeight, setFvHeight] = useState(800);
+
   // スクロール位置の監視（Framer Motionの最適化されたフックを使用）
   useMotionValueEvent(scrollY, "change", (latest) => {
     const prev = scrollY.getPrevious() || 0;
@@ -150,7 +153,7 @@ export default function GlobalHeader({
 
       {/* スマホ用CTA */}
       <motion.div
-        className="md:hidden fixed bottom-0 left-0 w-full z-50 print:hidden"
+        className="md:hidden fixed bottom-0 left-0 w-full z-50 print:hidden transition-[bottom,padding-bottom] duration-300 ease-out will-change-[bottom]"
         initial={{ opacity: 0, y: 20 }}
         animate={{
           opacity: isVisible && !isFooterVisible ? 1 : 0,
