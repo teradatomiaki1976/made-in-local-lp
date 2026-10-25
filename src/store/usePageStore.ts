@@ -11,7 +11,7 @@ interface PageState {
 }
 
 export const usePageStore = create<PageState>((set) => ({
-  visited: { omoi: true, shikumi: false }, // 初期表示はomoiなのでtrue
+  visited: { omoi: false, shikumi: true }, // 初期表示の方を true
   scrollPos: { omoi: 0, shikumi: 0 },
   markVisited: (page) =>
     set((state) => ({ visited: { ...state.visited, [page]: true } })),

@@ -5,6 +5,7 @@ import Script from "next/script";
 import "./globals.css";
 import ScrollObserver from "@/components/layouts/ScrollObserver";
 import SmoothScroll from "@/components/layouts/SmoothScroll";
+import ContactModal from "@/components/ui/ContactModal";
 
 const notoSans = Noto_Sans_JP({
   variable: "--font-noto-sans",
@@ -142,6 +143,7 @@ export default function RootLayout({
         <SmoothScroll>
           <ScrollObserver />
           {children}
+          <ContactModal />
         </SmoothScroll>
       </body>
     </html>

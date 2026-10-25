@@ -83,7 +83,7 @@ export default function LoadingPhase({
   return (
     <motion.div
       className={cn(
-        "fixed inset-0 z-[100] w-full bg-midblue overflow-hidden flex flex-col items-center justify-center",
+        "fixed inset-0 z-100 w-full bg-midblue overflow-hidden flex flex-col items-center justify-center",
         className,
       )}
       style={{ backgroundColor: "#003064" }}

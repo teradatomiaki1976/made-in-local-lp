@@ -13,6 +13,7 @@ import {
 } from "framer-motion";
 import { useHeaderStore } from "@/store/useHeaderStore";
 import JapanMapSVG from "./JapanMapSVG";
+import { useLenis } from "lenis/react";
 
 type HeroPhaseProps = {
   onShowHeader: () => void;
@@ -90,6 +91,8 @@ export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const setIsDarkBg = useHeaderStore((state) => state.setIsDarkBg);
 
+  const lenis = useLenis();
+
   // 1. スマホ判定用のStateを追加
   const [isMobile, setIsMobile] = useState(false);
 
@@ -164,6 +167,7 @@ export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
     // スクロールをロック（iOS Safariのバウンス対策としてtouchActionも無効化）
     document.body.style.overflow = "hidden";
     document.body.style.touchAction = "none";
+    if (lenis) lenis.stop();
 
     // 1. ヘッダーを表示させるタイミング
     const headerTimer = setTimeout(() => {
@@ -174,6 +178,7 @@ export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
     const unlockTimer = setTimeout(() => {
       document.body.style.overflow = originalOverflow;
       document.body.style.touchAction = originalTouchAction;
+      if (lenis) lenis.start();
     }, 3000);
 
     // アンマウント時（途中で別ページへ遷移した際など）に確実にロックを解除するクリーンアップ
@@ -182,8 +187,9 @@ export default function HeroPhase({ onShowHeader }: HeroPhaseProps) {
       clearTimeout(unlockTimer);
       document.body.style.overflow = originalOverflow;
       document.body.style.touchAction = originalTouchAction;
+      if (lenis) lenis.start();
     };
-  }, [onShowHeader]);
+  }, [onShowHeader, lenis]);
 
   return (
     <div ref={containerRef} className="relative w-full h-[300vh] bg-creem">

@@ -22,9 +22,16 @@ import ShikumiPageWrapper from "@/components/shikumi/ShikumiPageWrapper";
 import { cn } from "@/lib/utils";
 
 export default function Home() {
-  const [activePage, setActivePage] = useState<"omoi" | "shikumi">("omoi");
-  const [omoiPhase, setOmoiPhase] = useState<"loading" | "hero">("loading");
-  const [isHeaderVisible, setIsHeaderVisible] = useState(false);
+  // 変更: 初期ページを "shikumi" に設定
+  const [activePage, setActivePage] = useState<"omoi" | "shikumi">("shikumi");
+
+  // ★変更: 裏側で勝手にローディングが走らないよう、初期値を "standby" にする
+  const [omoiPhase, setOmoiPhase] = useState<"standby" | "loading" | "hero">(
+    "standby",
+  );
+
+  // 変更: 初期ページ(shikumi)ではヘッダーを即時表示させるため true を初期値にする
+  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
 
   const [isTransitioning, setIsTransitioning] = useState(false);
 
@@ -55,19 +62,38 @@ export default function Home() {
       scrollPosRef.current[activePage] = window.scrollY;
       setIsTransitioning(true);
 
+      // 初回omoi遷移かどうかを判定（まだ一度もローディングしていない状態）
+      const isFirstOmoi = nextPage === "omoi" && omoiPhase === "standby";
+
+      // 初回omoi遷移時は、幕が下りるタイミングでヘッダーも隠す
+      if (isFirstOmoi) {
+        setIsHeaderVisible(false);
+      }
+
       // STEP 2: 幕が下りきった裏側（200ms後）でページを切り替える
       setTimeout(() => {
+        // ★ リスクヘッジ1: 幕が下りきって DOM が block になる瞬間に loading をセットし、
+        // 最初の200ms分のアニメーションが裏側で消費されるのを防ぐ
+        if (isFirstOmoi) {
+          setOmoiPhase("loading");
+        } else {
+          setIsHeaderVisible(true);
+        }
+
         setActivePage(nextPage);
 
         // STEP 3: 保存していた位置へスクロールを復元する
         requestAnimationFrame(() => {
-          // 次のページの保存位置を取得（初回は0）
           const targetScroll = scrollPosRef.current[nextPage] || 0;
 
           if (lenis) {
-            // immediate: true でアニメーションさせずに一瞬で移動
             lenis.scrollTo(targetScroll, { immediate: true, force: true });
-            lenis.start();
+
+            // ★ リスクヘッジ2: 初回omoi遷移時は LoadingPhase 〜 HeroPhase(3秒ロック) が続くため、
+            // ここでは lenis.start() を呼ばず、HeroPhase 側のロック解除に委ねる
+            if (!isFirstOmoi) {
+              lenis.start();
+            }
           } else {
             window.scrollTo(0, targetScroll);
           }
@@ -79,7 +105,7 @@ export default function Home() {
         });
       }, 200);
     },
-    [activePage, lenis, visited, markVisited, isTransitioning],
+    [activePage, omoiPhase, lenis, visited, markVisited, isTransitioning],
   );
 
   return (

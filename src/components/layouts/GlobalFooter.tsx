@@ -6,6 +6,7 @@ import Image from "next/image";
 import { FiChevronRight } from "react-icons/fi";
 import { useInView } from "framer-motion";
 import { useHeaderStore } from "@/store/useHeaderStore";
+import { useModalStore } from "@/store/useModalStore"; // 🌟 モーダルストアを追加
 
 type GlobalFooterProps = {
   activePage: "omoi" | "shikumi";
@@ -25,6 +26,9 @@ export default function GlobalFooter({
   const setIsFooterVisible = useHeaderStore(
     (state) => state.setIsFooterVisible,
   );
+
+  // 🌟 モーダルを開く関数を取得
+  const openModal = useModalStore((state) => state.openModal);
 
   useEffect(() => {
     setIsFooterVisible(isInView);
@@ -58,6 +62,7 @@ export default function GlobalFooter({
               {switchLabel}
             </p>
             <button
+              type="button"
               onClick={() => onPageChange(switchTarget)}
               className={`w-full max-w-sm bg-linear-to-b font-sans text-white py-6 md:py-8 rounded-lg font-bold text-base md:text-xl shadow-[0_4px_12px_rgba(0,42,92,0.4)] hover:shadow-[0_6px_16px_rgba(0,42,92,0.5)] border transition-all duration-300 cursor-pointer group relative overflow-hidden flex items-center justify-center gap-2 ${switchColorClass}`}
             >
@@ -70,13 +75,14 @@ export default function GlobalFooter({
             </button>
           </div>
 
-          {/* 右：CVボタン（固定） */}
+          {/* 右：CVボタン（モーダル起動に変更） */}
           <div className="flex-1 w-full text-center flex flex-col items-center">
             <p className="font-bold mb-3 md:mb-6 font-sans text-base md:text-lg">
               エントリーご相談・面談予約はこちら
             </p>
-            <a
-              href="https://madeinlocal.jp/contact/100selection"
+            <button
+              type="button"
+              onClick={openModal}
               className="w-full max-w-sm bg-linear-to-b from-[#007a8c] to-[#00535f] font-sans text-white py-6 md:py-8 rounded-lg font-bold text-base md:text-xl shadow-[0_4px_12px_rgba(0,42,92,0.4)] hover:from-[#008396] hover:to-[#005b68] hover:shadow-[0_6px_16px_rgba(0,42,92,0.5)] border border-[#00454f]/30 transition-all duration-300 cursor-pointer group relative overflow-hidden flex items-center justify-center gap-2"
             >
               <span className="absolute top-0 left-0 w-full h-px bg-white/20"></span>
@@ -85,7 +91,7 @@ export default function GlobalFooter({
                 aria-hidden="true"
               />
               <span className="tracking-wide">{cvBtnText}</span>
-            </a>
+            </button>
           </div>
         </div>
       </div>
@@ -93,6 +99,7 @@ export default function GlobalFooter({
       {/* --- フッター領域 --- */}
       <div className="w-full bg-midblue py-8 md:py-20 flex flex-col items-center justify-center relative">
         <button
+          type="button"
           onClick={scrollToTop}
           className="absolute right-4 md:right-12 top-2 -translate-y-[calc(100%+16px)] z-20 flex flex-col items-center justify-center group cursor-pointer"
           aria-label="ページトップへ戻る"

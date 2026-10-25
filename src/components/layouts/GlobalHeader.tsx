@@ -8,6 +8,7 @@ import { useHeaderStore } from "@/store/useHeaderStore";
 import { FiChevronRight } from "react-icons/fi";
 import Image from "next/image";
 import Link from "next/link";
+import { useModalStore } from "@/store/useModalStore";
 
 type GlobalHeaderProps = {
   isVisible: boolean;
@@ -24,14 +25,13 @@ export default function GlobalHeader({
   const isFooterVisible = useHeaderStore((state) => state.isFooterVisible);
   const [mounted, setMounted] = useState(false);
 
+  const openModal = useModalStore((state) => state.openModal);
+
   // FVを通過したかどうかを判定するステート
   const [isPastFV, setIsPastFV] = useState(false);
   const { scrollY } = useScroll();
 
-  // FVの高さをキャッシュし、スクロール時の再計算（レイアウトスラッシング）を防ぐ
-  const [fvHeight, setFvHeight] = useState(800);
-
-  // スクロール位置の監視（Framer Motionの最適化されたフックを使用）
+  // スクロール位置の監視
   useMotionValueEvent(scrollY, "change", (latest) => {
     const prev = scrollY.getPrevious() || 0;
     const diff = Math.abs(latest - prev);
@@ -73,7 +73,6 @@ export default function GlobalHeader({
         <div
           className={cn(
             "relative flex items-center justify-center rounded-lg overflow-hidden transition-all duration-300 ease-out",
-            // SP時は縦型ロゴに合わせてwidthを小さめに設定（調整が必要）
             isPastFV
               ? "h-12 md:h-14 w-[60px] sm:w-[80px] md:w-[220px] bg-white backdrop-blur-md border border-white/40 shadow-[0_4px_12px_rgba(0,0,0,0.05)] px-2 py-1"
               : "h-14 md:h-20 w-[70px] sm:w-[90px] md:w-[300px] bg-transparent border-transparent shadow-none px-0 py-0",
@@ -93,7 +92,7 @@ export default function GlobalHeader({
               priority
               className="object-contain hidden md:block"
             />
-            {/* SP用縦型ロゴ (md未満で表示) - ※新しいアセットパスを指定 */}
+            {/* SP用縦型ロゴ (md未満で表示) */}
             <Image
               src="/images/logo/emblem_dark.svg"
               alt="地域を代表する企業100選"
@@ -107,12 +106,11 @@ export default function GlobalHeader({
         {/* 中央: 切り替えトグル */}
         <div className="flex bg-white/80 rounded-full shadow-sm border border-gray-100 p-1 ml-auto md:ml-0 md:absolute md:left-1/2 md:-translate-x-1/2">
           <button
+            type="button"
             onClick={() => onPageChange("shikumi")}
-            // aria属性を追加し、アクセシビリティ（A11y）を向上
             aria-current={activePage === "shikumi" ? "page" : undefined}
             className={cn(
               "flex items-center justify-center rounded-full font-sans font-bold transition-colors cursor-pointer",
-              // SPの極小画面を考慮し、pxをさらに柔軟に設定。whitespace-nowrapで改行を強制ブロック
               "px-3 sm:px-4 py-2 md:px-8 md:py-3 text-xs md:text-base whitespace-nowrap",
               activePage === "shikumi"
                 ? "bg-olive text-white"
@@ -123,6 +121,7 @@ export default function GlobalHeader({
           </button>
 
           <button
+            type="button"
             onClick={() => onPageChange("omoi")}
             aria-current={activePage === "omoi" ? "page" : undefined}
             className={cn(
@@ -138,8 +137,9 @@ export default function GlobalHeader({
         </div>
 
         {/* 右: PC版CTAボタン */}
-        <a
-          href="https://madeinlocal.jp/contact/100selection"
+        <button
+          type="button"
+          onClick={openModal}
           className="hidden md:flex items-center justify-center gap-1.5 bg-linear-to-b from-[#007a8c] to-[#00535f] font-sans text-white leading-tight px-8 py-3.5 rounded-lg font-bold text-lg shadow-[0_4px_12px_rgba(0,42,92,0.4)] hover:from-[#008396] hover:to-[#005b68] hover:shadow-[0_6px_16px_rgba(0,42,92,0.5)] border border-[#00454f]/30 transition-all duration-300 cursor-pointer group relative overflow-hidden"
         >
           <span className="absolute top-0 left-0 w-full h-px bg-white/20"></span>
@@ -148,10 +148,10 @@ export default function GlobalHeader({
             aria-hidden="true"
           />
           <span className="tracking-wide">エントリーについて相談する</span>
-        </a>
+        </button>
       </motion.header>
 
-      {/* スマホ用CTA */}
+      {/* 🌟 スマホ用CTA（<a>から<button onClick={openModal}>に変更） */}
       <motion.div
         className="md:hidden fixed bottom-0 left-0 w-full z-50 print:hidden transition-[bottom,padding-bottom] duration-300 ease-out will-change-[bottom]"
         initial={{ opacity: 0, y: 20 }}
@@ -164,8 +164,9 @@ export default function GlobalHeader({
           pointerEvents: isVisible && !isFooterVisible ? "auto" : "none",
         }}
       >
-        <a
-          href="https://madeinlocal.jp/contact/100selection"
+        <button
+          type="button"
+          onClick={openModal}
           className="w-full flex items-center justify-center gap-2 bg-linear-to-b from-[#007a8c] to-[#00535f] text-white font-sans font-bold text-lg pt-4 shadow-[0_-4px_12px_rgba(0,42,92,0.3)] active:from-[#008396] active:to-[#005b68] transition-colors duration-300 cursor-pointer group relative overflow-hidden"
           style={{ paddingBottom: "calc(env(safe-area-inset-bottom) + 16px)" }}
         >
@@ -175,7 +176,7 @@ export default function GlobalHeader({
             aria-hidden="true"
           />
           <span className="tracking-wide">エントリーについて相談する</span>
-        </a>
+        </button>
       </motion.div>
     </>
   );
