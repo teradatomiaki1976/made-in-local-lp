@@ -114,7 +114,7 @@ export default function ContactModal() {
     };
   }, [isOpen, reset]);
 
-  // 🌟 APIルートへの送信処理
+  // APIルートへの送信処理
   const onSubmit = async (data: ContactFormData) => {
     setSubmitError(null);
     try {
@@ -125,7 +125,9 @@ export default function ContactModal() {
       });
 
       if (!response.ok) {
-        throw new Error("送信に失敗しました");
+        const errData = await response.json().catch(() => ({}));
+        console.error("Server API Error Details:", response.status, errData);
+        throw new Error(errData.details || `HTTP Error ${response.status}`);
       }
 
       // 送信成功時にサンクス画面へ切り替え

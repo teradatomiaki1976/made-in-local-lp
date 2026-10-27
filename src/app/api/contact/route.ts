@@ -4,20 +4,26 @@ import { Resend } from "resend";
 import { google } from "googleapis";
 import { contactSchema, ContactFormData } from "@/lib/validations/contact";
 
-// ドメイン認証完了後は "Made In Local 100選事務局 <noreply@madeinlocal.jp>" 等に変更
+// Vercelで確実にサーバーレス関数として動的実行させる宣言
+export const dynamic = "force-dynamic";
+
 const FROM_EMAIL = "Made In Local 100選事務局 <onboarding@resend.dev>";
-// 本番時は運営のインフォアドレス等に変更
 const ADMIN_EMAIL = "teradatomiaki@gmail.com";
 
 // Googleスプレッドシートへ1行追記するヘルパー関数
 async function appendToGoogleSheet(data: ContactFormData) {
-  const sheetId = process.env.GOOGLE_SHEET_ID;
-  const clientEmail = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
-  // .envの改行コード(\n)を実際の改行に変換
-  const privateKey = process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, "\n");
+  const sheetId = process.env.GOOGLE_SHEET_ID?.trim();
+  const clientEmail = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL?.trim();
+  // Vercel上で前後に「"」が残っていたり、改行コード(\n)が文字列になっていても自動で綺麗に整形する
+  const privateKey = process.env.GOOGLE_PRIVATE_KEY?.replace(
+    /^["']|["']$/g,
+    "",
+  ).replace(/\\n/g, "\n");
 
   if (!sheetId || !clientEmail || !privateKey) {
-    throw new Error("Google Sheets APIの環境変数が不足しています。");
+    throw new Error(
+      "Google Sheets APIの環境変数がVercelに設定されていません。",
+    );
   }
 
   const auth = new google.auth.GoogleAuth({
@@ -30,7 +36,6 @@ async function appendToGoogleSheet(data: ContactFormData) {
 
   const sheets = google.sheets({ version: "v4", auth });
 
-  // 日本時間（JST）のタイムスタンプを生成（例: 2026/10/27 22:45:12）
   const timestamp = new Intl.DateTimeFormat("ja-JP", {
     timeZone: "Asia/Tokyo",
     year: "numeric",
@@ -41,10 +46,8 @@ async function appendToGoogleSheet(data: ContactFormData) {
     second: "2-digit",
   }).format(new Date());
 
-  // 電話番号の先頭の「0」がスプレッドシート側で消えないよう、先頭にシングルクォートを付与
   const safePhone = `'${data.phone}`;
 
-  // A列〜I列に順番に格納（シート名を指定せず A:I とすることで、左端のシートに自動で追記される）
   await sheets.spreadsheets.values.append({
     spreadsheetId: sheetId,
     range: "A:I",
@@ -69,7 +72,12 @@ async function appendToGoogleSheet(data: ContactFormData) {
 
 // メール2通（運営通知＋サンクスメール）を順番に送信するヘルパー関数
 async function sendEmails(data: ContactFormData) {
-  const resend = new Resend(process.env.RESEND_API_KEY);
+  const apiKey = process.env.RESEND_API_KEY?.trim();
+  if (!apiKey) {
+    throw new Error("RESEND_API_KEYがVercelに設定されていません。");
+  }
+
+  const resend = new Resend(apiKey);
   const { companyName, area, hpUrl, email, phone, title, name, message } = data;
 
   // ① 運営宛て通知メール
@@ -127,7 +135,6 @@ async function sendEmails(data: ContactFormData) {
   }
   console.log("✅ ① 運営宛メール送信成功:", adminResponse.data?.id);
 
-  // レートリミット（秒間2リクエスト制限）回避のため0.6秒待機
   await new Promise((resolve) => setTimeout(resolve, 600));
 
   // ② ユーザー（送信者）宛て自動返信サンクスメール
@@ -177,29 +184,33 @@ async function sendEmails(data: ContactFormData) {
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-
-    // 1. サーバーサイドでのZodバリデーション
     const validatedData = contactSchema.parse(body);
 
-    // 2. スプレッドシート出力 と メール送信 を並列で実行（高速化＆耐障害性）
     const [sheetResult, emailResult] = await Promise.allSettled([
       appendToGoogleSheet(validatedData),
       sendEmails(validatedData),
     ]);
 
-    if (sheetResult.status === "fulfilled") {
-      console.log("✅ 📊 スプレッドシートへの出力成功！");
-    } else {
-      console.error("❌ 📊 スプレッドシート出力エラー:", sheetResult.reason);
-    }
-
-    // 運営メールもスプレッドシートも両方失敗した場合のみエラーを返す
-    if (
-      sheetResult.status === "rejected" &&
+    const sheetError =
+      sheetResult.status === "rejected"
+        ? (sheetResult.reason as Error)?.message || String(sheetResult.reason)
+        : null;
+    const emailError =
       emailResult.status === "rejected"
-    ) {
+        ? (emailResult.reason as Error)?.message || String(emailResult.reason)
+        : null;
+
+    if (sheetError)
+      console.error("❌ 📊 スプレッドシート出力エラー:", sheetError);
+    if (emailError) console.error("❌ ✉️ メール送信エラー:", emailError);
+
+    // 両方失敗した場合、またはどちらかが失敗した理由をフロントへ返す
+    if (sheetError && emailError) {
       return NextResponse.json(
-        { error: "送信処理に失敗しました。" },
+        {
+          error: "送信処理に失敗しました。",
+          details: `Sheet: ${sheetError} / Email: ${emailError}`,
+        },
         { status: 500 },
       );
     }
@@ -208,7 +219,10 @@ export async function POST(request: Request) {
   } catch (error) {
     console.error("API Error:", error);
     return NextResponse.json(
-      { error: "不正なリクエスト、またはサーバーエラーが発生しました。" },
+      {
+        error: "不正なリクエスト、またはサーバーエラーが発生しました。",
+        details: error instanceof Error ? error.message : String(error),
+      },
       { status: 400 },
     );
   }
