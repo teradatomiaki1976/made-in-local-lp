@@ -4,8 +4,6 @@ import { Resend } from "resend";
 import { google } from "googleapis";
 import { contactSchema, ContactFormData } from "@/lib/validations/contact";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 // ドメイン認証完了後は "Made In Local 100選事務局 <noreply@madeinlocal.jp>" 等に変更
 const FROM_EMAIL = "Made In Local 100選事務局 <onboarding@resend.dev>";
 // 本番時は運営のインフォアドレス等に変更
@@ -71,6 +69,7 @@ async function appendToGoogleSheet(data: ContactFormData) {
 
 // メール2通（運営通知＋サンクスメール）を順番に送信するヘルパー関数
 async function sendEmails(data: ContactFormData) {
+  const resend = new Resend(process.env.RESEND_API_KEY);
   const { companyName, area, hpUrl, email, phone, title, name, message } = data;
 
   // ① 運営宛て通知メール
