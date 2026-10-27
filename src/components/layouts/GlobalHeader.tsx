@@ -66,7 +66,12 @@ export default function GlobalHeader({
         )}
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : -20 }}
-        transition={{ duration: 1.5, ease: "easeOut" }}
+        // ★ 修正: 非表示にする時(isVisible=false)は0.15秒で即座に消し、
+        // 「想い」ページに切り替わった際にヘッダーが残像として残る現象を完全に防ぐ
+        transition={{
+          duration: isVisible ? 1.0 : 0.15,
+          ease: isVisible ? "easeOut" : "easeIn",
+        }}
         style={{ pointerEvents: isVisible ? "auto" : "none" }}
       >
         {/* 左: ロゴエリア */}
@@ -151,7 +156,7 @@ export default function GlobalHeader({
         </button>
       </motion.header>
 
-      {/* 🌟 スマホ用CTA（<a>から<button onClick={openModal}>に変更） */}
+      {/* 🌟 スマホ用CTA */}
       <motion.div
         className="md:hidden fixed bottom-0 left-0 w-full z-50 print:hidden transition-[bottom,padding-bottom] duration-300 ease-out will-change-[bottom]"
         initial={{ opacity: 0, y: 20 }}
@@ -159,7 +164,10 @@ export default function GlobalHeader({
           opacity: isVisible && !isFooterVisible ? 1 : 0,
           y: isVisible && !isFooterVisible ? 0 : 20,
         }}
-        transition={{ duration: 0.3, ease: "easeOut" }}
+        transition={{
+          duration: isVisible && !isFooterVisible ? 0.3 : 0.15,
+          ease: "easeOut",
+        }}
         style={{
           pointerEvents: isVisible && !isFooterVisible ? "auto" : "none",
         }}

@@ -82,6 +82,8 @@ export default function LoadingPhase({
 
   return (
     <motion.div
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.6, ease: "easeInOut" }}
       className={cn(
         "fixed inset-0 z-100 w-full bg-midblue overflow-hidden flex flex-col items-center justify-center",
         className,

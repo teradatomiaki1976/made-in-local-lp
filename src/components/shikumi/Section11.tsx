@@ -3,59 +3,13 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion, Variants, AnimatePresence } from "framer-motion";
 import { Container } from "@/components/ui/Container";
 import { Heading2, Text } from "@/components/ui/Typography";
 import { Section } from "@/components/ui/Section";
-import { FiChevronDown } from "react-icons/fi";
-
-// --- データ構造 ---
-interface VideoItem {
-  id: string;
-  youtubeId: string;
-  company: string;
-  title: string;
-  thumbnail: string;
-}
-
-const videoData: VideoItem[] = [
-  {
-    id: "5",
-    youtubeId: "vMqCzlAa5qs",
-    company: "株式会社STAR AI",
-    title:
-      "優秀人材確保へ！仕事の依頼が殺到する急成長企業が100選選出で感じた変化とは？！",
-    thumbnail: "/images/shikumi/section11/thumb5.webp",
-  },
-  {
-    id: "1",
-    youtubeId: "a3Q5kWeq6NA",
-    company: "タカツー株式会社",
-    title: "100選選出から2,000万円の新規売上創出、年商の天井を突破する",
-    thumbnail: "/images/shikumi/section11/thumb1.webp",
-  },
-  {
-    id: "2",
-    youtubeId: "WKaHvHh4FmE",
-    company: "株式会社ソフトクリエイター",
-    title: "100選選出から20代社員が1年で9倍に、組織の若返りへ",
-    thumbnail: "/images/shikumi/section11/thumb2.webp",
-  },
-  {
-    id: "3",
-    youtubeId: "kj_UDsBrKxg",
-    company: "合同会社HIGH5",
-    title: "奇跡の出会い？！100選選出による事業成長の転機を紐解く！",
-    thumbnail: "/images/shikumi/section11/thumb3.webp",
-  },
-  {
-    id: "4",
-    youtubeId: "YFNAtQx5i8Q",
-    company: "合同会社池田商店",
-    title: "市長からも期待！100選選出から社員・求職者・行政の反応が一変！",
-    thumbnail: "/images/shikumi/section11/thumb4.webp",
-  },
-];
+import { FiChevronDown, FiFileText } from "react-icons/fi";
+import { MOCK_INTERVIEWS } from "@/lib/microcms";
 
 export default function Section11() {
   const [activeVideoId, setActiveVideoId] = useState<string | null>(null);
@@ -98,19 +52,20 @@ export default function Section11() {
     },
   };
 
+  // 🌟 修正：videoData を MOCK_INTERVIEWS に変更
   const displayedVideos = !isMounted
-    ? videoData.slice(0, 6)
+    ? MOCK_INTERVIEWS.slice(0, 6)
     : isExpanded
-      ? videoData // 展開時は全件
+      ? MOCK_INTERVIEWS // 展開時は全件
       : isMobile
-        ? videoData.slice(0, 4) // スマホ未展開時は4件
-        : videoData.slice(0, 6); // PC未展開時は6件
+        ? MOCK_INTERVIEWS.slice(0, 4) // スマホ未展開時は4件
+        : MOCK_INTERVIEWS.slice(0, 6); // PC未展開時は6件
 
   const showMoreContainerClass = isExpanded
     ? "hidden"
-    : videoData.length > 6
+    : MOCK_INTERVIEWS.length > 6
       ? "flex"
-      : videoData.length > 4
+      : MOCK_INTERVIEWS.length > 4
         ? "flex md:hidden"
         : "hidden";
 
@@ -185,15 +140,17 @@ export default function Section11() {
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                className={`group cursor-pointer bg-white rounded-md overflow-hidden shadow-lg ${
+                className={`bg-white rounded-md overflow-hidden shadow-lg ${
                   !isMounted && index >= 4
                     ? "hidden md:flex md:flex-col"
                     : "flex flex-col"
                 }`}
-                onClick={() => setActiveVideoId(video.youtubeId)}
               >
-                {/* サムネイルエリア */}
-                <div className="relative aspect-video w-full overflow-hidden bg-gray-200">
+                {/* サムネイルエリア（クリックで動画モーダル起動） */}
+                <div
+                  className="group relative aspect-video w-full overflow-hidden bg-gray-200 cursor-pointer"
+                  onClick={() => setActiveVideoId(video.youtubeId)}
+                >
                   <Image
                     src={video.thumbnail}
                     alt={`${video.company}のインタビュー動画`}
@@ -208,14 +165,33 @@ export default function Section11() {
                 </div>
 
                 {/* テキストエリア */}
-                <div className="p-3 md:p-5 flex flex-col flex-1 w-full">
-                  <h3 className="text-text text-left text-sm md:text-base font-bold leading-normal mb-3 text-clamp-2">
+                <div className="p-3 md:p-5 flex flex-col flex-1 w-full bg-white">
+                  <h3
+                    onClick={() => setActiveVideoId(video.youtubeId)}
+                    className="text-text text-left text-sm md:text-base font-bold leading-normal mb-3 text-clamp-2 cursor-pointer hover:text-midblue transition-colors"
+                  >
                     {video.title}
                   </h3>
-                  <div className="mt-auto text-right border-t border-text2/30 pt-2">
-                    <span className="text-text2 text-xs md:text-sm font-bold whitespace-nowrap">
+
+                  <div className="mt-auto pt-3 border-t border-text2/20 flex flex-col items-center justify-between gap-4">
+                    <span className="text-text2 text-xs md:text-sm font-bold truncate">
                       {video.company}
                     </span>
+
+                    <Link
+                      href={`/interviews/${video.slug}`}
+                      onClick={() => {
+                        // 記事へ飛ぶ直前のスクロール位置を保存
+                        sessionStorage.setItem(
+                          "shikumi_return_scroll",
+                          String(window.scrollY),
+                        );
+                      }}
+                      className="w-full inline-flex items-center justify-center gap-2 bg-text font-sans text-white font-bold text-sm tracking-wider py-3 rounded-md transition-all hover:bg-[#004895] hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-[#003064] focus:ring-offset-2"
+                    >
+                      <FiFileText className="w-4 h-4" />
+                      <span>記事を読む</span>
+                    </Link>
                   </div>
                 </div>
               </motion.div>
@@ -229,7 +205,7 @@ export default function Section11() {
         >
           <button
             onClick={() => setIsExpanded(true)}
-            className="group flex items-center justify-center gap-1 px-6 py-2 md:py-2.5 rounded-full border border-white/40 bg-white/5 hover:bg-white/10 text-white transition-all duration-300 shadow-[0_4px_12px_rgba(0,0,0,0.2)] hover:shadow-[0_6px_16px_rgba(0,0,0,0.3)] backdrop-blur-sm"
+            className="group flex items-center justify-center gap-1 px-6 py-2 md:py-2.5 rounded-full border border-white/40 bg-white/5 hover:bg-white/10 text-white transition-all duration-300 shadow-[0_4px_12px_rgba(0,0,0,0.2)] hover:shadow-[0_6px_16px_rgba(0,0,0,0.3)] backdrop-blur-sm cursor-pointer"
           >
             <span className="tracking-wide text-[11px] md:text-sm font-sans">
               もっと動画を見る
@@ -259,7 +235,7 @@ export default function Section11() {
             >
               <button
                 onClick={() => setActiveVideoId(null)}
-                className="absolute top-4 right-4 z-10 w-10 h-10 bg-black/50 text-white rounded-full flex items-center justify-center hover:bg-black/80 transition-colors"
+                className="absolute top-4 right-4 z-10 w-10 h-10 bg-black/50 text-white rounded-full flex items-center justify-center hover:bg-black/80 transition-colors cursor-pointer"
                 aria-label="動画を閉じる"
               >
                 ✕
