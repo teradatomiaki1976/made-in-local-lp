@@ -290,6 +290,7 @@ export default async function InterviewDetailPage({
                 <Link
                   key={item.id}
                   href={`/interviews/${item.slug}`}
+                  scroll={false}
                   className="group bg-white rounded-lg overflow-hidden shadow-xs hover:shadow-md border border-gray-100 transition-all duration-300 flex flex-col"
                 >
                   {/* サムネイル画像 */}

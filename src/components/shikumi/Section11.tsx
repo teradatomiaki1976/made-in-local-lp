@@ -10,8 +10,10 @@ import { Heading2, Text } from "@/components/ui/Typography";
 import { Section } from "@/components/ui/Section";
 import { FiChevronDown, FiFileText } from "react-icons/fi";
 import { MOCK_INTERVIEWS } from "@/lib/microcms";
+import { useLenis } from "lenis/react";
 
 export default function Section11() {
+  const lenis = useLenis();
   const [activeVideoId, setActiveVideoId] = useState<string | null>(null);
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -180,12 +182,19 @@ export default function Section11() {
 
                     <Link
                       href={`/interviews/${video.slug}`}
+                      scroll={false} // 🌟 必須：Next.jsの自動スクロール干渉を防止
                       onClick={() => {
-                        // 記事へ飛ぶ直前のスクロール位置を保存
+                        // ① 記事へ飛ぶ直前のスクロール位置を保存
                         sessionStorage.setItem(
                           "shikumi_return_scroll",
                           String(window.scrollY),
                         );
+                        // ② スクロールダウンの慣性をリセット
+                        if (lenis) {
+                          lenis.stop();
+                          lenis.scrollTo(0, { immediate: true, force: true });
+                        }
+                        window.scrollTo(0, 0);
                       }}
                       className="w-full inline-flex items-center justify-center gap-2 bg-text font-sans text-white font-bold text-sm tracking-wider py-3 rounded-md transition-all hover:bg-[#004895] hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-[#003064] focus:ring-offset-2"
                     >
