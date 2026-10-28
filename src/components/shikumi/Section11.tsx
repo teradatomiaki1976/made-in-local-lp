@@ -5,12 +5,12 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, Variants, AnimatePresence } from "framer-motion";
+import { useLenis } from "lenis/react";
 import { Container } from "@/components/ui/Container";
 import { Heading2, Text } from "@/components/ui/Typography";
 import { Section } from "@/components/ui/Section";
 import { FiChevronDown, FiFileText } from "react-icons/fi";
 import { MOCK_INTERVIEWS } from "@/lib/microcms";
-import { useLenis } from "lenis/react";
 
 export default function Section11() {
   const lenis = useLenis();
@@ -35,7 +35,6 @@ export default function Section11() {
     };
     if (activeVideoId) {
       window.addEventListener("keydown", handleKeyDown);
-      // 背景スクロールロック
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "unset";
@@ -54,14 +53,13 @@ export default function Section11() {
     },
   };
 
-  // 🌟 修正：videoData を MOCK_INTERVIEWS に変更
   const displayedVideos = !isMounted
     ? MOCK_INTERVIEWS.slice(0, 6)
     : isExpanded
-      ? MOCK_INTERVIEWS // 展開時は全件
+      ? MOCK_INTERVIEWS
       : isMobile
-        ? MOCK_INTERVIEWS.slice(0, 4) // スマホ未展開時は4件
-        : MOCK_INTERVIEWS.slice(0, 6); // PC未展開時は6件
+        ? MOCK_INTERVIEWS.slice(0, 4)
+        : MOCK_INTERVIEWS.slice(0, 6);
 
   const showMoreContainerClass = isExpanded
     ? "hidden"
@@ -170,7 +168,7 @@ export default function Section11() {
                 <div className="p-3 md:p-5 flex flex-col flex-1 w-full bg-white">
                   <h3
                     onClick={() => setActiveVideoId(video.youtubeId)}
-                    className="text-text text-left text-sm md:text-base font-bold leading-normal mb-3 cursor-pointer hover:text-midblue transition-colors"
+                    className="text-text text-left text-sm md:text-base font-bold leading-normal mb-3 text-clamp-2 cursor-pointer hover:text-midblue transition-colors"
                   >
                     {video.title}
                   </h3>
@@ -182,19 +180,15 @@ export default function Section11() {
 
                     <Link
                       href={`/interviews/${video.slug}`}
-                      scroll={false} // 🌟 必須：Next.jsの自動スクロール干渉を防止
+                      scroll={false}
                       onClick={() => {
-                        // ① 記事へ飛ぶ直前のスクロール位置を保存
                         sessionStorage.setItem(
                           "shikumi_return_scroll",
                           String(window.scrollY),
                         );
-                        // ② スクロールダウンの慣性をリセット
                         if (lenis) {
                           lenis.stop();
-                          lenis.scrollTo(0, { immediate: true, force: true });
                         }
-                        window.scrollTo(0, 0);
                       }}
                       className="w-full inline-flex items-center justify-center gap-2 bg-text font-sans text-white font-bold text-sm tracking-wider py-3 rounded-md transition-all hover:bg-[#004895] hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-[#003064] focus:ring-offset-2"
                     >

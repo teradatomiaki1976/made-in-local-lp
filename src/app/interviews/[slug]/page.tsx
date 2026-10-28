@@ -7,6 +7,7 @@ import { getInterviews, getInterviewBySlug } from "@/lib/microcms";
 import { Container } from "@/components/ui/Container";
 import { CTAButton } from "@/components/ui/CTAButton";
 import ArticleLayoutWrapper from "@/components/layouts/ArticleLayoutWrapper";
+import ArticleYouTubeEmbed from "@/components/ui/ArticleYouTubeEmbed";
 import {
   FiArrowLeft,
   FiArrowRight,
@@ -100,6 +101,7 @@ export default async function InterviewDetailPage({
           <div className="mb-6">
             <Link
               href="/?tab=shikumi#section11"
+              scroll={false}
               className="inline-flex items-center gap-2 text-xs md:text-sm font-bold text-white/80 hover:text-white transition-colors"
             >
               <FiArrowLeft className="w-4 h-4" />
@@ -130,15 +132,11 @@ export default async function InterviewDetailPage({
 
       <Container className="max-w-4xl mx-auto px-4 -mt-6 md:-mt-10">
         {/* --- 1. YouTube動画埋め込みエリア --- */}
-        <div className="bg-black rounded-xl overflow-hidden shadow-xl aspect-video w-full mb-8 md:mb-10 border-4 border-white">
-          <iframe
-            src={`https://www.youtube.com/embed/${article.youtubeId}?rel=0`}
-            title={displayTitle}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            className="w-full h-full border-0"
-          />
-        </div>
+        <ArticleYouTubeEmbed
+          youtubeId={article.youtubeId}
+          title={displayTitle}
+          thumbnail={article.thumbnail}
+        />
 
         {/* --- 2. 記事リード文 --- */}
         <div
@@ -263,6 +261,7 @@ export default async function InterviewDetailPage({
 
               <Link
                 href="/?tab=shikumi#section11"
+                scroll={false}
                 className="mt-2 inline-flex items-center gap-2 text-xs md:text-sm font-bold text-white/90 hover:text-white underline underline-offset-4 transition-colors"
               >
                 <FiArrowLeft className="w-4 h-4" />
