@@ -168,7 +168,7 @@ export default function Section11() {
                 <div className="p-3 md:p-5 flex flex-col flex-1 w-full bg-white">
                   <h3
                     onClick={() => setActiveVideoId(video.youtubeId)}
-                    className="text-text text-left text-sm md:text-base font-bold leading-normal mb-3 text-clamp-2 cursor-pointer hover:text-midblue transition-colors"
+                    className="text-text text-left text-sm md:text-base font-bold leading-normal mb-3 cursor-pointer hover:text-midblue transition-colors"
                   >
                     {video.title}
                   </h3>
