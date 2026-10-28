@@ -1,8 +1,8 @@
 // src/components/layouts/ArticleLayoutWrapper.tsx
 "use client";
 
-import { ReactNode } from "react";
-import { useRouter } from "next/navigation";
+import { ReactNode, useEffect } from "react";
+import { useRouter, usePathname } from "next/navigation";
 import GlobalHeader from "@/components/layouts/GlobalHeader";
 import GlobalFooter from "@/components/layouts/GlobalFooter";
 
@@ -14,6 +14,16 @@ export default function ArticleLayoutWrapper({
   children,
 }: ArticleLayoutWrapperProps) {
   const router = useRouter();
+  const pathname = usePathname();
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      window.history.scrollRestoration = "manual";
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+      }, 10);
+    }
+  }, [pathname]);
 
   // 記事ページ上でヘッダー/フッターのトグルが押された際の遷移制御
   const handlePageChange = (targetPage: "omoi" | "shikumi") => {

@@ -1,12 +1,18 @@
 // src/app/interviews/[slug]/page.tsx
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import type { Metadata } from "next";
 import { getInterviews, getInterviewBySlug } from "@/lib/microcms";
 import { Container } from "@/components/ui/Container";
 import { CTAButton } from "@/components/ui/CTAButton";
 import ArticleLayoutWrapper from "@/components/layouts/ArticleLayoutWrapper";
-import { FiArrowLeft, FiCheckCircle, FiHelpCircle } from "react-icons/fi";
+import {
+  FiArrowLeft,
+  FiArrowRight,
+  FiCheckCircle,
+  FiHelpCircle,
+} from "react-icons/fi";
 
 // 1. ビルド時に全記事のURLを事前生成する（SSG）
 export async function generateStaticParams() {
@@ -53,6 +59,10 @@ export default async function InterviewDetailPage({
   if (!article) {
     notFound();
   }
+
+  // 追加：現在表示している記事以外のインタビュー一覧を取得
+  const allInterviews = await getInterviews();
+  const otherInterviews = allInterviews.filter((item) => item.slug !== slug);
 
   const displayTitle = article.articleTitle || article.title;
 
@@ -187,19 +197,19 @@ export default async function InterviewDetailPage({
                 {article.credit.companyName}
               </dd>
               <dt className=" text-text2 font-sans">選出エリア</dt>
-              <dd className="sm:col-span-2 font- text-sm md:text-base text-text">
+              <dd className="sm:col-span-2 font-medium text-sm md:text-base text-text">
                 {article.credit.selectionArea}
               </dd>
-              <dt className=" text-text2 font-sans">代表取締役</dt>
-              <dd className="sm:col-span-2 font- text-sm md:text-base text-text">
+              <dt className=" text-text2 font-sans">代表者</dt>
+              <dd className="sm:col-span-2 font-medium text-sm md:text-base text-text">
                 {article.credit.ceo}
               </dd>
               <dt className=" text-text2 font-sans">対談出演者</dt>
-              <dd className="sm:col-span-2 font- text-sm md:text-base text-text">
+              <dd className="sm:col-span-2 font-medium text-sm md:text-base text-text">
                 {article.credit.speakers}
               </dd>
               <dt className=" text-text2 font-sans">対談進行</dt>
-              <dd className="sm:col-span-2 font- text-sm md:text-base text-text">
+              <dd className="sm:col-span-2 font-medium text-sm md:text-base text-text">
                 {article.credit.interviewer}
               </dd>
             </dl>
@@ -261,6 +271,61 @@ export default async function InterviewDetailPage({
             </div>
           </div>
         </aside>
+        {/* --- 7. 他の選出企業のインタビューも読む（回遊促進ミニカード一覧） --- */}
+        {otherInterviews.length > 0 && (
+          <section className="mt-14 md:mt-20 pt-10 md:pt-14 border-t border-gray-200">
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 mb-6 md:mb-8">
+              <div>
+                <span className="text-xs font-bodoni tracking-widest text-text2 font-bold block mb-1">
+                  OTHER INTERVIEWS
+                </span>
+                <h2 className="text-xl md:text-3xl font-bold text-midblue">
+                  他の選出企業インタビューも読む
+                </h2>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
+              {otherInterviews.map((item) => (
+                <Link
+                  key={item.id}
+                  href={`/interviews/${item.slug}`}
+                  className="group bg-white rounded-lg overflow-hidden shadow-xs hover:shadow-md border border-gray-100 transition-all duration-300 flex flex-col"
+                >
+                  {/* サムネイル画像 */}
+                  <div className="relative aspect-video w-full overflow-hidden bg-gray-200">
+                    <Image
+                      src={item.thumbnail}
+                      alt={`${item.company}のインタビュー`}
+                      fill
+                      sizes="(max-width: 640px) 100vw, 450px"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <span className="absolute top-2.5 left-2.5 bg-midblue/90 backdrop-blur-xs text-white text-[11px] font-bold px-2.5 py-0.5 rounded-sm">
+                      {item.area}
+                    </span>
+                  </div>
+
+                  {/* テキストエリア */}
+                  <div className="p-4 md:p-5 flex flex-col flex-1">
+                    <h3 className="text-base md:text-xl font-bold text-text leading-snug mb-3">
+                      {item.title}
+                    </h3>
+                    <div className="mt-auto pt-3 border-t border-gray-100 flex items-center justify-between gap-2">
+                      <span className="text-sm md:text-base font-bold text-text2 truncate">
+                        {item.company}
+                      </span>
+                      <span className="inline-flex items-center gap-1 text-xs md:text-sm font-sans font-bold text-text group-hover:translate-x-1 transition-transform shrink-0">
+                        <span>記事を読む</span>
+                        <FiArrowRight className="w-3.5 h-3.5" />
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
       </Container>
     </ArticleLayoutWrapper>
   );
