@@ -7,7 +7,8 @@ import { contactSchema, ContactFormData } from "@/lib/validations/contact";
 // Vercelで確実にサーバーレス関数として動的実行させる宣言
 export const dynamic = "force-dynamic";
 
-const FROM_EMAIL = "Made In Local 100選事務局 <100selection@madeinlocal.jp>";
+const FROM_EMAIL =
+  "地域を代表する企業100選 運営事務局 <100selection@madeinlocal.jp>";
 const ADMIN_EMAIL = "100selection@madeinlocal.jp";
 
 // Googleスプレッドシートへ1行追記するヘルパー関数
@@ -85,7 +86,7 @@ async function sendEmails(data: ContactFormData) {
     from: FROM_EMAIL,
     to: [ADMIN_EMAIL],
     replyTo: email,
-    subject: `【Made In Local 100選】エントリー相談（${companyName} 様）`,
+    subject: `地域を代表する企業100選 エントリー相談（${companyName} 様）`,
     html: `
       <div style="font-family: sans-serif; color: #19324D; line-height: 1.6;">
         <h2 style="border-bottom: 2px solid #007a8c; padding-bottom: 8px;">
@@ -168,7 +169,7 @@ async function sendEmails(data: ContactFormData) {
         <hr style="border: none; border-top: 1px solid #ddd; margin: 24px 0;" />
         <p style="font-size: 12px; color: #666;">
           ※本メールはシステムからの自動返信です。<br />
-          地方創生メディア「Made In Local」運営事務局（株式会社IOBI）
+          地域を代表する企業100選 運営事務局
         </p>
       </div>
     `,
