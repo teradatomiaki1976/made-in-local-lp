@@ -7,8 +7,8 @@ import { contactSchema, ContactFormData } from "@/lib/validations/contact";
 // Vercelで確実にサーバーレス関数として動的実行させる宣言
 export const dynamic = "force-dynamic";
 
-const FROM_EMAIL = "Made In Local 100選事務局 <onboarding@resend.dev>";
-const ADMIN_EMAIL = "teradatomiaki@gmail.com";
+const FROM_EMAIL = "Made In Local 100選事務局 <100selection@madeinlocal.jp>";
+const ADMIN_EMAIL = "100selection@madeinlocal.jp";
 
 // Googleスプレッドシートへ1行追記するヘルパー関数
 async function appendToGoogleSheet(data: ContactFormData) {

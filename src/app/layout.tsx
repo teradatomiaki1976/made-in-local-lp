@@ -86,6 +86,17 @@ export default function RootLayout({
       lang="ja"
       className={`${notoSans.variable} ${notoSerif.variable} ${libreBodoni.variable} antialiased`}
     >
+      {/* 🌟 Google Tag Manager (GTM-M9LF5QH7) */}
+      <Script id="gtm-init" strategy="afterInteractive">
+        {`
+          (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+          })(window,document,'script','dataLayer','GTM-M9LF5QH7');
+        `}
+      </Script>
+
       {/* Google Analytics (GA4) */}
       <Script
         src="https://www.googletagmanager.com/gtag/js?id=G-TMFN0X1T67"
@@ -99,6 +110,7 @@ export default function RootLayout({
           gtag('config', 'G-TMFN0X1T67');
         `}
       </Script>
+
       {/* Microsoft Clarity（ヒートマップ・セッション録画） */}
       <Script id="clarity-init" strategy="afterInteractive">
         {`
@@ -109,7 +121,18 @@ export default function RootLayout({
           })(window, document, "clarity", "script", "yfmfbho5rr");
         `}
       </Script>
+
       <body className="min-h-screen flex flex-col font-sans bg-midblue text-text">
+        {/* 🌟 Google Tag Manager (noscript) */}
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-M9LF5QH7"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          />
+        </noscript>
+
         {/* 構造化データ (JSON-LD): Google検索でのリッチリザルト表示に有効 */}
         <script
           type="application/ld+json"
