@@ -119,11 +119,9 @@ export default function HeroLeftBrain() {
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
         >
           <h1 className="text-[clamp(1.9rem,9vw,4.5rem)] font-bold leading-snug tracking-tight mb-4 lg:mb-8 text-shadow-sm text-shadow-white">
-            審査に通過した企業
-            <br className="block md:hidden" />
-            だけが掲げる
+            もっと知られるべき
             <br />
-            特別な認証ブランド
+            日本各地の企業を選出
           </h1>
           <div className="text-sm md:text-xl font-bold">
             ───{" "}
