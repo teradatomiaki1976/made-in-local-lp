@@ -119,9 +119,9 @@ export default function HeroLeftBrain() {
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
         >
           <h1 className="text-[clamp(1.9rem,9vw,4.5rem)] font-bold leading-snug tracking-tight mb-4 lg:mb-8 text-shadow-sm text-shadow-white">
-            <span className="text-[clamp(1.2rem,5vw,3.0rem)]">
-              厳正な審査で選ばれた企業だけが掲げる
-            </span>
+            審査に通過した企業
+            <br className="block md:hidden" />
+            だけが掲げる
             <br />
             特別な認証ブランド
           </h1>

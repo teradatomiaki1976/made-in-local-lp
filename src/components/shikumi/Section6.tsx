@@ -3,7 +3,6 @@
 
 import { motion, Variants } from "framer-motion";
 import Image from "next/image";
-import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Heading2, Text } from "@/components/ui/Typography";
 import { Section } from "@/components/ui/Section";
@@ -125,14 +124,20 @@ export default function Section6() {
             が選定しています
           </Heading2>
 
-          <div className="relative w-56 md:w-72 h-12 md:h-16 mx-auto mb-8">
+          <a
+            href="https://madeinlocal.jp/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="地方創生メディア「Made In Local」公式サイトへ（新しいタブで開きます）"
+            className="relative w-56 md:w-72 h-12 md:h-16 mx-auto mb-8 block transition-all duration-300 hover:opacity-90 hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-midblue rounded-sm"
+          >
             <Image
               src="/images/shikumi/section6/madeinlocal-logo.svg"
               alt="Made In Localのロゴ"
               fill
               className="object-contain"
             />
-          </div>
+          </a>
 
           <Text
             initial={{ opacity: 0, y: 20 }}
@@ -146,18 +151,32 @@ export default function Section6() {
             企業一社一社の価値と、その先に描く未来を見つめながら
             <br className="hidden md:block" />
             「地域を代表する企業100選」を選定しています。
+          </Text>
+
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="mt-6 md:mt-8"
+          >
             <a
               href="https://madeinlocal.jp/"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-1 text-xs md:text-sm font-sans text-text2 hover:text-text2 transition-colors group mt-1 md:mt-2"
+              className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 md:px-8 md:py-4 bg-white border border-text2/40 hover:border-text2/60 rounded-full text-sm md:text-lg font-sans font-bold text-text2 shadow-sm hover:shadow-md transition-all duration-300 group"
             >
-              <span className="border-b border-text2/30 group-hover:border-text2 transition-colors pb-0.5">
-                地方創生メディア「Made In Local」公式サイトへ
+              <span className="hover:text-text2/90 ">
+                地方創生メディア「Made In Local」
+                <br className="block md:hidden" />
+                公式サイトへ
               </span>
-              <FiExternalLink className="w-4 h-4" aria-hidden="true" />
+              <FiExternalLink
+                className="w-4 h-4 md:w-5 md:h-5 shrink-0 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                aria-hidden="true"
+              />
             </a>
-          </Text>
+          </motion.div>
         </motion.div>
 
         {/* 実績バッジ */}
