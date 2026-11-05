@@ -276,7 +276,7 @@ export default function HeroLeftBrain() {
           initial={{ opacity: 0.4, scale: 0.94 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-          className="mt-20 md:mt-6 lg:mt-16 relative w-56 h-[360px] md:w-80 md:h-[min(360px,35vh)] shrink-0 z-10"
+          className="mt-20 md:mt-6 lg:mt-16 relative w-56 h-[340px] md:w-80 md:h-[min(360px,35vh)] shrink-0 z-10"
         >
           {/* ★ 放射光の中心アンカー */}
           <div
@@ -412,7 +412,7 @@ export default function HeroLeftBrain() {
             fill
             priority
             className="object-contain relative z-10"
-            sizes="(max-width: 768px) 320px, 360px"
+            sizes="(max-width: 768px) 320px, 340px"
           />
         </motion.div>
       </div>
