@@ -250,7 +250,7 @@ export default function HeroLeftBrain() {
       </div>
 
       {/* 3. コンテンツエリア（前面） */}
-      <div className="relative z-20 flex flex-col items-center justify-center text-center w-full flex-1 px-4 pt-[100px] pb-0 md:pt-[120px] md:pb-[80px]">
+      <div className="relative z-20 flex flex-col items-center justify-start md:justify-center text-center w-full md:flex-1 px-4 pt-[108px] pb-0 md:pt-[120px] md:pb-[80px]">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -276,7 +276,7 @@ export default function HeroLeftBrain() {
           initial={{ opacity: 0.4, scale: 0.94 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-          className="mt-14 md:mt-6 lg:mt-16 relative w-56 h-[min(256px,35vh)] md:w-80 md:h-[min(360px,35vh)] shrink-0 z-10"
+          className="mt-20 md:mt-6 lg:mt-16 relative w-56 h-[360px] md:w-80 md:h-[min(360px,35vh)] shrink-0 z-10"
         >
           {/* ★ 放射光の中心アンカー */}
           <div
@@ -412,16 +412,17 @@ export default function HeroLeftBrain() {
             fill
             priority
             className="object-contain relative z-10"
-            sizes="(max-width: 768px) 224px, 320px"
+            sizes="(max-width: 768px) 320px, 360px"
           />
         </motion.div>
       </div>
 
       {/* 4. 下部アーチ形状 */}
-      <div className="absolute bottom-0 left-0 w-full z-30 flex flex-col">
-        <div className="w-full h-32 md:h-28 lg:h-36 relative">
+      <div className="relative md:absolute md:bottom-0 left-0 w-full z-30 flex flex-col flex-1 md:flex-none -mt-16 md:mt-0">
+        {/* アーチ＆Scrollガイド本体 */}
+        <div className="w-full h-32 md:h-28 lg:h-36 relative shrink-0">
           {/* Scrollガイド */}
-          <div className="absolute top-18 md:top-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center z-20">
+          <div className="absolute top-20 md:top-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center z-20">
             <span className="text-white text-[10px] md:text-xs tracking-widest font-serif mb-1 md:mb-2 drop-shadow-md">
               Scroll
             </span>
@@ -459,12 +460,13 @@ export default function HeroLeftBrain() {
                 <feComposite operator="in" in="noise" in2="SourceGraphic" />
               </filter>
             </defs>
+            {/* ★下端のサブピクセル隙間を防ぐため M0,121 ... L1440,121 に微調整 */}
             <path
-              d="M0,120 L0,80 Q720,40 1440,80 L1440,120 Z"
+              d="M0,121 L0,80 Q720,40 1440,80 L1440,121 Z"
               fill="url(#archGradientSp)"
             />
             <path
-              d="M0,120 L0,80 Q720,40 1440,80 L1440,120 Z"
+              d="M0,121 L0,80 Q720,40 1440,80 L1440,121 Z"
               fill="white"
               filter="url(#archNoiseSp)"
               style={{ mixBlendMode: "overlay", opacity: 0.15 }}
@@ -507,6 +509,20 @@ export default function HeroLeftBrain() {
               pointerEvents="none"
             />
           </svg>
+        </div>
+
+        {/* 縦長スマホ用：アーチ下の余白を埋める濃紺ベタ領域 */}
+        <div
+          className="w-full flex-1 bg-[#19324D] -mt-px block md:hidden relative"
+          aria-hidden="true"
+        >
+          {/* SVG側のノイズ質感（opacity: 0.15 / overlay）と境目なく馴染ませるノイズレイヤー */}
+          <div
+            className="absolute inset-0 pointer-events-none opacity-[0.04]"
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+            }}
+          />
         </div>
       </div>
     </section>
