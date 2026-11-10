@@ -9,7 +9,7 @@ export const dynamic = "force-dynamic";
 
 const FROM_EMAIL =
   "地域を代表する企業100選 運営事務局 <100selection@madeinlocal.jp>";
-const ADMIN_EMAIL = "100selection@madeinlocal.jp";
+const ADMIN_EMAILS = ["100selection@madeinlocal.jp", "yu.tsuji@iobi.co.jp"];
 
 // Googleスプレッドシートへ1行追記するヘルパー関数
 async function appendToGoogleSheet(data: ContactFormData) {
@@ -84,7 +84,7 @@ async function sendEmails(data: ContactFormData) {
   // ① 運営宛て通知メール
   const adminResponse = await resend.emails.send({
     from: FROM_EMAIL,
-    to: [ADMIN_EMAIL],
+    to: ADMIN_EMAILS,
     replyTo: email,
     subject: `地域を代表する企業100選 エントリー相談（${companyName} 様）`,
     html: `
