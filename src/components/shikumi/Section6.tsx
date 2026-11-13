@@ -182,56 +182,93 @@ export default function Section6() {
         {/* 実績バッジ */}
         <motion.div
           variants={itemFadeUp}
-          className="flex gap-4 md:gap-16 justify-center items-center w-full max-w-3xl mb-12 md:mb-20"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid grid-cols-2 md:flex md:flex-row gap-x-2 sm:gap-x-6 md:gap-12 lg:gap-16 justify-center items-center w-full max-w-4xl mb-12 md:mb-20"
         >
-          {/* バッジ1：SEO No.1 */}
-          <div className="relative w-[220px] h-[150px] md:w-[260px] md:h-[260px] flex flex-col justify-center items-center text-center">
-            <div className="absolute inset-0 z-0">
-              <Image
-                src="/images/shikumi/section6/badge-bg.svg"
-                alt="実績バッジ背景"
-                fill
-                className="object-contain"
-              />
-            </div>
+          {/* バッジ1：AI言及率No.1 */}
+          <div className="col-span-2 flex justify-center">
+            <div className="relative w-[168px] h-[145px] sm:w-[190px] sm:h-[165px] md:w-[250px] md:h-[250px] flex flex-col justify-center items-center text-center">
+              <div className="absolute inset-0 z-0">
+                <Image
+                  src="/images/shikumi/section6/badge-bg.svg"
+                  alt=""
+                  aria-hidden="true"
+                  fill
+                  className="object-contain"
+                />
+              </div>
 
-            {/* テキスト領域（中央配置） */}
-            <div className="relative z-10 flex flex-col items-center justify-center pt-5 md:pt-8">
-              <p className="text-[10px] md:text-xs font-bold text-text2 mb-1 md:mb-2 tracking-widest">
-                〈地方創生メディアSEO〉
-              </p>
-              <p className="text-lg md:text-2xl font-bold text-text leading-tight">
-                4年連続
-              </p>
-              <p className="text-3xl md:text-5xl font-bold font-serif text-text leading-none">
-                No.1
-              </p>
+              <div className="relative z-10 flex flex-col items-center justify-center pt-5 md:pt-8">
+                <p className="text-[9px] sm:text-[10px] md:text-xs font-bold text-text2 mb-1 md:mb-2 tracking-wider whitespace-nowrap">
+                  〈地方創生メディア〉
+                </p>
+                <p className="text-base sm:text-lg md:text-2xl font-bold text-text leading-tight">
+                  AI言及率
+                </p>
+                <p className="text-3xl sm:text-4xl md:text-5xl font-bold font-serif text-text leading-none mt-0.5">
+                  No.1
+                </p>
+              </div>
             </div>
           </div>
 
-          {/* バッジ2：1,500社超 */}
-          <div className="relative w-[220px] h-[150px] md:w-[260px] md:h-[260px] flex flex-col justify-center items-center text-center">
-            <div className="absolute inset-0 z-0">
-              <Image
-                src="/images/shikumi/section6/badge-bg.svg"
-                alt="実績バッジ背景"
-                fill
-                className="object-contain"
-              />
-            </div>
+          {/* バッジ2：SEO No.1 */}
+          <div className="col-span-1 flex justify-center">
+            <div className="relative w-[160px] h-[145px] sm:w-[185px] sm:h-[165px] md:w-[250px] md:h-[250px] flex flex-col justify-center items-center text-center">
+              <div className="absolute inset-0 z-0">
+                <Image
+                  src="/images/shikumi/section6/badge-bg.svg"
+                  alt=""
+                  aria-hidden="true"
+                  fill
+                  className="object-contain"
+                />
+              </div>
 
-            <div className="relative z-10 flex flex-col items-center justify-center pt-9 md:pt-15">
-              <p className="text-[10px] md:text-xs font-bold text-text2 mb-1 md:mb-2 tracking-widest">
-                〈開始から5年で全国〉
-              </p>
-              <p className="text-lg md:text-2xl font-bold text-text leading-tight">
-                選出
-              </p>
-              <div className="flex flex-col items-center md:gap-1">
-                <p className="text-3xl md:text-5xl font-bold font-serif text-text leading-none">
-                  1,500
+              <div className="relative z-10 flex flex-col items-center justify-center pt-5 md:pt-8">
+                <p className="text-[8.5px] sm:text-[10px] md:text-xs font-bold text-text2 mb-1 md:mb-2 tracking-normal md:tracking-wider whitespace-nowrap">
+                  〈地方創生メディアSEO〉
                 </p>
-                <p className="text-xs md:text-xl font-bold text-text">社超</p>
+                <p className="text-base sm:text-lg md:text-2xl font-bold text-text leading-tight">
+                  4年連続
+                </p>
+                <p className="text-3xl sm:text-4xl md:text-5xl font-bold font-serif text-text leading-none mt-0.5">
+                  No.1
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* バッジ3：1,500社超 */}
+          <div className="col-span-1 flex justify-center">
+            <div className="relative w-[160px] h-[145px] sm:w-[185px] sm:h-[165px] md:w-[250px] md:h-[250px] flex flex-col justify-center items-center text-center">
+              <div className="absolute inset-0 z-0">
+                <Image
+                  src="/images/shikumi/section6/badge-bg.svg"
+                  alt=""
+                  aria-hidden="true"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+
+              <div className="relative z-10 flex flex-col items-center justify-center pt-6 md:pt-10">
+                <p className="text-[8.5px] sm:text-[10px] md:text-xs font-bold text-text2 mb-1 md:mb-1.5 tracking-normal md:tracking-wider whitespace-nowrap">
+                  〈開始から5年で全国〉
+                </p>
+                <p className="text-sm sm:text-base md:text-xl font-bold text-text leading-tight">
+                  選出
+                </p>
+                <div className="flex flex-col items-center">
+                  <p className="text-2xl sm:text-3xl md:text-5xl font-bold font-serif text-text leading-none mt-0.5">
+                    1,500
+                  </p>
+                  <p className="text-[11px] sm:text-xs md:text-lg font-bold text-text mt-0.5">
+                    社超
+                  </p>
+                </div>
               </div>
             </div>
           </div>
